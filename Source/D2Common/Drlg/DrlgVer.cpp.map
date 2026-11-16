@@ -1,0 +1,249 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Drlg/DrlgVer.cpp",
+  "functions": [
+    {
+      "name": "DRLGVER_AllocVertex",
+      "address": "0067cdd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067cdd0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "DRLGVER_AllocVertex",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgVertexStrc",
+        "D2PoolManagerStrc",
+        "uint8_t"
+      ],
+      "dh": "3474e783",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "nDirection",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGVER_SetVertexFlags",
+      "address": "0067ce00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067ce00"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "DRLGVER_SetVertexFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgVertexStrc"
+      ],
+      "dh": "9205d96f",
+      "paramStorage": [
+        [
+          "pVertex",
+          "EAX:4"
+        ],
+        [
+          "nFlag",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGVER_CreateVerticesFromEdges",
+      "address": "0067ce20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067ce20"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "DRLGVER_CreateVerticesFromEdges",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordStrc",
+        "D2DrlgOrthStrc",
+        "D2DrlgVertexStrc",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "e575cfa7",
+      "paramStorage": [
+        [
+          "pMemory",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pFirstVertex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDrlgCoord",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nDirection",
+          "Stack[0x10]:1"
+        ],
+        [
+          "pDrlgRoomData",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGVER_CreateRoomVertices",
+      "address": "0067d050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d050"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "DRLGVER_CreateRoomVertices",
+        "AllocServerMemory",
+        "DRLGVER_CreateVerticesFromEdges"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordStrc",
+        "D2DrlgOrthStrc",
+        "D2DrlgVertexStrc",
+        "D2DrlgVertexStrc *",
+        "D2PoolManagerStrc",
+        "uint8_t"
+      ],
+      "dh": "e6d11ae8",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "ppVertices",
+          "EDX:4"
+        ],
+        [
+          "pDrlgCoord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDirection",
+          "Stack[0x8]:1"
+        ],
+        [
+          "pDrlgRoomData",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGVER_FreeVertices",
+      "address": "0067d1e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d1e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "DRLGVER_FreeVertices",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgVertexStrc",
+        "D2DrlgVertexStrc *",
+        "D2PoolManagerStrc"
+      ],
+      "dh": "096266e7",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "ppVertices",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0067d250",
+      "address": "0067d250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d250"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "Unreferenced_0067d250"
+      ],
+      "usedTypes": [
+        "D2DrlgVertexStrc *"
+      ],
+      "dh": "2e931499",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetCoordDiff",
+      "address": "0067d280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d280"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgVer",
+      "calledFunctions": [
+        "GetCoordDiff"
+      ],
+      "usedTypes": [
+        "D2DrlgVertexStrc"
+      ],
+      "dh": "f8a90c6e",
+      "paramStorage": [
+        [
+          "pDrlgVertex",
+          "ECX:4"
+        ],
+        [
+          "pDiffX",
+          "EDX:4"
+        ],
+        [
+          "pDiffY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

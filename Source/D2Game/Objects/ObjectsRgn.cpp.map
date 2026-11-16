@@ -1,0 +1,668 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Objects/ObjectsRgn.cpp",
+  "functions": [
+    {
+      "name": "AllocObjectControl",
+      "address": "00546c60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546c60"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "AllocObjectControl",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "AllocServerMemory",
+        "SEED_InitDefault",
+        "InitSeed_Param_666",
+        "TXT_Levels_GetLine",
+        "memset",
+        "GetShrinesSize",
+        "TXT_Shrines_GetLine"
+      ],
+      "usedTypes": [
+        "AllocObjectControl_Slotm",
+        "AllocObjectControl_Slotmc",
+        "D2ObjectControlStrc",
+        "D2ObjectRngStrc",
+        "D2SeedStrc",
+        "D2ShrinesTxt",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "b169c6fe",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeObjectControl",
+      "address": "00546e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546e90"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "FreeObjectControl",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2ObjectControlStrc",
+        "D2ObjectControlSub0x1110",
+        "D2ObjectRngStrc *",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "1459656b",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetObjectLevelRng",
+      "address": "00546f90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546f90"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "GetObjectLevelRng"
+      ],
+      "usedTypes": [
+        "D2ObjectRngStrc",
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "7bde42b7",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevelId",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetObjectControlSeed",
+      "address": "00546fa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546fa0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "GetObjectControlSeed"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "d497f0da",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetShrinesRng",
+      "address": "00546fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546fb0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "GetShrinesRng"
+      ],
+      "usedTypes": [
+        "D2ObjectRngShrines",
+        "SGAMEDATA"
+      ],
+      "dh": "e4ff5872",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "IncrementObjectTypeCount",
+      "address": "00546fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546fc0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "IncrementObjectTypeCount"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "26c12b21",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "nObjectType",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Send_0x26_Chat",
+      "address": "00546fe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546fe0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "Send_0x26_Chat",
+        "NET_D2GS_SERVER_Send_0x26_CHATSTART"
+      ],
+      "usedTypes": [
+        "D2ClientStrc",
+        "char *"
+      ],
+      "dh": "bb779a05",
+      "paramStorage": [
+        [
+          "pClient",
+          "ECX:4"
+        ],
+        [
+          "ppMessage",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SendDebugMessageToEveryone",
+      "address": "00546ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00546ff0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "SendDebugMessageToEveryone",
+        "ForEachClient",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2GSPacketSrv0x",
+        "D2GSPacketSrv0x26",
+        "SGAMEDATA"
+      ],
+      "dh": "5e44ce06",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "pMessage",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Debug",
+      "address": "00547080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547080"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "Debug",
+        "SendDebugMessageToEveryone",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2ObjectControlStrc",
+        "SGAMEDATA",
+        "uint32_t"
+      ],
+      "dh": "c024dece",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocObjectControlSub0x1110",
+      "address": "00547170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547170"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "AllocObjectControlSub0x1110",
+        "AllocServerMemory",
+        "GetXPos",
+        "GetYPos"
+      ],
+      "usedTypes": [
+        "D2ObjectControlStrc",
+        "D2ObjectControlSub0x1110",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2UnitType",
+        "int32_t"
+      ],
+      "dh": "3e339757",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn17_Waypoint",
+      "address": "00547210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547210"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "Objects_InitFn17_Waypoint",
+        "ChangeAnimMode",
+        "TXT_Objects_GetLine",
+        "SetEvent",
+        "FreeServerMemory",
+        "DRLGROOM_IsRoomInTown"
+      ],
+      "usedTypes": [
+        "D2ObjectControlStrc",
+        "D2ObjectControlSub0x1110",
+        "D2ObjectInitFnArg",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "48f280f8",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_CheckPoints2Capacity",
+      "address": "00547300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547300"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_CheckPoints2Capacity"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "752b3866",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_CheckDensityThreshold",
+      "address": "00547330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547330"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_CheckDensityThreshold"
+      ],
+      "usedTypes": [
+        "D2ObjectRngStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "uint8_t"
+      ],
+      "dh": "5838ff28",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_CheckPointsCapacity",
+      "address": "00547360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547360"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_CheckPointsCapacity"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "61220cd8",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_IncrementLevelSpawnCount",
+      "address": "00547390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547390"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECT_IncrementLevelSpawnCount"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "6b05e010",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_IsPositionClearOfPoints2",
+      "address": "005473a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005473a0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_IsPositionClearOfPoints2"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "3a696576",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddPointsToLevelRngPoints2",
+      "address": "00547400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547400"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "AddPointsToLevelRngPoints2"
+      ],
+      "usedTypes": [
+        "D2ObjectRngStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "84513b9d",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_IsPositionClearOfPoints1",
+      "address": "00547430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547430"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_IsPositionClearOfPoints1"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "3799fb22",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddPointsToLevelRngPoints1",
+      "address": "00547490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547490"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "AddPointsToLevelRngPoints1"
+      ],
+      "usedTypes": [
+        "D2ObjectRngStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "5584fafc",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTRGN_GetTrapMonsterClassId",
+      "address": "005474c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005474c0"
+        }
+      ],
+      "namespace": "D2Game::Objects::ObjectsRgn",
+      "calledFunctions": [
+        "OBJECTRGN_GetTrapMonsterClassId",
+        "UNITS_GetRoom",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetActNoFromLevelNumber",
+        "ReturnMonsterRegionEntryForLevel"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionFieldStrc",
+        "D2MonsterRegionStrc",
+        "D2ObjectModeArg",
+        "D2ObjectRngStrc",
+        "D2RoomStrc",
+        "eAct",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "1077d03e",
+      "paramStorage": [
+        [
+          "pObjectModeArg",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

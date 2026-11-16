@@ -1,0 +1,1420 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Src/ErrorManager.cpp",
+  "functions": [
+    {
+      "name": "StubHook1_Unref_004016b0",
+      "address": "004016b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004016b0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_004016b0"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "85c76a93",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_ReturnZeroCallback",
+      "address": "00402370",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00402370"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FOG_ReturnZeroCallback"
+      ],
+      "dh": "bf7234d0",
+      "paramStorage": [
+        [
+          "szFileName",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_00403f50",
+      "address": "00403f50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403f50"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_00403f50"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "92262f84",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_00405a50",
+      "address": "00405a50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00405a50"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_00405a50"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "42ac23a2",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_00405a60",
+      "address": "00405a60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00405a60"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_00405a60"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "3330e360",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_004072c0",
+      "address": "004072c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004072c0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_004072c0"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "2c06c44f",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_004072d0",
+      "address": "004072d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004072d0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_004072d0"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "4ca6b15f",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_004072e0",
+      "address": "004072e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004072e0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_004072e0"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "474b1b31",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_004072f0",
+      "address": "004072f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004072f0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_004072f0"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "562989a5",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook1_Unref_00407300",
+      "address": "00407300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407300"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1_Unref_00407300"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "ee9572f2",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CrashGame",
+      "address": "00407970",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407970"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "CrashGame"
+      ],
+      "dh": "8938562c"
+    },
+    {
+      "name": "FILETOOLS_WriteOneStringToFile",
+      "address": "00407980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407980"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FILETOOLS_WriteOneStringToFile",
+        "Printf"
+      ],
+      "usedTypes": [
+        "Report"
+      ],
+      "dh": "a58a7636",
+      "paramStorage": [
+        [
+          "pReport",
+          "ECX:4"
+        ],
+        [
+          "szString",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetParentProcessId",
+      "address": "00407990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407990"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "GetParentProcessId",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "PROCESSENTRY",
+        "int32_t"
+      ],
+      "dh": "22e60e36",
+      "paramStorage": [
+        [
+          "nProcessId",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetModuleFileNameForProcess",
+      "address": "00407a20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407a20"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "GetModuleFileNameForProcess"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "43ffc12e",
+      "paramStorage": [
+        [
+          "nProcessId",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nBufferSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WriteCrashReportProcessInfo",
+      "address": "00407a80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407a80"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "WriteCrashReportProcessInfo",
+        "IsOpen",
+        "__security_check_cookie",
+        "Printf",
+        "GetModuleFileNameForProcess",
+        "strrchr",
+        "GetParentProcessId",
+        "MISC_GetLanguageCode",
+        "STRTABLE_GetRegistryLanguage",
+        "memset",
+        "InitLogFilePathPointers",
+        "AddAttachment"
+      ],
+      "usedTypes": [
+        "PSID",
+        "Report",
+        "_SID_IDENTIFIER_AUTHORITY",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "10b732b0",
+      "paramStorage": [
+        [
+          "pReport",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00407dd0",
+      "address": "00407dd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407dd0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "Unreferenced_00407dd0"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "b6b648e3"
+    },
+    {
+      "name": "InitializeSystemInfo",
+      "address": "00407de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407de0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "InitializeSystemInfo",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "_MEMORYSTATUS",
+        "_OSVERSIONINFOA",
+        "uint32_t"
+      ],
+      "dh": "276cd5b9"
+    },
+    {
+      "name": "EXIT_AtExit",
+      "address": "00407f20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407f20"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "EXIT_AtExit",
+        "STRUCT_FreeAsyncData",
+        "FreeMemoryPool",
+        "DEBUG_UnloadStackCrawlDbgHelp",
+        "ExitOrCrashCleanup",
+        "LOGMGR_DeleteHighResTimerLock",
+        "StopLogWriterThread"
+      ],
+      "dh": "f8cc3d1e"
+    },
+    {
+      "name": "StubHook1",
+      "address": "00407f80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407f80"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook1"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1b9d3103",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "hThread",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2",
+      "address": "00407f90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407f90"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e4551768",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00407fa0",
+      "address": "00407fa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407fa0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00407fa0"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "a2857e89",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00407fb0",
+      "address": "00407fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407fb0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00407fb0"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "6461cbb3",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LogStringConditional",
+      "address": "00407fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407fc0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "LogStringConditional",
+        "LogWithCategory",
+        "LogWithCategoryVarArgs"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "2ac4d77f",
+      "paramStorage": [
+        [
+          "nLogLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetErrorState",
+      "address": "00407ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00407ff0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "GetErrorState"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "96d91a91"
+    },
+    {
+      "name": "StripPathPrefixToRelative",
+      "address": "00408000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408000"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StripPathPrefixToRelative",
+        "SStrLen"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "37f5a54a",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00408050",
+      "address": "00408050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408050"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00408050"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "5ec02026",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00408060",
+      "address": "00408060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408060"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00408060"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "3511c6a7",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00408070",
+      "address": "00408070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408070"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00408070"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "25c9f322",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_00408080",
+      "address": "00408080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408080"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_00408080"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "0e7b44e5",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetInstructionPointer",
+      "address": "00408090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408090"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "GetInstructionPointer"
+      ],
+      "dh": "2e687cdc"
+    },
+    {
+      "name": "FormatDebugOutput",
+      "address": "004080b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004080b0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FormatDebugOutput",
+        "_snprintf",
+        "_vsnprintf",
+        "LogWithCategoryVarArgs",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "SYSTEMTIME",
+        "uint8_t",
+        "va_list"
+      ],
+      "dh": "4ab4bd9a",
+      "paramStorage": [
+        [
+          "bFlags",
+          "Stack[0x4]:1"
+        ],
+        [
+          "vaArgs",
+          "EDI:4"
+        ],
+        [
+          "szText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "OutputDebugStringSimple",
+      "address": "004081a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004081a0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "OutputDebugStringSimple",
+        "_vsnprintf",
+        "__security_check_cookie"
+      ],
+      "dh": "abb5090e"
+    },
+    {
+      "name": "OutputDebugStringIfCapsLock",
+      "address": "00408220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408220"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "OutputDebugStringIfCapsLock",
+        "_vsnprintf",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint16_t"
+      ],
+      "dh": "cd413dae"
+    },
+    {
+      "name": "FormatDebugOutputVariadic",
+      "address": "004082a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004082a0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FormatDebugOutputVariadic",
+        "FormatDebugOutput"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "e2863e0f",
+      "paramStorage": [
+        [
+          "bFlags",
+          "Stack[0x4]:1"
+        ],
+        [
+          "szText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "firstArg",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FormatDebugOutputLogOnly",
+      "address": "004082c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004082c0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FormatDebugOutputLogOnly",
+        "FormatDebugOutput"
+      ],
+      "dh": "2dae8038"
+    },
+    {
+      "name": "DumpLog",
+      "address": "004082e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004082e0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "DumpLog",
+        "Constructor",
+        "Open",
+        "WriteCrashReportProcessInfo",
+        "Printf",
+        "ILT_GetCurrentThreadId",
+        "CRASH_DumpThreadContext",
+        "CRASH_FormatStackTrace",
+        "CRASH_DumpRegisters",
+        "CRASH_EnumerateThreads",
+        "EnumerateAndDumpAllFunctions",
+        "SStrCopy",
+        "SStrPack",
+        "CrashDumpWriterThread",
+        "AddAttachment",
+        "Close",
+        "memset",
+        "ErrorReportingLaunch",
+        "SYSTEM_Win32TerminateProcess",
+        "Destructor",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2BlizzardErrorArgument",
+        "D2CrashReportStrc",
+        "Report",
+        "char[1024]",
+        "pfnEHHandlerRoutine",
+        "uint32_t"
+      ],
+      "dh": "7234311d",
+      "paramStorage": [
+        [
+          "pCrashInfo",
+          "ECX:4"
+        ],
+        [
+          "pUserContext",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRASH_FillupCrashTxt",
+      "address": "00408660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408660"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "CRASH_FillupCrashTxt",
+        "Constructor",
+        "Open",
+        "WriteCrashReportProcessInfo",
+        "Printf",
+        "CRASH_DumpThreadContext",
+        "CRASH_DumpRegisters",
+        "CRASH_EnumerateThreads",
+        "AddAttachment",
+        "Close",
+        "memset",
+        "ErrorReportingLaunch",
+        "Destructor",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2BlizzardErrorArgument",
+        "PFN_CrtExceptionFilter",
+        "Report",
+        "char *",
+        "char[1024]",
+        "uint32_t"
+      ],
+      "dh": "b04be6fe",
+      "paramStorage": [
+        [
+          "szSummary",
+          "ECX:4"
+        ],
+        [
+          "szReason",
+          "EDX:4"
+        ],
+        [
+          "ppszAttachPaths",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAttachPathCount",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLineNumber",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bSilentFlag",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "CheckErrorDuringError",
+      "address": "004088c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004088c0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "CheckErrorDuringError",
+        "StripPathPrefixToRelative",
+        "LOGMANAGER_TraceToModuleLog"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "bb51672c",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "nLine",
+          "EDX:4"
+        ],
+        [
+          "szReason",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_ErrorHandler",
+      "address": "00408900",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408900"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FOG_ErrorHandler",
+        "CheckErrorDuringError",
+        "LogWithCategoryVarArgs",
+        "ExitOrCrashCleanUpJmp",
+        "isDebuggerPresent",
+        "SStrPrintf",
+        "StripPathPrefixToRelative",
+        "CRASH_FillupCrashTxt",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "eFOG_ErrorType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c79aa647"
+    },
+    {
+      "name": "ERROR_UnrecoverableInternalError_AssertionFailure",
+      "address": "00408a30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408a30"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ERROR_UnrecoverableInternalError_AssertionFailure",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "6166ce02",
+      "paramStorage": [
+        [
+          "szUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAddress",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERROR_UnrecoverableInternalError_Halt",
+      "address": "00408a60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408a60"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "FOG_ErrorHandler",
+        "ERROR_UnrecoverableInternalError_AssertionFailure",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "WSACleanup",
+        "ExitOrCrashCleanUpJmp"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b6fd25f2",
+      "paramStorage": [
+        [
+          "szMessage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAddress",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERROR_UnrecoverableInternalError_Warning",
+      "address": "00408a90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408a90"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ERROR_UnrecoverableInternalError_Warning",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b4759388",
+      "paramStorage": [
+        [
+          "szUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAddress",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERROR_DeadlockedThread",
+      "address": "00408ac0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408ac0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ERROR_DeadlockedThread",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9dac70c5",
+      "paramStorage": [
+        [
+          "pThread",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTicks",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERROR_UnrecoverableInternalError_Any",
+      "address": "00408af0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408af0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ERROR_UnrecoverableInternalError_Any",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp"
+      ],
+      "usedTypes": [
+        "eFOG_ErrorType",
+        "int32_t"
+      ],
+      "dh": "01508232",
+      "paramStorage": [
+        [
+          "eErrorType",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAddress",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ShowUnrecoverableErrorDialog",
+      "address": "00408b20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408b20"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ShowUnrecoverableErrorDialog",
+        "StripPathPrefixToRelative",
+        "SStrPrintf",
+        "LogWithCategory",
+        "GetInstructionPointer",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp",
+        "exit",
+        "_vsnprintf",
+        "LogWithCategoryVarArgs",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "va_list"
+      ],
+      "dh": "a8d187d3",
+      "paramStorage": [
+        [
+          "eErrorType",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nLine",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szSourceFile",
+          "Stack[0x8]:4"
+        ],
+        [
+          "vaArgs",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERRORMANAGER_InitErrorManager",
+      "address": "00408ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408ce0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "ERRORMANAGER_InitErrorManager",
+        "thunk_InitializeDebugSubsystem",
+        "CRASH_SetExceptionHandler",
+        "SFILE_GetExecutableDirectory",
+        "SYSTEM_SetGlobalString",
+        "sprintf",
+        "SStrCopy",
+        "IsWindowsNT",
+        "InitHighResTimer",
+        "SRegLoadValue",
+        "InitializePoolSystem",
+        "SMemInitPerfCounters",
+        "GetInstructionPointer",
+        "WSACleanup",
+        "FOG_ErrorHandler",
+        "ExitOrCrashCleanUpJmp",
+        "exit",
+        "InitializeSystemInfo",
+        "StartLogWriterThread",
+        "LOGFILE_StoreGameStartupInfo",
+        "atexit",
+        "DEBUG_LoadStackCrawlDbgHelp",
+        "SErrSetBlizzardErrorFunction",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "fc874adb",
+      "paramStorage": [
+        [
+          "dwUnused1",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "bLogGameStrartupInfo",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "StubHook2_Unref_004095d0",
+      "address": "004095d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004095d0"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "StubHook2_Unref_004095d0"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "7949afb5",
+      "paramStorage": [
+        [
+          "nReserved",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9bfb",
+      "address": "006c9bfb",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9bfb"
+        }
+      ],
+      "namespace": "Fog::Src::ErrorManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9bfb",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "3c9b6ebe",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    }
+  ]
+}

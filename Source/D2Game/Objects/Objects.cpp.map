@@ -1,0 +1,2597 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Objects/Objects.cpp",
+  "functions": [
+    {
+      "name": "MakeRandomShrine",
+      "address": "0054f0d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f0d0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "MakeRandomShrine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit",
+        "RANDOM_RandomNumberSelector",
+        "TXT_Shrines_GetLine",
+        "SetShrineTxtRecordInObjectData"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2ShrinesTxt",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f533bbcf",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonStatsId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bUseMonStats",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MakeRandomChest",
+      "address": "0054f180",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f180"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "MakeRandomChest",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetActNoFromLevelNumber",
+        "GetObjectControlSeed",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eAct",
+        "eD2LevelId",
+        "int32_t",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "307c69c0",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonStatsId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bUseMonStats",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MakeRandomSparklyChest",
+      "address": "0054f370",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f370"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "MakeRandomSparklyChest",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "MakeRandomChest",
+        "GetObjectControlSeed",
+        "SetSparklyChestFlag",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "08d3e30a",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonStatsId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bUseMonStats",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_CreateTombPortal",
+      "address": "0054f430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f430"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_CreateTombPortal",
+        "A2Q6_GetNextFalseTombPortalClassIdForGame",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5c5c4dcd",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonStatsId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bUseMonStats",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SERVER_InitUnitObject",
+      "address": "0054f490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f490"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "SERVER_InitUnitObject",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "fe73595d",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonStatsId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bUseMonStats",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocTimer",
+      "address": "0054f520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f520"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "AllocTimer",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2TimerArgStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "bfdc60d0",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FrreeTimer",
+      "address": "0054f580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f580"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "FrreeTimer",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "SGAMEDATA",
+        "void *"
+      ],
+      "dh": "268ea086",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "ppTimerList",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_InitializeObject",
+      "address": "0054f5d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f5d0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_InitializeObject",
+        "GetObjectTxtRecordFromObject",
+        "SetSparklyChestFlag",
+        "EVENT_ClearTimerList",
+        "GetObjectControlSeed",
+        "UNIT_GetModuloFromSeed",
+        "ChangeAnimMode",
+        "AllocTimer",
+        "SetTimerArg",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2TimerArgStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "e23d978e",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nAnimModeOrGUID",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_SelectRandomShrineType",
+      "address": "0054f770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f770"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_SelectRandomShrineType",
+        "GetShrinesRng",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetObjectControlSeed",
+        "TXT_Shrines_GetLine"
+      ],
+      "usedTypes": [
+        "D2ObjectRngShrines",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2ShrinesTxt",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3fe5fe52",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLevelId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "byShrineCategory",
+          "AL:1"
+        ],
+        [
+          "pRoom",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn10",
+      "address": "0054f860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f860"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn10",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "SetEvent",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "eD2LevelId"
+      ],
+      "dh": "d3cd27a8",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn28_GoldPlaceholder",
+      "address": "0054f8c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f8c0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn28_GoldPlaceholder",
+        "ChangeAnimMode",
+        "DRLGROOM_FindBetterNearbyRoom",
+        "CheckCollision_Vector",
+        "DROP_SpawnGoldInRoom"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "POINT",
+        "eCollisionFlags",
+        "uint32_t"
+      ],
+      "dh": "e864390f",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn01_Shrine",
+      "address": "0054f9d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f9d0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn01_Shrine",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetShrinesSize",
+        "TXT_Shrines_GetLine",
+        "OBJECT_SelectRandomShrineType",
+        "SetShrineTxtRecordInObjectData"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2SeedStrc",
+        "D2ShrinesTxt",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "bbd611b0",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn05_Door_Unref_0054fb30",
+      "address": "0054fb30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fb30"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn05_Door_Unref_0054fb30"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "7be87153",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn22_Fire",
+      "address": "0054fb40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fb40"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn22_Fire",
+        "ChangeAnimMode",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2UnitStrc"
+      ],
+      "dh": "a07aa965",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn24_FloorTrap",
+      "address": "0054fb90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fb90"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn24_FloorTrap",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "e7b6b0b8",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn02_Urn",
+      "address": "0054fbb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fbb0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn02_Urn",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "TXT_Levels_GetLine",
+        "SEED_RollRange"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2ObjectInitFnArg",
+        "D2SeedStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "08c88e55",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn27_GooPile",
+      "address": "0054fc50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fc50"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn27_GooPile"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "uint8_t"
+      ],
+      "dh": "9d4b0c3f",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn03_Chest",
+      "address": "0054fcb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fcb0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn03_Chest",
+        "Objects_InitFn02_Urn",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "TXT_Levels_GetLine",
+        "InitSeed_Param_666"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2ObjectInitFnArg",
+        "D2SeedStrc",
+        "eD2LevelId",
+        "uint8_t"
+      ],
+      "dh": "8538d560",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn57_SparklyChest",
+      "address": "0054fd90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fd90"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn57_SparklyChest",
+        "Objects_InitFn03_Chest",
+        "SetSparklyChestFlag"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "05a6ecd5",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn58_Fissure",
+      "address": "0054fdb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fdb0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn58_Fissure",
+        "GetObjectControlSeed",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2SeedStrc"
+      ],
+      "dh": "48d47a34",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn59_VileDogAfterglow",
+      "address": "0054fe10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fe10"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn59_VileDogAfterglow",
+        "ChangeAnimMode",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2UnitStrc"
+      ],
+      "dh": "33389c96",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn12_PermanentPortal",
+      "address": "0054fe70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054fe70"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn12_PermanentPortal",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "ChangeAnimMode",
+        "BlockCollisionPath",
+        "SetEvent",
+        "GetHoradricStaffTombLevelId"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2UnitDataObjectStrc",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "uint8_t"
+      ],
+      "dh": "1cb0605e",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn08_Torch",
+      "address": "005500c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005500c0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn08_Torch",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "d1ea2efc",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn14",
+      "address": "005500d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005500d0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn14",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "6c897a4b",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn26",
+      "address": "005500e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005500e0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn26",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "148cc58f",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn34_HellBrazier",
+      "address": "005500f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005500f0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn34_HellBrazier",
+        "GetObjectControlSeed",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2SeedStrc"
+      ],
+      "dh": "0564777e",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn05_Door",
+      "address": "00550130",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550130"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn05_Door"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "bd9c11d6",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn11_TownPortal",
+      "address": "00550140",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550140"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn11_TownPortal",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetActNoFromLevelNumber",
+        "GetTownLevelIdFromActNo",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "BlockCollisionPath",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "eAct",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "dc43d0fb",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn51_TrappedSoul",
+      "address": "005501f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005501f0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn51_TrappedSoul",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg",
+        "D2UnitStrc"
+      ],
+      "dh": "b6d37820",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ROOM_CheckSpawnCollision",
+      "address": "00550220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550220"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "ROOM_CheckSpawnCollision",
+        "CheckCollision_Vector"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "eCollisionFlags",
+        "uint32_t"
+      ],
+      "dh": "a183fac6",
+      "paramStorage": [
+        [
+          "pRoom",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnRoomCoords",
+          "EAX:4"
+        ],
+        [
+          "pnSpawnCoord",
+          "ESI:4"
+        ],
+        [
+          "nSizeX",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "ROOM_CheckSpawnCollisionSimple",
+      "address": "005502f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005502f0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "ROOM_CheckSpawnCollisionSimple",
+        "CheckCollision_Vector"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "eCollisionFlags",
+        "int32_t"
+      ],
+      "dh": "b0a1ae73",
+      "paramStorage": [
+        [
+          "pRoom",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSizeX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnRoomCoords",
+          "EAX:4"
+        ],
+        [
+          "pnSpawnCoord",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PlaceAtRandomPosition",
+      "address": "00550380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550380"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PlaceAtRandomPosition",
+        "DRLGROOM_GetRoomCoordinates",
+        "GetObjectControlSeed",
+        "CheckCollision_Vector",
+        "CreateUnit",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eCollisionFlags",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ba380d37",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nObjClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXMargin",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nYMargin",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PlaceWithCallback",
+      "address": "00550540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550540"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PlaceWithCallback",
+        "DRLGROOM_GetRoomCoordinates",
+        "RANDOM_RandomNumberSelector",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CheckCollision_Vector",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eCollisionFlags",
+        "int32_t",
+        "pfnObjectPlaceTestCallback",
+        "uint32_t"
+      ],
+      "dh": "4ad649cf",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nObjClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSizeX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nUnused",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pfnProc",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn46",
+      "address": "005506d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005506d0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "SpawnMonster",
+        "Objects_InitFn46",
+        "DRLGROOM_GetRoomCoordinates",
+        "GetObjectControlSeed",
+        "ROOM_CheckSpawnCollision",
+        "SpawnMonsterAtRoomPos",
+        "ChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectInitFnArg",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "int64_t",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "c115ae22",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PlaceAtBiasedPosition",
+      "address": "00550a30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550a30"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PlaceAtBiasedPosition",
+        "DRLGROOM_GetRoomCoordinates",
+        "RANDOM_RandomNumberSelector",
+        "SEED_RollRange",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CheckCollision_Vector",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eCollisionFlags",
+        "int32_t",
+        "pfnObjectPlaceTestCallback",
+        "uint32_t"
+      ],
+      "dh": "e6833680",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSizeX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nBiasMode",
+          "Stack[0x18]:4"
+        ],
+        [
+          "dwCallbackArg",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pfnProc",
+          "Stack[0x20]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn1",
+      "address": "00550c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00550c20"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "CreateUnit",
+        "Objects_PopulateFn1",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "GetObjectControlSeed",
+        "ROOM_CheckSpawnCollision",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ROOM_CheckSpawnCollisionSimple"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "int64_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "7f656772",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTS_SpawnFliesOnCorpse",
+      "address": "00551150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551150"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECTS_SpawnFliesOnCorpse",
+        "UNITS_GetRoom",
+        "GetObjectControlSeed",
+        "GetCoords",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "POINT",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "a6d54abf",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn7_CorpseOnStick",
+      "address": "00551200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551200"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn7_CorpseOnStick",
+        "GetObjectControlSeed",
+        "RANDOM_RandomNumberSelector",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "ROOM_CheckSpawnCollision",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit",
+        "OBJECTS_SpawnFliesOnCorpse"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "Objects_PopulateFn7_CorpseOnStick_Slotm",
+        "SGAMEDATA",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6c418831",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn3",
+      "address": "00551470",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551470"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn3",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "GetObjectControlSeed",
+        "OBJECT_PlaceAtRandomPosition"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "f7ed6de2",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn9_TrappedSoul",
+      "address": "00551580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551580"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn9_TrappedSoul",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "OBJECT_PlaceAtRandomPosition"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "b9be0bf7",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn6_Corpse",
+      "address": "00551690",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551690"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn6_Corpse",
+        "Objects_PopulateFn3",
+        "OBJECTS_SpawnFliesOnCorpse"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "e5100b18",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn8",
+      "address": "005516c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005516c0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn8",
+        "GetLevelIdFromPopulatedRoom",
+        "OBJECTRGN_CheckPoints2Capacity",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "OBJECT_PlaceWithCallback",
+        "GetYPos",
+        "GetXPos",
+        "AddPointsToLevelRngPoints2"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "eD2UnitType",
+        "int32_t",
+        "int64_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6050cdd7",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn4",
+      "address": "00551850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551850"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn4",
+        "TXT_Objects_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetObjectControlSeed",
+        "DRLGROOM_GetRoomCoordinates",
+        "ROOM_CheckSpawnCollisionSimple",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "int64_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "94cbf6f9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn5_Crate",
+      "address": "00551c00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551c00"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn5_Crate",
+        "TXT_Objects_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetObjectControlSeed",
+        "DRLGROOM_GetRoomCoordinates",
+        "ROOM_CheckSpawnCollisionSimple",
+        "RANDOM_RandomNumberSelector",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "int64_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "48565862",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_AlwaysReturnOne",
+      "address": "00551ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00551ff0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_AlwaysReturnOne"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "e8d0d3ba",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pRoomCoords",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PopulateGridObjects",
+      "address": "00552000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552000"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PopulateGridObjects",
+        "TXT_Objects_GetLine",
+        "GetObjectControlSeed",
+        "ROOM_CheckSpawnCollisionSimple",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f04381c3",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pGridBounds",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PopulateGridItems",
+      "address": "00552140",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552140"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PopulateGridItems",
+        "ROOM_CheckSpawnCollisionSimple",
+        "DROP_SpawnRandomItemInRoom"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "POINT",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "2065b610",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pGridBounds",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTS_SpawnArmorStandOrWeaponRack",
+      "address": "00552200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552200"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECTS_SpawnArmorStandOrWeaponRack",
+        "GetObjectControlSeed",
+        "TXT_Objects_GetLine",
+        "ROOM_CheckSpawnCollision",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "CreateUnit"
+      ],
+      "usedTypes": [
+        "D2CoordStrc",
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "417756d4",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDrlgCoords",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nRackType",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollArmorStand",
+      "address": "005523c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005523c0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "RollArmorStand",
+        "OBJECTS_SpawnArmorStandOrWeaponRack"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "fbcb78e0",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pDrlgCoords",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollWeaponRack",
+      "address": "005523e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005523e0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "RollWeaponRack",
+        "OBJECTS_SpawnArmorStandOrWeaponRack"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "69e9aab9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pDrlgCoords",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_RollAndDispatchPopulateFn",
+      "address": "00552400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552400"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_RollAndDispatchPopulateFn",
+        "GetObjectControlSeed",
+        "DRLGROOM_GetRoomCoordinates"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectRngStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f904d8c0",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwPopulateMask",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pObjRng",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PopulateRoomSpecialObjects",
+      "address": "00552560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552560"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PopulateRoomSpecialObjects",
+        "HasWaypoint",
+        "GetLevelIdFromPopulatedRoom",
+        "GetObjectLevelRng",
+        "DRLGROOM_HasOutdoorBorder",
+        "DRLGROOM_IsRoomInTown",
+        "GetNumberOfPopulatedRoomsInLevel",
+        "OBJECT_RollAndDispatchPopulateFn"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2ObjectRngStrc",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "ab31a8fc",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pLevelsTxt",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pRoom",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PopulateRoomObjects",
+      "address": "00552610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552610"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PopulateRoomObjects",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "TXT_Levels_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "OBJECT_PopulateRoomSpecialObjects",
+        "GetLevelIdFromPopulatedRoom",
+        "GetObjectLevelRng",
+        "TXT_Objects_GetLine",
+        "DATATBLS_GetObjGroupTxtRecord"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2ObjGroupTxt",
+        "D2ObjectRngStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "478a203c",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_CallPopulateFn",
+      "address": "00552840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552840"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_CallPopulateFn",
+        "GetLevelIdFromPopulatedRoom",
+        "TXT_Objects_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "19637ca3",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_PopulateFromObjGroup",
+      "address": "005528e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005528e0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_PopulateFromObjGroup",
+        "GetLevelIdFromPopulatedRoom",
+        "DATATBLS_GetObjGroupTxtRecord",
+        "GetObjectControlSeed",
+        "TXT_Objects_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ObjGroupTxt",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7ce776ab",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nObjGroupId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_FreeObjectData",
+      "address": "00552a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552a00"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_FreeObjectData",
+        "Free",
+        "GetTimerArg",
+        "FrreeTimer",
+        "EVENT_FreeAllTimersForUnit"
+      ],
+      "usedTypes": [
+        "D2TimerArgStrc",
+        "D2UnitStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "14b47f62",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeObjects",
+      "address": "00552a40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552a40"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "FreeObjects",
+        "GetNextUnit",
+        "FreeServerUnit"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "D2UnitStrc *",
+        "SGAMEDATA"
+      ],
+      "dh": "e40a5f74",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_GetDoubledTxtSize",
+      "address": "00552aa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552aa0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_GetDoubledTxtSize"
+      ],
+      "usedTypes": [
+        "D2ObjectsTxt",
+        "int32_t"
+      ],
+      "dh": "3c577a0a",
+      "paramStorage": [
+        [
+          "pObjectsTxt",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECT_GetDefaultSize",
+      "address": "00552ab0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552ab0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_GetDefaultSize"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "991a4bf9"
+    },
+    {
+      "name": "OBJECT_RemapClassIdFromParm",
+      "address": "00552ac0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552ac0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECT_RemapClassIdFromParm",
+        "TXT_Objects_GetLine"
+      ],
+      "usedTypes": [
+        "D2ObjectsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "28a20379",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "OBJECTS_SetUnitIdInTimerArg",
+      "address": "00552af0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552af0"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "OBJECTS_SetUnitIdInTimerArg",
+        "GetTimerArg"
+      ],
+      "usedTypes": [
+        "D2TimerArgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "c6f9b977",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nUnitGUID",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetUnitGUIDFromUnitTimerArg",
+      "address": "00552b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552b10"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "GetUnitGUIDFromUnitTimerArg",
+        "GetTimerArg"
+      ],
+      "usedTypes": [
+        "D2TimerArgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "471ba272",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_InitFn16_Well",
+      "address": "00552b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552b30"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_InitFn16_Well"
+      ],
+      "usedTypes": [
+        "D2ObjectInitFnArg"
+      ],
+      "dh": "14a1298b",
+      "paramStorage": [
+        [
+          "pInitArg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Objects_PopulateFn2_WaypointShrine",
+      "address": "00552b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552b50"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "Objects_PopulateFn2_WaypointShrine",
+        "TXT_Objects_GetLine",
+        "DRLGROOM_GetRoomCoordinates",
+        "GetLevelIdFromPopulatedRoom",
+        "OBJECTRGN_CheckDensityThreshold",
+        "OBJECTRGN_CheckPointsCapacity",
+        "OBJECT_PlaceAtBiasedPosition",
+        "OBJECT_RemapClassIdFromParm",
+        "OBJECT_SelectRandomShrineType",
+        "TXT_Shrines_GetLine",
+        "SetShrineTxtRecordInObjectData",
+        "OBJECT_IncrementLevelSpawnCount",
+        "GetYPos",
+        "GetXPos",
+        "AddPointsToLevelRngPoints1"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2ObjectsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2ShrinesTxt",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "eD2UnitType",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "c5169161",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nDensity",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nObjectClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nChancePercent",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SetSpawnCoordList",
+      "address": "00552d60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00552d60"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "CreateMonster",
+        "MONSTER_SetSpawnCoordList"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "700b7666",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pCoordList",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StaticInit_gaObjectSpawnOffsetTables",
+      "address": "006caf30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006caf30"
+        }
+      ],
+      "namespace": "D2Game::Objects::Objects",
+      "calledFunctions": [
+        "StaticInit_gaObjectSpawnOffsetTables"
+      ],
+      "dh": "df6964fd"
+    }
+  ]
+}

@@ -1,0 +1,1501 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Win/Src/D2WinTextBox.cpp",
+  "functions": [
+    {
+      "name": "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+      "address": "004fb5a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb5a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+        "MISC_GetLanguageCode",
+        "SetAndReturnLastFont",
+        "D2WINFONT_GetCurrentFontHeight"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a0ebf187",
+      "paramStorage": [
+        [
+          "nFontIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_ClearAllLines",
+      "address": "004fb6a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb6a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_ClearAllLines",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "697807ea",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetLinePadding",
+      "address": "004fb740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb740"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetLinePadding",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "3ede4388",
+      "paramStorage": [
+        [
+          "pnTextBox",
+          "ECX:4"
+        ],
+        [
+          "nPadLeft",
+          "EDX:4"
+        ],
+        [
+          "nPadding",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetLineCellTextW",
+      "address": "004fb790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb790"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetLineCellTextW",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "STRING_GetWideStringLength",
+        "AllocClientMemory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "89c50173",
+      "paramStorage": [
+        [
+          "pnTextBox",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nRow",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCol",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_ClearLineRow",
+      "address": "004fb870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb870"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_ClearLineRow",
+        "FreeClientMemory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "028b8e05",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nRow",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetLineCount",
+      "address": "004fb910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb910"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetLineCount",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "e769f568",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetScrollPosition",
+      "address": "004fb950",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb950"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetScrollPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "3d39261f",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetSelectedLine",
+      "address": "004fb990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb990"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetSelectedLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "4b0ae98c",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetSelectedLine",
+      "address": "004fb9d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fb9d0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetSelectedLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "e7c3eff2",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nLineIndex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_ScrollToLine",
+      "address": "004fba30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fba30"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_ScrollToLine",
+        "D2WINSCROLLBAR_SetPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "ed627650",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nTargetLine",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetVisibleLineCount",
+      "address": "004fbab0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbab0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetVisibleLineCount",
+        "SetAndReturnLastFont",
+        "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+        "D2WINFONT_GetCurrentFontHeight",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "456ba5dc",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetSelectedLineText",
+      "address": "004fbb30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbb30"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetSelectedLineText",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "8203f4a9",
+      "paramStorage": [
+        [
+          "pnTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetLineCellValue",
+      "address": "004fbb90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbb90"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetLineCellValue",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "fa86119e",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nRow",
+          "EDX:4"
+        ],
+        [
+          "nColIndex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetColumnCount",
+      "address": "004fbc20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbc20"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetColumnCount",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "f5d660f7",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nColumnCount",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetColumnWidth",
+      "address": "004fbc80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbc80"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetColumnWidth",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "4c870ec9",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nColumnIndex",
+          "EDX:4"
+        ],
+        [
+          "nColumnWidth",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetColumnAlignment",
+      "address": "004fbcd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbcd0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetColumnAlignment",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "7174d482",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nColumnIndex",
+          "EDX:4"
+        ],
+        [
+          "nAlignment",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetLastLineIndex",
+      "address": "004fbd20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbd20"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetLastLineIndex",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "bda72ac9",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetActive",
+      "address": "004fbd70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbd70"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetActive",
+        "D2WINMAIN_SetControlActive",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox"
+      ],
+      "dh": "4e30f335",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "bActive",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_Unused_HaltLine814",
+      "address": "004fbdc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbdc0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_Unused_HaltLine814",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "dh": "d097d7fa"
+    },
+    {
+      "name": "D2WINTEXTBOX_SetLineColor",
+      "address": "004fbde0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbde0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetLineColor",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "e5849acd",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nRow",
+          "EDX:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetVisibleLinesFromScroll",
+      "address": "004fbe90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbe90"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetVisibleLinesFromScroll",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "int32_t"
+      ],
+      "dh": "570b25e2",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_TruncateStringToFitWidth",
+      "address": "004fbee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbee0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_TruncateStringToFitWidth",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetStringPixelWidth"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "9929bf70",
+      "paramStorage": [
+        [
+          "nMaxWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Draw",
+      "address": "004fbf30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fbf30"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "Draw",
+        "D2GFX_GetColorFromCurrentPallete",
+        "memset",
+        "D2GFX_DrawImage",
+        "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+        "SetAndReturnLastFont",
+        "D2WINFONT_GetCurrentFontHeight",
+        "DRAW_text0",
+        "STRING_CopyWideString",
+        "D2WINTEXTBOX_TruncateStringToFitWidth",
+        "D2WINFONT_DrawTextWithOffsetBackground",
+        "DRAW_text",
+        "D2WINFONT_DrawTickerText",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "DC6",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d360d539",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Push",
+      "address": "004fc2f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc2f0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "Push",
+        "SetAndReturnLastFont",
+        "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+        "D2WINFONT_GetCurrentFontHeight",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2WinTextBox",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a83cfb49",
+      "paramStorage": [
+        [
+          "pControlMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Key",
+      "address": "004fc3f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc3f0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "Key",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "FORMS_GetFormTextAndEditBox",
+        "D2WINTEXTBOX_GetVisibleLineCount",
+        "D2WINTEXTBOX_ScrollToLine"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2WinEditBox",
+        "D2WinTextBox",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a05c29ac",
+      "paramStorage": [
+        [
+          "pControlMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetScrollbarMaxValue",
+      "address": "004fc5a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc5a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetScrollbarMaxValue",
+        "D2WINSCROLLBAR_GetMaxValue",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox"
+      ],
+      "dh": "e4edfae6",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetScrollbarMaxRange",
+      "address": "004fc5e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc5e0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetScrollbarMaxRange",
+        "D2WINSCROLLBAR_SetMaxValue",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a184f9a3",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nMaxValue",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_RefreshScrollbar",
+      "address": "004fc620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc620"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_RefreshScrollbar",
+        "D2WINSCROLLBAR_GetPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "ff548c06",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetScrollbarPosition",
+      "address": "004fc660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc660"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetScrollbarPosition",
+        "D2WINSCROLLBAR_SetPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "886b080c",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nPosition",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetScrollbarLinkedTextBox",
+      "address": "004fc6a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc6a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINSCROLLBAR_SetLinkedTextBox",
+        "D2WINTEXTBOX_SetScrollbarLinkedTextBox",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "9e422200",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "pLinkedTextBox",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetScrollbarCallbackB",
+      "address": "004fc6e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc6e0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINSCROLLBAR_SetChangeCallback",
+        "MAINMENU_CharSelScrollbarCallback",
+        "D2WINTEXTBOX_SetScrollbarCallbackB",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "fpD2WinScrollbarOnChange",
+        "int32_t"
+      ],
+      "dh": "62630944",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "fpOnChange",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetScrollbarStyle",
+      "address": "004fc720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc720"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetScrollbarStyle",
+        "D2WINSCROLLBAR_SetStyle",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "36ee6a24",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "nStyle",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_GetScrollbarStyle",
+      "address": "004fc760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc760"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_GetScrollbarStyle",
+        "D2WINSCROLLBAR_GetStyle",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox"
+      ],
+      "dh": "0fa63393",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WinTextBox",
+      "address": "004fc7a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc7a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WinTextBox",
+        "AllocClientMemory",
+        "memset",
+        "D2WINTEXTBOX_ComputeLineSpacingForLanguage",
+        "D2WinScrollbar",
+        "D2WINSCROLLBAR_SetLinkedTextBox",
+        "D2WINTEXTBOX_GetVisibleLineCount",
+        "D2WINSCROLLBAR_SetStyle",
+        "FORMS_AddControlToGlobalList"
+      ],
+      "usedTypes": [
+        "D2WinScrollbar",
+        "D2WinTextBox",
+        "DC6",
+        "OnPress",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "3fcf6871",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nFormType",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pStyleDC6",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pDC6",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pOnPress",
+          "Stack[0x18]:4"
+        ],
+        [
+          "dwStyleFlags",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pnScrollSize",
+          "Stack[0x20]:4"
+        ],
+        [
+          "pnScrollbarRect",
+          "Stack[0x24]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FORMS_DestroyD2WinTextBox",
+      "address": "004fc960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc960"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "FORMS_DestroyD2WinTextBox",
+        "FORMS_DestroyD2WinScrollbar",
+        "D2WINTEXTBOX_ClearAllLines",
+        "FORMS_DestroyControl",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "int32_t"
+      ],
+      "dh": "5a7b4b5c",
+      "paramStorage": [
+        [
+          "pWinTextBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetText",
+      "address": "004fc9b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fc9b0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "SetText",
+        "STRING_CopyWideString",
+        "isspace",
+        "SetAndReturnLastFont",
+        "CONTAINER_InitializeBuffer",
+        "DRAW_text0",
+        "D2WINFONT_GetStringPixelWidth",
+        "D2WINTEXTBOX_WordWrapAndSetText",
+        "AllocClientMemory",
+        "STRING_GetWideStringLength",
+        "D2WINTEXTBOX_GetVisibleLineCount",
+        "D2WINTEXTBOX_GetVisibleLinesFromScroll",
+        "D2WINSCROLLBAR_GetMaxValue",
+        "D2WINSCROLLBAR_GetPosition",
+        "D2WINSCROLLBAR_SetMaxValue",
+        "D2WINSCROLLBAR_SetPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinScrollbar",
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "b58da113",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nLineStyle",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bIndent",
+          "Stack[0x8]:1"
+        ],
+        [
+          "nAlignment",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_AddLines",
+      "address": "004fcc40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcc40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_AddLines",
+        "STRING_GetWideStringLength",
+        "AllocClientMemory",
+        "STRING_CopyWideString",
+        "D2WINTEXTBOX_GetVisibleLineCount",
+        "D2WINSCROLLBAR_SetMaxValue",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "D2WinTextBoxLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "12660b15",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nRepeatCount",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLineStyle",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bIndent",
+          "Stack[0xc]:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetLineCellTextA",
+      "address": "004fcd40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcd40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetLineCellTextA",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINTEXTBOX_SetLineCellTextW"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "9e04f5a2",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nRowIndex",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nColIndex",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetLineCellTextWDirect",
+      "address": "004fcd90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcd90"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetLineCellTextWDirect",
+        "D2WINTEXTBOX_SetLineCellTextW"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "6de339cc",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nRow",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCol",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_WordWrapAndSetText",
+      "address": "004fcda0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcda0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_WordWrapAndSetText",
+        "CONTAINER_InitializeBuffer",
+        "DRAW_text0",
+        "SMemAlloc",
+        "STRING_CopyWideString",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetStringPixelWidth",
+        "WSTRING_PutWideCharIntoBuffer",
+        "SMemFree",
+        "SetText",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "8020eb42",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nLineStyle",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAlignment",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetTextFromAnsiSimple",
+      "address": "004fcf80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcf80"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetTextFromAnsiSimple",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "SetText"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "d11c6520",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINTEXTBOX_SetTextFromAnsi",
+      "address": "004fcff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fcff0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinTextBox",
+      "calledFunctions": [
+        "D2WINTEXTBOX_SetTextFromAnsi",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_ConvertCharToWchar",
+        "SetText"
+      ],
+      "usedTypes": [
+        "D2WinTextBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "725fb9fd",
+      "paramStorage": [
+        [
+          "pTextBox",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nLineStyle",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,878 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Monsters/Spawn.cpp",
+  "functions": [
+    {
+      "name": "GetRoomCorners",
+      "address": "0054dac0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054dac0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "GetRoomCorners",
+        "DRLGROOM_GetRoomCoordinates",
+        "CoordsRoomToWorld"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomStrc"
+      ],
+      "dh": "6a08aeab",
+      "paramStorage": [
+        [
+          "pRoom",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnRight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnLeft",
+          "EDI:4"
+        ],
+        [
+          "pnTop",
+          "ESI:4"
+        ],
+        [
+          "pnBottom",
+          "EBX:4"
+        ],
+        [
+          "pCoordList",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckWarpSpawnCoords",
+      "address": "0054db50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054db50"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "CheckWarpSpawnCoords",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetWarpCoordinatesFromRoom",
+        "TXT_Levels_GetLine",
+        "GetActNoFromLevelNumber",
+        "FindActSpawnLocation",
+        "CoordsRoomToWorld"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelWarpCoordinatesStrc",
+        "D2LevelsTxt",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "eAct",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "211af5d9",
+      "paramStorage": [
+        [
+          "pRoom",
+          "EAX:4"
+        ],
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nY",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_FindRandomPositionForMonster",
+      "address": "0054dc40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054dc40"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_FindRandomPositionForMonster",
+        "GetRoomCorners",
+        "SpawnMonsterAtRoomPos",
+        "GetGridIndex",
+        "SpawnMonsterInRoomCoordList",
+        "CheckWarpSpawnCoords"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "68d1cdfc",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pCoordList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "bCheckWarpDistance",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_SpawnMonsterGroupAtRandom",
+      "address": "0054ddc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054ddc0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_SpawnMonsterGroupAtRandom",
+        "GetRoomCorners",
+        "SpawnMonsterAtRoomPos",
+        "GetGridIndex",
+        "SpawnMonsterInRoomCoordList"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "879cdd2b",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pCoordList",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nClassId",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnGroupLayout",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pOffsetX",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pOffsetY",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_SpawnMonsterWithMinions",
+      "address": "0054df80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054df80"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_SpawnMonsterWithMinions",
+        "SPAWN_FindRandomPositionForMonster",
+        "SpawnMonsterInRoomCoordList",
+        "TXT_MonStats_MonStats2_GetFlagsByBitOffset",
+        "ValidateClassId",
+        "GetYPosFromDynamicPathUnit",
+        "GetXPosFromDynamicPathUnit",
+        "CreateUnit",
+        "RANDOM_RandomNumberSelector",
+        "SpawnMonsterAtCoordList"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "8329416b",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pCoordList",
+          "Stack[0xc]:4"
+        ],
+        [
+          "byGroupSizeMin",
+          "Stack[0x10]:1"
+        ],
+        [
+          "byGroupSizeMax",
+          "Stack[0x14]:1"
+        ],
+        [
+          "nClassId",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SpawnMonsterGroup",
+      "address": "0054e090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e090"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_SpawnMonsterGroup",
+        "DRLGROOM_GetCoordListFromSubtilePos",
+        "SpawnMonsterInRoomCoordList",
+        "RANDOM_RandomNumberSelector",
+        "SpawnMonsterAtCoordList"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "39ab5314",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nClassId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_SpawnMonsterFormation",
+      "address": "0054e190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e190"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_SpawnMonsterFormation",
+        "SPAWN_SpawnMonsterGroupAtRandom",
+        "SpawnMonsterAtUnitOffset"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "37753f66",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "EBX:4"
+        ],
+        [
+          "nClassId",
+          "EDI:4"
+        ],
+        [
+          "pGroupOffsetTable",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SetMinionsForBoss",
+      "address": "0054e1e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e1e0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_SetMinionsForBoss",
+        "CheckMonsterType",
+        "SpawnMonsterAtCoordList",
+        "MONSTER_AddUniqueModifier"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "957a0247",
+      "paramStorage": [
+        [
+          "pRoomCoordList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMinionClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pGame",
+          "EDI:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SpawnUniquePackInRoom",
+      "address": "0054e260",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e260"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_SpawnUniquePackInRoom",
+        "SpawnUniquePack",
+        "MONSTER_SetMinionsForBoss"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "uint32_t"
+      ],
+      "dh": "90fd5118",
+      "paramStorage": [
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCoordList",
+          "EBX:4"
+        ],
+        [
+          "nClassId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_ValidateSpawnForLevel",
+      "address": "0054e2a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e2a0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_ValidateSpawnForLevel"
+      ],
+      "usedTypes": [
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "9df80a9d",
+      "paramStorage": [
+        [
+          "nClassId",
+          "EAX:4"
+        ],
+        [
+          "eLevelId",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_CanRetrySpawn",
+      "address": "0054e3a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e3a0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_CanRetrySpawn"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "7cf1e606",
+      "paramStorage": [
+        [
+          "nClassId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SPAWN_SpawnMonsterWithCollisionObj",
+      "address": "0054e490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e490"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SPAWN_SpawnMonsterWithCollisionObj",
+        "CheckIntroductionFlagByInternalQuestId",
+        "TXT_MonStats_MonStats2_GetFlagsByBitOffset",
+        "SpawnMonsterAtRoomPos",
+        "SPAWN_CanRetrySpawn",
+        "GetYPosFromDynamicPathUnit",
+        "GetXPosFromDynamicPathUnit",
+        "CreateUnit",
+        "ValidateClassId"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2MonsterAnimMode",
+        "int16_t",
+        "int32_t"
+      ],
+      "dh": "0f9169e8",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "eAnimMode",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nClassId",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SpawnMonster",
+      "address": "0054e600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054e600"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "SpawnMonster",
+        "MONSTERTBLS_GetSuperUniquesTxtCount",
+        "SPAWN_UniqueMonster",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "CheckIntroductionFlagByInternalQuestId",
+        "SPAWN_SpawnMonsterWithCollisionObj",
+        "GetLevelIdFromPopulatedRoom",
+        "ReturnMonsterRegionEntryForLevel",
+        "MONREGION_RollRandomMonsterType",
+        "SpawnUniquePack",
+        "SpawnMonsterAtRoomPos",
+        "MONSTER_AddUniqueModifier",
+        "MONSTER_SetMinionsForBoss",
+        "MONSTER_GetMonsterClassByDifficulty",
+        "CheckMonStatId",
+        "GetMonsterBaseId",
+        "MONSTER_SpawnMonsterGroup",
+        "MONSTER_ValidateSpawnForLevel",
+        "TXT_MonStats_GetLine",
+        "ValidateClassId",
+        "UNIT_GetModuloFromSeed",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2MonsterRegionStrc",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int16_t",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "eb9e1ecb",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "nMonCode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_CanSpawnInRoom",
+      "address": "0054ebc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054ebc0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_CanSpawnInRoom",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "ReturnMonsterRegionEntryForLevel",
+        "GetLevelIdFromPopulatedRoom",
+        "GetNumberOfPopulatedRoomsInLevel",
+        "Q27_GetAllSealsActivated"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2RoomStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "502bd9cb",
+      "paramStorage": [
+        [
+          "pRoom",
+          "EDI:4"
+        ],
+        [
+          "pGame",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckIfBaseIsFallenOrScarabAndSet",
+      "address": "0054ec40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054ec40"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "CheckIfBaseIsFallenOrScarabAndSet"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9c191e8e",
+      "paramStorage": [
+        [
+          "nMonstatId",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SpawnRoomMonsters",
+      "address": "0054ec90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054ec90"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_SpawnRoomMonsters",
+        "MONSTER_CanSpawnInRoom",
+        "GetCoordList",
+        "GetLevelIdFromPopulatedRoom",
+        "ReturnMonsterRegionEntryForLevel",
+        "CoordsRoomToWorld",
+        "MONREGION_RollRandomMonsterType",
+        "MONSTERREGION_CheckSpawnDensity",
+        "SpawnUniquePack",
+        "MONSTER_SetMinionsForBoss",
+        "RollRoomSeed",
+        "SPAWN_SpawnMonsterFormation",
+        "CheckIfBaseIsFallenOrScarabAndSet",
+        "SPAWN_SpawnMonsterWithMinions"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2MonsterRegionStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "RECT",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b3e223f4",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_InitWanderingMonsterRegion",
+      "address": "0054ef50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054ef50"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_InitWanderingMonsterRegion",
+        "UNIT_GetModuloFromSeed",
+        "SPAWN_FindRandomPositionForMonster",
+        "SpawnMonsterAtRoomPos",
+        "AddNodeToTable"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2MonsterRegionStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "a22093d0",
+      "paramStorage": [
+        [
+          "pMonsterRegion",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pGame",
+          "EBX:4"
+        ],
+        [
+          "pLevelsTxt",
+          "EAX:4"
+        ],
+        [
+          "pRoom",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_InitWanderingForLevel",
+      "address": "0054eff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054eff0"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_InitWanderingForLevel",
+        "ReturnMonsterRegionEntryForLevel",
+        "MONSTER_InitWanderingMonsterRegion"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2MonsterRegionStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "d79180d0",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pRoom",
+          "EAX:4"
+        ],
+        [
+          "pLevelsTxt",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_TrySpawnWanderingMonster",
+      "address": "0054f060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0054f060"
+        }
+      ],
+      "namespace": "D2Game::Monsters::Monsters::Spawn",
+      "calledFunctions": [
+        "MONSTER_TrySpawnWanderingMonster",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "TXT_Levels_GetLine",
+        "MONSTER_InitWanderingForLevel"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "SGAMEDATA",
+        "eD2LevelId"
+      ],
+      "dh": "619bea27",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,529 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/MiniPanel.cpp",
+  "functions": [
+    {
+      "name": "SetGlobalAlwaysRun",
+      "address": "0047e720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e720"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "SetGlobalAlwaysRun",
+        "SRegLoadValue"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "89d03796"
+    },
+    {
+      "name": "UpdateGlobalAlwaysRun",
+      "address": "0047e750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e750"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "UpdateGlobalAlwaysRun",
+        "GetGlobalAlwaysRun",
+        "SRegSaveValue"
+      ],
+      "dh": "eee4dfce"
+    },
+    {
+      "name": "MINIPANEL_DrawBackground",
+      "address": "0047e770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e770"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_DrawBackground",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "43b68f0e",
+      "paramStorage": [
+        [
+          "nPanelSection",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_DrawButton",
+      "address": "0047e860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e860"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_DrawButton",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "550740aa",
+      "paramStorage": [
+        [
+          "nFrameNumber",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPositionX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPositionY",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_CalculateButtonPositions",
+      "address": "0047e8b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e8b0"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_CalculateButtonPositions"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5e2485db",
+      "paramStorage": [
+        [
+          "bIsExpansion",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_DrawAllButtons",
+      "address": "0047e9a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047e9a0"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_DrawAllButtons",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "2d45f09d",
+      "paramStorage": [
+        [
+          "bVisible",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsLeftScreenOpen",
+      "address": "0047ea60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047ea60"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "IsLeftScreenOpen",
+        "GetUIFlag"
+      ],
+      "dh": "3c40ff9c"
+    },
+    {
+      "name": "IsRightScreenOpen",
+      "address": "0047eb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047eb50"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "IsRightScreenOpen",
+        "GetUIFlag",
+        "PANEL_GetBeltSlotHoverFlag",
+        "PANEL_CheckBeltUseBlocked"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "c2dacf0a"
+    },
+    {
+      "name": "Unreferenced_0047ec20",
+      "address": "0047ec20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047ec20"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "Unreferenced_0047ec20",
+        "GetUIFlag"
+      ],
+      "dh": "ba623fbb",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_HandleButtonClick",
+      "address": "0047ec50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047ec50"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_HandleButtonClick",
+        "GetUIFlag",
+        "SetUIFlag",
+        "CLIENT_GetD2GSGameType",
+        "QUESTLOG_ToggleQuestScreen",
+        "UI_CloseActivePanels",
+        "UI_ClearCursorAnimationState",
+        "ESCMENU_ShowMenu",
+        "UI_SetCursorAnimationFlag",
+        "UI_UpdateCursorAnimationTimer"
+      ],
+      "usedTypes": [
+        "eD2GSGameType",
+        "eD2UIvars",
+        "int32_t"
+      ],
+      "dh": "98d1eae7",
+      "paramStorage": [
+        [
+          "nButtonId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_MiniPanelMouseUp",
+      "address": "0047ed90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047ed90"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "INPUT_MiniPanelMouseUp",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetItemType",
+        "ITEM_SetItemOnHand",
+        "PANEL_GetBeltSlotHoverFlag",
+        "PANEL_CheckBeltUseBlocked",
+        "GetType",
+        "GetAnimMode",
+        "MINIPANEL_HandleButtonClick",
+        "UI_ResetInputState",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "eD2PlayerAnimMode",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1bcc34be",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_MiniPanelMouseDown",
+      "address": "0047ef30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047ef30"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "INPUT_MiniPanelMouseDown",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "PANEL_GetBeltSlotHoverFlag",
+        "PANEL_CheckBeltUseBlocked",
+        "GetUIFlag",
+        "CLIENT_GetD2GSGameType",
+        "SOUND_PlaySound",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "eD2GSGameType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "0930d37e",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_Init",
+      "address": "0047f0c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f0c0"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_Init",
+        "CLIENT_GetD2GSGameType",
+        "ARCHIVE_LoadOverlayImageUsedInGame"
+      ],
+      "usedTypes": [
+        "eD2GSGameType",
+        "uint32_t"
+      ],
+      "dh": "bc0846eb"
+    },
+    {
+      "name": "MINIPANEL_Shutdown",
+      "address": "0047f130",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f130"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_Shutdown",
+        "SRegSaveValue",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "2e51ee40"
+    },
+    {
+      "name": "MINIPANEL_IsMouseInArea",
+      "address": "0047f190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f190"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_IsMouseInArea"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "2ac113b3",
+      "paramStorage": [
+        [
+          "nMouseX",
+          "ECX:4"
+        ],
+        [
+          "nMouseY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetupMiniPanel",
+      "address": "0047f1d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f1d0"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "SetupMiniPanel",
+        "SRegLoadValue",
+        "CLIENT_SetScreenResolution"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "bcfd0232"
+    },
+    {
+      "name": "WAYPOINT_IsMouseInMiniPanel",
+      "address": "0047f210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f210"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "WAYPOINT_IsMouseInMiniPanel",
+        "GetMouseX",
+        "GetMouseY",
+        "GetUIFlag"
+      ],
+      "dh": "114488b3"
+    },
+    {
+      "name": "MINIPANEL_ShowTooltip",
+      "address": "0047f490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f490"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_ShowTooltip",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "CONTAINER_InitializeBuffer",
+        "CMD_GetKeyForCommand",
+        "memset",
+        "CMD_GetKeyNameForCommand",
+        "UNICODE_FormatWideString",
+        "AppendToBuffer",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "f6d72ef4",
+      "paramStorage": [
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nButtonFrame",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MINIPANEL_HandleMouseHover",
+      "address": "0047f650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f650"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "MINIPANEL_HandleMouseHover",
+        "GetMouseX",
+        "GetMouseY",
+        "MINIPANEL_ShowTooltip"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "ea64e8cd",
+      "paramStorage": [
+        [
+          "nLayout",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_MiniPanel",
+      "address": "0047f710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0047f710"
+        }
+      ],
+      "namespace": "D2Client::UI::MiniPanel",
+      "calledFunctions": [
+        "DRAW_UI_MiniPanel",
+        "IsLeftScreenOpen",
+        "IsRightScreenOpen",
+        "memset",
+        "D2GFX_DrawImage",
+        "MINIPANEL_CalculateButtonPositions",
+        "MINIPANEL_DrawAllButtons",
+        "MINIPANEL_HandleMouseHover",
+        "GetMouseX",
+        "GetMouseY"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "0b408b9d"
+    }
+  ]
+}

@@ -1,0 +1,1100 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/ListBox/ListBoxImplementation.cpp",
+  "functions": [
+    {
+      "name": "Destructor",
+      "address": "004be090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be090"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "Destructor"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation"
+      ],
+      "dh": "bf48ff85",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "GetItemCount",
+      "address": "004be0a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be0a0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "GetItemCount"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation"
+      ],
+      "dh": "fb237d84",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "Clear",
+      "address": "004be0b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be0b0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "Clear"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "wchar_t[1024]"
+      ],
+      "dh": "a0ab0f39",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "DrawScrollbar",
+      "address": "004be110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be110"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "DrawScrollbar",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "ListBoxImplementation",
+        "uint32_t",
+        "wchar_t[1024]"
+      ],
+      "dh": "8def67c5",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "GetVisibleItemCount",
+      "address": "004be340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be340"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "GetVisibleItemCount"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "uint32_t",
+        "wchar_t[1024]"
+      ],
+      "dh": "76bba1c1",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "DrawTruncatedText",
+      "address": "004be410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be410"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "DrawTruncatedText",
+        "STRING_CopyWideString",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetStringPixelWidthN",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "67189b2b",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddItem",
+      "address": "004be500",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be500"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "AddItem",
+        "WSTRING_PutWideCharIntoBuffer"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "d5b8915e",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "wszLine0",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszLine1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszLine2",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszLine3",
+          "Stack[0x10]:4"
+        ],
+        [
+          "wszLine4",
+          "Stack[0x14]:4"
+        ],
+        [
+          "wszLine5",
+          "Stack[0x18]:4"
+        ],
+        [
+          "dwItemData",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x20]:4"
+        ],
+        [
+          "bUseDefaultColor",
+          "Stack[0x24]:4"
+        ],
+        [
+          "nFont",
+          "Stack[0x28]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsMouseOnScrollUp",
+      "address": "004be720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be720"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "IsMouseOnScrollUp"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t"
+      ],
+      "dh": "3dc68e65",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsMouseOnScrollDown",
+      "address": "004be770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be770"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "IsMouseOnScrollDown"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t"
+      ],
+      "dh": "168307fa",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsMouseOnScrollTrack",
+      "address": "004be7c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be7c0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "IsMouseOnScrollTrack"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t"
+      ],
+      "dh": "052ca468",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsMouseInBounds",
+      "address": "004be810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be810"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "IsMouseInBounds"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "uint32_t"
+      ],
+      "dh": "07e619ba",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseWheel",
+      "address": "004be860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be860"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnMouseWheel",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "9fa2fde1",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EnsureSelectionVisible",
+      "address": "004be8d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be8d0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "EnsureSelectionVisible"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation"
+      ],
+      "dh": "3fe52e61",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "OnUpArrow",
+      "address": "004be910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be910"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnUpArrow",
+        "SOUND_PlaySound"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "b079afa1",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnDownArrow",
+      "address": "004be990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004be990"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnDownArrow",
+        "SOUND_PlaySound"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "ec731968",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnLeftArrow",
+      "address": "004bea30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bea30"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnLeftArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "e7de7674",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow",
+      "address": "004bea40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bea40"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "ad4a3704",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HitTestItem",
+      "address": "004bea50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bea50"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "HitTestItem"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "uint32_t",
+        "wchar_t[1024]"
+      ],
+      "dh": "c3ba693d",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseMove",
+      "address": "004beb70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004beb70"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnMouseMove",
+        "HitTestItem"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t"
+      ],
+      "dh": "6787e888",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnChar",
+      "address": "004bebc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bebc0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnChar",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "c55a9c90",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetValue",
+      "address": "004bec30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bec30"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "GetValue"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation"
+      ],
+      "dh": "d38023e8",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "GetItemUserData",
+      "address": "004bec40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bec40"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "GetItemUserData",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "e51fc75e",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nIndex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Draw",
+      "address": "004bee90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bee90"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "Draw",
+        "DRAW_Direct_RectFrame",
+        "SetAndReturnLastFont",
+        "memset",
+        "D2GFX_DrawImage",
+        "GetVisibleItemCount",
+        "DrawTruncatedText",
+        "GetMouseY",
+        "GetMouseX"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "ListBoxImplementation_OnUpArrow",
+        "PD2ListBoxItemAuxData",
+        "RECT",
+        "int32_t",
+        "uint32_t",
+        "wchar_t[1024]"
+      ],
+      "dh": "7d2f02d9",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "HandleScrollTrackClick",
+      "address": "004bf2f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf2f0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "HandleScrollTrackClick",
+        "SOUND_PlaySound",
+        "EnsureSelectionVisible"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7cdf4d20",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseDown",
+      "address": "004bf430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf430"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnMouseDown",
+        "IsMouseOnScrollDown",
+        "IsMouseOnScrollTrack",
+        "HitTestItem"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "cbaa5ec9",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseUp",
+      "address": "004bf530",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf530"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnMouseUp",
+        "IsMouseOnScrollUp",
+        "IsMouseOnScrollDown",
+        "HitTestItem",
+        "IsMouseOnScrollTrack",
+        "HandleScrollTrackClick"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "0bea17bd",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Constructor",
+      "address": "004bf650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf650"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "Constructor",
+        "CONTAINER_InitializeBuffer",
+        "D2GFX_GetResolutionMode"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "fpListBoxItemActivated",
+        "pfnEHHandlerRoutine",
+        "wchar_t[1024]"
+      ],
+      "dh": "91df4c5f",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nItemSpacing",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nDefaultColor",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nDefaultFont",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pfnOnItemActivated",
+          "Stack[0x20]:4"
+        ],
+        [
+          "bTallRows",
+          "Stack[0x24]:1"
+        ]
+      ]
+    },
+    {
+      "name": "ScalarDeletingDestructor",
+      "address": "004bf8c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf8c0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "ScalarDeletingDestructor",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "uint32_t"
+      ],
+      "dh": "b5904bb3",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nFlags",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_0052e090",
+      "address": "0052e090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0052e090"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_0052e090"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "072b5712",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_0063c4b0",
+      "address": "0063c4b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0063c4b0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_0063c4b0"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "855c322b",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_0063e060",
+      "address": "0063e060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0063e060"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_0063e060"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "654298b3",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_00645030",
+      "address": "00645030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00645030"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_00645030"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "3d389676",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_00645ff0",
+      "address": "00645ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00645ff0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_00645ff0"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "1421178e",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow_Unref_00646000",
+      "address": "00646000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00646000"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxImplementation",
+      "calledFunctions": [
+        "OnRightArrow_Unref_00646000"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxImplementation"
+      ],
+      "dh": "11675f12",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

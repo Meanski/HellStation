@@ -1,0 +1,61 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/DataTbls/MonsterTbls.cpp",
+  "functions": [
+    {
+      "name": "Unreferenced_00451fb0",
+      "address": "00451fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00451fb0"
+        }
+      ],
+      "namespace": "D2Client::DataTbls::MonsterTbls",
+      "calledFunctions": [
+        "Unreferenced_00451fb0"
+      ],
+      "usedTypes": [
+        "D2MonStats2Txt"
+      ],
+      "dh": "00e4355e",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00452020",
+      "address": "00452020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00452020"
+        }
+      ],
+      "namespace": "D2Client::DataTbls::MonsterTbls",
+      "calledFunctions": [
+        "Unreferenced_00452020"
+      ],
+      "dh": "d66c047b"
+    },
+    {
+      "name": "Unreferenced_00452030",
+      "address": "00452030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00452030"
+        }
+      ],
+      "namespace": "D2Client::DataTbls::MonsterTbls",
+      "calledFunctions": [
+        "Unreferenced_00452030"
+      ],
+      "dh": "fdab5813"
+    }
+  ]
+}

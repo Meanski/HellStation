@@ -1,0 +1,228 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/npcmenu/Merc.cpp",
+  "functions": [
+    {
+      "name": "AddMercForHireToGlobalList",
+      "address": "004b3240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3240"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "AddMercForHireToGlobalList"
+      ],
+      "usedTypes": [
+        "D2GSPacketSrv0x4E"
+      ],
+      "dh": "f4cb9291",
+      "paramStorage": [
+        [
+          "pPacket",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "NET_D2GS_CLIENT_Incoming0x4F_INITMERCENARYLIST",
+      "address": "004b3290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3290"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NET_D2GS_CLIENT_Incoming0x4F_INITMERCENARYLIST"
+      ],
+      "dh": "d572be94",
+      "paramStorage": [
+        [
+          "pBytes",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "NPCMENU_GetGameQuestRecord",
+      "address": "004b32e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b32e0"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_GetGameQuestRecord"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc"
+      ],
+      "dh": "5c75cf19"
+    },
+    {
+      "name": "NPCMENU_SetSelectedMercIndex",
+      "address": "004b3340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3340"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_SetSelectedMercIndex",
+        "UI_InitializeHirelingIconsUI"
+      ],
+      "usedTypes": [
+        "D2MercForHire",
+        "int16_t"
+      ],
+      "dh": "26bb9d81",
+      "paramStorage": [
+        [
+          "wMercNameId",
+          "CX:2"
+        ]
+      ]
+    },
+    {
+      "name": "NPCMENU_MercItemFoundCb",
+      "address": "004b3360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3360"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_MercItemFoundCb"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "29ed48d1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "NPCMENU_HandleMercListPacket",
+      "address": "004b3380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3380"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_HandleMercListPacket",
+        "UNITS_FindClientSideUnit",
+        "GetOwnerGUID",
+        "SOUND_PlaySound",
+        "GFX_AddOverlayToUnit",
+        "GetInteractedUnit",
+        "GetQuestState",
+        "CUNIT_IterateItemsWithCallback"
+      ],
+      "usedTypes": [
+        "D2GSPacketSrv0x8A",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "6091caa8",
+      "paramStorage": [
+        [
+          "pPacket",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "NPCMENU_ResurrectMerc",
+      "address": "004b3610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3610"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_ResurrectMerc",
+        "FreeDialogStrc",
+        "NPCMENU_ShowTransactionConfirmDialog"
+      ],
+      "dh": "ad07c124"
+    },
+    {
+      "name": "NPCMENU_ShowMercResurrectDialog",
+      "address": "004b3660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3660"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "NPCMENU_ShowMercResurrectDialog",
+        "SOUND_PlaySound",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "CLIENT_CheckExpansion",
+        "NPCMENU_HireMerc",
+        "CountRostersForUnitFilterBySkill",
+        "NPCMENU_ResurrectMerc"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "6287f4b1"
+    },
+    {
+      "name": "MERC_ClearHireInventory",
+      "address": "004b3790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004b3790"
+        }
+      ],
+      "namespace": "D2Client::UI::npcmenu::Merc",
+      "calledFunctions": [
+        "MERC_ClearHireInventory",
+        "INVENTORY_GetFirstItem",
+        "INVENTORY_GetNextItem",
+        "GetCarriedItem",
+        "RemoveObjectFromServerObjectTable",
+        "INVENTORY_RemoveAllItems",
+        "NullSub"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "7b447cfc",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

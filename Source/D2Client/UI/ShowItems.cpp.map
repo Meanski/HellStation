@@ -1,0 +1,159 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/ShowItems.cpp",
+  "functions": [
+    {
+      "name": "UI_DrawGroundItemTooltip",
+      "address": "004c0640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004c0640"
+        }
+      ],
+      "namespace": "D2Client::UI::ShowItems",
+      "calledFunctions": [
+        "UI_DrawGroundItemTooltip",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f221a63f",
+      "paramStorage": [
+        [
+          "pnX",
+          "ECX:4"
+        ],
+        [
+          "pnY",
+          "EDX:4"
+        ],
+        [
+          "pnRight",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnBottom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPlacementMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMaxX",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nMinX",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_AltItems",
+      "address": "004c0810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004c0810"
+        }
+      ],
+      "namespace": "D2Client::UI::ShowItems",
+      "calledFunctions": [
+        "DRAW_AltItems",
+        "D2GFX_IsPerspectiveActive",
+        "GetPlayerUnit_UI",
+        "UNITS_GetRoom",
+        "GetSelectedUnit",
+        "GetMouseX",
+        "GetMouseY",
+        "DRLGROOM_GetAdjacentRoomsList",
+        "D2GFX_GetColorFromCurrentPallete",
+        "GetScreenX",
+        "DRAW_GetWorldOffsetX",
+        "DRAW_GetWorldOffsetY",
+        "GetScreenY",
+        "GetPrecisionX",
+        "GetPrecisionY",
+        "D2GFX_IsInPerspectiveBounds",
+        "D2GFX_AdjustPerspectivePosition",
+        "DRAW_GetTypeOfBorder",
+        "UI_FormatItemNameWithQuality",
+        "TEXT_CalcTextDimensions",
+        "UI_DrawGroundItemTooltip",
+        "TEXT_TooltipSetAttributes",
+        "ClearSelectedUnit",
+        "SELECT_UpdateUnitSelection",
+        "GetItemQuality",
+        "CheckItemFlag",
+        "ITEM_GetItemsTxt_bHasInv",
+        "ITEM_GetMaxSockCount",
+        "TXT_Items_GetLine",
+        "D2WINFONT_DrawTextWithBackgroundRect"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "D2RoomStrc",
+        "D2RoomStrc *",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "722bf46e"
+    },
+    {
+      "name": "StaticInit_gaGroundItemLabels",
+      "address": "006cadb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cadb0"
+        }
+      ],
+      "namespace": "D2Client::UI::ShowItems",
+      "calledFunctions": [
+        "StaticInit_gaGroundItemLabels",
+        "CONTAINER_InitializeBuffer"
+      ],
+      "dh": "5401d446"
+    },
+    {
+      "name": "StaticInit_6cade0",
+      "address": "006cade0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cade0"
+        }
+      ],
+      "namespace": "D2Client::UI::ShowItems",
+      "calledFunctions": [
+        "StaticInit_6cade0",
+        "atexit"
+      ],
+      "dh": "5d62de71"
+    },
+    {
+      "name": "StaticFini_Empty_6cb400",
+      "address": "006cb400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cb400"
+        }
+      ],
+      "namespace": "D2Client::UI::ShowItems",
+      "calledFunctions": [
+        "StaticFini_Empty_6cb400"
+      ],
+      "dh": "c36c751f"
+    }
+  ]
+}

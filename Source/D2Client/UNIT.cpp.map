@@ -1,0 +1,40 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UNIT.cpp",
+  "functions": [
+    {
+      "name": "SetMonsterFlags",
+      "address": "00457460",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00457460"
+        }
+      ],
+      "namespace": "D2Client::UNIT",
+      "calledFunctions": [
+        "SetMonsterFlags"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitFlags"
+      ],
+      "dh": "8c8010df",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "neD2UnitFlags",
+          "EDX:4"
+        ],
+        [
+          "bSet",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

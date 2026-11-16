@@ -1,0 +1,406 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Drlg/OutDesr.cpp",
+  "functions": [
+    {
+      "name": "PlacePresetVariants",
+      "address": "0067f470",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f470"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlacePresetVariants",
+        "TXT_LvlPrest_GetLine",
+        "SpawnOutdoorLevelPreset"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId",
+        "D2LvlPrestTxt",
+        "uint32_t"
+      ],
+      "dh": "4f070b26",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EBX:4"
+        ],
+        [
+          "pLevelPrestIds",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nVariants",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bIterateFiles",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTPLACE_PlaceAct2CanyonExitPresets",
+      "address": "0067f560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f560"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "DRLGOUTPLACE_PlaceAct2CanyonExitPresets",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgOrthStrc"
+      ],
+      "dh": "d920e67c",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceCliffs",
+      "address": "0067f5c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f5c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceCliffs",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "30844a8d",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddAct124SecondaryBorderSubId213",
+      "address": "0067f630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f630"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "AddAct124SecondaryBorderSubId213",
+        "AddAct124SecondaryBorder"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "6f9784bd",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddExits",
+      "address": "0067f670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f670"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "AddExits",
+        "SpawnOutdoorLevelPreset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "int32_t"
+      ],
+      "dh": "f45f58de",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceFillsInRockyWaste",
+      "address": "0067f6f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f6f0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceFillsInRockyWaste",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "610eeebd",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceFillsInDryHills",
+      "address": "0067f740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f740"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceFillsInDryHills",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "24695813",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTPLACE_PlaceAct2DesertVariants",
+      "address": "0067f7a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f7a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "DRLGOUTPLACE_PlaceAct2DesertVariants",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "e0f3bd7d",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceFillsInFarOasis",
+      "address": "0067f7d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f7d0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceFillsInFarOasis",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "5b5990f4",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceRuinsInLostCity",
+      "address": "0067f830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f830"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceRuinsInLostCity",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "82a90edd",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceFillsInLostCity",
+      "address": "0067f870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f870"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceFillsInLostCity",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "58def09b",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceTombEntriesInCanyon",
+      "address": "0067f8d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f8d0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceTombEntriesInCanyon",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "uint32_t"
+      ],
+      "dh": "c6910f94",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlaceFillsInCanyon",
+      "address": "0067f920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f920"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "PlaceFillsInCanyon",
+        "PlacePresetVariants"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "82c54659",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitAct2OutdoorLevel",
+      "address": "0067f980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067f980"
+        }
+      ],
+      "namespace": "D2Common::Drlg::OutDesr",
+      "calledFunctions": [
+        "InitAct2OutdoorLevel",
+        "SetOutGridLinkFlags",
+        "PlaceAct1245OutdoorBorders",
+        "DRLGOUTPLACE_PlaceAct2CanyonExitPresets",
+        "AddAct124SecondaryBorderSubId213",
+        "AddExits",
+        "SpawnAct12Shrines",
+        "PlaceFillsInRockyWaste",
+        "PlaceCliffs",
+        "SpawnAct12Waypoint",
+        "PlaceFillsInDryHills",
+        "PlacePresetVariants",
+        "PlaceFillsInFarOasis",
+        "PlaceRuinsInLostCity",
+        "PlaceFillsInLostCity",
+        "PlaceTombEntriesInCanyon",
+        "PlaceFillsInCanyon",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2LvlPrestId"
+      ],
+      "dh": "d9731b1c",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

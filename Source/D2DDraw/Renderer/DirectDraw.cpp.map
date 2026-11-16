@@ -1,0 +1,1947 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2DDraw/Renderer/DirectDraw.cpp",
+  "functions": [
+    {
+      "name": "DrawImageFast_Unref_0045f7a0",
+      "address": "0045f7a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0045f7a0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawImageFast_Unref_0045f7a0"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "e5542232",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "PerspectiveScalePosition_Unref_005043d0",
+      "address": "005043d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005043d0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "PerspectiveScalePosition_Unref_005043d0"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "ffa182b5",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nAngle",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pXAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pYAdjust",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bOrder",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Initialize",
+      "address": "00510020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510020"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "Initialize",
+        "SFILE_GetGlobalPointer",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SRegLoadString",
+        "SRegLoadValue",
+        "SRegLoadData"
+      ],
+      "usedTypes": [
+        "D2SystemInfoStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "3f72afc7",
+      "paramStorage": [
+        [
+          "hInstance",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ClearCaches",
+      "address": "00510130",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510130"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "ClearCaches"
+      ],
+      "dh": "91f07daa"
+    },
+    {
+      "name": "CheckCutScene",
+      "address": "00510140",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510140"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "CheckCutScene"
+      ],
+      "dh": "326ac3ca"
+    },
+    {
+      "name": "GetScreenSize",
+      "address": "00510150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510150"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "GetScreenSize"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "56e96d5c",
+      "paramStorage": [
+        [
+          "pWidth",
+          "ECX:4"
+        ],
+        [
+          "pHeight",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetPalette",
+      "address": "00510160",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510160"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetPalette",
+        "FOG_FillArrayWithRandomInts"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "PALETTEENTRY",
+        "uint8_t"
+      ],
+      "dh": "0a08c1ad",
+      "paramStorage": [
+        [
+          "pPalette",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetPaletteTable",
+      "address": "005102d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005102d0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetPaletteTable"
+      ],
+      "usedTypes": [
+        "BYTE *"
+      ],
+      "dh": "51ec669d",
+      "paramStorage": [
+        [
+          "ppPaletteTable",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UpdateScaleFactor",
+      "address": "005102f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005102f0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "UpdateScaleFactor"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "55f67e66",
+      "paramStorage": [
+        [
+          "nScaleFactor",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetGamma",
+      "address": "00510300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510300"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetGamma",
+        "SetPalette"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b16a2492",
+      "paramStorage": [
+        [
+          "nGamma",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckGamma",
+      "address": "00510310",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510310"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "CheckGamma"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e96e8e58"
+    },
+    {
+      "name": "SetGlobalLight",
+      "address": "00510320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510320"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetGlobalLight"
+      ],
+      "dh": "25070f88",
+      "paramStorage": [
+        [
+          "nRed",
+          "ECX:4"
+        ],
+        [
+          "nGreen",
+          "EDX:4"
+        ],
+        [
+          "nBlue",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetPerspectiveScale",
+      "address": "00510330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510330"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetPerspectiveScale"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9d570651",
+      "paramStorage": [
+        [
+          "nScaleX",
+          "ECX:4"
+        ],
+        [
+          "nScaleY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AdjustPerspectivePosition",
+      "address": "00510340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510340"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "AdjustPerspectivePosition"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "691533ef",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nBais",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pXAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pYAdjust",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PerspectiveScalePosition",
+      "address": "00510350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510350"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "PerspectiveScalePosition"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "863d8512",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nAngle",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pXAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pYAdjust",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bOrder",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetDefaultPerspectiveFactor",
+      "address": "00510360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510360"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetDefaultPerspectiveFactor"
+      ],
+      "dh": "9a17a18a"
+    },
+    {
+      "name": "GetRenderStatistics",
+      "address": "00510370",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510370"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "GetRenderStatistics"
+      ],
+      "dh": "7c3646c8"
+    },
+    {
+      "name": "ActivateWindow",
+      "address": "00510380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510380"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "ActivateWindow"
+      ],
+      "dh": "f33b5aa4"
+    },
+    {
+      "name": "SetOption",
+      "address": "00510390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00510390"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetOption"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b8a7e8f6",
+      "paramStorage": [
+        [
+          "nOption",
+          "ECX:4"
+        ],
+        [
+          "nValue",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DirectDrawErrorHandler",
+      "address": "005103b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005103b0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DirectDrawErrorHandler",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "c861240a",
+      "paramStorage": [
+        [
+          "szContext",
+          "ECX:4"
+        ],
+        [
+          "nErrorCode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InternalOpenWindow",
+      "address": "00511210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511210"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "InternalOpenWindow",
+        "RENDERER_DDRAW_SetHorizontalBounds",
+        "DirectDrawErrorHandler",
+        "memset",
+        "LOGFILE_WriteStringToFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7988e0ac",
+      "paramStorage": [
+        [
+          "nResolutionMode",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InternalCutsceneWindow",
+      "address": "005114d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005114d0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "InternalCutsceneWindow",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset",
+        "DirectDrawErrorHandler",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "int32_t"
+      ],
+      "dh": "5e8c6642"
+    },
+    {
+      "name": "CreateWindow",
+      "address": "005115e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005115e0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "CreateWindow",
+        "DirectDrawErrorHandler",
+        "memset",
+        "InternalOpenWindow"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "443f7109",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlayCutScene",
+      "address": "00511660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511660"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "PlayCutScene",
+        "memset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "DirectDrawErrorHandler",
+        "BINK_PlayVideoFile"
+      ],
+      "usedTypes": [
+        "DDBLTFX",
+        "int32_t"
+      ],
+      "dh": "cfff15a6",
+      "paramStorage": [
+        [
+          "szFile",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ],
+        [
+          "fpFrame",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BeginScene",
+      "address": "00511720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511720"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "BeginScene",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ClearScreen",
+        "memset",
+        "DirectDrawErrorHandler"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "int32_t"
+      ],
+      "dh": "2cfe97a3",
+      "paramStorage": [
+        [
+          "bClear",
+          "ECX:4"
+        ],
+        [
+          "nRed",
+          "DL:1"
+        ],
+        [
+          "nGreen",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nBlue",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "EndScene1",
+      "address": "005117f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005117f0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "EndScene1",
+        "DirectDrawErrorHandler",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d1620d2a"
+    },
+    {
+      "name": "EndScene2",
+      "address": "00511870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511870"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "EndScene2",
+        "DirectDrawErrorHandler"
+      ],
+      "usedTypes": [
+        "RECT",
+        "int32_t"
+      ],
+      "dh": "6fd1ce8c"
+    },
+    {
+      "name": "GetBackBuffer",
+      "address": "00511970",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511970"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "GetBackBuffer",
+        "memset",
+        "DirectDrawErrorHandler"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "uint8_t"
+      ],
+      "dh": "269d3a34",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InternalReleaseWindow",
+      "address": "00511a80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511a80"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "InternalReleaseWindow",
+        "ClearScreen",
+        "EndScene2"
+      ],
+      "dh": "de1ce9f3"
+    },
+    {
+      "name": "BeginCutScene",
+      "address": "00511b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511b10"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "BeginCutScene",
+        "InternalReleaseWindow",
+        "InternalCutsceneWindow"
+      ],
+      "dh": "cbc200b2"
+    },
+    {
+      "name": "RENDERER_DDRAW_DestroyWindow",
+      "address": "00511b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511b30"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_DestroyWindow",
+        "InternalReleaseWindow"
+      ],
+      "dh": "83de296f"
+    },
+    {
+      "name": "ResizeWindow",
+      "address": "00511b60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511b60"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "ResizeWindow",
+        "InternalReleaseWindow",
+        "InternalOpenWindow"
+      ],
+      "dh": "a4eda3fb",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "bForceResize",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Release",
+      "address": "00511b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511b80"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "Release",
+        "InternalReleaseWindow",
+        "FreeClientMemory",
+        "D2ddDebugFont_Free"
+      ],
+      "dh": "5e7ce4c2"
+    },
+    {
+      "name": "EndCutScene",
+      "address": "00511c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511c20"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "EndCutScene",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "InternalReleaseWindow",
+        "CreateWindow"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "be40b00f",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ],
+        [
+          "nWindowState",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_Release",
+      "address": "00511cd0",
+      "lines": [],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "Release"
+      ]
+    },
+    {
+      "name": "InitPerspective",
+      "address": "00511ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511ce0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "InitPerspective",
+        "D2ddDebugFont_Alloc",
+        "DirectDrawErrorHandler",
+        "atexit",
+        "AllocClientMemory"
+      ],
+      "usedTypes": [
+        "D2GfxHelperStrc",
+        "D2GfxSettingsStrc",
+        "GUID"
+      ],
+      "dh": "ff219c73",
+      "paramStorage": [
+        [
+          "pSettings",
+          "ECX:4"
+        ],
+        [
+          "pHelpers",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DIRECTDRAW_GetPalettePointer",
+      "address": "00511d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00511d70"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DIRECTDRAW_GetPalettePointer"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "7f55d77c",
+      "paramStorage": [
+        [
+          "nPaletteMode",
+          "ECX:4"
+        ],
+        [
+          "pnOutHeight",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2ddDebugFont_Alloc",
+      "address": "00512430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512430"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "D2ddDebugFont_Alloc",
+        "AllocClientMemory"
+      ],
+      "usedTypes": [
+        "COLORREF",
+        "D2ddDebugFont",
+        "HBITMAP",
+        "HDC",
+        "HFONT",
+        "tagRECT",
+        "uint32_t"
+      ],
+      "dh": "eac2fbe6"
+    },
+    {
+      "name": "D2ddDebugFont_Free",
+      "address": "005125b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005125b0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "D2ddDebugFont_Free",
+        "FreeClientMemory"
+      ],
+      "dh": "382cf82b"
+    },
+    {
+      "name": "RENDERER_DDRAW_DrawDebugFontChar",
+      "address": "005125e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005125e0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_DrawDebugFontChar"
+      ],
+      "usedTypes": [
+        "LPINT",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "1bab67bb",
+      "paramStorage": [
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "cCharacter",
+          "AL:1"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawString",
+      "address": "00512680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512680"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawString",
+        "RENDERER_DDRAW_DrawDebugFontChar"
+      ],
+      "usedTypes": [
+        "LPINT",
+        "int32_t",
+        "va_list"
+      ],
+      "dh": "eb9f472d",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "szFormat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "va",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawLight",
+      "address": "005126f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005126f0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawLight"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "58116bc7",
+      "paramStorage": [
+        [
+          "pLight",
+          "ECX:4"
+        ],
+        [
+          "pPlayerLight",
+          "EDX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DDRAW_AreBlendedShadowsEnabled",
+      "address": "00512700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512700"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_AreBlendedShadowsEnabled"
+      ],
+      "dh": "8f62b9f9"
+    },
+    {
+      "name": "DrawSolidRectEx",
+      "address": "00512710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512710"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawSolidRectEx",
+        "RENDERER_DIRECTDRAW_GetPalettePointer",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "c36a00cd",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:1"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidRectAlpha",
+      "address": "005128b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005128b0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawSolidRectAlpha",
+        "DrawSolidRectEx"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "f0a1d9bc",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DDRAW_DrawPixel",
+      "address": "00512900",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512900"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_DrawPixel"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "8799c28f",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "address": "00512930",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512930"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawLine"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "6d5a16f8",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:1"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DDRAW_DrawLine",
+      "address": "00512a50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512a50"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_DrawLine"
+      ],
+      "usedTypes": [
+        "POINT"
+      ],
+      "dh": "4a129d37",
+      "paramStorage": [
+        [
+          "pStartPoint",
+          "ECX:4"
+        ],
+        [
+          "pEndPoint",
+          "EDX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawRect",
+      "address": "00512c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512c20"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawRect",
+        "RENDERER_DDRAW_DrawLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "POINT",
+        "RECT",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f7b09892",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nColor",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawRectEx",
+      "address": "00512ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512ce0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawRectEx",
+        "RENDERER_DDRAW_DrawLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "POINT",
+        "RECT",
+        "int32_t"
+      ],
+      "dh": "7e3ca2a9",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nColor",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidRect",
+      "address": "00512d90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512d90"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawSolidRect",
+        "memset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "RECT",
+        "int32_t"
+      ],
+      "dh": "433ba381",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidSquare",
+      "address": "00512e80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512e80"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawSolidSquare",
+        "DrawSolidRect"
+      ],
+      "usedTypes": [
+        "POINT",
+        "tagRECT",
+        "uint32_t"
+      ],
+      "dh": "b620fdbb",
+      "paramStorage": [
+        [
+          "pPoint",
+          "ECX:4"
+        ],
+        [
+          "nSize",
+          "DL:1"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "ClearScreen",
+      "address": "00512ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512ed0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "ClearScreen",
+        "memset",
+        "DirectDrawErrorHandler"
+      ],
+      "usedTypes": [
+        "DDBLTFX"
+      ],
+      "dh": "e021f754",
+      "paramStorage": [
+        [
+          "bPartial",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawShadowTile",
+      "address": "00512f90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00512f90"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawShadowTile",
+        "SPRITECACHE_AllocEntry",
+        "RENDERER_DDRAW_AreBlendedShadowsEnabled"
+      ],
+      "usedTypes": [
+        "D2TileLibraryEntryStrc",
+        "int32_t"
+      ],
+      "dh": "0777b4b3",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawTransWallTile",
+      "address": "005130a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005130a0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawTransWallTile",
+        "SPRITECACHE_AllocEntry"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "fd8873a4",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pLight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawWallTile",
+      "address": "005131b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005131b0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawWallTile",
+        "SPRITECACHE_AllocEntry"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "e6269537",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pLight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawGroundTile",
+      "address": "005132c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005132c0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DrawGroundTile",
+        "SPRITECACHE_AllocEntry"
+      ],
+      "usedTypes": [
+        "D2GfxLightExStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t"
+      ],
+      "dh": "1c0b9a15",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "pLight",
+          "EDX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nWorldXpos",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nWorldYpos",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x14]:1"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pTileData",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseSmacker",
+      "address": "00513330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513330"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "CloseSmacker",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc"
+      ],
+      "dh": "4ff633c8",
+      "paramStorage": [
+        [
+          "pContext",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DDRAW_BlitSmackerFrame",
+      "address": "00513380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513380"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "RENDERER_DDRAW_BlitSmackerFrame"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "99a0a4dc",
+      "paramStorage": [
+        [
+          "nHeight",
+          "ECX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pDestRect",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DecodeSmacker",
+      "address": "00513400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513400"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "DecodeSmacker",
+        "AllocClientMemory",
+        "memset",
+        "SFileLoadFileEx",
+        "SBmpDecodeImage",
+        "SMemFree",
+        "D2GFX_FindNearestPaletteIndex",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "91b26a74",
+      "paramStorage": [
+        [
+          "szSmacker",
+          "ECX:4"
+        ],
+        [
+          "pBuffer",
+          "EDX:4"
+        ],
+        [
+          "nVersion",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlayerSmacker",
+      "address": "005135f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005135f0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "PlayerSmacker",
+        "RENDERER_DDRAW_BlitSmackerFrame",
+        "D2GFX_FindNearestPaletteIndex",
+        "CloseSmacker"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc",
+        "uint8_t"
+      ],
+      "dh": "74ef7555",
+      "paramStorage": [
+        [
+          "pContext",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "BINK_RenderVideoFrame",
+      "address": "005136f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005136f0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "BINK_RenderVideoFrame",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "int32_t"
+      ],
+      "dh": "95bd72df"
+    },
+    {
+      "name": "BINK_PlayVideoFile",
+      "address": "005137e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005137e0"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "BINK_PlayVideoFile",
+        "GetUseDirectCommand",
+        "SFileOpenFileEx",
+        "GetTickCount",
+        "BINK_RenderVideoFrame",
+        "SOUNDSMP_SetGlobalVolume",
+        "exit"
+      ],
+      "usedTypes": [
+        "fnBinkFrameCallback",
+        "int32_t",
+        "tagMSG",
+        "uint32_t"
+      ],
+      "dh": "963ac38c",
+      "paramStorage": [
+        [
+          "szFileName",
+          "ECX:4"
+        ],
+        [
+          "nParam",
+          "EDX:4"
+        ],
+        [
+          "pfnFrameCallback",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ActivateWindow_Unref_00513b80",
+      "address": "00513b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513b80"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "ActivateWindow_Unref_00513b80"
+      ],
+      "dh": "f49ac184"
+    },
+    {
+      "name": "SetDefaultPerspectiveFactor_Unref_00514040",
+      "address": "00514040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00514040"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetDefaultPerspectiveFactor_Unref_00514040"
+      ],
+      "dh": "c3792e19"
+    },
+    {
+      "name": "SetDefaultPerspectiveFactor_Unref_00514050",
+      "address": "00514050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00514050"
+        }
+      ],
+      "namespace": "D2DDraw::Renderer::DirectDraw",
+      "calledFunctions": [
+        "SetDefaultPerspectiveFactor_Unref_00514050"
+      ],
+      "dh": "76ff9d9e"
+    }
+  ]
+}

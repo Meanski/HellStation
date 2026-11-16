@@ -1,0 +1,1197 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/Party.cpp",
+  "functions": [
+    {
+      "name": "SetPartyColors",
+      "address": "00499e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00499e10"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "SetPartyColors",
+        "D2GFX_GetColorFromCurrentPallete"
+      ],
+      "dh": "aacb12de"
+    },
+    {
+      "name": "SetRedToBlack",
+      "address": "00499e30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00499e30"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "SetRedToBlack",
+        "D2GFX_GetColorFromCurrentPallete"
+      ],
+      "dh": "d01c528a"
+    },
+    {
+      "name": "UI_DrawPartyPanelBackground",
+      "address": "00499e50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00499e50"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyPanelBackground",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "afebf0c2"
+    },
+    {
+      "name": "UI_DrawPartyMemberSeparatorBar",
+      "address": "00499f40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00499f40"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMemberSeparatorBar",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "91bd3ece",
+      "paramStorage": [
+        [
+          "nBaseY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyButtonFrame",
+      "address": "00499fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00499fc0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyButtonFrame",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "DC6",
+        "int32_t"
+      ],
+      "dh": "970d74c4",
+      "paramStorage": [
+        [
+          "pDC6",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nFrame",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeAllUiParty",
+      "address": "0049a020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a020"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "FreeAllUiParty",
+        "FreeClientMemory"
+      ],
+      "dh": "6a95ca60"
+    },
+    {
+      "name": "UI_InitializePartyButtonStruct",
+      "address": "0049a060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a060"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_InitializePartyButtonStruct"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1e4a27ab",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ],
+        [
+          "nDC6OrCallback",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFrame",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nButtonType",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nData1",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nData2",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pButton",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetupPartyButtons",
+      "address": "0049a090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a090"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "SetupPartyButtons",
+        "GetRosterInPartyBool",
+        "ROSTER_GetHostileFlag",
+        "ROSTER_GetLootFlag",
+        "ROSTER_GetListenFlag",
+        "ROSTER_GetMuteFlag",
+        "GetRosterGUID"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ca660a10",
+      "paramStorage": [
+        [
+          "pRoster",
+          "EBX:4"
+        ],
+        [
+          "pUiParty",
+          "ESI:4"
+        ],
+        [
+          "nPositionY",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocUiPartyFromRoster",
+      "address": "0049a1d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a1d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "AllocUiPartyFromRoster",
+        "AllocClientMemory",
+        "memset",
+        "SetupPartyButtons",
+        "GetRosterName",
+        "GetRosterCharType",
+        "GetRosterLevel",
+        "GetRosterArea"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "9072644d",
+      "paramStorage": [
+        [
+          "pRoster",
+          "EAX:4"
+        ],
+        [
+          "nPositionY",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0049a2a0",
+      "address": "0049a2a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a2a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "Unreferenced_0049a2a0",
+        "GetNextRosterPlayer",
+        "GetRosterLevel"
+      ],
+      "dh": "b3f8395f"
+    },
+    {
+      "name": "UI_DrawPartyMemberName",
+      "address": "0049a2c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a2c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMemberName",
+        "UTF8_ConvertToWideChar",
+        "DRAW_text0",
+        "AppendToBuffer",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "6d9c9297",
+      "paramStorage": [
+        [
+          "szPlayerName",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bNarrowMode",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyMemberClass",
+      "address": "0049a3d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a3d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMemberClass",
+        "GetLocaleString",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "de9adb83",
+      "paramStorage": [
+        [
+          "nScreenY",
+          "EAX:4"
+        ],
+        [
+          "nCharType",
+          "ECX:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyButtonLabelText",
+      "address": "0049a460",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a460"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyButtonLabelText",
+        "SetAndReturnLastFont",
+        "GetLocaleString",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "3a4efd11",
+      "paramStorage": [
+        [
+          "eButtonType",
+          "ECX:4"
+        ],
+        [
+          "nBaseY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bHostileMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPartyId",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyLeaveButton",
+      "address": "0049a510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a510"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyLeaveButton",
+        "GetNextRosterPlayer",
+        "SetAndReturnLastFont",
+        "GetRosterPartyId",
+        "UI_DrawPartyButtonFrame",
+        "GetLocaleString",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "9e5b2f84"
+    },
+    {
+      "name": "UI_DrawPlayerNameInParty",
+      "address": "0049a580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a580"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPlayerNameInParty",
+        "GetPlayerUnit_UI",
+        "GetPlayerRosterName",
+        "UTF8_GetStringLength",
+        "SetAndReturnLastFont",
+        "AllocClientMemory",
+        "UTF8_ConvertToWideChar",
+        "UI_DrawTextCentered",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "004d55f0"
+    },
+    {
+      "name": "ResetPartyUi",
+      "address": "0049a640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a640"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "ResetPartyUi",
+        "FreeAllUiParty",
+        "GetNextRosterPlayer",
+        "AllocUiPartyFromRoster"
+      ],
+      "usedTypes": [
+        "D2RosterStrc"
+      ],
+      "dh": "630f6ea6"
+    },
+    {
+      "name": "UI_DrawPartyButtons",
+      "address": "0049a690",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a690"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyButtons",
+        "GetPlayerUnit_UI",
+        "memset",
+        "CLIENTMODE_IsHardcoreCharacter",
+        "D2GFX_DrawImage",
+        "UNITS_GetRoom",
+        "DRLGROOM_IsRoomInTown",
+        "GetGUID",
+        "GetFlag",
+        "GetNextRosterPlayer",
+        "GetRosterLevel",
+        "D2GFX_GetColorFromCurrentPallete",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2RoomStrc",
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "6defaf64",
+      "paramStorage": [
+        [
+          "pUiParty",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyMemberLevelName",
+      "address": "0049a830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a830"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMemberLevelName",
+        "CLIENT_GetLevelNameByLevelId",
+        "STRING_CopyWideString",
+        "DRAW_text0",
+        "STRING_GetWideStringLength",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "D2UiPartyStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "5ec27a11",
+      "paramStorage": [
+        [
+          "pUiParty",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyAcceptButton",
+      "address": "0049a950",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a950"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyAcceptButton",
+        "memset",
+        "GetBuySellBtnDC6",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "b9bcd9b7"
+    },
+    {
+      "name": "SetEachPlayerRosterGlobalPartyId",
+      "address": "0049a9b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049a9b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "SetEachPlayerRosterGlobalPartyId",
+        "GetNextRosterPlayer",
+        "GetRosterPartyId",
+        "UI_DrawPartyMemberSeparatorBar"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "uint16_t"
+      ],
+      "dh": "dc1f3893"
+    },
+    {
+      "name": "UI_CheckMouseInRectangle",
+      "address": "0049aa50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049aa50"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_CheckMouseInRectangle",
+        "GetMouseX",
+        "GetMouseY"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "92d03382",
+      "paramStorage": [
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_CalculateCenteredTextXPosition",
+      "address": "0049aaa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049aaa0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_CalculateCenteredTextXPosition",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "1562557e",
+      "paramStorage": [
+        [
+          "nLocaleId",
+          "CX:2"
+        ],
+        [
+          "nCenterX",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ShowToolTipOnPartyButtons",
+      "address": "0049aaf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049aaf0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "ShowToolTipOnPartyButtons",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int16_t",
+        "int32_t"
+      ],
+      "dh": "8f8edeef",
+      "paramStorage": [
+        [
+          "nLocaleIdLine1",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nLocaleIdLine2",
+          "AX:2"
+        ],
+        [
+          "nOffsetX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bIsTwoLiner",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_PartyWindow_II",
+      "address": "0049abd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049abd0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "DRAW_UI_PartyWindow_II",
+        "GetNextRosterPlayer",
+        "D2GFX_GetColorFromCurrentPallete",
+        "GetRosterPartyId",
+        "GetMouseX",
+        "GetMouseY",
+        "ShowToolTipOnPartyButtons",
+        "UI_CalculateCenteredTextXPosition",
+        "GetLocaleString",
+        "DRAW_text",
+        "STRING_CopyWideString",
+        "DRAW_text0"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "93795995"
+    },
+    {
+      "name": "UI_DrawPartyButtonTextWithTooltip",
+      "address": "0049af60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049af60"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyButtonTextWithTooltip",
+        "ShowToolTipOnPartyButtons",
+        "UI_CalculateCenteredTextXPosition",
+        "GetLocaleString",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "be368e9e",
+      "paramStorage": [
+        [
+          "nLocaleId1",
+          "CX:2"
+        ],
+        [
+          "nLocaleId2",
+          "Stack[0x4]:2"
+        ],
+        [
+          "dwUnused",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLine2Y",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nOffsetX",
+          "EBX:4"
+        ],
+        [
+          "nLine1Y",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ROSTER_DrawPlayerTooltip",
+      "address": "0049b030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049b030"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "ROSTER_DrawPlayerTooltip",
+        "GetRosterName",
+        "UTF8_ConvertToWideChar",
+        "ROSTER_HasOutgoingHostile",
+        "ROSTER_HasOutgoingLoot",
+        "ROSTER_HasIncomingHostile",
+        "ROSTER_HasIncomingLoot",
+        "RosterIsFemale",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "UNICODE_FormatWideString",
+        "CLIENTMODE_IsHardcoreCharacter",
+        "DRAW_text0",
+        "D2GFX_DrawSolidRectExBySize",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "9ced29fb",
+      "paramStorage": [
+        [
+          "pRoster",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_HandlePartyButtonTooltips",
+      "address": "0049b330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049b330"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_HandlePartyButtonTooltips",
+        "GetNextRosterPlayer",
+        "GetPlayerUnit_UI",
+        "UNITS_GetRoom",
+        "D2GFX_GetColorFromCurrentPallete",
+        "DRLGROOM_IsRoomInTown",
+        "GetMouseX",
+        "GetMouseY",
+        "GetRosterLevel",
+        "ShowToolTipOnPartyButtons",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0",
+        "DRAW_text",
+        "UI_CalculateCenteredTextXPosition",
+        "ROSTER_GetHostileFlag",
+        "UI_DrawPartyButtonTextWithTooltip",
+        "CLIENTMODE_IsHardcoreCharacter",
+        "ROSTER_GetLootFlag",
+        "ROSTER_GetListenFlag",
+        "ROSTER_GetMuteFlag",
+        "ROSTER_DrawPlayerTooltip"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "4907216e"
+    },
+    {
+      "name": "ClickParty_II",
+      "address": "0049b990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049b990"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "ClickParty_II",
+        "ROSTER_ToggleHostileAndSend",
+        "ROSTER_GetHostileFlag",
+        "CLIENTMODE_IsHardcoreCharacter",
+        "ROSTER_ToggleLootAndSend",
+        "ROSTER_GetLootFlag",
+        "ROSTER_ToggleListenAndSend",
+        "ROSTER_GetListenFlag",
+        "ROSTER_ToggleMuteAndSend",
+        "ROSTER_GetMuteFlag",
+        "CLIENT_GetBNetClientCallbacks",
+        "GetRosterName"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "fnSendChatCommand",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "aadcec70",
+      "paramStorage": [
+        [
+          "eButtonType",
+          "EAX:4"
+        ],
+        [
+          "pRoster",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_HandlePartyButtonClick",
+      "address": "0049bad0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049bad0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_HandlePartyButtonClick",
+        "ClickParty_i",
+        "GetRosterInPartyBool",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "int32_t"
+      ],
+      "dh": "c3195423",
+      "paramStorage": [
+        [
+          "pUiParty",
+          "ECX:4"
+        ],
+        [
+          "pRoster",
+          "ESI:4"
+        ],
+        [
+          "nButtonIdx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_PartyScreenLeftClick",
+      "address": "0049bb60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049bb60"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "INPUT_PartyScreenLeftClick",
+        "GetMouseX",
+        "GetNextRosterPlayer",
+        "GetPlayerUnit_UI",
+        "GetMouseY",
+        "GetRosterLevel",
+        "UNITS_GetRoom",
+        "DRLGROOM_IsRoomInTown",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2RosterStrc",
+        "D2UIMouseMsgStrc",
+        "D2UiPartyStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "92d92570",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_PartyScreenMouseUp",
+      "address": "0049bdd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049bdd0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "INPUT_PartyScreenMouseUp",
+        "GetMouseX",
+        "GetNextRosterPlayer",
+        "GetPlayerUnit_UI",
+        "GetMouseY",
+        "UI_CheckMouseInRectangle",
+        "GetRosterPartyId",
+        "GetRosterLevel",
+        "UNITS_GetRoom",
+        "DRLGROOM_IsRoomInTown",
+        "ClickParty_II",
+        "UI_HandlePartyButtonClick",
+        "LeaveParty",
+        "SetUIFlag",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2RosterStrc",
+        "D2UIMouseMsgStrc",
+        "D2UiPartyStrc",
+        "D2UnitStrc",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "f9f57c6e",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LoadPartyDC6",
+      "address": "0049c0a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049c0a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "LoadPartyDC6",
+        "ARCHIVE_LoadOverlayImageUsedInGame"
+      ],
+      "dh": "fabf78d3"
+    },
+    {
+      "name": "FreePartyDC6",
+      "address": "0049c0f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049c0f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "FreePartyDC6",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "8c7abcfb"
+    },
+    {
+      "name": "UI_DrawPartyMemberLevel",
+      "address": "0049c170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049c170"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMemberLevel",
+        "GetLocaleString",
+        "WSTRING_PutWideCharIntoBuffer",
+        "AppendToBuffer",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "63780caf",
+      "paramStorage": [
+        [
+          "nCharLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyMembers",
+      "address": "0049c270",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049c270"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "UI_DrawPartyMembers",
+        "GetNextRosterPlayer",
+        "GetRosterPartyId",
+        "ROSTER_HasIncomingHostile",
+        "SetAndReturnLastFont",
+        "UI_DrawPartyMemberName",
+        "UI_DrawPartyMemberClass",
+        "UI_DrawPartyMemberLevel",
+        "UI_DrawPartyMemberLevelName",
+        "UI_DrawPartyButtons",
+        "UI_DrawPartyButtonLabelText"
+      ],
+      "usedTypes": [
+        "D2RosterStrc",
+        "D2UiPartyStrc",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "e3429b6d"
+    },
+    {
+      "name": "DRAW_UI_PartyWindow",
+      "address": "0049c3d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0049c3d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Party",
+      "calledFunctions": [
+        "DRAW_UI_PartyWindow",
+        "UI_DrawPartyPanelBackground",
+        "UI_DrawPlayerNameInParty",
+        "UI_DrawPartyMembers",
+        "UI_DrawPartyLeaveButton",
+        "UI_DrawPartyAcceptButton",
+        "DRAW_UI_PartyWindow_II",
+        "UI_HandlePartyButtonTooltips",
+        "SetEachPlayerRosterGlobalPartyId",
+        "GetMouseX",
+        "GetMouseY",
+        "GetLocaleString",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "5e8c7b5c"
+    }
+  ]
+}

@@ -1,0 +1,918 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/Hireables.cpp",
+  "functions": [
+    {
+      "name": "HIREABLE_IsNotInMercPurchaseMode",
+      "address": "00492c10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492c10"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "HIREABLE_IsNotInMercPurchaseMode"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "e39e3e64"
+    },
+    {
+      "name": "LoadClassIcons",
+      "address": "00492c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492c20"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "LoadClassIcons",
+        "memset",
+        "ARCHIVE_LoadOverlayImageUsedInGame",
+        "D2CheckExpansionGame",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "DC6",
+        "DC6 *",
+        "char[32]"
+      ],
+      "dh": "a71dce38"
+    },
+    {
+      "name": "FreeHireablesList",
+      "address": "00492ec0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492ec0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "FreeHireablesList",
+        "DC6_FreeAndDelete",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2HireablesListStrc",
+        "DC6 *"
+      ],
+      "dh": "e4233033"
+    },
+    {
+      "name": "InitializeHealthBarColors",
+      "address": "00492f40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492f40"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "InitializeHealthBarColors",
+        "D2GFX_GetColorFromCurrentPallete"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e71f1eaa",
+      "paramStorage": [
+        [
+          "nForce",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UnsetHealthBarInitialize",
+      "address": "00492f90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492f90"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UnsetHealthBarInitialize"
+      ],
+      "dh": "f42f6917"
+    },
+    {
+      "name": "DrawHirelingName",
+      "address": "00492fa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492fa0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "DrawHirelingName",
+        "SetAndReturnLastFont",
+        "DRAW_text0",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "63efd3f9",
+      "paramStorage": [
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "lwMessage",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetAndDrawHirelingName",
+      "address": "00493020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493020"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "GetAndDrawHirelingName",
+        "CONTAINER_InitializeBuffer",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DrawHirelingName"
+      ],
+      "usedTypes": [
+        "D2PetTypeTxt",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "03378369",
+      "paramStorage": [
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPetType",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawHirelingNameFromString",
+      "address": "004930a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004930a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_DrawHirelingNameFromString",
+        "UTF8_ConvertToWideChar",
+        "DrawHirelingName"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "93e65968",
+      "paramStorage": [
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawSummonCount",
+      "address": "00493100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493100"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_DrawSummonCount",
+        "sprintf",
+        "memset",
+        "UTF8_ConvertToWideChar",
+        "WSTRING_PutWideCharIntoBuffer",
+        "STRING_GetWideStringLength",
+        "DRAW_text0",
+        "SetAndReturnLastFont",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "70647d49",
+      "paramStorage": [
+        [
+          "nSummonCount",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDrawPositionX",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRosterIcon",
+      "address": "00493240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493240"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "GetRosterIcon",
+        "GetRosterPetGUID",
+        "GetRosterClass",
+        "sprintf",
+        "ARCHIVE_LoadOverlayImageUsedInGame"
+      ],
+      "usedTypes": [
+        "D2PetTypeTxt",
+        "D2UnitStrc",
+        "DC6",
+        "DC6 *",
+        "char[32]",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "efb3d0d6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nSkillId",
+          "EDX:4"
+        ],
+        [
+          "pRosterGUID",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pFlagOut",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_Overlay_PetsAndPartyMembers",
+      "address": "00493340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493340"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "DRAW_Overlay_PetsAndPartyMembers",
+        "GetPlayerUnit_UI",
+        "CheckIfUnitHasRosterPet",
+        "CheckIfUnitHasPartiedRosters",
+        "GetUIFlag",
+        "SetUIFlag",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "IsActive"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "5dde26eb"
+    },
+    {
+      "name": "INPUT_HireableInteract",
+      "address": "00493430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493430"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "INPUT_HireableInteract",
+        "SMsgBreakHandlerChain",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "SELECT_SetPetSeedTimestamp"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "3d60d119",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_004934b0",
+      "address": "004934b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004934b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "Unreferenced_004934b0",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "63d2d0f0"
+    },
+    {
+      "name": "UI_CheckItemCanEquipToHireling",
+      "address": "004934d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004934d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_CheckItemCanEquipToHireling",
+        "CLIENT_CheckExpansion",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetRosterPetGUID",
+        "CheckItemFlag",
+        "UNITSND_PlaySoundForMercenary",
+        "ITEMS_IsA",
+        "UNITS_FindClientSideUnit",
+        "GetRosterClass",
+        "IsTwoHanded",
+        "ITEM_CheckEquipRequirements"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "99720b97",
+      "paramStorage": [
+        [
+          "bPlaySound",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_HireableHireClick",
+      "address": "004936e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004936e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "INPUT_HireableHireClick",
+        "CLIENT_CheckExpansion",
+        "UI_CheckItemCanEquipToHireling",
+        "NET_D2GS_CLIENT_Send_SHORT",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "8c5c9a38",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_HandleHirelingTooltipHoverTimer",
+      "address": "00493760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493760"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_HandleHirelingTooltipHoverTimer",
+        "CLIENT_CheckExpansion",
+        "GetTickCount",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetRosterPetGUID",
+        "UI_CheckItemCanEquipToHireling"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "e24ac09a",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_ToggleHirelingIconsVisibility",
+      "address": "00493840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493840"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_ToggleHirelingIconsVisibility",
+        "CLIENT_GetD2GSGameType",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "eD2GSGameType"
+      ],
+      "dh": "a1ec888d"
+    },
+    {
+      "name": "INPUT_HireableLongPress",
+      "address": "004938e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004938e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "INPUT_HireableLongPress",
+        "CLIENT_CheckExpansion",
+        "GetTickCount",
+        "SMsgBreakHandlerChain",
+        "GetUIFlag",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "e52e41f4",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_InitializeHirelingIconsUI",
+      "address": "004939b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004939b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_InitializeHirelingIconsUI",
+        "SetUIFlag",
+        "SRegLoadValue"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "cf3e1b85"
+    },
+    {
+      "name": "DrawHealthBar",
+      "address": "00493a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493a00"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "DrawHealthBar",
+        "GetRosterHP",
+        "GetRosterPerHPPercent",
+        "D2GFX_GetColorFromCurrentPallete",
+        "D2GFX_DrawSolidRectEx"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "7e4fd036",
+      "paramStorage": [
+        [
+          "nRosterGUID",
+          "ECX:4"
+        ],
+        [
+          "nPetType",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawHirelingNameFromUnit",
+      "address": "00493b00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493b00"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_DrawHirelingNameFromUnit",
+        "memset",
+        "GetName",
+        "WSTRING_PutWideCharIntoBuffer",
+        "DrawHirelingName"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "0d9cfd54",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EAX:4"
+        ],
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawPartyMembersHirelingIcons",
+      "address": "00493b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493b50"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_DrawPartyMembersHirelingIcons",
+        "GetPlayerUnitPartyId",
+        "GetNextRosterPlayer",
+        "GetRosterPartyId",
+        "GetRosterGUID",
+        "GetRosterCharType",
+        "DrawHealthBar",
+        "GetRosterName",
+        "UI_DrawHirelingNameFromString",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2RosterStrc",
+        "D2UnitStrc",
+        "DC6",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "415c6358",
+      "paramStorage": [
+        [
+          "pnY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnYOffset",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnX",
+          "ESI:4"
+        ],
+        [
+          "pUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "HIRELING_DrawPortraitIcon",
+      "address": "00493ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493ce0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "HIRELING_DrawPortraitIcon",
+        "memset",
+        "GetRosterIcon",
+        "DrawHealthBar",
+        "UNITS_FindClientSideUnit",
+        "UI_DrawHirelingNameFromUnit",
+        "GetTickCount",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "77c8fd3f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnYToggle",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnY",
+          "ESI:4"
+        ],
+        [
+          "pnX",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "HIRELING_DrawPetIcon",
+      "address": "00493e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493e10"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "HIRELING_DrawPetIcon",
+        "memset",
+        "GetRosterIcon",
+        "DrawHealthBar",
+        "GetAndDrawHirelingName",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "524164b7",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnYToggle",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nPetType",
+          "EBX:4"
+        ],
+        [
+          "nY",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "HIRELING_DrawSummonIcon",
+      "address": "00493eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493eb0"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "HIRELING_DrawSummonIcon",
+        "CountRostersForUnitFilterBySkill",
+        "memset",
+        "GetRosterIcon",
+        "GetRosterPetGUID",
+        "DrawHealthBar",
+        "UI_DrawSummonCount",
+        "GetAndDrawHirelingName",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5d0cea2d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnYToggle",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSkillId",
+          "ESI:4"
+        ],
+        [
+          "nX",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "HIRELING_DrawGenericPetIcon",
+      "address": "00493f80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00493f80"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "HIRELING_DrawGenericPetIcon",
+        "memset",
+        "GetRosterIcon",
+        "DrawHealthBar",
+        "GetAndDrawHirelingName",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "f0554608",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnYToggle",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nPetType",
+          "EBX:4"
+        ],
+        [
+          "pnY",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_DrawHireableIcons",
+      "address": "00494020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494020"
+        }
+      ],
+      "namespace": "D2Client::UI::Hireables",
+      "calledFunctions": [
+        "UI_DrawHireableIcons",
+        "GetPlayerUnit_UI",
+        "DRAW_GetTypeOfBorder",
+        "GetUIFlag",
+        "CLIENT_CheckExpansion",
+        "GetRosterPetGUID",
+        "SetUIFlag",
+        "UI_DrawPartyMembersHirelingIcons",
+        "HIRELING_DrawPortraitIcon",
+        "HIRELING_DrawPetIcon",
+        "HIRELING_DrawSummonIcon",
+        "HIRELING_DrawGenericPetIcon",
+        "SRegSaveValue",
+        "CONTAINER_InitializeBuffer",
+        "GetLocaleString",
+        "CMD_GetKeyDescForCommand",
+        "UNICODE_FormatWideString",
+        "AppendToBuffer",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7f348939"
+    }
+  ]
+}

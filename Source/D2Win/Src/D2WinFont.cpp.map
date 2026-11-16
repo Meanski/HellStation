@@ -1,0 +1,1484 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Win/Src/D2WinFont.cpp",
+  "functions": [
+    {
+      "name": "D2WINFONT_BuildFontPath",
+      "address": "005013a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005013a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_BuildFontPath",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9eaa5345",
+      "paramStorage": [
+        [
+          "szPathOut",
+          "EDI:4"
+        ],
+        [
+          "nFontIndex",
+          "EBX:4"
+        ],
+        [
+          "nBufferSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetFontTablePath",
+      "address": "00501490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501490"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "GetFontTablePath",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "48dc3525",
+      "paramStorage": [
+        [
+          "nBufSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFontIndex",
+          "EBX:4"
+        ],
+        [
+          "szFontTablePath",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitFontCache",
+      "address": "00501580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501580"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "InitFontCache",
+        "GetFontTablePath",
+        "FreeClientMemory",
+        "ReturnZero",
+        "D2FILE_AllocAndLoadD2File"
+      ],
+      "usedTypes": [
+        "D2FontTableHeaderStrc",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "109200be",
+      "paramStorage": [
+        [
+          "nFontIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_FreeFontCache",
+      "address": "005015f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005015f0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_FreeFontCache",
+        "IMAGE_FreeImage",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "void *"
+      ],
+      "dh": "45b25cbf"
+    },
+    {
+      "name": "FONT_GetCharWidthCallback",
+      "address": "00501650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501650"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "FONT_GetCharWidthCallback"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "uint16_t"
+      ],
+      "dh": "c4280b9c",
+      "paramStorage": [
+        [
+          "wCharCode",
+          "CX:2"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_LookupGlyphEntry",
+      "address": "00501690",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501690"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_LookupGlyphEntry"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "uint16_t"
+      ],
+      "dh": "9a98f94f",
+      "paramStorage": [
+        [
+          "wCharCode",
+          "CX:2"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_GetStringPixelWidthN",
+      "address": "00501730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501730"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_GetStringPixelWidthN"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "bc8815cc",
+      "paramStorage": [
+        [
+          "pwszString",
+          "ECX:4"
+        ],
+        [
+          "nMaxChars",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_GetStringPixelWidth",
+      "address": "005017d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005017d0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_GetStringPixelWidth"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "4ce89cab",
+      "paramStorage": [
+        [
+          "pwszString",
+          "ECX:4"
+        ],
+        [
+          "nSize",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_text0",
+      "address": "00501820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501820"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "DRAW_text0",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetStringPixelWidth"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "0a11e8d2",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TEXT_CalculateTextWidth",
+      "address": "00501840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501840"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "TEXT_CalculateTextWidth",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_GetWideStringLength",
+        "UNICODE_CompareWideStringsNNoCase"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "80f79e69",
+      "paramStorage": [
+        [
+          "szBuffer",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_GetFirstLinePixelWidth",
+      "address": "00501910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501910"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_GetFirstLinePixelWidth",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_GetWideStringLength",
+        "UNICODE_CompareWideStringsNNoCase"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "78b2b2d2",
+      "paramStorage": [
+        [
+          "pwszString",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TEXT_CalculateTextHeight",
+      "address": "005019c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005019c0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "TEXT_CalculateTextHeight",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_GetWideStringLength"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "91f0f8a2",
+      "paramStorage": [
+        [
+          "szBuffer",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_GetCurrentFontHeight",
+      "address": "00501a40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501a40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_GetCurrentFontHeight"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "a542738b"
+    },
+    {
+      "name": "D2WINFONT_DrawSolidRectFromBottomLeft",
+      "address": "00501a60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501a60"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawSolidRectFromBottomLeft",
+        "D2GFX_DrawSolidRectEx"
+      ],
+      "usedTypes": [
+        "DRAWMODE",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7230dafe",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "eDrawMode",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawWideString",
+      "address": "00501a80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501a80"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawWideString",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetFirstLinePixelWidth",
+        "memset",
+        "UNICODE_CompareWideStringsN",
+        "D2GFX_DrawShiftedImage"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "D2GfxDataStrc",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "94a97e6b",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bCenterHorizontally",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawWideStringWithDrawMode",
+      "address": "00501c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501c30"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawWideStringWithDrawMode",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetFirstLinePixelWidth",
+        "memset",
+        "UNICODE_CompareWideStringsN",
+        "D2GFX_DrawShiftedImage"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "D2GfxDataStrc",
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "eba54411",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "eGlobalPalette",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bCenterHorizontally",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawVerticalCroppedText",
+      "address": "00501df0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501df0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawVerticalCroppedText",
+        "D2GFX_GetRendererMode",
+        "STRING_GetWideStringLength",
+        "memset",
+        "UNICODE_CompareWideStringsN",
+        "D2GFX_DrawImage",
+        "CELCMP_GetDC6BlockFromGfxData",
+        "GetDC6Height",
+        "D2GFX_DrawVerticalCropImage"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "D2GfxDataStrc",
+        "DC6Block",
+        "WCHAR",
+        "eD2RendererMode",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c0c3b37a",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nUnused",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nCropStartY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nCropHeight",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTickerText",
+      "address": "00501fe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00501fe0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTickerText",
+        "STRING_GetWideStringLength",
+        "memset",
+        "UNICODE_CompareWideStringsN",
+        "D2GFX_DrawShiftedImage"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "D2GfxDataStrc",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "11592f53",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nXStart",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScrollOffsetX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nClipWidth",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawWideStringSimple",
+      "address": "00502190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502190"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawWideStringSimple",
+        "STRING_GetWideStringLength",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2FontGlyphStrc",
+        "D2GfxDataStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "a8cfddca",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TEXT_TooltipSetAttributes",
+      "address": "00502280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502280"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "TEXT_TooltipSetAttributes",
+        "STRING_GetWideStringLength",
+        "STRING_CopyWideString",
+        "memset"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "0cca7666",
+      "paramStorage": [
+        [
+          "wszBuffer",
+          "ECX:4"
+        ],
+        [
+          "nTooltipX",
+          "EDX:4"
+        ],
+        [
+          "nTooltipY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTooltipColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nCenterFlag",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_SetTooltipAttributesWithCustomField",
+      "address": "005022f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005022f0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_SetTooltipAttributesWithCustomField",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "970847f2",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAlignment",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBarFill",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_text",
+      "address": "00502320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502320"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "DRAW_text",
+        "TEXT_CalculateTextWidth",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "wchar_t"
+      ],
+      "dh": "a23251f8",
+      "paramStorage": [
+        [
+          "wMessage",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bMultiLineCenter",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTextWithOptionalBackground",
+      "address": "00502360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502360"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTextWithOptionalBackground",
+        "TEXT_CalculateTextWidth",
+        "STATLIST_SetUnitStat",
+        "D2WINFONT_DrawWideStringWithDrawMode"
+      ],
+      "usedTypes": [
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "52ba8032",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bDrawBackground",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawWideStringSimpleThunk",
+      "address": "005023a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005023a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawWideStringSimpleThunk",
+        "D2WINFONT_DrawWideStringSimple"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "2a39f35e",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTextWithBackgroundRect",
+      "address": "005023b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005023b0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTextWithBackgroundRect",
+        "TEXT_CalculateTextWidth",
+        "TEXT_CalculateTextHeight",
+        "D2GFX_GetScreenSize",
+        "D2GFX_DrawSolidRectEx",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "283353d6",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwBackgroundColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTextWithSimpleBackground",
+      "address": "00502480",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502480"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTextWithSimpleBackground",
+        "TEXT_CalculateTextWidth",
+        "D2GFX_GetScreenSize",
+        "D2GFX_DrawSolidRectEx",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a36bd202",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwBackgroundColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TEXT_CalcTextDimensions",
+      "address": "00502520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502520"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "TEXT_CalcTextDimensions",
+        "TEXT_CalculateTextWidth",
+        "TEXT_CalculateTextHeight"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "f895a6ed",
+      "paramStorage": [
+        [
+          "szBuffer",
+          "ECX:4"
+        ],
+        [
+          "nSizeX",
+          "EDX:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_IsFontCharacterValid",
+      "address": "00502550",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502550"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_IsFontCharacterValid",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "08f92b06",
+      "paramStorage": [
+        [
+          "nCharCode",
+          "CL:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTextWithOffsetBackground",
+      "address": "005025c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005025c0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTextWithOffsetBackground",
+        "TEXT_CalculateTextHeight",
+        "D2GFX_GetScreenSize",
+        "D2GFX_DrawSolidRectEx",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "75516e23",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwBackgroundColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0x10]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IMAGE_DrawDC6ImageOnScreen",
+      "address": "00502680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502680"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "IMAGE_DrawDC6ImageOnScreen",
+        "IMAGE_GetFramesCount",
+        "memset",
+        "CELCMP_GetDC6BlockFromGfxData",
+        "GetDC6Width",
+        "D2GFX_DrawImage",
+        "D2GFX_DrawShiftedImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "DC6",
+        "DC6Block",
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c040e849",
+      "paramStorage": [
+        [
+          "pDC6",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPoxY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAlignment",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nGlobalPaletteShift",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_DrawTextWithProgressBar",
+      "address": "00502750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502750"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_DrawTextWithProgressBar",
+        "STRING_GetWideStringLength",
+        "TEXT_CalculateTextWidth",
+        "TEXT_CalculateTextHeight",
+        "D2GFX_GetScreenSize",
+        "D2GFX_GetColorFromCurrentPallete",
+        "D2GFX_DrawSolidRectEx",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "fc4c5e19",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eGlobalPalette",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAlignMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nProgressPercent",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_FreeWordWrapList",
+      "address": "005028a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005028a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_FreeWordWrapList",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "void *"
+      ],
+      "dh": "427836eb",
+      "paramStorage": [
+        [
+          "ppNodeList",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_AllocWordWrapNode",
+      "address": "005028e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005028e0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_AllocWordWrapNode",
+        "AllocClientMemory",
+        "isspace",
+        "WSTRING_PutWideCharIntoBuffer"
+      ],
+      "usedTypes": [
+        "D2TextLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "22b9a8a0",
+      "paramStorage": [
+        [
+          "pwszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bTrimLeadingSpace",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_WordWrapString",
+      "address": "00502970",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502970"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_WordWrapString",
+        "STRING_GetWideStringLength",
+        "D2WINFONT_GetStringPixelWidthN",
+        "AllocClientMemory",
+        "WSTRING_PutWideCharIntoBuffer",
+        "UNICODE_CheckLineBreakPosition",
+        "isspace",
+        "D2WINFONT_AllocWordWrapNode"
+      ],
+      "usedTypes": [
+        "D2TextLineStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "638173bd",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "pnLineCount",
+          "EDX:4"
+        ],
+        [
+          "nMaxWidth",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00502c40",
+      "address": "00502c40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502c40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "Unreferenced_00502c40"
+      ],
+      "dh": "b0cb49ad",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINFONT_InitFontSystem",
+      "address": "00502c60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502c60"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "D2WINFONT_InitFontSystem",
+        "MISC_GetLanguageCode",
+        "D2WINFONT_BuildFontPath",
+        "IMAGE_LoadDC6",
+        "InitFontCache",
+        "memset",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "6ac8f2f8"
+    },
+    {
+      "name": "SetAndReturnLastFont",
+      "address": "00502ef0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00502ef0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "SetAndReturnLastFont",
+        "GetTickCount",
+        "D2WINFONT_BuildFontPath",
+        "IMAGE_LoadDC6",
+        "InitFontCache",
+        "IMAGE_FreeImage"
+      ],
+      "usedTypes": [
+        "D2FontCacheEntryStrc",
+        "DC6",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b73b1216",
+      "paramStorage": [
+        [
+          "nFontId",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Draw_UnitNameUnderCursor",
+      "address": "00503000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00503000"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "Draw_UnitNameUnderCursor",
+        "STRING_GetWideStringLength",
+        "TEXT_CalculateTextWidth",
+        "TEXT_CalculateTextHeight",
+        "D2GFX_GetScreenSize",
+        "SetAndReturnLastFont",
+        "D2GFX_DrawSolidRectEx",
+        "D2GFX_GetColorFromCurrentPallete",
+        "D2WINFONT_DrawWideString"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c0c2b61c"
+    },
+    {
+      "name": "StaticInit_DisplayedTooltip",
+      "address": "006cae20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cae20"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "StaticInit_DisplayedTooltip"
+      ],
+      "dh": "45b265b1"
+    },
+    {
+      "name": "StaticInit_gwFontHeightDefault",
+      "address": "006cae40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cae40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "StaticInit_gwFontHeightDefault"
+      ],
+      "dh": "760be268"
+    },
+    {
+      "name": "StaticInit_gnFontTableCharWidthCache",
+      "address": "006cae50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cae50"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinFont",
+      "calledFunctions": [
+        "StaticInit_gnFontTableCharWidthCache"
+      ],
+      "dh": "2f56ad6f"
+    }
+  ]
+}

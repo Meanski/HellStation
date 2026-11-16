@@ -1,0 +1,3925 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Stats/StatsEx.cpp",
+  "functions": [
+    {
+      "name": "STATLIST_BinarySearchStatById",
+      "address": "00624b90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624b90"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "int32_t"
+      ],
+      "dh": "84231582",
+      "paramStorage": [
+        [
+          "nStatKey",
+          "EDI:4"
+        ],
+        [
+          "pStatInfo",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_BinarySearchInsertPos",
+      "address": "00624bd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624bd0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_BinarySearchInsertPos"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "int32_t"
+      ],
+      "dh": "a822162a",
+      "paramStorage": [
+        [
+          "nStatKey",
+          "EDI:4"
+        ],
+        [
+          "pStatInfo",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_BinarySearchStatInfoArray",
+      "address": "00624c10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624c10"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_BinarySearchStatInfoArray"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "int32_t"
+      ],
+      "dh": "7a087189",
+      "paramStorage": [
+        [
+          "nStatKey",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatInfo",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_InsertStatIntoArray",
+      "address": "00624c80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624c80"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_BinarySearchInsertPos",
+        "ReAllocServerMemory",
+        "memmove"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatInfoStrc",
+        "D2StatStrc",
+        "int32_t"
+      ],
+      "dh": "ce07bb98",
+      "paramStorage": [
+        [
+          "pStatInfo",
+          "ESI:4"
+        ],
+        [
+          "nStatKey",
+          "EAX:4"
+        ],
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RemoveStatFromArray",
+      "address": "00624d10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624d10"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RemoveStatFromArray",
+        "memmove",
+        "ReAllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatInfoStrc",
+        "D2StatStrc"
+      ],
+      "dh": "ec9ca049",
+      "paramStorage": [
+        [
+          "pPoolManager1",
+          "ECX:4"
+        ],
+        [
+          "pStat",
+          "EDX:4"
+        ],
+        [
+          "pPoolManager2",
+          "Stack[0x4]:4"
+        ],
+        [
+          "ppStatArray",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_BinarySearchChangedInsertPos",
+      "address": "00624d90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624d90"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_BinarySearchChangedInsertPos"
+      ],
+      "usedTypes": [
+        "D2ChangedStatArrayStrc",
+        "int32_t"
+      ],
+      "dh": "8d80bbe6",
+      "paramStorage": [
+        [
+          "pStatInfo",
+          "EAX:4"
+        ],
+        [
+          "nStatKey",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_TrackChangedStat",
+      "address": "00624dd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624dd0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_TrackChangedStat",
+        "STATLIST_BinarySearchChangedInsertPos",
+        "ReAllocServerMemory",
+        "memmove"
+      ],
+      "usedTypes": [
+        "D2ChangedStatArrayStrc",
+        "D2PoolManagerStrc",
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "735ffd4f",
+      "paramStorage": [
+        [
+          "nShiftedStat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatEx",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_LookupBaseStatWithMinAccr",
+      "address": "00624ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624ed0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_LookupBaseStatWithMinAccr",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "6b48bf10",
+      "paramStorage": [
+        [
+          "pItemStatCostLine",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatList",
+          "EBX:4"
+        ],
+        [
+          "nStatKey",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetEffectiveStatsArray",
+      "address": "00624f40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624f40"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetEffectiveStatsArray"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "D2StatListExStrc"
+      ],
+      "dh": "682dd475",
+      "paramStorage": [
+        [
+          "pStatList",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatValueByKey",
+      "address": "00624f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624f60"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatValueByKey",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "01120084",
+      "paramStorage": [
+        [
+          "pItemStatCostLine",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatEx",
+          "EBX:4"
+        ],
+        [
+          "nStatKey",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_CalcFullStatFromChildren",
+      "address": "00624fe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00624fe0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_CalcFullStatFromChildren",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "b064e712",
+      "paramStorage": [
+        [
+          "nStatId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pTxtItemStatCostLine",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pStatListEx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_PropagateStatDelta",
+      "address": "006250b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006250b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_PropagateStatDelta",
+        "STATLIST_BinarySearchStatById",
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_RemoveStatFromArray"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "aa4a85cb",
+      "paramStorage": [
+        [
+          "nShiftedStat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDelta",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pItemStatCostTxt",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nCallbackArg",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetFullStatValue",
+      "address": "00625150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625150"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetFullStatValue",
+        "STATLIST_BinarySearchStatById",
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_RemoveStatFromArray"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "1c660be2",
+      "paramStorage": [
+        [
+          "nStatKey",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nNewValue",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pItemStatCostTxt",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pCallbackUnit",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocStatList",
+      "address": "006251f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006251f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "AllocStatList",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatListStrc",
+        "eD2UnitType",
+        "int32_t"
+      ],
+      "dh": "08bc516c",
+      "paramStorage": [
+        [
+          "pMemory",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFlags",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nFrame",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eUnitType",
+          "Stack[0x10]:4"
+        ],
+        [
+          "dwUnitGUID",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetOwnerType",
+      "address": "00625250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625250"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetOwnerType"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitType"
+      ],
+      "dh": "bbc17602",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatCountFromStatList",
+      "address": "00625270",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625270"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatCountFromStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "b76f5281",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetUnitTotalStats",
+      "address": "00625290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625290"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetUnitTotalStats"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "7b545cd5",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetOwnerGUID",
+      "address": "006252b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006252b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetOwnerGUID"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "756bd883",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetState",
+      "address": "006252d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006252d0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SetState"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2States"
+      ],
+      "dh": "ad8b46dc",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetState",
+      "address": "006252f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006252f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetState"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2States"
+      ],
+      "dh": "37220a62",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetTimeout_WithFlag",
+      "address": "00625310",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625310"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SetTimeout_WithFlag"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "77618247",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTimeout",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetExpireFrame",
+      "address": "00625330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625330"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetExpireFrame"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc"
+      ],
+      "dh": "95e134b7",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatFromBaseArray",
+      "address": "00625350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625350"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatFromBaseArray",
+        "STATLIST_LookupBaseStatWithMinAccr"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "754e72c1",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "SERVER_GetUnitStat",
+      "address": "006253b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006253b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SERVER_GetUnitStat",
+        "STATLIST_LookupBaseStatWithMinAccr"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "cc169337",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatValueByIdAndLayer",
+      "address": "00625420",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625420"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatValueByIdAndLayer",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "d8bda0f6",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "STATSEX_GetCurrentStat",
+      "address": "00625480",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625480"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATSEX_GetCurrentStat",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "uint16_t"
+      ],
+      "dh": "6a9625cd",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_STATLIST_GetStatFromBaseArray",
+      "address": "006254e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006254e0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "thunk_STATLIST_GetStatFromBaseArray",
+        "STATLIST_GetStatFromBaseArray"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "e2230f65",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_STATLIST_GetMinimalStatValueShifted",
+      "address": "006254f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006254f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "thunk_STATLIST_GetMinimalStatValueShifted",
+        "STATLIST_GetStatValueByIdAndLayer"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "809bd6a2",
+      "paramStorage": [
+        [
+          "pStatListEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_UnitGetStatValueUnchecked",
+      "address": "00625500",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625500"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_UnitGetStatValueUnchecked",
+        "STATLIST_GetStatValueByIdAndLayer"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "22972871",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatBonusFromList",
+      "address": "00625520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625520"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatBonusFromList",
+        "STATLIST_GetStatValueByIdAndLayer",
+        "STATLIST_GetStatFromBaseArray"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "72606e46",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatBonusFromLists",
+      "address": "00625560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625560"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatBonusFromLists",
+        "STATLIST_GetStatValueByIdAndLayer",
+        "STATLIST_GetStatFromBaseArray"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c4a31162",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_CalcStatWithPercentBonus",
+      "address": "006255a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006255a0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_CalcStatWithPercentBonus",
+        "STATLIST_GetStatValueByIdAndLayer",
+        "STATLIST_GetStatFromBaseArray",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "b64a1f12",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eStat",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bIncludeBonus",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UNITS_CalcUnitStatWithPercentBonus",
+      "address": "00625600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625600"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "UNITS_CalcUnitStatWithPercentBonus",
+        "STATLIST_CalcStatWithPercentBonus"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "69740aa9",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "ePercentStat",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatValueByIndex",
+      "address": "00625620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625620"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatValueByIndex"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "aa7a1e9c",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nIndex",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatListByState",
+      "address": "00625650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625650"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatListByState"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2States",
+        "uint32_t"
+      ],
+      "dh": "b8bf0fed",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatsByState",
+      "address": "006256b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006256b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatsByState",
+        "GetStatListByState"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States"
+      ],
+      "dh": "b53be47c",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatListByFlags",
+      "address": "006256e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006256e0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatListByFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "uint32_t"
+      ],
+      "dh": "3b28af61",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatListFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_FindStatListWithFlags",
+      "address": "00625730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625730"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_FindStatListWithFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "uint32_t"
+      ],
+      "dh": "da234395",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatsByFlags",
+      "address": "00625760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625760"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatsByFlags",
+        "GetStatListByFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "3d12f4dc",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatListFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatListByStateOrFlagsIfNotExists",
+      "address": "00625790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625790"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatListByStateOrFlagsIfNotExists",
+        "GetStatListByState",
+        "GetStatListByFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States",
+        "uint32_t"
+      ],
+      "dh": "a3e84eec",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nStatListFlags",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStatList",
+      "address": "006257d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006257d0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States",
+        "uint32_t"
+      ],
+      "dh": "158f43eb",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eStatListFlags",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SEVER_ITEM_GetOwner",
+      "address": "00625820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625820"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SEVER_ITEM_GetOwner"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "486a8d3b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pbStatNotDynamic",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_DispatchUnchangedStatToCallback",
+      "address": "00625870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625870"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_DispatchUnchangedStatToCallback",
+        "STATLIST_BinarySearchChangedInsertPos",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "pfnStatChangedCb"
+      ],
+      "dh": "ca0b0ecf",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pfnCallback",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_IterateChangedStats",
+      "address": "006258d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006258d0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_IterateChangedStats",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "pfnStatChangedCb",
+        "uint32_t"
+      ],
+      "dh": "f31b490b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pfnCallback",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_ClearChangedStatFlags",
+      "address": "00625960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625960"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_ClearChangedStatFlags",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "0d608d14",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATSEX_GetAlignment",
+      "address": "006259b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006259b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATSEX_GetAlignment",
+        "GetStatsByState",
+        "STATLIST_GetStatValueByIdAndLayer"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "79afd16e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetOverlayPending",
+      "address": "00625a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625a00"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetOverlayPending"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "698f6d40",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_IsOverlayPending",
+      "address": "00625a20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625a20"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_IsOverlayPending"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "b724cdc6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatByState",
+      "address": "00625a50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625a50"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatByState",
+        "STATLIST_GetStatValueByIdAndLayer"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "30c5663f",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetUnitState",
+      "address": "00625a70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625a70"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetUnitState",
+        "TXT_States_GetLine",
+        "ITEMSTATS_CheckUnitHasStateFlagIndex"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatesTxt",
+        "D2UnitStrc",
+        "eD2States",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b33604c0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bSet",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStateBitFlag",
+      "address": "00625b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625b70"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStateBitFlag"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States"
+      ],
+      "dh": "5142cc9a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStateFlags",
+      "address": "00625bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625bb0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetStateFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "a8a90cf6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetUnitGfxFlags",
+      "address": "00625be0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625be0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetUnitGfxFlags"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "f6965db7",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_CopyStatsToBuffer",
+      "address": "00625c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625c30"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_CopyStatsToBuffer"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "769b8773",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatBuf",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMaxCount",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CopyStatsToBuffer",
+      "address": "00625c90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625c90"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "CopyStatsToBuffer"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "6760f042",
+      "paramStorage": [
+        [
+          "pStatListEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutput",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nOutputSize",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetExpireFunction",
+      "address": "00625ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625ce0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetExpireFunction"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "PFN_StatExpireCallback"
+      ],
+      "dh": "4343463e",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pfnExpire",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetBaseStatValue",
+      "address": "00625d00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625d00"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetBaseStatValue",
+        "STATLIST_GetStatFromBaseArray"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "bb3421b3",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxLifeFromUnit",
+      "address": "00625d10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625d10"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxLifeFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "941a7e75",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxManaFromUnit",
+      "address": "00625d60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625d60"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxManaFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "64fd5b54",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxStaminaFromUnit",
+      "address": "00625db0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625db0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxStaminaFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "1653e780",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxDurabilityFromUnit",
+      "address": "00625e00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625e00"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxDurabilityFromUnit",
+        "STATLIST_LookupBaseStatWithMinAccr",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "dbf73fb5",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxDamageFromUnit",
+      "address": "00625e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625e60"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxDamageFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "239acc1e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bCheckSecondaryDamage",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMinDamageFromUnit",
+      "address": "00625ef0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625ef0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMinDamageFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "33118050",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bCheckSecondaryDamage",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMaxThrowDamageFromUnit",
+      "address": "00625f80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625f80"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMaxThrowDamageFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "d63fc71d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetMinThrowDamageFromUnit",
+      "address": "00625fd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00625fd0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetMinThrowDamageFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "7021b8bb",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetDefenseFromUnit",
+      "address": "00626020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626020"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetDefenseFromUnit",
+        "STATLIST_GetStatValueByKey"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "568a3f9d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetStatForDamageCalc",
+      "address": "00626070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626070"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetStatForDamageCalc",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "f0a28e87",
+      "paramStorage": [
+        [
+          "pUnit2",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetFullListPtr",
+      "address": "00626090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626090"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetFullListPtr"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc"
+      ],
+      "dh": "60388c28",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATSEX_SetStatListTimeout",
+      "address": "006260b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006260b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATSEX_SetStatListTimeout"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "2cf19f4c",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTimeout",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetSkillId",
+      "address": "006260d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006260d0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SetSkillId"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2Skills"
+      ],
+      "dh": "a5f89adc",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSkillId",
+      "address": "006260e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006260e0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetSkillId"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2Skills"
+      ],
+      "dh": "856fd3c7",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetSkillLevel",
+      "address": "006260f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006260f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SetSkillLevel"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "int32_t"
+      ],
+      "dh": "2145778d",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSkillLevel",
+      "address": "00626100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626100"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "GetSkillLevel"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc"
+      ],
+      "dh": "31657f48",
+      "paramStorage": [
+        [
+          "pStatListEx",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_CopyStatPairsByStatIndex",
+      "address": "00626110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626110"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_CopyStatPairsByStatIndex",
+        "STATLIST_BinarySearchStatInfoArray"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d5e062bd",
+      "paramStorage": [
+        [
+          "pOutStatPairs",
+          "ECX:4"
+        ],
+        [
+          "nStatId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxCount",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pStatList",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATSEX_CopyStatPairsFromStatList",
+      "address": "006261b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006261b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATSEX_CopyStatPairsFromStatList",
+        "STATLIST_CopyStatPairsByStatIndex"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ae19c9fa",
+      "paramStorage": [
+        [
+          "nStatListPtr",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pOutStatPairs",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMaxCount",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_GetItemStatBonusValues",
+      "address": "006261d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006261d0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_GetItemStatBonusValues",
+        "STATLIST_CopyStatPairsByStatIndex"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f7b8f5be",
+      "paramStorage": [
+        [
+          "pItem",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pOutStatPairs",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMaxCount",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_CalcCombinedStatValue",
+      "address": "00626200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626200"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_CalcCombinedStatValue",
+        "STATLIST_CalcFullStatFromChildren",
+        "SERVER_GetUnitStat",
+        "TXT_ItemStatCost_GetLine",
+        "STATLIST_GetStatValueByKey",
+        "STATSEX_GetCurrentStat",
+        "DRLGENV_GetPeriodOfDayFromAct",
+        "ITEMMODS_GetByTimeAdjustment",
+        "D2ApplyPercent",
+        "INV_GetCharStatsTxtLine",
+        "STATLIST_BinarySearchStatById"
+      ],
+      "usedTypes": [
+        "D2CharStatsTxt",
+        "D2DrlgActStrc",
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "eD2UnitType",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "bd78a358",
+      "paramStorage": [
+        [
+          "pStatList",
+          "ECX:4"
+        ],
+        [
+          "nStatShifted",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_ApplyComplexStatFormula",
+      "address": "006266c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006266c0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_ApplyComplexStatFormula",
+        "STATLIST_CalcCombinedStatValue",
+        "STATLIST_SetFullStatValue",
+        "STATLIST_GetStatValueByKey",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "b01e08bb",
+      "paramStorage": [
+        [
+          "pStatList",
+          "ECX:4"
+        ],
+        [
+          "nStatKey",
+          "EDX:4"
+        ],
+        [
+          "pItemStatCostStat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnitOwner",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_PropagateStatChange",
+      "address": "00626920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626920"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_PropagateStatChange",
+        "STATLIST_PropagateStatDelta",
+        "STATLIST_ApplyComplexStatFormula"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7163eaa9",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "ECX:4"
+        ],
+        [
+          "nShiftedStat",
+          "EDX:4"
+        ],
+        [
+          "nDelta",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_DetachAndRecalc",
+      "address": "006269f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006269f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_PropagateStatChange",
+        "STATLIST_DetachAndRecalc",
+        "STATLIST_ApplyComplexStatFormula"
+      ],
+      "usedTypes": [
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "PFN_StatExpireCallback",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c40b4431",
+      "paramStorage": [
+        [
+          "pStatListEx",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeAnyStatList",
+      "address": "00626c00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626c00"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "FreeAnyStatList",
+        "STATLIST_DetachAndRecalc",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc"
+      ],
+      "dh": "f5db0105",
+      "paramStorage": [
+        [
+          "pPlayerStatsEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeStatList",
+      "address": "00626cd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626cd0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "FreeStatList",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListStrc"
+      ],
+      "dh": "2439d40a",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00626cf0",
+      "address": "00626cf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626cf0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "Unreferenced_00626cf0",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc"
+      ],
+      "dh": "fc2ee2b2",
+      "paramStorage": [
+        [
+          "pStatListEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_FreeStatListMemory",
+      "address": "00626d10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626d10"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_FreeStatListMemory",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "79317909",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocStatListEx",
+      "address": "00626d40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626d40"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "AllocStatListEx",
+        "FreeAnyStatList",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "fpStatListExChangeCb",
+        "uint32_t"
+      ],
+      "dh": "dfbb1add",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwFlags",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pfnStatChangeCb",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pGame",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_AttachStatListToUnit",
+      "address": "00626e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00626e10"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_AttachStatListToUnit",
+        "STATLIST_DetachAndRecalc",
+        "STATLIST_GetEffectiveStatsArray",
+        "TXT_ItemStatCost_GetLine",
+        "STATLIST_ApplyComplexStatFormula",
+        "STATLIST_PropagateStatChange"
+      ],
+      "usedTypes": [
+        "D2DataTableTxtStrc",
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "33d00ab9",
+      "paramStorage": [
+        [
+          "pOp45Owner",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatsEx",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bActive",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_AddStatValue",
+      "address": "00627030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627030"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_AddStatValue",
+        "STATLIST_BinarySearchStatById",
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_RemoveStatFromArray",
+        "STATLIST_PropagateStatChange",
+        "STATLIST_TrackChangedStat"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "34e14d0f",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSubIndex",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetStatValue",
+      "address": "006270b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006270b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetStatValue",
+        "STATLIST_BinarySearchStatById",
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_RemoveStatFromArray",
+        "STATLIST_PropagateStatChange",
+        "STATLIST_TrackChangedStat"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "65cec1db",
+      "paramStorage": [
+        [
+          "pStatEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "low",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "D2AddStatToStatsListEx",
+      "address": "00627150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627150"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "D2AddStatToStatsListEx",
+        "STATLIST_SetStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1b7b3666",
+      "paramStorage": [
+        [
+          "pStatsEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetStatValueInBaseArray",
+      "address": "00627170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627170"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetStatValueInBaseArray",
+        "STATLIST_BinarySearchStatById",
+        "STATLIST_InsertStatIntoArray",
+        "STATLIST_RemoveStatFromArray",
+        "STATLIST_PropagateStatChange",
+        "STATLIST_TrackChangedStat"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "459642a8",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:2"
+        ],
+        [
+          "pUnit",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetStatValueInBaseArraySafe",
+      "address": "00627220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627220"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetStatValueInBaseArraySafe",
+        "STATLIST_SetStatValueInBaseArray"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ab336047",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_STATLIST_SetStatValue",
+      "address": "00627250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627250"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "thunk_STATLIST_SetStatValue",
+        "STATLIST_SetStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d327fa00",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetUnitStat",
+      "address": "00627260",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627260"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetUnitStat",
+        "STATLIST_SetStatValue",
+        "STATLIST_TrackChangedStat"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "c58c3869",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_STATLIST_AddStatValue",
+      "address": "006272a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006272a0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "thunk_STATLIST_AddStatValue",
+        "STATLIST_AddStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "b453ca7d",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSubIndex",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_AddUnitStat",
+      "address": "006272b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006272b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_AddUnitStat",
+        "STATLIST_AddStatValue"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int16_t",
+        "int32_t"
+      ],
+      "dh": "e8f03507",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLayer",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_MarkUnitStatsChanged",
+      "address": "006272e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006272e0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_MarkUnitStatsChanged",
+        "SetState",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States"
+      ],
+      "dh": "3b7140ef",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RemoveAllStats",
+      "address": "00627340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627340"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RemoveAllStats",
+        "STATLIST_RemoveStatFromArray",
+        "STATLIST_PropagateStatChange",
+        "STATLIST_TrackChangedStat"
+      ],
+      "usedTypes": [
+        "D2PoolManagerStrc",
+        "D2StatListExStrc",
+        "D2StatStrc"
+      ],
+      "dh": "0604b21d",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RemoveAllStatsFromOverlay",
+      "address": "00627410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627410"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RemoveAllStatsFromOverlay",
+        "GetStatListByFlags",
+        "STATLIST_RemoveAllStats"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "57e71123",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RemoveStatListAfterTimeout",
+      "address": "00627460",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627460"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "RemoveStatListAfterTimeout",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "00084a49",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFrameNumber",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_MergeBaseStats",
+      "address": "006274f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006274f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_MergeBaseStats",
+        "STATLIST_AddStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2StatStrc"
+      ],
+      "dh": "18a337a6",
+      "paramStorage": [
+        [
+          "pStatListExDest",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatListExSource",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RecalcAfterRemove",
+      "address": "00627540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627540"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RecalcAfterRemove",
+        "STATES_DoesStateStayOnDeath",
+        "FreeAnyStatList"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "e37d4509",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UpdateResourceStats",
+      "address": "006275b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006275b0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "UpdateResourceStats",
+        "STATLIST_GetStatValueByKey",
+        "STATLIST_GetMaxStaminaFromUnit",
+        "STATLIST_AddStatValue",
+        "STATLIST_GetMaxManaFromUnit",
+        "STATLIST_GetMaxLifeFromUnit"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "cf59afe0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ItemUpdateStatsAfterSocketing",
+      "address": "006276c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006276c0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "ItemUpdateStatsAfterSocketing",
+        "STATLIST_CalcCombinedStatValue",
+        "STATLIST_SetFullStatValue"
+      ],
+      "usedTypes": [
+        "D2DataTableTxtStrc",
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "53f06e0f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RemoveAndRecalc",
+      "address": "006277e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006277e0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RemoveAndRecalc",
+        "STATLIST_DetachAndRecalc"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "ef16eafd",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatListEx",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_RemoveFromOwnerAndRecalc",
+      "address": "006277f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006277f0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_RemoveFromOwnerAndRecalc",
+        "STATLIST_DetachAndRecalc"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "997417d2",
+      "paramStorage": [
+        [
+          "pOwner",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetStatValueSimple",
+      "address": "00627810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627810"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetStatValueSimple",
+        "STATLIST_SetStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "a149b6e0",
+      "paramStorage": [
+        [
+          "pStatList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nUnused",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UNITS_CalcCombinedStatValue",
+      "address": "00627830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627830"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "UNITS_CalcCombinedStatValue",
+        "STATLIST_CalcCombinedStatValue"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "3cb5772e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_ActivateItemStats",
+      "address": "00627860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627860"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_ActivateItemStats",
+        "STATLIST_GetEffectiveStatsArray",
+        "TXT_ItemStatCost_GetLine",
+        "STATLIST_PropagateStatChange",
+        "STATLIST_SetItemStatActive"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "834f06df",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_SetItemStatActive",
+      "address": "00627910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627910"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetItemStatActive",
+        "GetBodyLocation",
+        "STATLIST_DetachAndRecalc",
+        "STATLIST_DeactivateItemStats",
+        "STATLIST_ActivateItemStats",
+        "STATLIST_AttachStatListToUnit"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2BodyLoc",
+        "int32_t"
+      ],
+      "dh": "b07b79d0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bActive",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_ToggleStateDisabled",
+      "address": "006279a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006279a0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_ToggleStateDisabled",
+        "GetStatListByState",
+        "STATLIST_DetachAndRecalc",
+        "STATLIST_AttachStatListToUnit"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2States",
+        "int32_t"
+      ],
+      "dh": "16bca0ab",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eState",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bDisabled",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STATLIST_DeactivateItemStats",
+      "address": "00627a40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627a40"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "STATLIST_SetItemStatActive",
+        "STATLIST_DeactivateItemStats",
+        "STATLIST_GetEffectiveStatsArray",
+        "TXT_ItemStatCost_GetLine",
+        "STATLIST_PropagateStatChange"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2StatInfoStrc",
+        "D2StatListExStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "68da9f7f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_ValidateSkillDescIndex",
+      "address": "00627af0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627af0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "SKILLS_ValidateSkillDescIndex"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "09e765f2",
+      "paramStorage": [
+        [
+          "nSkillId",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00627b30",
+      "address": "00627b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627b30"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "Unreferenced_00627b30"
+      ],
+      "dh": "6a153568"
+    },
+    {
+      "name": "nullsub",
+      "address": "00627b40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627b40"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "nullsub"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "6588720e",
+      "paramStorage": [
+        [
+          "nCalcCode",
+          "ECX:4"
+        ],
+        [
+          "pContext",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MATH_Min",
+      "address": "00627b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627b50"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "MATH_Min"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "171acff5",
+      "paramStorage": [
+        [
+          "nLeft",
+          "ECX:4"
+        ],
+        [
+          "nRight",
+          "EDX:4"
+        ],
+        [
+          "dwParam1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MATH_Max",
+      "address": "00627b60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627b60"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "MATH_Max"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "572569ed",
+      "paramStorage": [
+        [
+          "nLeft",
+          "ECX:4"
+        ],
+        [
+          "nRight",
+          "EDX:4"
+        ],
+        [
+          "nOperand3",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MATH_RandomRange",
+      "address": "00627b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627b70"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "MATH_RandomRange",
+        "RANDOM_RandomNumberSelector"
+      ],
+      "usedTypes": [
+        "D2ItemCalcContextStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "57163cd8",
+      "paramStorage": [
+        [
+          "nMin",
+          "ECX:4"
+        ],
+        [
+          "nMax",
+          "EDX:4"
+        ],
+        [
+          "nRangeMax",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSeed",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UNITS_GetStatValueByType",
+      "address": "00627bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00627bb0"
+        }
+      ],
+      "namespace": "D2Common::Stats::StatsEx",
+      "calledFunctions": [
+        "UNITS_GetStatValueByType",
+        "GetAttackRate",
+        "STATSEX_GetCurrentStat",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SERVER_GetUnitStat"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "D2UnitStrc *",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "3cbca91e",
+      "paramStorage": [
+        [
+          "eUnitStat",
+          "ECX:4"
+        ],
+        [
+          "nQueryMode",
+          "EDX:4"
+        ],
+        [
+          "dwContext",
+          "Stack[0x4]:4"
+        ],
+        [
+          "ppUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

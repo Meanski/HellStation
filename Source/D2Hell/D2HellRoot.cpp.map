@@ -1,0 +1,1613 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Hell/D2HellRoot.cpp",
+  "functions": [
+    {
+      "name": "D2FILE_CreateProcess",
+      "address": "00516d8b",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516d8b"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_CreateProcess",
+        "memset"
+      ],
+      "usedTypes": [
+        "_PROCESS_INFORMATION",
+        "_STARTUPINFOA"
+      ],
+      "dh": "1f23db22",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_VerifyFileSignature",
+      "address": "00516de1",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516de1"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_VerifyFileSignature",
+        "D2FILE_VerifySignatureWinTrust",
+        "D2FILE_GetSignerOrganization",
+        "_strnicmp",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1282c9da",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckIfFileExists",
+      "address": "00516e46",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516e46"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "CheckIfFileExists",
+        "ARCHIVE_OpenD2FileWrap",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc *",
+        "D2PoolManagerStrc",
+        "int32_t"
+      ],
+      "dh": "fb60165b",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "szFilename",
+          "EDX:4"
+        ],
+        [
+          "ppFile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bDontLogError",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_CloseFile",
+      "address": "00516e84",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516e84"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_CloseFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ERRORMANAGER_FCloseFile"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "int32_t"
+      ],
+      "dh": "ac61883a",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pFile",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_GetFileSize",
+      "address": "00516eab",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516eab"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_GetFileSize",
+        "ERRORMANAGER_FGetFileSize",
+        "__security_check_cookie",
+        "SFileGetFileName",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "LPDWORD",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f7c6f618",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pFile",
+          "EDX:4"
+        ],
+        [
+          "pFileSizeOut",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_SeekFile",
+      "address": "00516f14",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516f14"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_SeekFile",
+        "SFILE_SetFilePointerThunk",
+        "__security_check_cookie",
+        "SFileGetFileName",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "74b259cb",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pFile",
+          "EDX:4"
+        ],
+        [
+          "nDistanceToMove",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnNewPos",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwMoveMethod",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_ReadFile",
+      "address": "00516f85",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516f85"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_ReadFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ERRORMANAGER_FReadFile",
+        "SFileGetFileName",
+        "D2FILE_ReadFile_HaltTail",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "uint32_t"
+      ],
+      "dh": "ded2669b",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pFile",
+          "EDX:4"
+        ],
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nBytesToRead",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_ReadFile_HaltTail",
+      "address": "00516faa",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00516faa"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_ReadFile_HaltTail",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "dh": "c3b877a3",
+      "paramStorage": [
+        [
+          "nLine",
+          "Stack[0x0]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_OpenAndReadFile",
+      "address": "00517015",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517015"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_OpenAndReadFile",
+        "CheckIfFileExists",
+        "D2FILE_GetFileSize",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2FILE_ReadFile",
+        "D2FILE_CloseFile"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b1ccae56",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nBufSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_AllocAndLoadD2File",
+      "address": "00517079",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517079"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_AllocAndLoadD2File",
+        "CheckIfFileExists",
+        "D2FILE_GetFileSize",
+        "AllocClientMemory",
+        "D2FILE_ReadFile",
+        "D2FILE_CloseFile"
+      ],
+      "usedTypes": [
+        "D2MPQFileStrc",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "69604576",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "szFilename",
+          "EDX:4"
+        ],
+        [
+          "pSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szFile",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FindMPQOnCd",
+      "address": "00517128",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517128"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FindMPQOnCd",
+        "SStrChr",
+        "SStrPack",
+        "SFileOpenArchive",
+        "SStrCopy",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2ArchiveStrc *",
+        "uint32_t"
+      ],
+      "dh": "3c4487c4",
+      "paramStorage": [
+        [
+          "pszMpqName",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnPriority",
+          "Stack[0x8]:4"
+        ],
+        [
+          "ppArchive",
+          "Stack[0xc]:4"
+        ],
+        [
+          "szText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "FindMpqFromDiskOrCd",
+      "address": "00517299",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517299"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FindMpqFromDiskOrCd",
+        "SStrCopy",
+        "SFileOpenArchive",
+        "strrchr",
+        "SStrPack",
+        "FindMPQOnCd"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "4834cb1a",
+      "paramStorage": [
+        [
+          "pszMpqName",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnPriority",
+          "Stack[0x8]:4"
+        ],
+        [
+          "ppArchive",
+          "Stack[0xc]:4"
+        ],
+        [
+          "szText",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ARCHIVE_LoadMPQ",
+      "address": "00517332",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517332"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "ARCHIVE_LoadMPQ",
+        "AllocClientMemory",
+        "FindMpqFromDiskOrCd",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2ArchiveStrc",
+        "D2FogArchiveStrc",
+        "fpRequiredUserAction",
+        "int32_t"
+      ],
+      "dh": "0777435d",
+      "paramStorage": [
+        [
+          "szMpqFileName",
+          "ECX:4"
+        ],
+        [
+          "nZero",
+          "EDX:4"
+        ],
+        [
+          "nfpRequiredUserAction",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTimeTBC",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ARCHIVE_FreeMpqFile",
+      "address": "005173ac",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005173ac"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "ARCHIVE_FreeMpqFile",
+        "SFileCloseArchive",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2FogArchiveStrc"
+      ],
+      "dh": "053592a8",
+      "paramStorage": [
+        [
+          "pFogArchive",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RegisterExitFunction",
+      "address": "005173d3",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005173d3"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "RegisterExitFunction"
+      ],
+      "usedTypes": [
+        "pfnFaultError"
+      ],
+      "dh": "0e0f337e",
+      "paramStorage": [
+        [
+          "pfnNewCallback",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FAULT_TerminateCurrentProcess",
+      "address": "005173df",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005173df"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_TerminateCurrentProcess"
+      ],
+      "dh": "c0a66a0d"
+    },
+    {
+      "name": "FAULT_ShowErrorAndTerminate",
+      "address": "005173ef",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005173ef"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_ShowErrorAndTerminate",
+        "FAULT_TerminateCurrentProcess"
+      ],
+      "dh": "0a1eb3be",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FAULT_ShowErrorMessageBox",
+      "address": "0051740b",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051740b"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_ShowErrorMessageBox"
+      ],
+      "dh": "d1d887c3",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FAULT_FormatAndShowError",
+      "address": "00517423",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517423"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_FormatAndShowError",
+        "FAULT_TerminateCurrentProcess",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1fb6ba0b",
+      "paramStorage": [
+        [
+          "szFile",
+          "ECX:4"
+        ],
+        [
+          "nLine",
+          "EDX:4"
+        ],
+        [
+          "szExpression",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_GetNodePointer",
+      "address": "005174c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005174c0"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_GetNodePointer"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "948659eb",
+      "paramStorage": [
+        [
+          "pLink",
+          "ECX:4"
+        ],
+        [
+          "nLinkOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TSLink_TMESSAGESOURCE_Unlink",
+      "address": "005174e2",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005174e2"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "TSLink_TMESSAGESOURCE_Unlink",
+        "LINKEDLIST_GetNodePointer"
+      ],
+      "usedTypes": [
+        "StormLinkStrc"
+      ],
+      "dh": "0c6bbf77",
+      "paramStorage": [
+        [
+          "pLink",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_GetOffset",
+      "address": "0051752f",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051752f"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_GetOffset"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "StormLinkedListStrc"
+      ],
+      "dh": "87c4ab28",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "pItem",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_SetNodeValue",
+      "address": "00517546",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517546"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_SetNodeValue"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc",
+        "int32_t"
+      ],
+      "dh": "be98f82f",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ],
+        [
+          "dwValue",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_InsertNode",
+      "address": "0051755c",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051755c"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_InsertNode",
+        "LINKEDLIST_GetOffset",
+        "TSLink_TMESSAGESOURCE_Unlink",
+        "LINKEDLIST_GetNodePointer"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "StormLinkedListStrc",
+        "int32_t"
+      ],
+      "dh": "2dd18434",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "pNewItem",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nInsertMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pRefItem",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_GetNodeAt",
+      "address": "005175cb",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005175cb"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_GetNodeAt",
+        "LINKEDLIST_GetOffset"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "int32_t"
+      ],
+      "dh": "d87c19f8",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_RemoveNode",
+      "address": "005175f1",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005175f1"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_RemoveNode",
+        "LINKEDLIST_GetOffset",
+        "TSLink_TMESSAGESOURCE_Unlink"
+      ],
+      "usedTypes": [
+        "StormFaultHandlerNodeStrc",
+        "StormLinkStrc"
+      ],
+      "dh": "1b36d3de",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "pItem",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_GetNodeLinkAtOffset",
+      "address": "00517607",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517607"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_GetOffset",
+        "LINKEDLIST_GetNodeLinkAtOffset"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "int32_t"
+      ],
+      "dh": "d6a3941a",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TSList_TMESSAGESOURCE_UnlinkAll",
+      "address": "0051763c",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051763c"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "TSList_TMESSAGESOURCE_UnlinkAll",
+        "LINKEDLIST_RemoveNode"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc"
+      ],
+      "dh": "1b2a06fd",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TSList_TMESSAGESOURCE_Destructor",
+      "address": "00517658",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517658"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "TSList_TMESSAGESOURCE_Destructor",
+        "TSList_TMESSAGESOURCE_UnlinkAll",
+        "TSLink_TMESSAGESOURCE_Unlink"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc"
+      ],
+      "dh": "7d65cde0",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_AllocAndInsertNode",
+      "address": "00517669",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517669"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_AllocAndInsertNode",
+        "SMemAlloc",
+        "LINKEDLIST_InsertNode"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ad1c506a",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "nInsertMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nExtraSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwFlags",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_DetachNode",
+      "address": "005176b4",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005176b4"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_DetachNode",
+        "TSLink_TMESSAGESOURCE_Unlink",
+        "MISC_OperatorDeleteShim"
+      ],
+      "usedTypes": [
+        "FILE",
+        "uint8_t"
+      ],
+      "dh": "044a64cb",
+      "paramStorage": [
+        [
+          "pFile",
+          "ECX:4"
+        ],
+        [
+          "bFree",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "TSList_TMESSAGESOURCE_Destructor_5176d3",
+      "address": "005176d3",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005176d3"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "TSList_TMESSAGESOURCE_Destructor_5176d3",
+        "TSList_TMESSAGESOURCE_UnlinkAll",
+        "TSLink_TMESSAGESOURCE_Unlink"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc"
+      ],
+      "dh": "21107d4f",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TSList_TMESSAGESOURCE_Clear",
+      "address": "005176f8",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005176f8"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "TSList_TMESSAGESOURCE_Clear",
+        "LINKEDLIST_DetachNode",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "FILE",
+        "StormLinkedListStrc"
+      ],
+      "dh": "defe367e",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LINKEDLIST_FindNode",
+      "address": "0051772a",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051772a"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "LINKEDLIST_FindNode",
+        "LINKEDLIST_GetNodeAt",
+        "LINKEDLIST_DetachNode",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "0b0f7834",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "pNode",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AtexitCleanup_FreeLinkedListAndCritSec",
+      "address": "0051775a",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051775a"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "AtexitCleanup_FreeLinkedListAndCritSec",
+        "TSList_TMESSAGESOURCE_Clear"
+      ],
+      "dh": "051bbc58"
+    },
+    {
+      "name": "FAULT_RegisterErrorHandler",
+      "address": "005177b2",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005177b2"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_RegisterErrorHandler",
+        "atexit",
+        "LINKEDLIST_AllocAndInsertNode"
+      ],
+      "usedTypes": [
+        "StormFaultHandlerNodeStrc",
+        "pfnStormErrorHandler"
+      ],
+      "dh": "1cd952e8",
+      "paramStorage": [
+        [
+          "pfnHandler",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FAULT_LookupErrorString",
+      "address": "00517804",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517804"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_LookupErrorString",
+        "SStrCopy"
+      ],
+      "usedTypes": [
+        "StormFaultHandlerNode",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "dc5fb373",
+      "paramStorage": [
+        [
+          "nErrorCode",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nMaxLen",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FAULT_ShowFormattedError",
+      "address": "00517874",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517874"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_ShowFormattedError",
+        "FAULT_LookupErrorString",
+        "FAULT_TerminateCurrentProcess",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "b34ce094"
+    },
+    {
+      "name": "FAULT_ShowFormattedErrorAndTerminate",
+      "address": "005178e9",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005178e9"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_ShowFormattedErrorAndTerminate",
+        "FAULT_LookupErrorString",
+        "FAULT_ShowErrorAndTerminate",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "9bc19c90"
+    },
+    {
+      "name": "FAULT_ShowFormattedErrorWithArgs",
+      "address": "0051793e",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0051793e"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FAULT_ShowFormattedErrorWithArgs",
+        "FAULT_LookupErrorString",
+        "FAULT_ShowErrorMessageBox",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "ce27551f"
+    },
+    {
+      "name": "D2MEM_VirtualAlloc",
+      "address": "00517993",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517993"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2MEM_VirtualAlloc"
+      ],
+      "dh": "4e82f224",
+      "paramStorage": [
+        [
+          "nSize",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2MEM_VirtualFree",
+      "address": "005179a4",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005179a4"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2MEM_VirtualFree"
+      ],
+      "dh": "e8282d60",
+      "paramStorage": [
+        [
+          "pAddress",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2MEM_CopyRows",
+      "address": "005179b3",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005179b3"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2MEM_CopyRows"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "b76f1154",
+      "paramStorage": [
+        [
+          "pCharSelComp",
+          "ECX:4"
+        ],
+        [
+          "pSrc",
+          "EDX:4"
+        ],
+        [
+          "nDstStride",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSrcStride",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nRows",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBytesPerRow",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2MEM_CompareBytes",
+      "address": "00517a36",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517a36"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2MEM_CompareBytes"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "fc83d1a7",
+      "paramStorage": [
+        [
+          "pBuf1",
+          "ECX:4"
+        ],
+        [
+          "pBuf2",
+          "EDX:4"
+        ],
+        [
+          "nByteCount",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2MEM_FindLowestSetBit",
+      "address": "00517abb",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517abb"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2MEM_FindLowestSetBit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "743377f4",
+      "paramStorage": [
+        [
+          "dwMask",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_VerifySignatureWinTrust",
+      "address": "00517ad6",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517ad6"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_VerifySignatureWinTrust",
+        "MISC_OperatorNewShim",
+        "memset",
+        "MISC_OperatorDeleteShim",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2WinTrustData",
+        "D2WinTrustFileInfo",
+        "GUID",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "3b4e1269",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2FILE_GetSignerOrganization",
+      "address": "00517c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00517c30"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "D2FILE_GetSignerOrganization",
+        "MISC_OperatorNewShim",
+        "MISC_OperatorDeleteShim",
+        "D2FILE_CleanupCryptHandles"
+      ],
+      "usedTypes": [
+        "D2FILE_GetSignerOrganization_Slotm",
+        "HCERTSTORE",
+        "HCRYPTMSG",
+        "HLOCAL",
+        "PCCERT_CONTEXT",
+        "_CERT_INFO",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "7e0f4a51",
+      "paramStorage": [
+        [
+          "szFilePath",
+          "ECX:4"
+        ],
+        [
+          "szOrgOut",
+          "EDX:4"
+        ],
+        [
+          "nOrgMaxLen",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRC32_Calculate",
+      "address": "006c99f6",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c99f6"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "CRC32_Calculate",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "cb666bdb",
+      "paramStorage": [
+        [
+          "pbData",
+          "ECX:4"
+        ],
+        [
+          "nLen",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SSTR_StringLength",
+      "address": "006c9a38",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9a38"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "SSTR_StringLength"
+      ],
+      "dh": "6cf92495",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_ParseFieldValue",
+      "address": "006c9a76",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9a76"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FOG_ParseFieldValue"
+      ],
+      "usedTypes": [
+        "char *"
+      ],
+      "dh": "7a4272fd",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "ppszCursor",
+          "EDX:4"
+        ],
+        [
+          "pnOut",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_FindCharInString",
+      "address": "006c9aff",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9aff"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "FOG_FindCharInString"
+      ],
+      "dh": "9e0deb92",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "cSearchChar",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "StaticInit_gFaultHandlerList",
+      "address": "006cae5f",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cae5f"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "StaticInit_gFaultHandlerList",
+        "atexit"
+      ],
+      "dh": "f5c903b1"
+    },
+    {
+      "name": "StaticFini_gFaultHandlerList",
+      "address": "006cb401",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cb401"
+        }
+      ],
+      "namespace": "D2Hell",
+      "calledFunctions": [
+        "StaticFini_gFaultHandlerList",
+        "TSList_TMESSAGESOURCE_UnlinkAll",
+        "TSLink_TMESSAGESOURCE_Unlink"
+      ],
+      "dh": "40916600"
+    }
+  ]
+}

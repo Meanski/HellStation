@@ -1,0 +1,104 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/SMem.cpp",
+  "functions": [
+    {
+      "name": "FOG_GetLowestSetBitIndex",
+      "address": "004111a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004111a0"
+        }
+      ],
+      "namespace": "Fog::SMem",
+      "calledFunctions": [
+        "FOG_GetLowestSetBitIndex"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3a15c3d2",
+      "paramStorage": [
+        [
+          "dwBits",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SMemInitPerfCounters",
+      "address": "00411210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411210"
+        }
+      ],
+      "namespace": "Fog::SMem",
+      "calledFunctions": [
+        "SMemInitPerfCounters",
+        "_alldiv",
+        "memset",
+        "GetTickCount"
+      ],
+      "usedTypes": [
+        "LARGE_INTEGER",
+        "int64_t"
+      ],
+      "dh": "6d9406ca"
+    },
+    {
+      "name": "SMemResetHeapStats",
+      "address": "00411280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411280"
+        }
+      ],
+      "namespace": "Fog::SMem",
+      "calledFunctions": [
+        "SMemResetHeapStats",
+        "GetTickCount"
+      ],
+      "dh": "ebff6067"
+    },
+    {
+      "name": "GetTickCount",
+      "address": "004112b0",
+      "lines": [],
+      "namespace": "Fog::SMem"
+    },
+    {
+      "name": "HashForName",
+      "address": "004112c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004112c0"
+        }
+      ],
+      "namespace": "Fog::SMem",
+      "calledFunctions": [
+        "HashForName",
+        "tolower"
+      ],
+      "usedTypes": [
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "0c2cc1f4",
+      "paramStorage": [
+        [
+          "szText",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

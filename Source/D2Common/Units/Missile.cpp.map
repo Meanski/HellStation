@@ -1,0 +1,1625 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Units/Missile.cpp",
+  "functions": [
+    {
+      "name": "AllocMissileData",
+      "address": "0064a100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a100"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "AllocMissileData",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "7c3a5c34",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeMissileData",
+      "address": "0064a150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a150"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "FreeMissileData",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "5a3a7be2",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetFlags",
+      "address": "0064a190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a190"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetFlags"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "d2d97f6b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetFlags",
+      "address": "0064a1c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a1c0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetFlags"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "b7b99283",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetLevel",
+      "address": "0064a1e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a1e0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetLevel"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "ca7a3017",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetLevel",
+      "address": "0064a210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a210"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetLevel"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "103c3f0a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetSkill",
+      "address": "0064a240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a240"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetSkill"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2Skills"
+      ],
+      "dh": "ac59216a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSkillId",
+      "address": "0064a280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a280"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetSkillId"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2Skills"
+      ],
+      "dh": "4f3357b6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetTotalFrames",
+      "address": "0064a2b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a2b0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetTotalFrames"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "8f806349",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTotalFrames",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetTotalFrames",
+      "address": "0064a300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a300"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetTotalFrames"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "11275795",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetCurrentFrame",
+      "address": "0064a330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a330"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetCurrentFrame"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "5711477a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCurrentFrame",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetCurrentFrame",
+      "address": "0064a380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a380"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetCurrentFrame"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "ec81d065",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRemainingFrames",
+      "address": "0064a3b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a3b0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetRemainingFrames"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "c845a5ee",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetClassId",
+      "address": "0064a3e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a3e0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetClassId"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "2f6a1a07",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetOwner",
+      "address": "0064a400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a400"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetOwner"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "ba4d125d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckUnitIfOwner",
+      "address": "0064a470",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a470"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "CheckUnitIfOwner"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "f579f84d",
+      "paramStorage": [
+        [
+          "pMissile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetStreamMissile",
+      "address": "0064a4e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a4e0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetStreamMissile"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "42a27cf4",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStreamMissile",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStreamMissile",
+      "address": "0064a510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a510"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetStreamMissile"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "c269594e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetStreamRange",
+      "address": "0064a540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a540"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetStreamRange"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int16_t"
+      ],
+      "dh": "5b30a90b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStreamRange",
+          "Stack[0x8]:2"
+        ]
+      ]
+    },
+    {
+      "name": "GetStreamRange",
+      "address": "0064a570",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a570"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetStreamRange"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "1301e1cb",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetHitClass",
+      "address": "0064a5a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a5a0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetHitClass"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "385ad91f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetActivateFrame",
+      "address": "0064a5f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a5f0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetActivateFrame"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "25156595",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nActivateFrame",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetActivateFrame",
+      "address": "0064a640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a640"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetActivateFrame"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "0f1b502e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetAnimSpeed",
+      "address": "0064a670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a670"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetAnimSpeed"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "f24b438d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetAnimSpeed",
+      "address": "0064a690",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a690"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetAnimSpeed"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "35370af0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAnimSpeed",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetStream",
+      "address": "0064a6d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a6d0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetStream"
+      ],
+      "usedTypes": [
+        "D2MissileStreamStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "b6fd5649",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pStream",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetStream",
+      "address": "0064a6f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a6f0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetStream"
+      ],
+      "usedTypes": [
+        "D2MissileStreamStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "491b6a51",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetTargetX",
+      "address": "0064a710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a710"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetTargetX"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "24e45e7f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTargetX",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetTargetX",
+      "address": "0064a730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a730"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetTargetX"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "9f0cb7eb",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetTargetY",
+      "address": "0064a760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a760"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetTargetY"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "d7a8888a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTargetY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetTargetY",
+      "address": "0064a780",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a780"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetTargetY"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "ded1f9b6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetHomeType",
+      "address": "0064a7b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a7b0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetHomeType"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "1d717ec0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pTarget",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetHomeType",
+      "address": "0064a7f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a7f0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetHomeType"
+      ],
+      "usedTypes": [
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "f79b7bf0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHomeType",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nHomeGUID",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HasBonusStats",
+      "address": "0064a850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a850"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "HasBonusStats",
+        "STATSEX_GetCurrentStat",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SKILLS_GetItemBonusDamage"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "a4696f7b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddStatsToDamage",
+      "address": "0064a930",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064a930"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "AddStatsToDamage",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2MissileDamageDataStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "f96afde8",
+      "paramStorage": [
+        [
+          "pMissileDamageData",
+          "ESI:4"
+        ],
+        [
+          "pUnit",
+          "EDI:4"
+        ],
+        [
+          "nShift",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CalculateFinalDamage",
+      "address": "0064aa60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064aa60"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "CalculateFinalDamage"
+      ],
+      "usedTypes": [
+        "D2MissileDamageDataStrc",
+        "int32_t"
+      ],
+      "dh": "ced2b286",
+      "paramStorage": [
+        [
+          "pMissileDamageData",
+          "ECX:4"
+        ],
+        [
+          "nSrcDamage",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "CalculateMasteryBonus",
+      "address": "0064aba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064aba0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "CalculateMasteryBonus",
+        "STATSEX_GetCurrentStat",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2ElementalDamageTypeDWORD",
+        "int32_t"
+      ],
+      "dh": "46337d26",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EAX:4"
+        ],
+        [
+          "nElemType",
+          "ECX:4"
+        ],
+        [
+          "nSrcDamage",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetDamageStats",
+      "address": "0064ac60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064ac60"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "SetDamageStats",
+        "STATLIST_SetUnitStat",
+        "STATLIST_GetItemStatBonusValues"
+      ],
+      "usedTypes": [
+        "D2MissileDamageDataStrc",
+        "D2StatStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "62d10b61",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMissile",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pMissileDamageData",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMinDamage",
+      "address": "0064af20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064af20"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetMinDamage",
+        "SKILLS_GetValueByLevelBreakpoints",
+        "MISSILE_EvalMissileCalc",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitDataMissileStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "11c48aba",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMaxDamage",
+      "address": "0064aff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064aff0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetMaxDamage",
+        "SKILLS_GetValueByLevelBreakpoints",
+        "MISSILE_EvalMissileCalc",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "f4f9762e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetElemTypeFromMissileId",
+      "address": "0064b0c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b0c0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetElemTypeFromMissileId"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "7234cf27",
+      "paramStorage": [
+        [
+          "nMissileId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMinElemDamage",
+      "address": "0064b100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b100"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetMinElemDamage",
+        "SKILLS_GetValueByLevelBreakpoints",
+        "MISSILE_EvalMissileCalc",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "b1be199d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMaxElemDamage",
+      "address": "0064b1d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b1d0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetMaxElemDamage",
+        "SKILLS_GetValueByLevelBreakpoints",
+        "MISSILE_EvalMissileCalc",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "2b9aa40e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetElementalLength",
+      "address": "0064b2a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b2a0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetElementalLength"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "f6d728a6",
+      "paramStorage": [
+        [
+          "nUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSpecialParamValue",
+      "address": "0064b340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b340"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetSpecialParamValue",
+        "GetMinElemDamage",
+        "GetMaxElemDamage",
+        "GetElementalLength",
+        "GetMinDamage",
+        "GetMaxDamage",
+        "SKILLS_CalcDiminishingReturns"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "eb573d0a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nParamId",
+          "Stack[0xc]:1"
+        ],
+        [
+          "nMissileId",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MISSILE_Min",
+      "address": "0064b700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b700"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "MISSILE_Min"
+      ],
+      "dh": "4941512b",
+      "paramStorage": [
+        [
+          "nLeft",
+          "ECX:4"
+        ],
+        [
+          "nRight",
+          "EDX:4"
+        ],
+        [
+          "dwParam3",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam4",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MISSILE_Max",
+      "address": "0064b710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b710"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "MISSILE_Max"
+      ],
+      "dh": "1b51cbec",
+      "paramStorage": [
+        [
+          "nLeft",
+          "ECX:4"
+        ],
+        [
+          "nRight",
+          "EDX:4"
+        ],
+        [
+          "dwParam3",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam4",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRandomNumberInRange",
+      "address": "0064b720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b720"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetRandomNumberInRange",
+        "RANDOM_RandomNumberSelector"
+      ],
+      "usedTypes": [
+        "D2MissileRandCalcStrc",
+        "int32_t"
+      ],
+      "dh": "6b28b0a8",
+      "paramStorage": [
+        [
+          "nMin",
+          "ECX:4"
+        ],
+        [
+          "nMax",
+          "EDX:4"
+        ],
+        [
+          "nUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCalc",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSpecialParamValueForSkillMissile",
+      "address": "0064b760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b760"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "GetSpecialParamValueForSkillMissile",
+        "SKILLS_GetSkillByEnum",
+        "GetSkillLevel",
+        "SKILLDESC_EvalDescCalcValue"
+      ],
+      "usedTypes": [
+        "D2MissileCalcContextStrc",
+        "D2SkillStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "dfc3aebc",
+      "paramStorage": [
+        [
+          "eSkill",
+          "ECX:4"
+        ],
+        [
+          "nParamId",
+          "DL:1"
+        ],
+        [
+          "nUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMissileCalc",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MISSILE_EvalMissileCalc",
+      "address": "0064b7c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b7c0"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "MISSILE_EvalMissileCalc",
+        "FOG_EvaluateCalcExpression"
+      ],
+      "usedTypes": [
+        "D2MissileCalcContextStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7633a15f",
+      "paramStorage": [
+        [
+          "pMissile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nCalcExpression",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMissileId",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nMissileLevel",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EvaluateMissileFormula",
+      "address": "0064b860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b860"
+        }
+      ],
+      "namespace": "D2Common::Units::Missile",
+      "calledFunctions": [
+        "EvaluateMissileFormula",
+        "memset",
+        "GetMinDamage",
+        "GetMaxDamage",
+        "GetMinElemDamage",
+        "GetMaxElemDamage",
+        "GetElementalLength",
+        "CalculateMasteryBonus",
+        "GetSkillId",
+        "TXT_Skills_GetLine",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLS_GetElementalLength",
+        "HasBonusStats",
+        "STATSEX_GetCurrentStat",
+        "GetWeaponBySkill",
+        "GetEquippedWeapon",
+        "MONSTER_GetMercType",
+        "IsTwoHanded",
+        "SKILLS_GetItemBonusDamage",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "ITEM_GetTxtItemTypes_throwable",
+        "INVENTORY_GetWeaponHandedness",
+        "ITEMS_IsA",
+        "UpdateDualWieldStats",
+        "AddStatsToDamage",
+        "CalculateFinalDamage",
+        "Return"
+      ],
+      "usedTypes": [
+        "D2MissileDamageDataStrc",
+        "D2MissilesTxt",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2ElementalDamageTypeDWORD",
+        "eD2UnitStat",
+        "int16_t",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "422a741d",
+      "paramStorage": [
+        [
+          "pMissileDamageData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pMissile",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nLevel",
+          "Stack[0x14]:4"
+        ]
+      ]
+    }
+  ]
+}

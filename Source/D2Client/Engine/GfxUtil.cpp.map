@@ -1,0 +1,1606 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/Engine/GfxUtil.cpp",
+  "functions": [
+    {
+      "name": "GFXUTIL_PadTokenString",
+      "address": "004da720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da720"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_PadTokenString"
+      ],
+      "dh": "aa0ed7fb",
+      "paramStorage": [
+        [
+          "szText1",
+          "EDX:4"
+        ],
+        [
+          "szText2",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCompositePaletteIndex",
+      "address": "004da770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da770"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCompositePaletteIndex"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "uint8_t"
+      ],
+      "dh": "cc6f0493",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "byComponent",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "InitializeModeTokens",
+      "address": "004da790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da790"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "InitializeModeTokens",
+        "memset",
+        "TxtCompositGetLine",
+        "TxtGetPlrTypeModeLine",
+        "TxtGetMonModeLine",
+        "TxtGetObjTypeModeLine",
+        "TxtGetArmTypeLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ArmTypeTxt",
+        "D2CompositTxt",
+        "D2MonModeTxt",
+        "D2ObjTypeTxt",
+        "D2PlrTypeModeTxt",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f29eda46"
+    },
+    {
+      "name": "GFXUTIL_SetMissileCelFile",
+      "address": "004da8e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da8e0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_SetMissileCelFile"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "035f6ecf",
+      "paramStorage": [
+        [
+          "pGfxData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMissile",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocGfxUtil",
+      "address": "004da920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da920"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "AllocGfxUtil",
+        "AllocClientMemory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "void *"
+      ],
+      "dh": "fb3a4513",
+      "paramStorage": [
+        [
+          "ppListHead",
+          "ECX:4"
+        ],
+        [
+          "dwParam",
+          "EDX:4"
+        ],
+        [
+          "dwValue1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwValue2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnNodeCount",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnBytesAllocated",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_FindGfxNodeByTypeAndId",
+      "address": "004da990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da990"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_FindGfxNodeByTypeAndId"
+      ],
+      "usedTypes": [
+        "D2GfxUtilNodeStrc",
+        "int32_t"
+      ],
+      "dh": "c19d6f0f",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ],
+        [
+          "nType",
+          "EDX:4"
+        ],
+        [
+          "nId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_FreeGfxNodeList",
+      "address": "004da9c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004da9c0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_FreeGfxNodeList",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2GfxUtilNodeStrc",
+        "D2GfxUtilNodeStrc *"
+      ],
+      "dh": "afec55fc",
+      "paramStorage": [
+        [
+          "ppListHead",
+          "ECX:4"
+        ],
+        [
+          "pnBytesAllocated",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetUnitToken",
+      "address": "004daa00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004daa00"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetUnitToken",
+        "TxtGetPlrTypeModeLine",
+        "TxtGetObjTypeModeLine"
+      ],
+      "usedTypes": [
+        "D2ObjTypeTxt",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t"
+      ],
+      "dh": "980167b3",
+      "paramStorage": [
+        [
+          "pUnitStrc",
+          "ECX:4"
+        ],
+        [
+          "eUnitType",
+          "EDX:4"
+        ],
+        [
+          "nId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_NormalizeItemMode",
+      "address": "004daa70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004daa70"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_NormalizeItemMode"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "1d4ed01b",
+      "paramStorage": [
+        [
+          "pUnitStrc",
+          "ECX:4"
+        ],
+        [
+          "pnMode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetArmorAppearanceFromTorso",
+      "address": "004daab0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004daab0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetArmorAppearanceFromTorso",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "TXT_Items_GetLine"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6ba7437d",
+      "paramStorage": [
+        [
+          "pUnitStrc",
+          "ECX:4"
+        ],
+        [
+          "pInventory",
+          "EDX:4"
+        ],
+        [
+          "bCheckBroken",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutAppearance",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_IsDC6BlockOnScreen",
+      "address": "004dab40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dab40"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_IsDC6BlockOnScreen",
+        "GetDC6Height",
+        "GetDC6OffsetY",
+        "GetDC6OffsetX",
+        "GetDC6Width"
+      ],
+      "usedTypes": [
+        "DC6Block",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1a56e699",
+      "paramStorage": [
+        [
+          "pDC6Block",
+          "ECX:4"
+        ],
+        [
+          "nDrawX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bFlipped",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_SetItemGfxFile",
+      "address": "004dabc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dabc0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_SetItemGfxFile",
+        "CLIENT_GetEffectiveClassId",
+        "TXT_Items_GetLine",
+        "GetItemQuality",
+        "ITEM_GetItemData_nFileIndex",
+        "INV_GetUniqueItemsTxtLine",
+        "GetSetItemsLine",
+        "ITEM_GetItemData_bVariant",
+        "CheckItemFlag",
+        "ITEM_GetTxtItemTypes_varinvgfx",
+        "ITEM_GetTxtItemTypes_invgfx"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2ItemsTxt",
+        "D2SetItemsTxt",
+        "D2UniqueItemsTxt",
+        "D2UnitStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "f9258d83",
+      "paramStorage": [
+        [
+          "pGfxData",
+          "EDI:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetOverlayNumDirections",
+      "address": "004dad50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dad50"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetOverlayNumDirections"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "f8be4833",
+      "paramStorage": [
+        [
+          "nOverlayId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetBodyLocWeaponToken",
+      "address": "004dad80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dad80"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetBodyLocWeaponToken",
+        "ITEMSTATS_CheckUnitHasStateFlagIndex",
+        "MISSILE_GetOwnerUnit",
+        "COMPOSIT_GetWeaponClassWithTransform",
+        "UNIT_GetUnitState",
+        "INVENTORY_GetEquippedShield",
+        "INVENTORY_FindWornItemByType",
+        "TXT_Items_GetLine"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "18c5f4f5",
+      "paramStorage": [
+        [
+          "nBodyLoc",
+          "EBX:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_UnitHasAnimMode",
+      "address": "004dae60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dae60"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_UnitHasAnimMode",
+        "GetAnimOrSeqMode",
+        "SKILLS_GetStateTransformGfx",
+        "TXT_MonStats_GetMonStats2",
+        "TXT_Objects_GetLine"
+      ],
+      "usedTypes": [
+        "D2MonStats2Txt",
+        "D2ObjectsTxt",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "94021f37",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nMode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetNumDirectionsForUnit",
+      "address": "004daf70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004daf70"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetNumDirectionsForUnit",
+        "GetPlayerUnit_UI",
+        "TXT_MonStats_GetMonStats2",
+        "GFX_GetModeStatusEntry",
+        "GetMissleById",
+        "GFXUTIL_GetOverlayNumDirections"
+      ],
+      "usedTypes": [
+        "D2MissilesTxt",
+        "D2MonStats2Txt",
+        "D2MonsterCofStatusEntryStrc",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "db8a9061",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eUnitType",
+          "EAX:4"
+        ],
+        [
+          "nMode",
+          "EBX:4"
+        ],
+        [
+          "nClassId",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_Identity",
+      "address": "004db040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db040"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_Identity"
+      ],
+      "dh": "a297cc66",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCofFrameCount",
+      "address": "004db050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db050"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCofFrameCount"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "0cd830b2",
+      "paramStorage": [
+        [
+          "pbCof",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCofAnimSpeed",
+      "address": "004db090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db090"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCofAnimSpeed"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "94c10c31",
+      "paramStorage": [
+        [
+          "pbCof",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCofDirection",
+      "address": "004db0d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db0d0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCofDirection"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "2b487c7d",
+      "paramStorage": [
+        [
+          "pbCof",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCofLayerData",
+      "address": "004db110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db110"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCofLayerData"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "f80aad6d",
+      "paramStorage": [
+        [
+          "pbCof",
+          "ECX:4"
+        ],
+        [
+          "nDirection",
+          "EDX:4"
+        ],
+        [
+          "nLayerOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetCofDrawOrder",
+      "address": "004db140",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db140"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetCofDrawOrder"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "549e4ad9",
+      "paramStorage": [
+        [
+          "pbCof",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_IsValidUnitType",
+      "address": "004db180",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db180"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_IsValidUnitType"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "5f8070bc",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetGfxInfoComponent",
+      "address": "004db1a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db1a0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetGfxInfoComponent",
+        "GetGfxInfo"
+      ],
+      "usedTypes": [
+        "D2GfxInfoStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "10944915",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_SetGfxInfoComponent",
+      "address": "004db1c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db1c0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_SetGfxInfoComponent",
+        "GetGfxInfo"
+      ],
+      "usedTypes": [
+        "D2GfxInfoStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "a174791e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nComponentIndex",
+          "EDX:4"
+        ],
+        [
+          "byComponentVal",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_UpdateDirectionForMode",
+      "address": "004db1e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db1e0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_UpdateDirectionForMode",
+        "GetAnimOrSeqMode",
+        "SKILLS_GetStateTransformGfx",
+        "SetDirectionAndNewDirection"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "0dec92a6",
+      "paramStorage": [
+        [
+          "nDirection",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ],
+        [
+          "nPrevDirection",
+          "EBX:4"
+        ],
+        [
+          "nNewDirection",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_ConvertDirectionBits",
+      "address": "004db290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db290"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_ConvertDirectionBits",
+        "CELCMP_GetPaletteShiftValue"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a60b425b",
+      "paramStorage": [
+        [
+          "nFromDirs",
+          "ECX:4"
+        ],
+        [
+          "nToDirs",
+          "EAX:4"
+        ],
+        [
+          "pnDirection",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_CalcDirectionAndFrame",
+      "address": "004db2e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db2e0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_CalcDirectionAndFrame",
+        "GFXUTIL_GetNumDirectionsForUnit",
+        "GFXUTIL_ConvertDirectionBits",
+        "GFXUTIL_UpdateDirectionForMode",
+        "CELCMP_GetFrameDecodeHandlerReverse"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "be2107ea",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nAnimDir",
+          "EDX:4"
+        ],
+        [
+          "nTypeId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCofComponent",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnDirection",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnFrameHandler",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnNumDirections",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nNumDirs",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetEtherealTransparency",
+      "address": "004db360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db360"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetEtherealTransparency",
+        "CLIENT_GetEffectiveUnitType",
+        "STATSEX_GetCurrentStat",
+        "INVENTORY_GetFirstItem",
+        "GetCarriedItem",
+        "CheckItemFlag",
+        "INVENTORY_GetNextItem",
+        "TXT_Items_GetLine",
+        "ITEMSTATS_CheckUnitHasStateFlagIndex",
+        "MISSILE_GetOwnerUnit",
+        "INVENTORY_FindWornItemByType"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "79262f86",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nComponent",
+          "EDX:4"
+        ],
+        [
+          "pOutTransTable",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nItemClassId",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetItemColorForBodyLoc",
+      "address": "004db570",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db570"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetItemColorForBodyLoc",
+        "CLIENT_GetEffectiveUnitType",
+        "ITEMSTATS_CheckUnitHasStateFlagIndex",
+        "MISSILE_GetOwnerUnit",
+        "INVENTORY_FindWornItemByType",
+        "DoesBodyHaveAppearanceColors",
+        "CheckItemFlag",
+        "ITEM_GetItemsTxt_dwAlternateGfxIfExists",
+        "GetItemColor"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "02f859f1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nBodyLoc",
+          "EDX:4"
+        ],
+        [
+          "pDefaultColor",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetUnitCofDirectionOnScreen",
+      "address": "004db670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db670"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetUnitCofDirectionOnScreen",
+        "D2GFX_IsPerspectiveActive",
+        "GetScreenX",
+        "DRAW_GetWorldOffsetX",
+        "GetScreenY",
+        "DRAW_GetWorldOffsetY",
+        "GetPrecisionY",
+        "GetPrecisionX",
+        "D2GFX_AdjustPerspectivePosition",
+        "DRAW_GetTypeOfBorder",
+        "GFX_IsUnitOnScreen",
+        "ITEMSTATS_CheckUnitHasStateFlagIndex",
+        "MISSILE_GetOwnerUnit",
+        "COMPOSIT_GetWeaponClassWithTransform",
+        "GFX_FindGfxInfoByModeAndWeapon",
+        "GFX_EnsureUnitCofLoaded",
+        "CLIENT_GetEffectiveAnimMode",
+        "GFX_GetGfxInfoCofData",
+        "GFXUTIL_GetCofDirection"
+      ],
+      "usedTypes": [
+        "D2GfxInfoUnkStrc",
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3f865c8b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nUnitDirection",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_BuildCofParams",
+      "address": "004db7b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004db7b0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_BuildCofParams",
+        "GetAnimOrSeqMode",
+        "SKILLS_GetStateTransformGfx",
+        "CLIENT_GetEffectiveInventory",
+        "COMPOSIT_GetWeaponClassWithTransform",
+        "GFX_FindGfxInfoByModeAndWeapon",
+        "GFX_EnsureUnitCofLoaded",
+        "GFX_GetGfxInfoCofData",
+        "GetGfxInfo",
+        "GFXUTIL_GetUnitToken",
+        "GFXUTIL_GetCompositePaletteIndex",
+        "TXT_MonStats_MonStats2_GetFlagsByBitOffset",
+        "MONSTER_GetComponentOverlay",
+        "GetPlayerUnit_UI",
+        "GFXUTIL_GetArmorAppearanceFromTorso",
+        "INVENTORY_FindWornItemByType",
+        "DoesBodyHaveAppearanceColors",
+        "GFXUTIL_GetBodyLocWeaponToken",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "ITEM_GetItemsTxt_dwAlternateGfxIfExists",
+        "COMPOSIT_GetBodyPartTransform",
+        "GFXUTIL_PadTokenString",
+        "ConvertItemCodeToClassIdAndGetItemsTxtLine",
+        "GFXUTIL_SetMissileCelFile",
+        "GFXUTIL_NormalizeItemMode",
+        "GFXUTIL_SetItemGfxFile"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2GfxInfoStrc",
+        "D2GfxInfoUnkStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "GFXUTIL_BuildCofParams_Slotmc",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "09fdcb7c",
+      "paramStorage": [
+        [
+          "pGfxData",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "pEquipContext",
+          "EAX:4"
+        ],
+        [
+          "pOutItemClassId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DC6_AssignParams",
+      "address": "004dbb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbb50"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "DC6_AssignParams",
+        "GFXUTIL_BuildCofParams"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "DC6",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "6f537c97",
+      "paramStorage": [
+        [
+          "pGfxData",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "pDC6",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDirection",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nFrameNumber",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnOutItemClassId",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nComponentType",
+          "Stack[0x14]:1"
+        ],
+        [
+          "nMode",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_BuildMonsterCofParams",
+      "address": "004dbb80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbb80"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_BuildMonsterCofParams",
+        "TXT_MonStats_MonStats2_GetFlagsByBitOffset",
+        "OVERLAYTBLS_GetMonsterComponentOverlay",
+        "GFXUTIL_PadTokenString",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2MonStatsTxt",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6e84f2af",
+      "paramStorage": [
+        [
+          "pCofFile",
+          "EDX:4"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pComponentTable",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pMonStatsTxt",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nComponentRow",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nWeaponClass",
+          "EAX:4"
+        ],
+        [
+          "pGfxData",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_InitAndBuildMonsterCofParams",
+      "address": "004dbcf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbcf0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_InitAndBuildMonsterCofParams",
+        "GFXUTIL_BuildMonsterCofParams"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2MonStatsTxt",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "f0f41d1e",
+      "paramStorage": [
+        [
+          "pGfxData",
+          "ECX:4"
+        ],
+        [
+          "nDirection",
+          "EDX:4"
+        ],
+        [
+          "nFrameNumber",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nComponentType",
+          "Stack[0x8]:1"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nWeaponClass",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pCofFile",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pComponentTable",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pMonStatsTxt",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nComponentRow",
+          "Stack[0x20]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_CalcMaxSpriteHeight",
+      "address": "004dbd30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbd30"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_CalcMaxSpriteHeight",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset",
+        "GFXUTIL_BuildCofParams",
+        "SPRITECACHE_GetOrLoadSprite",
+        "GetDC6OffsetY",
+        "DRAW_GetWorldOffsetY",
+        "GetScreenY"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "1c4ee72b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pbyLayerCount",
+          "EDX:4"
+        ],
+        [
+          "pLayerArray",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutMaxY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPaletteShift",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nFrame",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetOverlayFrameDelay",
+      "address": "004dbe20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbe20"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetOverlayFrameDelay",
+        "memset",
+        "GetDirection",
+        "GFXUTIL_BuildCofParams",
+        "SPRITECACHE_GetOrLoadSprite"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2GfxUnknown_0xa8",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "74606e1d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pOverlayEntry",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_GetOverlayDimensions",
+      "address": "004dbea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbea0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_GetOverlayDimensions",
+        "memset",
+        "GFXUTIL_BuildCofParams",
+        "SPRITECACHE_GetOrLoadSprite",
+        "GetDC6Width",
+        "GetDC6Height"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "01dd4668",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nPaletteShift",
+          "EDX:4"
+        ],
+        [
+          "nAnimMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutWidth",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pOutHeight",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_IsUnitSpriteOnScreen",
+      "address": "004dbf20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004dbf20"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_IsUnitSpriteOnScreen",
+        "DRAW_GetWorldOffsetX",
+        "DRAW_GetWorldOffsetY",
+        "GFX_IsUnitOnScreen",
+        "GetShiftedFrameMetrics",
+        "memset",
+        "GetDirection",
+        "GFXUTIL_BuildCofParams",
+        "SPRITECACHE_GetOrLoadSprite",
+        "GFXUTIL_IsDC6BlockOnScreen"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "48ea4e65",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nWorldX",
+          "EDX:4"
+        ],
+        [
+          "nWorldY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_Identity_Unref_005641e0",
+      "address": "005641e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005641e0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_Identity_Unref_005641e0"
+      ],
+      "dh": "ba45788a",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GFXUTIL_Identity_Unref_006c40c0",
+      "address": "006c40c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c40c0"
+        }
+      ],
+      "namespace": "D2Client::Engine::GfxUtil",
+      "calledFunctions": [
+        "GFXUTIL_Identity_Unref_006c40c0"
+      ],
+      "dh": "c3605a72",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

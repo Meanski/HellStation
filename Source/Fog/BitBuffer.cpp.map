@@ -1,0 +1,544 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/BitBuffer.cpp",
+  "functions": [
+    {
+      "name": "SetBitAtOffset",
+      "address": "00410b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410b10"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "SetBitAtOffset"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "09eca77b",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckBitAtOffset",
+      "address": "00410b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410b30"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "CheckBitAtOffset"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d118f92d",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UnsetBitAtOffset",
+      "address": "00410b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410b50"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "UnsetBitAtOffset"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "bfda43ff",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "XorBitAtOffset",
+      "address": "00410b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410b70"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "XorBitAtOffset"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "4de0f50e",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUF_AndBuffers",
+      "address": "00410b90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410b90"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUF_AndBuffers"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b99b1b3a",
+      "paramStorage": [
+        [
+          "pBufferA",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pBufferB",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDest",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBitCount",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUF_OrBuffers",
+      "address": "00410c40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410c40"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUF_OrBuffers"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "19a6e8ef",
+      "paramStorage": [
+        [
+          "pBufferA",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pBufferB",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDest",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBitCount",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUF_NotBuffer",
+      "address": "00410cf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410cf0"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUF_NotBuffer"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6f1b1bdc",
+      "paramStorage": [
+        [
+          "pSrc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pDest",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nBitCount",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUF_XorBuffers",
+      "address": "00410d90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410d90"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUF_XorBuffers"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "f5d91d4c",
+      "paramStorage": [
+        [
+          "pBufferA",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pBufferB",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDest",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBitCount",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitBitBuffer",
+      "address": "00410e40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410e40"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "InitBitBuffer",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "a0402d46",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pBytes",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetNextPositon",
+      "address": "00410e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410e90"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "GetNextPositon"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t"
+      ],
+      "dh": "59e07488",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WriteValueToBitBuffer",
+      "address": "00410eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410eb0"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "WriteValueToBitBuffer"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t"
+      ],
+      "dh": "12d5ffd8",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSizeInBits",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Read",
+      "address": "00410f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410f60"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "Read"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "22c75d75",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ReadUnsigned",
+      "address": "00411020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411020"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "ReadUnsigned",
+        "Read"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "8c5fc620",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ReadSigned",
+      "address": "00411030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411030"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "ReadSigned",
+        "Read"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7a5d6f84",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BitBufferEndCurrentByte",
+      "address": "00411070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411070"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BitBufferEndCurrentByte"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc"
+      ],
+      "dh": "4d3281ba",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUFFER_WriteDwordPair",
+      "address": "004110b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004110b0"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUFFER_WriteDwordPair",
+        "WriteValueToBitBuffer"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t"
+      ],
+      "dh": "659dbe68",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BITBUFFER_ReadHuffmanValue",
+      "address": "004110d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004110d0"
+        }
+      ],
+      "namespace": "Fog::BitBuffer",
+      "calledFunctions": [
+        "BITBUFFER_ReadHuffmanValue"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ab1c0906",
+      "paramStorage": [
+        [
+          "pBitBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pHuffmanTree",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

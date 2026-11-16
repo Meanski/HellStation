@@ -1,0 +1,254 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Win/Forms.cpp",
+  "functions": [
+    {
+      "name": "D2WIN_RegisterWindowHandler",
+      "address": "00506c40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00506c40"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "D2WIN_RegisterWindowHandler",
+        "SMsgRegisterCommand",
+        "SMsgRegisterKeyUp",
+        "SMsgRegisterKeyDown",
+        "SMsgRegisterMessage",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "eefdb8c7",
+      "paramStorage": [
+        [
+          "hHandle",
+          "ECX:4"
+        ],
+        [
+          "nHandlerType",
+          "EDX:4"
+        ],
+        [
+          "nMessage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCallback",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WIN_UnregisterWindowHandler",
+      "address": "00506cf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00506cf0"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "D2WIN_UnregisterWindowHandler",
+        "SMsgUnregisterCommand",
+        "SMsgUnregisterKeyUp",
+        "SMsgUnregisterKeyDown",
+        "SMsgUnregisterMessage",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "69f60410",
+      "paramStorage": [
+        [
+          "hHandle",
+          "ECX:4"
+        ],
+        [
+          "nHandlerType",
+          "EDX:4"
+        ],
+        [
+          "nMessage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCallback",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WIN_RegisterWindowHandlerArray",
+      "address": "00506da0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00506da0"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "D2WIN_RegisterWindowHandlerArray",
+        "D2WIN_RegisterWindowHandler",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinWndHandlerStrc",
+        "int32_t"
+      ],
+      "dh": "f9ad8f2a",
+      "paramStorage": [
+        [
+          "hHandle",
+          "ECX:4"
+        ],
+        [
+          "pHandlerArray",
+          "EDX:4"
+        ],
+        [
+          "nHandlerCount",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WIN_UnregisterWindowHandlerArray",
+      "address": "00506e00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00506e00"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "D2WIN_UnregisterWindowHandlerArray",
+        "D2WIN_UnregisterWindowHandler",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinWndHandlerStrc",
+        "int32_t"
+      ],
+      "dh": "2c565246",
+      "paramStorage": [
+        [
+          "hHandle",
+          "ECX:4"
+        ],
+        [
+          "pHandlerArray",
+          "EDX:4"
+        ],
+        [
+          "nHandlerCount",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINLIST_AddListItemFromCharName",
+      "address": "005077f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005077f0"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "D2WINLIST_AddListItemFromCharName",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINLIST_AddListItem"
+      ],
+      "usedTypes": [
+        "D2WinList",
+        "WCHAR",
+        "fpListEntryCallback",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "5e544de4",
+      "paramStorage": [
+        [
+          "pList",
+          "ECX:4"
+        ],
+        [
+          "szCharName",
+          "EDX:4"
+        ],
+        [
+          "nItemData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bItemFlags",
+          "Stack[0x8]:1"
+        ],
+        [
+          "nUserData",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bPrepend",
+          "Stack[0x10]:4"
+        ],
+        [
+          "bSelect",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PROGRESSBAR_SetProgress",
+      "address": "00507d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00507d70"
+        }
+      ],
+      "namespace": "D2Win::Forms",
+      "calledFunctions": [
+        "PROGRESSBAR_SetProgress",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinProgressBar",
+        "int32_t"
+      ],
+      "dh": "ac6d7a78",
+      "paramStorage": [
+        [
+          "pProgressBar",
+          "Stack[0x4]:4"
+        ],
+        [
+          "fProgress",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

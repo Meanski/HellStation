@@ -1,0 +1,1043 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Win/Src/D2WinEditBox.cpp",
+  "functions": [
+    {
+      "name": "D2WINEDITBOX_GetTextLength",
+      "address": "004fda80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fda80"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_GetTextLength"
+      ],
+      "usedTypes": [
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "8ca432cf",
+      "paramStorage": [
+        [
+          "pwChar",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FORMS_DestroyD2WinEditBox",
+      "address": "004fdaa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdaa0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "FORMS_DestroyD2WinEditBox",
+        "FORMS_DestroyControl",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "54b7f05e",
+      "paramStorage": [
+        [
+          "pWinEditBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SetFilterCallback",
+      "address": "004fdad0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdad0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetFilterCallback",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "fpD2WinEditBoxFilter",
+        "int32_t"
+      ],
+      "dh": "f19c5806",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "fpFilterCallback",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SetChangeCallback",
+      "address": "004fdb00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdb00"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetChangeCallback",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "fpD2WinEditBoxChange",
+        "int32_t"
+      ],
+      "dh": "7aa62801",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "fpChangeCallback",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_GetClipboardText",
+      "address": "004fdb40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdb40"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_GetClipboardText",
+        "GetHwnd",
+        "strncpy"
+      ],
+      "dh": "434e9ac5"
+    },
+    {
+      "name": "D2WINEDITBOX_SetClipboardText",
+      "address": "004fdbb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdbb0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetClipboardText",
+        "GetHwnd",
+        "memcpy"
+      ],
+      "dh": "4c39af53",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_HasSelection",
+      "address": "004fdc70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdc70"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_HasSelection",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "82add528",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_ClearSelection",
+      "address": "004fdcc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdcc0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_ClearSelection",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "efcd0245",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SelectAll",
+      "address": "004fdd00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdd00"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "STRING_GetWideStringLength",
+        "D2WINEDITBOX_SelectAll",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "21d12125",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SetMaxLength",
+      "address": "004fdd50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdd50"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetMaxLength",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "6ba82e36",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "nMaxLength",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FORMS_TextInput_GetValue",
+      "address": "004fdd90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdd90"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "FORMS_TextInput_GetValue",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ControlStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "9de0527e",
+      "paramStorage": [
+        [
+          "pControl",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_LinkTabOrder",
+      "address": "004fddd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fddd0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_LinkTabOrder",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "e24bd229",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "pNextEditBox",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_GetTextHeight",
+      "address": "004fde30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fde30"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_GetTextHeight",
+        "SetAndReturnLastFont",
+        "D2WINFONT_GetCurrentFontHeight",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINFONT_GetStringPixelWidth",
+        "UNICODE_WideToMultiByte",
+        "memset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7e97f79f",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "EAX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_GetCaretPosition",
+      "address": "004fdff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fdff0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_GetCaretPosition",
+        "SetAndReturnLastFont",
+        "D2WINFONT_GetCurrentFontHeight",
+        "STRING_CopyWideString",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINFONT_GetStringPixelWidth",
+        "UNICODE_WideToMultiByte",
+        "memset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5f5cfd4c",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "EBX:4"
+        ],
+        [
+          "pX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Mouse",
+      "address": "004fe350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe350"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "Mouse",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "int32_t"
+      ],
+      "dh": "e392e4b8",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_PlaceCaretAtPoint",
+      "address": "004fe3b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe3b0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_PlaceCaretAtPoint",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2WINMAIN_SetFocusedControl",
+        "SetAndReturnLastFont",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "DRAW_text0",
+        "UNICODE_WideToMultiByte",
+        "D2WINFONT_GetCurrentFontHeight",
+        "STRING_GetWideStringLength",
+        "memset",
+        "D2WINFONT_GetStringPixelWidth",
+        "D2WINEDITBOX_ClearSelection"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "OnPress",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "7f7137e0",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nY",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Push",
+      "address": "004fe710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe710"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "Push",
+        "D2WINEDITBOX_PlaceCaretAtPoint",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2WinEditBox",
+        "int32_t"
+      ],
+      "dh": "03683831",
+      "paramStorage": [
+        [
+          "pControlMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_FilterDigitChar",
+      "address": "004fe770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe770"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_FilterDigitChar"
+      ],
+      "dh": "94658695",
+      "paramStorage": [
+        [
+          "dwUnused1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwUnused2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szText",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_FilterLetterChar",
+      "address": "004fe790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe790"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_FilterLetterChar"
+      ],
+      "dh": "41d0a773",
+      "paramStorage": [
+        [
+          "dwUnused1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwUnused2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szText",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_UpdateCursorPosition",
+      "address": "004fe7c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe7c0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_UpdateCursorPosition",
+        "SetAndReturnLastFont",
+        "STRING_GetWideStringLength",
+        "STRING_CopyWideString",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "DRAW_text0",
+        "D2WINFONT_GetStringPixelWidth"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c90ad926",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_HandleDelete",
+      "address": "004fe9f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004fe9f0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_HandleDelete",
+        "WSTRING_PutWideCharIntoBuffer",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "STRING_GetWideStringLength",
+        "D2WINEDITBOX_ClearSelection",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "5c8db3d7",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_HandleKeyPress",
+      "address": "004feae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004feae0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_HandleKeyPress",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2WINFONT_IsFontCharacterValid",
+        "D2WINEDITBOX_GetTextLength",
+        "D2WINEDITBOX_HasSelection",
+        "D2WINEDITBOX_HandleDelete",
+        "STRING_GetWideStringLength",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "UNICODE_WideToMultiByte",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINEDITBOX_ClearSelection",
+        "D2WINEDITBOX_SelectAll",
+        "D2WINEDITBOX_SetClipboardText",
+        "D2WINEDITBOX_GetClipboardText",
+        "WSTRING_PutWideCharIntoBuffer",
+        "AppendToBuffer",
+        "D2WINEDITBOX_GetTextHeight",
+        "D2WINEDITBOX_UpdateCursorPosition"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "b302012b",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "byKeyChar",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_HandleKeyDown",
+      "address": "004ff050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ff050"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_HandleKeyDown",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2WINEDITBOX_HasSelection",
+        "D2WINEDITBOX_HandleDelete",
+        "D2WINEDITBOX_ClearSelection",
+        "STRING_GetWideStringLength",
+        "memmove",
+        "D2WINMAIN_SetFocusedControl",
+        "D2WINEDITBOX_SelectAll",
+        "D2WINEDITBOX_GetCaretPosition",
+        "D2WINFONT_GetCurrentFontHeight",
+        "D2WINEDITBOX_PlaceCaretAtPoint",
+        "D2WINEDITBOX_UpdateCursorPosition"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "e81b2d97",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "nVirtualKey",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SetTextWide",
+      "address": "004ff5a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ff5a0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetTextWide",
+        "STRING_GetWideStringLength",
+        "STRING_CopyWideString",
+        "D2WINEDITBOX_UpdateCursorPosition",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "79391fcf",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Draw",
+      "address": "004ff620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ff620"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "Draw",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2WINMAIN_IsMouseButtonDown",
+        "Push",
+        "CONTAINER_InitializeBuffer",
+        "SetAndReturnLastFont",
+        "D2WINFONT_GetCurrentFontHeight",
+        "STRING_CopyWideString",
+        "D2GFX_GetColorFromCurrentPallete",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINFONT_GetStringPixelWidth",
+        "FORMS_GetFormTextAndEditBox",
+        "GetTickCount",
+        "UNICODE_WideToMultiByte",
+        "DRAW_text",
+        "memset",
+        "strncpy",
+        "TEXT_CalcTextDimensions",
+        "D2GFX_DrawSolidRectEx"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2WinEditBox",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "2759cff2",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PushFlag0x8",
+      "address": "004ffbf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ffbf0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "PushFlag0x8",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2WINMAIN_SetFocusedControl",
+        "GetTickCount",
+        "D2WINEDITBOX_SelectAll",
+        "SetAndReturnLastFont",
+        "STRING_GetWideStringLength",
+        "D2WINEDITBOX_UpdateCursorPosition",
+        "D2WINFONT_GetStringPixelWidth",
+        "D2WINEDITBOX_ClearSelection"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "OnPress",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "7f03528b",
+      "paramStorage": [
+        [
+          "pControlMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WINEDITBOX_SetTextFromAnsi",
+      "address": "004ffe10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ffe10"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WINEDITBOX_SetTextFromAnsi",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINEDITBOX_SetTextWide"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "WCHAR"
+      ],
+      "dh": "f2be2995",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawFlag0x8",
+      "address": "004ffe50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ffe50"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "DrawFlag0x8",
+        "D2WINMAIN_IsMouseButtonDown",
+        "PushFlag0x8",
+        "CONTAINER_InitializeBuffer",
+        "memset",
+        "D2GFX_DrawImage",
+        "SetAndReturnLastFont",
+        "WSTRING_PutWideCharIntoBuffer",
+        "STRING_GetWideStringLength",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "D2WINEDITBOX_HasSelection",
+        "DRAW_text",
+        "D2GFX_GetColorFromCurrentPallete",
+        "STRING_CopyWideString",
+        "TEXT_CalcTextDimensions",
+        "D2WINFONT_DrawTextWithSimpleBackground",
+        "FORMS_GetFormTextAndEditBox",
+        "GetTickCount",
+        "D2WINFONT_GetStringPixelWidth",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ControlMsg",
+        "D2GfxDataStrc",
+        "D2WinEditBox",
+        "DC6",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "a06287f1",
+      "paramStorage": [
+        [
+          "pEditBox",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2WinEditBox",
+      "address": "005001d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005001d0"
+        }
+      ],
+      "namespace": "D2Win::Src::D2WinEditBox",
+      "calledFunctions": [
+        "D2WinEditBox",
+        "AllocClientMemory",
+        "memset",
+        "FORMS_AddControlToGlobalList"
+      ],
+      "usedTypes": [
+        "D2WinEditBox",
+        "DC6",
+        "Draw",
+        "OnPress",
+        "Push",
+        "fpD2WinEditBoxSubmit",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d7488a8e",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nSizeX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nInsetX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nInsetY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pDC6",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pfnSubmit",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pfnOnPress",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nFlags",
+          "Stack[0x20]:4"
+        ],
+        [
+          "pFontIds",
+          "Stack[0x24]:4"
+        ]
+      ]
+    }
+  ]
+}

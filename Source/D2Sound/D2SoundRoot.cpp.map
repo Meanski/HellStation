@@ -1,0 +1,193 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Sound/D2SoundRoot.cpp",
+  "functions": [
+    {
+      "name": "SOUND_DetectLegacySoundDrivers",
+      "address": "00513a20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513a20"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_DetectLegacySoundDrivers"
+      ],
+      "dh": "56ff57f1",
+      "paramStorage": [
+        [
+          "nUnused",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szDeviceName",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szDriverVxd",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwUnused",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SOUND_GetLanguageCode",
+      "address": "00513ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513ae0"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetLanguageCode"
+      ],
+      "dh": "056ac722"
+    },
+    {
+      "name": "SOUND_GetDirectSoundDevice",
+      "address": "00513b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513b50"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetDirectSoundDevice"
+      ],
+      "usedTypes": [
+        "IDirectSound"
+      ],
+      "dh": "65b408d9"
+    },
+    {
+      "name": "SOUND_GetPrimaryBufferModeFlag",
+      "address": "00513b60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513b60"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetPrimaryBufferModeFlag"
+      ],
+      "dh": "eca902d3"
+    },
+    {
+      "name": "SOUND_GetSound3DFlag",
+      "address": "00513b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513b70"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetSound3DFlag"
+      ],
+      "dh": "3b46ea94"
+    },
+    {
+      "name": "SOUND_GetSoundQualityFlag",
+      "address": "00513b90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513b90"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetSoundQualityFlag"
+      ],
+      "dh": "757b8fa6"
+    },
+    {
+      "name": "SOUND_GetEAXEnabledFlag",
+      "address": "00513ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513ba0"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetEAXEnabledFlag"
+      ],
+      "dh": "34cfaa6c"
+    },
+    {
+      "name": "SOUND_GetHardwareAccelerationFlag",
+      "address": "00513bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513bb0"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetHardwareAccelerationFlag"
+      ],
+      "dh": "702556d2"
+    },
+    {
+      "name": "SOUND_ToggleEAXEnvironmentPreset",
+      "address": "00513bc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513bc0"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_ToggleEAXEnvironmentPreset"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "9bb8d16e",
+      "paramStorage": [
+        [
+          "nPresetType",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SOUND_GetDirectSoundErrorString",
+      "address": "00513ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00513ed0"
+        }
+      ],
+      "namespace": "D2Sound",
+      "calledFunctions": [
+        "SOUND_GetDirectSoundErrorString"
+      ],
+      "dh": "d8354cc0",
+      "paramStorage": [
+        [
+          "hResult",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

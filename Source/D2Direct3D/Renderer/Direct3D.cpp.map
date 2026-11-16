@@ -1,0 +1,3814 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Direct3D/Renderer/Direct3D.cpp",
+  "functions": [
+    {
+      "name": "D3D_EnumTextureFormatsCallback",
+      "address": "006b1b60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1b60"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "D3D_EnumTextureFormatsCallback"
+      ],
+      "usedTypes": [
+        "DDPIXELFORMAT"
+      ],
+      "dh": "72bb27df",
+      "paramStorage": [
+        [
+          "lpDDPixFmt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnDeviceFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ClearCaches",
+      "address": "006b1bc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1bc0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "ClearCaches",
+        "D3DFLOOR_Free",
+        "D3DSUBTILE_Free",
+        "D3DTEXCACHE_Free"
+      ],
+      "dh": "e8910304"
+    },
+    {
+      "name": "CheckCutScene",
+      "address": "006b1c00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c00"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "CheckCutScene"
+      ],
+      "dh": "e3f16248"
+    },
+    {
+      "name": "UpdateScaleFactor",
+      "address": "006b1c10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c10"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "UpdateScaleFactor"
+      ],
+      "dh": "b38c06bc",
+      "paramStorage": [
+        [
+          "nScaleFactor",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckGamma",
+      "address": "006b1c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c20"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "CheckGamma"
+      ],
+      "dh": "dd5c9d1f"
+    },
+    {
+      "name": "EndScene2",
+      "address": "006b1c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c30"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "EndScene2"
+      ],
+      "dh": "14a1491a"
+    },
+    {
+      "name": "GetScreenSize",
+      "address": "006b1c60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c60"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "GetScreenSize"
+      ],
+      "dh": "85853687",
+      "paramStorage": [
+        [
+          "pWidth",
+          "ECX:4"
+        ],
+        [
+          "pHeight",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetPalette",
+      "address": "006b1c70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1c70"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetPalette"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "8c472205",
+      "paramStorage": [
+        [
+          "pPalette",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "PALETTE_GetColorByIndex",
+      "address": "006b1d50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1d50"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "PALETTE_GetColorByIndex"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "4f68a52a",
+      "paramStorage": [
+        [
+          "nPaletteIndex",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetPaletteTable",
+      "address": "006b1d60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1d60"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetPaletteTable"
+      ],
+      "usedTypes": [
+        "BYTE *"
+      ],
+      "dh": "d733c00b",
+      "paramStorage": [
+        [
+          "ppPaletteTable",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ConvertPalettedTo16Bit",
+      "address": "006b1dc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1dc0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ConvertPalettedTo16Bit"
+      ],
+      "usedTypes": [
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "92a61952",
+      "paramStorage": [
+        [
+          "pSrc8Bit",
+          "ECX:4"
+        ],
+        [
+          "pDest16Bit",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDestPitchInPixels",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwUnused",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ConvertPalettedTo32Bit",
+      "address": "006b1e30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1e30"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ConvertPalettedTo32Bit"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "d4508369",
+      "paramStorage": [
+        [
+          "pSrc8Bit",
+          "ECX:4"
+        ],
+        [
+          "pDest32Bit",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDestPitchInPixels",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwParam6",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_SetBlendMode",
+      "address": "006b1ea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1ea0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_SetBlendMode"
+      ],
+      "dh": "24331e35",
+      "paramStorage": [
+        [
+          "nBlendMode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetBlendMode",
+      "address": "006b1f40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b1f40"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetBlendMode"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "07c1c4f6",
+      "paramStorage": [
+        [
+          "nBlendMode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_SetTextureFilterMode",
+      "address": "006b2030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b2030"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_SetTextureFilterMode"
+      ],
+      "dh": "404cccd9",
+      "paramStorage": [
+        [
+          "nFilterMode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRenderStatistics",
+      "address": "006b20a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b20a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "GetRenderStatistics"
+      ],
+      "dh": "145a1cfe"
+    },
+    {
+      "name": "ActivateWindow",
+      "address": "006b20b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b20b0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "ActivateWindow"
+      ],
+      "dh": "427f8559"
+    },
+    {
+      "name": "SetOption",
+      "address": "006b20c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b20c0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetOption"
+      ],
+      "dh": "20d83c3a",
+      "paramStorage": [
+        [
+          "nOption",
+          "ECX:4"
+        ],
+        [
+          "nValue",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DIRECTD3D_LogError",
+      "address": "006b20e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b20e0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DIRECTD3D_LogError",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "dh": "31f51c4e",
+      "paramStorage": [
+        [
+          "szErrorMessage",
+          "ECX:4"
+        ],
+        [
+          "nResult",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DIRECT3D_GetPerspectiveMode",
+      "address": "006b2f20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b2f20"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DIRECT3D_GetPerspectiveMode"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "ab647dfd"
+    },
+    {
+      "name": "DIRECT3D_SetPerspectiveMode",
+      "address": "006b2f30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b2f30"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DIRECT3D_SetPerspectiveMode"
+      ],
+      "dh": "101d47ab",
+      "paramStorage": [
+        [
+          "nSize",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_SaveDeviceConfigToRegistry",
+      "address": "006b2f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b2f60"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_SaveDeviceConfigToRegistry",
+        "sprintf",
+        "CRT_ReturnValue"
+      ],
+      "usedTypes": [
+        "HKEY",
+        "LSTATUS",
+        "uint32_t"
+      ],
+      "dh": "29b968e1",
+      "paramStorage": [
+        [
+          "nRenderMode",
+          "ECX:4"
+        ],
+        [
+          "nDeviceIndex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_AllocateTextureCaches",
+      "address": "006b3080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3080"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_AllocateTextureCaches",
+        "RENDERER_D3D_CreateSmackerSurfaces",
+        "RENDERER_D3D_InitializeTextureCachePool",
+        "RENDERER_D3D_InitializeFontSystem",
+        "D3DFLOOR_Initialize",
+        "D3DSUBTILE_Initialize",
+        "RENDERER_D3D_InitializeTexturePools",
+        "GFX_SetSpriteCacheFreeCallback"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "c1d3fce9"
+    },
+    {
+      "name": "RENDERER_D3D_FreeTextureCaches",
+      "address": "006b32b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b32b0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_FreeTextureCaches",
+        "RENDERER_D3D_ReleaseSmackerSurfaces",
+        "RENDERER_D3D_ReleaseFontTextures",
+        "D3DFLOOR_Free",
+        "D3DSUBTILE_Free",
+        "D3DTEXCACHE_Free",
+        "RENDERER_D3D_ReleaseTexturePools"
+      ],
+      "dh": "9c050f0c"
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseDevice",
+      "address": "006b3320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3320"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseDevice",
+        "RENDERER_D3D_ReleaseGroundTileCache",
+        "D3D_FreeSystemMemoryTexturesForTiles",
+        "RENDERER_D3D_FreeTextureCaches",
+        "DIRECTD3D_LogError"
+      ],
+      "dh": "37a82f07"
+    },
+    {
+      "name": "RENDERER_D3D_DestroyWindow",
+      "address": "006b3400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3400"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_DestroyWindow",
+        "RENDERER_D3D_ReleaseDevice"
+      ],
+      "dh": "54a3bd11"
+    },
+    {
+      "name": "RENDERER_D3D_InitializeCutsceneMode",
+      "address": "006b3420",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3420"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitializeCutsceneMode",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset",
+        "DIRECTD3D_LogError",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "uint32_t"
+      ],
+      "dh": "a6f96dfd"
+    },
+    {
+      "name": "BeginCutScene",
+      "address": "006b3530",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3530"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "BeginCutScene",
+        "RENDERER_D3D_ReleaseDevice",
+        "RENDERER_D3D_InitializeCutsceneMode"
+      ],
+      "dh": "626600da"
+    },
+    {
+      "name": "SetGamma",
+      "address": "006b3570",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3570"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetGamma",
+        "FOG_FillArrayWithRandomInts",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "e4436a8a",
+      "paramStorage": [
+        [
+          "nGamma",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetBackBuffer",
+      "address": "006b3610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3610"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "GetBackBuffer",
+        "memset",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "uint32_t"
+      ],
+      "dh": "3377db69",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_CreateSystemMemoryTexture",
+      "address": "006b3730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3730"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CreateSystemMemoryTexture",
+        "memset",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "IDirect3DTexture2 *",
+        "IDirectDrawSurface7 *",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "cde9c9ce",
+      "paramStorage": [
+        [
+          "ppSurface",
+          "ECX:4"
+        ],
+        [
+          "ppTexture",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ClearBackbuffer",
+      "address": "006b3800",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3800"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ClearBackbuffer",
+        "memset",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "IDirectDrawSurface7"
+      ],
+      "dh": "833d8eb6"
+    },
+    {
+      "name": "RENDERER_D3D_CopySurfacePixels",
+      "address": "006b38a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b38a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CopySurfacePixels",
+        "memset",
+        "memcpy",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "IDirectDrawSurface7",
+        "uint8_t"
+      ],
+      "dh": "56675915",
+      "paramStorage": [
+        [
+          "pSrcSurface",
+          "ECX:4"
+        ],
+        [
+          "pDestSurface",
+          "EDX:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DIRECT3D_ErrorLog",
+      "address": "006b39b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b39b0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_DIRECT3D_ErrorLog",
+        "LOGFILE_WriteStringToFile",
+        "DIRECTD3D_LogError"
+      ],
+      "dh": "e64d6fd8",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "dwHResult",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_EnumDisplayModeCallback",
+      "address": "006b3fd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b3fd0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_EnumDisplayModeCallback",
+        "LOGFILE_WriteStringToFile",
+        "memset",
+        "DIRECTD3D_LogError",
+        "RENDERER_DIRECT3D_ErrorLog"
+      ],
+      "usedTypes": [
+        "D2D3DDeviceSlotStrc",
+        "DDSCAPS",
+        "DDSURFACEDESC",
+        "IDirect3DDevice",
+        "IDirectDrawSurface7",
+        "uint32_t"
+      ],
+      "dh": "cb51c5ff",
+      "paramStorage": [
+        [
+          "pDisplayModeDesc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pModeList",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Direct3DCallBack",
+      "address": "006b42f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b42f0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Direct3DCallBack",
+        "memset",
+        "SFILE_GetGlobalPointer",
+        "LOGFILE_WriteStringToFile",
+        "strncpy",
+        "RENDERER_DIRECT3D_ErrorLog",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "D2D3DDeviceSlotStrc",
+        "D3DDEVICEDESC",
+        "DDCAPS_DX",
+        "DDDEVICEIDENTIFIER",
+        "DDSCAPS",
+        "DDSURFACEDESC",
+        "GUID",
+        "IDirect3DDevice",
+        "IDirectDraw1",
+        "IDirectDrawSurface7",
+        "pfnEHHandlerRoutine",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "ab100dc2",
+      "paramStorage": [
+        [
+          "lpGUID",
+          "Stack[0x4]:4"
+        ],
+        [
+          "lpDriverDescription",
+          "Stack[0x8]:4"
+        ],
+        [
+          "lpDriverName",
+          "Stack[0xc]:4"
+        ],
+        [
+          "lpContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Catch_All_006b4c42",
+      "address": "006b4c42",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4c42"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Catch_All_006b4c42",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "dh": "360bedcd"
+    },
+    {
+      "name": "Catch_All_006b4c73",
+      "address": "006b4c73",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4c73"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Catch_All_006b4c73",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "dh": "b1513c84"
+    },
+    {
+      "name": "BootDirect3d",
+      "address": "006b4c90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4c90"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "BootDirect3d",
+        "LOGFILE_WriteStringToFile",
+        "FAULT_ShowFormattedErrorWithArgs",
+        "DIRECTD3D_LogError",
+        "RENDERER_D3D_SaveDeviceConfigToRegistry"
+      ],
+      "usedTypes": [
+        "ATOM",
+        "WNDCLASSA",
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "5e16b84b",
+      "paramStorage": [
+        [
+          "hInstance",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Catch_All_006b4d4b",
+      "address": "006b4d4b",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4d4b"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Catch_All_006b4d4b",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "dh": "e0ce1468"
+    },
+    {
+      "name": "Initialize",
+      "address": "006b4e80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4e80"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Initialize",
+        "SFILE_GetGlobalPointer",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "BootDirect3d",
+        "SRegLoadString",
+        "SRegLoadValue",
+        "SRegLoadData"
+      ],
+      "usedTypes": [
+        "D2SystemInfoStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "42ccbde3",
+      "paramStorage": [
+        [
+          "hInstance",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitializeDevice",
+      "address": "006b4fd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b4fd0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitializeDevice",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "DIRECTD3D_LogError",
+        "RENDERER_D3D_ReleaseDevice",
+        "memset",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_AllocateTextureCaches",
+        "D3D_CreateSystemMemoryTexturesForTiles",
+        "RENDERER_D3D_InitGroundTileCache",
+        "RENDERER_DIRECT3D_ErrorLog"
+      ],
+      "usedTypes": [
+        "D3DVIEWPORT",
+        "DDSCAPS",
+        "DDSURFACEDESC"
+      ],
+      "dh": "8ffb0b1b",
+      "paramStorage": [
+        [
+          "nResolutionMode",
+          "EAX:4"
+        ],
+        [
+          "hWnd",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_006b5520",
+      "address": "006b5520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5520"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Unreferenced_006b5520",
+        "RENDERER_D3D_ClearBackbuffer"
+      ],
+      "dh": "607ad97e"
+    },
+    {
+      "name": "Release",
+      "address": "006b5550",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5550"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Release",
+        "RENDERER_D3D_ReleaseSmackerBuffer",
+        "RENDERER_D3D_ReleaseDevice",
+        "FreeClientMemory"
+      ],
+      "dh": "b3b80d65"
+    },
+    {
+      "name": "CreateWindow",
+      "address": "006b55e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b55e0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "CreateWindow",
+        "RENDERER_D3D_InitializeDevice",
+        "RENDERER_D3D_ClearBackbuffer"
+      ],
+      "dh": "45aba728",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "EndCutScene",
+      "address": "006b5630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5630"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "EndCutScene",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "RENDERER_D3D_ReleaseDevice",
+        "CreateWindow"
+      ],
+      "dh": "24a8b918",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ],
+        [
+          "nWindowState",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlayCutScene",
+      "address": "006b56c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b56c0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "PlayCutScene",
+        "RENDERER_D3D_ClearBackbuffer",
+        "D3D_PlayBinkVideo"
+      ],
+      "dh": "7f77fe6e",
+      "paramStorage": [
+        [
+          "szFile",
+          "ECX:4"
+        ],
+        [
+          "nResolutionMode",
+          "EDX:4"
+        ],
+        [
+          "fpFrame",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "BeginScene",
+      "address": "006b5720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5720"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "BeginScene",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ClearScreen",
+        "SetGlobalLight",
+        "RENDERER_DIRECT3D_ErrorLog"
+      ],
+      "dh": "8190ce3f",
+      "paramStorage": [
+        [
+          "bClear",
+          "ECX:4"
+        ],
+        [
+          "nRed",
+          "DL:1"
+        ],
+        [
+          "nGreen",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nBlue",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "EndScene1",
+      "address": "006b57d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b57d0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "EndScene1",
+        "RENDERER_DIRECT3D_ErrorLog",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "dh": "004796f5"
+    },
+    {
+      "name": "ResizeWindow",
+      "address": "006b5830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5830"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "ResizeWindow",
+        "RENDERER_D3D_ReleaseDevice",
+        "RENDERER_D3D_InitializeDevice",
+        "RENDERER_D3D_ClearBackbuffer"
+      ],
+      "dh": "7607c7c1",
+      "paramStorage": [
+        [
+          "hWnd",
+          "ECX:4"
+        ],
+        [
+          "bForceResize",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_CreateSurfaceWithTexture",
+      "address": "006b58a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b58a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CreateSurfaceWithTexture",
+        "memset",
+        "DIRECTD3D_LogError",
+        "RENDERER_DIRECT3D_ErrorLog"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC",
+        "IDirectDrawSurface7 *",
+        "uint32_t",
+        "void *"
+      ],
+      "dh": "97ee77fd",
+      "paramStorage": [
+        [
+          "ppSurface",
+          "ECX:4"
+        ],
+        [
+          "ppTexture",
+          "EDX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_Release",
+      "address": "006b5990",
+      "lines": [],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Release"
+      ]
+    },
+    {
+      "name": "InitPerspective",
+      "address": "006b59a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b59a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "InitPerspective",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "DIRECTD3D_LogError",
+        "atexit",
+        "RENDERER_D3D_InitLightingTable",
+        "RENDERER_D3D_InitPerspectiveTransformTable",
+        "RENDERER_D3D_InitPerspectiveVertexBuffer",
+        "RENDERER_D3D_InitSmackerVertexBuffer",
+        "AllocClientMemory"
+      ],
+      "usedTypes": [
+        "D2GfxHelperStrc",
+        "D2GfxSettingsStrc",
+        "IDirectDraw1",
+        "uint8_t"
+      ],
+      "dh": "5d81be8f",
+      "paramStorage": [
+        [
+          "pSettings",
+          "ECX:4"
+        ],
+        [
+          "pHelpers",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseTexturePools",
+      "address": "006b5b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5b10"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseTexturePools",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "IDirect3DTexture2",
+        "IDirectDrawSurface7"
+      ],
+      "dh": "bc2336a7"
+    },
+    {
+      "name": "D3D_PixelDataFreeCallback_ClearCacheNodes",
+      "address": "006b5bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5bb0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "D3D_PixelDataFreeCallback_ClearCacheNodes"
+      ],
+      "dh": "e7b06cca",
+      "paramStorage": [
+        [
+          "pCacheIndices",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ExtractSpriteInfo",
+      "address": "006b5c80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5c80"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "SPRITECACHE_GetOrLoadSprite",
+        "GetDC6Width",
+        "GetDC6OffsetX",
+        "GetDC6Height",
+        "GetDC6OffsetY",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "7e910db4",
+      "paramStorage": [
+        [
+          "pSprite",
+          "ESI:4"
+        ],
+        [
+          "pOutput",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_CalculateTextureSize",
+      "address": "006b5cf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5cf0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CalculateTextureSize"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc"
+      ],
+      "dh": "4e079582",
+      "paramStorage": [
+        [
+          "pStruct",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DIRECT3D_UploadTextureToCache",
+      "address": "006b5d40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b5d40"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "CELCMP_GetDC6BlockPixelData",
+        "D3DTEXCACHE_InvalidateByIndex",
+        "RENDERER_DIRECT3D_ErrorLog",
+        "D3DTEXCACHE_EnsureAvailableNode",
+        "memset",
+        "CELCMP_DrawCelFrame",
+        "DIRECTD3D_LogError",
+        "RENDERER_D3D_ConvertPalettedTo16Bit",
+        "RENDERER_D3D_CopySurfacePixels",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "DDSURFACEDESC",
+        "IDirect3DTexture2",
+        "IDirectDrawSurface7",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "a1d5a164",
+      "paramStorage": [
+        [
+          "pTexInfo",
+          "ECX:4"
+        ],
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nOutlineColor",
+          "Stack[0x8]:1"
+        ],
+        [
+          "nMode",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_DrawShadowQuad",
+      "address": "006b61a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b61a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_DrawShadowQuad",
+        "RENDERER_D3D_IsPerspectiveEnabled"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2D3DVertexStrc",
+        "uint8_t"
+      ],
+      "dh": "ece6541d",
+      "paramStorage": [
+        [
+          "pTextureInfo",
+          "EAX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0xc]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_DIRECT3D_DrawPalettedQuad",
+      "address": "006b63f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b63f0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_DIRECT3D_DrawPalettedQuad",
+        "RENDERER_D3D_SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_IsPerspectiveEnabled",
+        "RENDERER_D3D_SetTextureStageColor"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2D3DVertexStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3fd45f85",
+      "paramStorage": [
+        [
+          "pTextureInfo",
+          "EAX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x14]:1"
+        ],
+        [
+          "nParam6",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetDrawModeAndGetAlpha",
+      "address": "006b6680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6680"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetDrawModeAndGetAlpha",
+        "SetBlendMode"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "b53daa4a",
+      "paramStorage": [
+        [
+          "nDrawMode",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawPerspectiveImage",
+      "address": "006b6730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6730"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetDrawModeAndGetAlpha",
+        "DrawPerspectiveImage",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "AdjustPerspectivePosition",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_D3D_SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_SetTextureStageColor"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2D3DVertexStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "12c3a7f5",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwGamma",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenMode",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pPalette",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawImage",
+      "address": "006b6b40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6b40"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawImage",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "SetDrawModeAndGetAlpha",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_DIRECT3D_DrawPalettedQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "c0b7ac1e",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwGamma",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pPalette",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawShiftedImage",
+      "address": "006b6bf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6bf0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawShiftedImage",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "SetDrawModeAndGetAlpha",
+        "RENDERER_DIRECT3D_DrawPalettedQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "70d01e0f",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwGamma",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nGlobalPaletteShift",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawVerticalCropImage",
+      "address": "006b6c90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6c90"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawVerticalCropImage",
+        "SetDrawModeAndGetAlpha",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_DIRECT3D_DrawPalettedQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "e18b2535",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkipLines",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDrawLines",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ClipSpriteToRect",
+      "address": "006b6d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6d70"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ClipSpriteToRect",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2RenderClipOutStrc",
+        "uint32_t"
+      ],
+      "dh": "41e0e249",
+      "paramStorage": [
+        [
+          "pClipResult",
+          "EAX:4"
+        ],
+        [
+          "pSpriteInfo",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pClipRect",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawClippedImage",
+      "address": "006b6ee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b6ee0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawClippedImage",
+        "SetDrawModeAndGetAlpha",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_D3D_ClipSpriteToRect",
+        "RENDERER_DIRECT3D_DrawPalettedQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "D2RenderClipOutStrc",
+        "int32_t"
+      ],
+      "dh": "5b7fb9f9",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCropRect",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawShadow",
+      "address": "006b7000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7000"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawShadow",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_D3D_SetBlendMode",
+        "RENDERER_D3D_IsShadowBlendingEnabled",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_DrawShadowQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "5f1e1226",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawImageFast",
+      "address": "006b7090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7090"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawImageFast",
+        "SetBlendMode",
+        "RENDERER_D3D_ExtractSpriteInfo",
+        "RENDERER_D3D_CalculateTextureSize",
+        "RENDERER_DIRECT3D_UploadTextureToCache",
+        "RENDERER_DIRECT3D_DrawPalettedQuad"
+      ],
+      "usedTypes": [
+        "D2D3DSpriteInfoStrc",
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "17462b44",
+      "paramStorage": [
+        [
+          "pData",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DebugFillBackBuffer",
+      "address": "006b7100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7100"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DebugFillBackBuffer"
+      ],
+      "dh": "5a1671b0",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitializeTexturePools",
+      "address": "006b7110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7110"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitializeTexturePools",
+        "AllocClientMemory",
+        "RENDERER_D3D_CreateSystemMemoryTexture",
+        "RENDERER_DIRECT3D_ErrorLog",
+        "CELCMP_SetPixelDataFreeCallback",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D3DVERTEXBUFFERDESC",
+        "int32_t"
+      ],
+      "dh": "63bf06e4"
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseFontTextures",
+      "address": "006b7250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7250"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseFontTextures"
+      ],
+      "usedTypes": [
+        "IDirectDrawSurface7"
+      ],
+      "dh": "65f3df0e"
+    },
+    {
+      "name": "RENDERER_D3D_CreateFontTextures",
+      "address": "006b72a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b72a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CreateFontTextures",
+        "RENDERER_D3D_CreateSystemMemoryTexture",
+        "memset",
+        "DIRECTD3D_LogError",
+        "RENDERER_D3D_CreateSurfaceWithTexture",
+        "RENDERER_D3D_CopySurfacePixels",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "COLORREF",
+        "DDSURFACEDESC",
+        "HBITMAP",
+        "HFONT",
+        "IDirect3DTexture2",
+        "IDirect3DTexture2 *",
+        "IDirectDrawSurface7",
+        "IDirectDrawSurface7 *",
+        "tagRECT"
+      ],
+      "dh": "ce2ba457"
+    },
+    {
+      "name": "Unreferenced_006b74f0",
+      "address": "006b74f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b74f0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "Unreferenced_006b74f0",
+        "DIRECTD3D_LogError",
+        "SetPalette"
+      ],
+      "dh": "4b511025",
+      "paramStorage": [
+        [
+          "pPalette",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_DrawGlyph",
+      "address": "006b7530",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7530"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_DrawGlyph"
+      ],
+      "dh": "21c519d4",
+      "paramStorage": [
+        [
+          "cGlyph",
+          "AL:1"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawString",
+      "address": "006b7630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7630"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawString",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_DrawGlyph"
+      ],
+      "usedTypes": [
+        "va_list"
+      ],
+      "dh": "588c05dd",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "szFormat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "va",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawLight",
+      "address": "006b76c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b76c0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawLight"
+      ],
+      "dh": "8e7e0a46",
+      "paramStorage": [
+        [
+          "pLight",
+          "ECX:4"
+        ],
+        [
+          "pPlayerLight",
+          "EDX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitializeFontSystem",
+      "address": "006b76d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b76d0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitializeFontSystem",
+        "RENDERER_D3D_CreateFontTextures"
+      ],
+      "dh": "1fd5469d",
+      "paramStorage": [
+        [
+          "nBaseOffset",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_IsShadowBlendingEnabled",
+      "address": "006b77a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b77a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_IsShadowBlendingEnabled"
+      ],
+      "dh": "a4113d79"
+    },
+    {
+      "name": "DrawSolidRectEx",
+      "address": "006b77b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b77b0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawSolidRectEx",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "PALETTE_GetColorByIndex"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "uint32_t"
+      ],
+      "dh": "f3074785",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:1"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidRectAlpha",
+      "address": "006b7980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7980"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawSolidRectAlpha",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "PALETTE_GetColorByIndex"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "uint32_t"
+      ],
+      "dh": "d22943e8",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "address": "006b7b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7b30"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawLine",
+        "PALETTE_GetColorByIndex",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "uint32_t"
+      ],
+      "dh": "0612296a",
+      "paramStorage": [
+        [
+          "nXStart",
+          "ECX:4"
+        ],
+        [
+          "nYStart",
+          "EDX:4"
+        ],
+        [
+          "nXEnd",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYEnd",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwColor",
+          "Stack[0xc]:1"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawRect",
+      "address": "006b7c90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7c90"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawRect",
+        "DrawLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "RECT",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "8700ed69",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawRectEx",
+      "address": "006b7d80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7d80"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawRectEx",
+        "DrawLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "RECT",
+        "uint32_t"
+      ],
+      "dh": "4ded1608",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidRect",
+      "address": "006b7ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7ed0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawSolidRect",
+        "DrawSolidRectEx",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "RECT"
+      ],
+      "dh": "1998fab0",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nPaletteIndex",
+          "DL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawSolidSquare",
+      "address": "006b7f20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7f20"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawSolidSquare",
+        "DrawSolidRectEx"
+      ],
+      "usedTypes": [
+        "POINT",
+        "tagRECT",
+        "uint32_t"
+      ],
+      "dh": "d3b60298",
+      "paramStorage": [
+        [
+          "pPoint",
+          "ECX:4"
+        ],
+        [
+          "nSize",
+          "DL:1"
+        ],
+        [
+          "nPaletteIndex",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "ClearScreen",
+      "address": "006b7f70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7f70"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "ClearScreen",
+        "RENDERER_D3D_ClearBackbuffer"
+      ],
+      "usedTypes": [
+        "RECT"
+      ],
+      "dh": "1e3f5be6",
+      "paramStorage": [
+        [
+          "bPartial",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_CalculateViewportRect",
+      "address": "006b7fd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b7fd0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CalculateViewportRect",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "RECT"
+      ],
+      "dh": "90e7c488",
+      "paramStorage": [
+        [
+          "pRect",
+          "ECX:4"
+        ],
+        [
+          "nScreenPanels",
+          "ESI:4"
+        ],
+        [
+          "pOffset",
+          "EDI:4"
+        ],
+        [
+          "nParam1",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitPerspectiveVertexBuffer",
+      "address": "006b80a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b80a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitPerspectiveVertexBuffer"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1bad11a1"
+    },
+    {
+      "name": "RENDERER_D3D_BuildShadowTileVertices",
+      "address": "006b8220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8220"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_BuildShadowTileVertices",
+        "D3D_RenderSubtileToTexture",
+        "RENDERER_D3D_ApplyShadowTextureCoords"
+      ],
+      "usedTypes": [
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "9efa5e4c",
+      "paramStorage": [
+        [
+          "pTileLibraryEntryStrc",
+          "ECX:4"
+        ],
+        [
+          "nTilePosX",
+          "EDX:4"
+        ],
+        [
+          "nTilePosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "byLightRow",
+          "Stack[0x8]:1"
+        ],
+        [
+          "dwAlpha",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenSplitIndex",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_RenderShadowTileWithPerspective",
+      "address": "006b83a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b83a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_RenderShadowTileWithPerspective",
+        "RENDERER_D3D_CalculateViewportRect",
+        "AdjustPerspectivePosition",
+        "D3D_RenderSubtileToTexture",
+        "RENDERER_D3D_ApplyShadowTextureCoords"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "D2TileLibraryEntryStrc",
+        "RECT",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "c25d2086",
+      "paramStorage": [
+        [
+          "pTileEntry",
+          "ECX:4"
+        ],
+        [
+          "nTilePosX",
+          "EDX:4"
+        ],
+        [
+          "nTilePosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "byLightRow",
+          "Stack[0x8]:1"
+        ],
+        [
+          "dwAlpha",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenSplitIndex",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawShadowTile",
+      "address": "006b86f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b86f0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawShadowTile",
+        "SPRITECACHE_AllocEntry",
+        "RENDERER_D3D_SetBlendMode",
+        "RENDERER_D3D_IsShadowBlendingEnabled",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_IsPerspectiveEnabled",
+        "RENDERER_D3D_RenderShadowTileWithPerspective",
+        "RENDERER_D3D_BuildShadowTileVertices"
+      ],
+      "usedTypes": [
+        "D2TileLibraryEntryStrc",
+        "int32_t"
+      ],
+      "dh": "8558d14d",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDrawMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_BuildWallTileVerticesNoPerspective",
+      "address": "006b87a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b87a0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_BuildWallTileVerticesNoPerspective",
+        "D3D_RenderSubtileToTexture",
+        "RENDERER_D3D_SetTextureStageColor"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "50bdb213",
+      "paramStorage": [
+        [
+          "nScreenPanels",
+          "ECX:4"
+        ],
+        [
+          "pTile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pTexColorTable",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nParam4",
+          "Stack[0x14]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_RenderWallTileWithPerspective",
+      "address": "006b8950",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8950"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_RenderWallTileWithPerspective",
+        "RENDERER_D3D_CalculateViewportRect",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "AdjustPerspectivePosition",
+        "D3D_RenderSubtileToTexture",
+        "RENDERER_D3D_SetTextureStageColor"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "D2FloatIntUnion",
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc",
+        "RECT",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "25be347e",
+      "paramStorage": [
+        [
+          "nScreenPanels",
+          "EAX:4"
+        ],
+        [
+          "pTile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pLightColors",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_DrawTransparentWallTile",
+      "address": "006b8df0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8df0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_DrawTransparentWallTile",
+        "SPRITECACHE_AllocEntry",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_IsPerspectiveEnabled",
+        "RENDERER_D3D_RenderWallTileWithPerspective",
+        "RENDERER_D3D_BuildWallTileVerticesNoPerspective"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc",
+        "uint8_t"
+      ],
+      "dh": "924d5e4a",
+      "paramStorage": [
+        [
+          "pTile",
+          "ESI:4"
+        ],
+        [
+          "nAlpha",
+          "BL:1"
+        ],
+        [
+          "nScreenPanels",
+          "EDI:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLight",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawTransWallTile",
+      "address": "006b8e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8e60"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawTransWallTile",
+        "RENDERER_D3D_DrawTransparentWallTile"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc"
+      ],
+      "dh": "f9dc0a6c",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pLight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x10]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DrawWallTile",
+      "address": "006b8e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8e90"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawWallTile",
+        "SPRITECACHE_AllocEntry",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "RENDERER_D3D_IsPerspectiveEnabled",
+        "RENDERER_D3D_RenderWallTileWithPerspective",
+        "RENDERER_D3D_BuildWallTileVerticesNoPerspective"
+      ],
+      "usedTypes": [
+        "D2GfxLightStrc",
+        "D2TileLibraryEntryStrc"
+      ],
+      "dh": "991de12a",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "nPosX",
+          "EDX:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pLight",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitGroundTileCache",
+      "address": "006b8f10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b8f10"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitGroundTileCache",
+        "RENDERER_DIRECT3D_ErrorLog",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "D2FloatIntUnion",
+        "D3DVERTEXBUFFERDESC",
+        "uint16_t"
+      ],
+      "dh": "cd3e5c56"
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseGroundTileCache",
+      "address": "006b9150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9150"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseGroundTileCache"
+      ],
+      "dh": "324825fd"
+    },
+    {
+      "name": "DrawGroundTile",
+      "address": "006b9170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9170"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DrawGroundTile",
+        "D3D_RenderFloorTileToTexture",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode",
+        "DIRECTD3D_LogError"
+      ],
+      "usedTypes": [
+        "D2GfxLightExStrc",
+        "D2TileLibraryEntryStrc",
+        "D3DVB_Lock",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "b529c18c",
+      "paramStorage": [
+        [
+          "pTile",
+          "ECX:4"
+        ],
+        [
+          "pLight",
+          "EDX:4"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nWorldXpos",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nWorldYpos",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nAlpha",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nScreenPanels",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pTileData",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitLightingTable",
+      "address": "006b96c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b96c0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitLightingTable"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "39fc755d"
+    },
+    {
+      "name": "SetGlobalLight",
+      "address": "006b9710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9710"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetGlobalLight"
+      ],
+      "dh": "fac92490",
+      "paramStorage": [
+        [
+          "nRed",
+          "ECX:4"
+        ],
+        [
+          "nGreen",
+          "EDX:4"
+        ],
+        [
+          "nBlue",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ApplyShadowTextureCoords",
+      "address": "006b9730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9730"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ApplyShadowTextureCoords"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "uint8_t"
+      ],
+      "dh": "098c8cb0",
+      "paramStorage": [
+        [
+          "pVertex",
+          "ECX:4"
+        ],
+        [
+          "nLightIndex",
+          "DL:1"
+        ],
+        [
+          "byAlpha",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_SetTextureStageColor",
+      "address": "006b9780",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9780"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_SetTextureStageColor"
+      ],
+      "usedTypes": [
+        "D2D3DVertexStrc",
+        "uint32_t"
+      ],
+      "dh": "fc9f4af1",
+      "paramStorage": [
+        [
+          "pVertex",
+          "ECX:4"
+        ],
+        [
+          "dwGamma",
+          "EDX:4"
+        ],
+        [
+          "byAlpha",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_InitPerspectiveTransformTable",
+      "address": "006b97d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b97d0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitPerspectiveTransformTable"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1f2b2a5b"
+    },
+    {
+      "name": "RENDERER_D3D_IsPerspectiveEnabled",
+      "address": "006b9830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9830"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_IsPerspectiveEnabled"
+      ],
+      "dh": "9b8b4b12"
+    },
+    {
+      "name": "SetPerspectiveScale",
+      "address": "006b9850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9850"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetPerspectiveScale"
+      ],
+      "dh": "4b6f1992",
+      "paramStorage": [
+        [
+          "nScaleX",
+          "ECX:4"
+        ],
+        [
+          "nScaleY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AdjustPerspectivePosition",
+      "address": "006b9860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9860"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "AdjustPerspectivePosition"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "8fc376de",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nBais",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pXAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pYAdjust",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PerspectiveScalePosition",
+      "address": "006b9910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9910"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "PerspectiveScalePosition"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "6ce009ba",
+      "paramStorage": [
+        [
+          "nPosX",
+          "ECX:4"
+        ],
+        [
+          "nPosY",
+          "EDX:4"
+        ],
+        [
+          "nAngle",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pXAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pYAdjust",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bOrder",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetDefaultPerspectiveFactor",
+      "address": "006b9a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9a00"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SetDefaultPerspectiveFactor"
+      ],
+      "dh": "1c98eae2"
+    },
+    {
+      "name": "RENDERER_D3D_InitSmackerVertexBuffer",
+      "address": "006b9a10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9a10"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_InitSmackerVertexBuffer",
+        "AllocClientMemory",
+        "memset"
+      ],
+      "dh": "0f934080"
+    },
+    {
+      "name": "RENDERER_D3D_CreateSmackerSurfaces",
+      "address": "006b9a50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9a50"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CreateSmackerSurfaces",
+        "RENDERER_D3D_CreateSystemMemoryTexture",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "RENDERER_D3D_CreateSurfaceWithTexture"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "8adac66d",
+      "paramStorage": [
+        [
+          "nParam",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseSmackerBuffer",
+      "address": "006b9b00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9b00"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseSmackerBuffer",
+        "FreeClientMemory"
+      ],
+      "dh": "357de7f2"
+    },
+    {
+      "name": "RENDERER_D3D_ReleaseSmackerSurfaces",
+      "address": "006b9b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9b30"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ReleaseSmackerSurfaces"
+      ],
+      "usedTypes": [
+        "IDirect3DTexture2",
+        "IDirectDrawSurface7"
+      ],
+      "dh": "ae034641"
+    },
+    {
+      "name": "CloseSmacker",
+      "address": "006b9bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9bb0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "CloseSmacker"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc"
+      ],
+      "dh": "0836dff6",
+      "paramStorage": [
+        [
+          "pContext",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_ResetSmackerSurfaces",
+      "address": "006b9bd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9bd0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_ResetSmackerSurfaces",
+        "RENDERER_D3D_CopySurfacePixels"
+      ],
+      "dh": "5c28a95a"
+    },
+    {
+      "name": "RENDERER_D3D_BlitSmackerFrame",
+      "address": "006b9c40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9c40"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_BlitSmackerFrame",
+        "RENDERER_D3D_SetBlendMode",
+        "SetBlendMode",
+        "RENDERER_D3D_SetTextureFilterMode"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc"
+      ],
+      "dh": "db049b47",
+      "paramStorage": [
+        [
+          "nHeight",
+          "EAX:4"
+        ],
+        [
+          "pSurface",
+          "ECX:4"
+        ],
+        [
+          "nOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_CopySmackerRowWithAlpha",
+      "address": "006b9eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9eb0"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_CopySmackerRowWithAlpha"
+      ],
+      "usedTypes": [
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "901614fc",
+      "paramStorage": [
+        [
+          "pSrc",
+          "ECX:4"
+        ],
+        [
+          "pDest",
+          "EAX:4"
+        ],
+        [
+          "nPitch",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RENDERER_D3D_PresentSmackerFrame",
+      "address": "006b9f00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006b9f00"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "RENDERER_D3D_PresentSmackerFrame",
+        "memset",
+        "DIRECTD3D_LogError",
+        "RENDERER_D3D_CopySmackerRowWithAlpha",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "DDSURFACEDESC"
+      ],
+      "dh": "94fab621"
+    },
+    {
+      "name": "DecodeSmacker",
+      "address": "006ba010",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ba010"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "DecodeSmacker",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memset",
+        "RENDERER_D3D_PresentSmackerFrame",
+        "RENDERER_D3D_ResetSmackerSurfaces",
+        "SFileLoadFileEx",
+        "SBmpDecodeImage",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "cb534789",
+      "paramStorage": [
+        [
+          "szSmacker",
+          "ECX:4"
+        ],
+        [
+          "pBuffer",
+          "EDX:4"
+        ],
+        [
+          "nVersion",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PlayerSmacker",
+      "address": "006ba390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ba390"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "PlayerSmacker",
+        "RENDERER_D3D_BlitSmackerFrame",
+        "RENDERER_D3D_PresentSmackerFrame",
+        "CloseSmacker",
+        "RENDERER_D3D_ResetSmackerSurfaces"
+      ],
+      "usedTypes": [
+        "D2SmackerContextStrc",
+        "Smack"
+      ],
+      "dh": "62c0fc20",
+      "paramStorage": [
+        [
+          "pContext",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SehHandler_6ca520",
+      "address": "006ca520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca520"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SehHandler_6ca520"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "06c7f63e",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SehHandler_6ca530",
+      "address": "006ca530",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca530"
+        }
+      ],
+      "namespace": "D2Direct3D::Renderer::Direct3D",
+      "calledFunctions": [
+        "SehHandler_6ca530"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "a2178a80",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "3rdparty/Storm/3rdparty/zlib/adler32.cpp",
+  "functions": [
+    {
+      "name": "ZLIB_Adler32",
+      "address": "0042b660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0042b660"
+        }
+      ],
+      "namespace": "Storm::_3rdparty::zlib::adler32",
+      "calledFunctions": [
+        "ZLIB_Adler32"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "871476a3",
+      "paramStorage": [
+        [
+          "nAdler",
+          "ECX:4"
+        ],
+        [
+          "pbData",
+          "EDX:4"
+        ],
+        [
+          "nLen",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ZLIB_Adler32Combine",
+      "address": "0042b8e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0042b8e0"
+        }
+      ],
+      "namespace": "Storm::_3rdparty::zlib::adler32",
+      "calledFunctions": [
+        "ZLIB_Adler32Combine",
+        "_allrem"
+      ],
+      "usedTypes": [
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "eaa44abf",
+      "paramStorage": [
+        [
+          "nAdler1",
+          "ECX:4"
+        ],
+        [
+          "nLen2Lo",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLen2Hi",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAdler2",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ZLIB_Adler32Combine32",
+      "address": "0042b990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0042b990"
+        }
+      ],
+      "namespace": "Storm::_3rdparty::zlib::adler32",
+      "calledFunctions": [
+        "ZLIB_Adler32Combine32",
+        "ZLIB_Adler32Combine"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "a6758abc",
+      "paramStorage": [
+        [
+          "nAdler1",
+          "ECX:4"
+        ],
+        [
+          "nAdler2",
+          "EDX:4"
+        ],
+        [
+          "nLen2",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ZLIB_Adler32Combine64",
+      "address": "0042b9b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0042b9b0"
+        }
+      ],
+      "namespace": "Storm::_3rdparty::zlib::adler32",
+      "calledFunctions": [
+        "ZLIB_Adler32Combine64",
+        "ZLIB_Adler32Combine"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "183bddb7",
+      "paramStorage": [
+        [
+          "nAdler1",
+          "ECX:4"
+        ],
+        [
+          "nAdler2",
+          "EDX:4"
+        ],
+        [
+          "nLen2Lo",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLen2Hi",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

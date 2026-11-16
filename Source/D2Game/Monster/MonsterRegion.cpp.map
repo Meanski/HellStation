@@ -1,0 +1,456 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Monster/MonsterRegion.cpp",
+  "functions": [
+    {
+      "name": "MONREGION_PopulateMonsterTypes",
+      "address": "005475e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005475e0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "MONREGION_PopulateMonsterTypes",
+        "memmove",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2LevelsTxt",
+        "D2MonStatsTxt",
+        "D2MonsterRegionFieldStrc",
+        "D2MonsterRegionStrc",
+        "D2SeedStrc",
+        "int64_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "cf5f68ad",
+      "paramStorage": [
+        [
+          "bIsNotNormalDifficulty",
+          "ECX:4"
+        ],
+        [
+          "pMonsterRegion",
+          "EDX:4"
+        ],
+        [
+          "pTxtLevels",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSeed",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocMonsterRegion",
+      "address": "005479c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005479c0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "AllocMonsterRegion",
+        "InitSeed_Param_666",
+        "GetDifficultyLevels",
+        "AllocServerMemory",
+        "memset",
+        "TXT_Levels_GetLine",
+        "MONREGION_PopulateMonsterTypes",
+        "SEED_RollChampionPack",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DifficultyLevelsTxt",
+        "D2LevelsTxt",
+        "D2MonsterRegionFieldStrc",
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2PoolManagerStrc",
+        "D2SeedStrc",
+        "eD2Difficulty",
+        "int32_t"
+      ],
+      "dh": "66b141b0",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pMonsterRegionList",
+          "EDX:4"
+        ],
+        [
+          "pSeed",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSeedLow",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDifficulty",
+          "Stack[0xc]:1"
+        ],
+        [
+          "bExpansion",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeMonsterRegion",
+      "address": "00547b50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547b50"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "FreeMonsterRegion",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc *",
+        "D2PoolManagerStrc"
+      ],
+      "dh": "b13a852d",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "ppMonsterRegion",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ReturnMonsterRegionEntryForLevel",
+      "address": "00547bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547bb0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "ReturnMonsterRegionEntryForLevel"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "eD2LevelId"
+      ],
+      "dh": "bd1255ae",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitializeSpawnCount",
+      "address": "00547bc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547bc0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "InitializeSpawnCount",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "SEED_RollChampionPack"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionFieldStrc",
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "uint16_t"
+      ],
+      "dh": "cd7565f0",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocMonsterRegionForGame",
+      "address": "00547d20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547d20"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "AllocMonsterRegionForGame",
+        "SEED_InitDefault",
+        "InitSeed_Param_666",
+        "AllocMonsterRegion"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "41178dfd",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "IncreaseMonsterSpawnCount",
+      "address": "00547d90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547d90"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "IncreaseMonsterSpawnCount",
+        "SetUnsetSummonerFlags",
+        "DRLGROOM_GetLevelIdFromRoom"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc *",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "cd9d1e7b",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "pRoom",
+          "EDX:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bIsSummoner",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DecreaseMonsterSpawnCount",
+      "address": "00547dd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547dd0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "DecreaseMonsterSpawnCount",
+        "CheckForModeZeroDeath",
+        "GetMonsterFlags",
+        "GetMonsterArea"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d8acfa29",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nPrevMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCurrMode",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IncreaseMonKillCount",
+      "address": "00547e50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547e50"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "IncreaseMonKillCount",
+        "GetMonsterFlags",
+        "GetMonsterArea",
+        "STATSEX_GetAlignment"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d106e935",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DecreaseMonKillCount",
+      "address": "00547e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547e90"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "DecreaseMonKillCount",
+        "GetMonsterFlags",
+        "GetMonsterArea",
+        "STATSEX_GetAlignment"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "07440b16",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UpdateMonsterRegion",
+      "address": "00547ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00547ed0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterRegion",
+      "calledFunctions": [
+        "UpdateMonsterRegion",
+        "SetLevelId",
+        "STATSEX_GetAlignment",
+        "CheckMonsterType"
+      ],
+      "usedTypes": [
+        "D2MonsterRegionStrc",
+        "D2MonsterRegionStrc *",
+        "D2UnitStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "e16e1dbd",
+      "paramStorage": [
+        [
+          "ppMonsterRegion",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "eLevel2",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMonFlags",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bIsDead",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nParam",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x14]:4"
+        ]
+      ]
+    }
+  ]
+}

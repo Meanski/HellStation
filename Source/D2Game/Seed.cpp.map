@@ -1,0 +1,113 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Seed.cpp",
+  "functions": [
+    {
+      "name": "RollBetweenMinAndMax",
+      "address": "00472280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00472280"
+        }
+      ],
+      "namespace": "D2Game::Seed",
+      "definedIn": "D2Game/Seed.inline.h",
+      "calledFunctions": [
+        "RollBetweenMinAndMax"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d78dd469",
+      "paramStorage": [
+        [
+          "pSeed",
+          "ECX:4"
+        ],
+        [
+          "nMin",
+          "EDX:4"
+        ],
+        [
+          "nMax",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SEED_RollRange",
+      "address": "004bc500",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bc500"
+        }
+      ],
+      "namespace": "D2Game::Seed",
+      "definedIn": "D2Game/Seed.inline.h",
+      "calledFunctions": [
+        "SEED_RollRange"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c230b154",
+      "paramStorage": [
+        [
+          "pSeed",
+          "ECX:4"
+        ],
+        [
+          "nMin",
+          "EDX:4"
+        ],
+        [
+          "nMax",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SEED_RollRangeInclusive",
+      "address": "004cc790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004cc790"
+        }
+      ],
+      "namespace": "D2Game::Seed",
+      "definedIn": "D2Game/Seed.inline.h",
+      "calledFunctions": [
+        "SEED_RollRangeInclusive",
+        "RANDOM_RandomNumberSelector"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b6583944",
+      "paramStorage": [
+        [
+          "pSeed",
+          "ECX:4"
+        ],
+        [
+          "nMinValue",
+          "EDX:4"
+        ],
+        [
+          "nMaxValue",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

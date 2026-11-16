@@ -1,0 +1,259 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/Utils.cpp",
+  "functions": [
+    {
+      "name": "UTILS_OnUnitModeChange_NoOp",
+      "address": "004e4020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4020"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "UTILS_OnUnitModeChange_NoOp"
+      ],
+      "dh": "630f88d4"
+    },
+    {
+      "name": "UTILS_OnUnitModeChange_NoOp_Unref_004e4030",
+      "address": "004e4030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4030"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "UTILS_OnUnitModeChange_NoOp_Unref_004e4030"
+      ],
+      "dh": "a06fa9a3"
+    },
+    {
+      "name": "ANIM_OnSkillCastStub",
+      "address": "004e4050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4050"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "ANIM_OnSkillCastStub"
+      ],
+      "dh": "69de8a64"
+    },
+    {
+      "name": "UTILS_SqrtFloat",
+      "address": "004e4060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4060"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "UTILS_SqrtFloat",
+        "__CIsqrt"
+      ],
+      "dh": "046ae60b",
+      "paramStorage": [
+        [
+          "fInput",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk___CIsqrt",
+      "address": "004e4080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4080"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "thunk___CIsqrt",
+        "__CIsqrt"
+      ],
+      "dh": "be575dcd",
+      "paramStorage": [
+        [
+          "fValue",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollRandomNumerUpToArgument",
+      "address": "004e40a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e40a0"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "RollRandomNumerUpToArgument",
+        "GetPlayerUnit_UI"
+      ],
+      "usedTypes": [
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint64_t"
+      ],
+      "dh": "e8468dde",
+      "paramStorage": [
+        [
+          "nNumber",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollRandomNumber",
+      "address": "004e4100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4100"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "RollRandomNumber",
+        "RollRandomNumerUpToArgument"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "f3c18efe",
+      "paramStorage": [
+        [
+          "nMin",
+          "ECX:4"
+        ],
+        [
+          "nMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollRandomNumberTimesTwo",
+      "address": "004e4120",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4120"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "RollRandomNumberTimesTwo",
+        "RollRandomNumerUpToArgument"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "bef19327",
+      "paramStorage": [
+        [
+          "nRange",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CalculateHypotenuse",
+      "address": "004e4130",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4130"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "CalculateHypotenuse",
+        "__CIsqrt"
+      ],
+      "dh": "f81a5a00",
+      "paramStorage": [
+        [
+          "a",
+          "Stack[0x4]:4"
+        ],
+        [
+          "b",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CalculateHypotenusePowered",
+      "address": "004e4160",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4160"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "CalculateHypotenusePowered"
+      ],
+      "dh": "6d1e53bc",
+      "paramStorage": [
+        [
+          "fX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "fY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ANIM_OnSkillCastStub_Unref_004f52c0",
+      "address": "004f52c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f52c0"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "ANIM_OnSkillCastStub_Unref_004f52c0"
+      ],
+      "dh": "bce85573"
+    },
+    {
+      "name": "ANIM_OnSkillCastStub_Unref_004f52d0",
+      "address": "004f52d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f52d0"
+        }
+      ],
+      "namespace": "D2Client::_Utils",
+      "calledFunctions": [
+        "ANIM_OnSkillCastStub_Unref_004f52d0"
+      ],
+      "dh": "bf5a2f6f"
+    }
+  ]
+}

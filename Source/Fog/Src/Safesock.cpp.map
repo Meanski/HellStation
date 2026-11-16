@@ -1,0 +1,623 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Src/Safesock.cpp",
+  "functions": [
+    {
+      "name": "closeSocket",
+      "address": "0040d880",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040d880"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "closeSocket"
+      ],
+      "usedTypes": [
+        "SOCKET"
+      ],
+      "dh": "153ef375",
+      "paramStorage": [
+        [
+          "hSocket",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "StartUp",
+      "address": "0040d890",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040d890"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "StartUp",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "WSADATA",
+        "uint32_t"
+      ],
+      "dh": "ef29b707"
+    },
+    {
+      "name": "WSACleanup",
+      "address": "0040d8d0",
+      "lines": [],
+      "namespace": "Fog::Src::Safesock"
+    },
+    {
+      "name": "Create",
+      "address": "0040d8e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040d8e0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "Create",
+        "AllocClientMemory",
+        "memset",
+        "SStrCopy",
+        "FreeClientMemory",
+        "__security_check_cookie",
+        "WSAGetLastError"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "LPTHREAD_START_ROUTINE",
+        "SOCKET",
+        "WSADATA",
+        "sockaddr_in",
+        "u_long",
+        "u_short",
+        "uint32_t"
+      ],
+      "dh": "37e829ff",
+      "paramStorage": [
+        [
+          "szHostName",
+          "ECX:4"
+        ],
+        [
+          "nPort",
+          "DX:2"
+        ],
+        [
+          "pThreadProc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pThreadParam",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szConnectionAlias",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwFlags",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Free",
+      "address": "0040dbd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dbd0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "Free",
+        "WSAGetLastError",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "CRITICAL_SECTION",
+        "D2NetDataStrc",
+        "SOCKET"
+      ],
+      "dh": "bb473a1d",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "WSASocket2_Read",
+      "address": "0040dc60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dc60"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "WSASocket2_Read",
+        "WSAGetLastError"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "int32_t"
+      ],
+      "dh": "ce5b3db8",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "pBuffer",
+          "EDX:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WSASocket2_Send",
+      "address": "0040dcc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dcc0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "WSASocket2_Send",
+        "WSAGetLastError"
+      ],
+      "usedTypes": [
+        "CRITICAL_SECTION",
+        "D2NetDataStrc",
+        "int32_t"
+      ],
+      "dh": "e6eb2498",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "pBytes",
+          "EDX:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WSASocket2_SendOrCloseOnTimeout",
+      "address": "0040dd80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dd80"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "WSASocket2_SendOrCloseOnTimeout",
+        "WSAGetLastError",
+        "LOGFILE_WriteStringToFile"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "int32_t"
+      ],
+      "dh": "ffa6c750",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "pBytes",
+          "EDX:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAFESOCK_EnterCriticalSection",
+      "address": "0040ddd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ddd0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "SAFESOCK_EnterCriticalSection"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc"
+      ],
+      "dh": "bf4b760a",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LeaveCriticalSection_Safesock",
+      "address": "0040dde0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dde0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "LeaveCriticalSection_Safesock"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc"
+      ],
+      "dh": "d7b1bb19",
+      "paramStorage": [
+        [
+          "pSafesockStrc",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Safesock_PollReadReady",
+      "address": "0040ddf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ddf0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "Safesock_PollReadReady",
+        "WSAGetLastError",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "fd_set",
+        "int32_t",
+        "timeval"
+      ],
+      "dh": "b441e1e8",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetPeerNameDoesReturn",
+      "address": "0040dee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040dee0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "GetPeerNameDoesReturn"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "int32_t",
+        "sockaddr"
+      ],
+      "dh": "27ddbace",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "pName",
+          "EDX:4"
+        ],
+        [
+          "pNameLen",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSockNameDoesReturn",
+      "address": "0040df20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040df20"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "GetSockNameDoesReturn"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "sockaddr",
+        "uint32_t"
+      ],
+      "dh": "af799f8b",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "pName",
+          "EDX:4"
+        ],
+        [
+          "pNameLen",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "NET_GetLocalIp",
+      "address": "0040df60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040df60"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "NET_GetLocalIp",
+        "sprintf",
+        "WSACleanup",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "SOCKET",
+        "WSADATA",
+        "hostent",
+        "sockaddr_in",
+        "uint32_t"
+      ],
+      "dh": "8c3af1f1"
+    },
+    {
+      "name": "NET_MakeIPV4AddressHumanFriendly",
+      "address": "0040e080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e080"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "NET_MakeIPV4AddressHumanFriendly"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "c582ac83",
+      "paramStorage": [
+        [
+          "sAddr",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSocketStatusAndWsaResultToArguments",
+      "address": "0040e0b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e0b0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "GetSocketStatusAndWsaResultToArguments"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc"
+      ],
+      "dh": "bc40aea8",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "dwSocketStatus",
+          "EDX:4"
+        ],
+        [
+          "dwWSAResult",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "inet_nameToIp",
+      "address": "0040e0d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e0d0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "inet_nameToIp",
+        "sscanf",
+        "WSACleanup",
+        "WSAGetLastError",
+        "StartUp"
+      ],
+      "usedTypes": [
+        "hostent"
+      ],
+      "dh": "f07d53f2",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAFESOCK_SetSocketNonBlocking",
+      "address": "0040e1a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e1a0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "SAFESOCK_SetSocketNonBlocking"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "u_long"
+      ],
+      "dh": "0211436e",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ],
+        [
+          "bNonBlocking",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAFESOCK_EnableNonBlocking",
+      "address": "0040e1d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e1d0"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "SAFESOCK_EnableNonBlocking"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "u_long"
+      ],
+      "dh": "217442ce",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAFESOCK_DisableNonBlocking",
+      "address": "0040e200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e200"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "SAFESOCK_DisableNonBlocking"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "u_long"
+      ],
+      "dh": "a2b80a75",
+      "paramStorage": [
+        [
+          "pNetData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAFESOCK_CreateBlocking",
+      "address": "0040e230",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e230"
+        }
+      ],
+      "namespace": "Fog::Src::Safesock",
+      "calledFunctions": [
+        "SAFESOCK_CreateBlocking",
+        "Create"
+      ],
+      "usedTypes": [
+        "D2NetDataStrc",
+        "LPTHREAD_START_ROUTINE"
+      ],
+      "dh": "a6fb1a2d",
+      "paramStorage": [
+        [
+          "szText1",
+          "ECX:4"
+        ],
+        [
+          "nPort",
+          "EDX:4"
+        ],
+        [
+          "pThreadProc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pThreadParam",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szText2",
+          "Stack[0xc]:4"
+        ]
+      ]
+    }
+  ]
+}

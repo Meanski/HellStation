@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# count - how far the tree is from a 64-bit build, measured with the original's own
+# compiler family: Visual C++ 2005's x64 cross compiler with /Wp64.
+#
+#   asm_matching/msvc8/x64/count [-j N] [--keep]
+#
+# Compiles every translation unit of this checkout for x64 (syntax and semantics,
+# /Zs: no code generation) and counts
+#   C4311  a pointer converted to an integer that is narrower on x64 ((int)p)
+#   C4312  an integer converted to a pointer of greater size ((T*)n)
+# as unique source lines, plus the translation units that do not compile for x64
+# at all. Each such cast is a value typed int that carries a pointer: on x86 the
+# two are the same 32 bits, on x64 the cast truncates.
+#
+# Writes evidence/x64.json when the checkout is clean (else build/x64/x64.json),
+# and the full diagnostics to build/x64/out/diag.tsv (tu, file, line, kind, code,
+# message) and status.tsv. About 9 minutes with the default 6 parallel compilers.
+# Needs x64/setup.sh's compiler in the oracle's wine prefix (VC8_TOOLCHAIN /
+# VC8_WINEPREFIX, as for the oracle).
+set -euo pipefail
+X64="$(cd "$(dirname "$0")" && pwd)"
+. "$X64/../scripts/env.sh"
+# The compile and the count are oracle-zig's (zig/, `oracle-zig x64`).
+have_zig || { echo "x64/count needs zig 0.17 on PATH (asm_matching/msvc8/zig builds oracle-zig)" >&2; exit 2; }
+
+JOBS=6; KEEP=0
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -j) JOBS="$2"; shift 2 ;;
+        -j*) JOBS="${1#-j}"; shift ;;
+        --keep) KEEP=1; shift ;;
+        *) echo "usage: x64/count [-j N] [--keep]" >&2; exit 2 ;;
+    esac
+done
+
+W="${X64_WORK:-$ORACLE_BUILD/x64}"
+EV="$ORACLE_ROOT/evidence"
+# What is measured is the tree without this directory and the evidence, which do not change
+# the count: the commit recorded is the last one that changed it, so a commit adding only
+# evidence on top keeps naming a commit the branch contains.
+SCOPE=(. ":!asm_matching/msvc8/evidence" ":!asm_matching/msvc8/x64")
+SHA=$(git -C "$REPO_ROOT" log -1 --format=%H -- "${SCOPE[@]}")
+DIRTY=$(git -C "$REPO_ROOT" status --porcelain -- "${SCOPE[@]}" | head -1)
+
+BANNER=$("$X64/vc8x64.sh" cl 2>&1 >/dev/null | head -1 | tr -d '\r') || true
+case "$BANNER" in
+    *"for x64"*) ;;
+    *) echo "x64/count: the x64 compiler does not run: $BANNER" >&2; exit 1 ;;
+esac
+
+rm -rf "$W/src" "$W/out"
+mkdir -p "$W"
+# The same translation the oracle compiles: the translator, else the shipped translated/.
+oracle_zig translate --repo "$REPO_ROOT" "$W/src" >/dev/null
+
+# The x64 compiler has no inline assembly (C4235). The compat header's two __asm
+# helpers get x64 bodies in a copy; the oracle's own header stays as it is.
+oracle_zig x64 compat "$ORACLE_ROOT/vc8_compat.h" "$W/vc8_compat.h"
+
+oracle_zig x64 compile "$W/src" "$W/out" --oracle "$ORACLE_ROOT" --compat "$W/vc8_compat.h" \
+    --zs --jobs "$JOBS" >"$W/compile.log"
+tail -1 "$W/compile.log"
+
+GHIDRA=$(sed -n 's/.*g_szGhidraVersion\[\] = "\([0-9]*\)".*/\1/p' "$REPO_ROOT/Redivivus/ghidra_version.cpp" 2>/dev/null || true)
+if [ -n "$DIRTY" ]; then OUT="$W/x64.json"; else OUT="$EV/x64.json"; fi
+oracle_zig x64 json "$W/out" "$OUT" "$SHA" "$GHIDRA" "$BANNER"
+if [ -n "$DIRTY" ]; then
+    echo "uncommitted changes: written to $OUT, not to evidence/"
+else
+    echo "written: $OUT"
+fi
+# The translated tree and the logs are gigabytes; the diagnostics are what stays.
+[ "$KEEP" = 1 ] || rm -rf "$W/src" "$W/out/obj" "$W/out/log"

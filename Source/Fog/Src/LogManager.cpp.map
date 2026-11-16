@@ -1,0 +1,2229 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Src/LogManager.cpp",
+  "functions": [
+    {
+      "name": "DetectCpuVendor",
+      "address": "0040e250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e250"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DetectCpuVendor",
+        "__security_check_cookie"
+      ],
+      "dh": "3eb3c17d"
+    },
+    {
+      "name": "DecodeCpuModelName",
+      "address": "0040e300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e300"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DecodeCpuModelName"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b2d3f057",
+      "paramStorage": [
+        [
+          "nModel",
+          "ECX:4"
+        ],
+        [
+          "nBrandId",
+          "EDX:4"
+        ],
+        [
+          "pOutName",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nVendor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nFamily",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nType",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetTimestamp",
+      "address": "0040e850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e850"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetTimestamp"
+      ],
+      "usedTypes": [
+        "int64_t"
+      ],
+      "dh": "31ede059"
+    },
+    {
+      "name": "BenchmarkCpuSpeed",
+      "address": "0040e870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e870"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "BenchmarkCpuSpeed",
+        "GetTickCount",
+        "GetTimestamp",
+        "_allmul",
+        "_alldiv"
+      ],
+      "usedTypes": [
+        "LARGE_INTEGER",
+        "PFN_GetCurrentThread",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "6730b57a"
+    },
+    {
+      "name": "GetCpuVersionInfo",
+      "address": "0040e960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e960"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetCpuVersionInfo"
+      ],
+      "usedTypes": [
+        "uint64_t"
+      ],
+      "dh": "1e2ccdb3"
+    },
+    {
+      "name": "GetCpuBrandId",
+      "address": "0040e980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e980"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetCpuBrandId",
+        "GetCpuVersionInfo",
+        "DetectCpuVendor"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "c19aeedb"
+    },
+    {
+      "name": "DispatchCpuidCall",
+      "address": "0040e9e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040e9e0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DispatchCpuidCall"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "6e8bec39",
+      "paramStorage": [
+        [
+          "nLeaf",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LogCpuInfo",
+      "address": "0040ea00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ea00"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LogCpuInfo",
+        "DetectCpuVendor",
+        "GetCpuVersionInfo",
+        "GetCpuBrandId",
+        "DecodeCpuModelName",
+        "LOGFILE_WriteStringToFile",
+        "BenchmarkCpuSpeed",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "e8b153bf"
+    },
+    {
+      "name": "GetLoggerState_Stub",
+      "address": "0040eb10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb10"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetLoggerState_Stub"
+      ],
+      "dh": "7aa43a1d"
+    },
+    {
+      "name": "ReturnParam2_Stub",
+      "address": "0040eb20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb20"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ReturnParam2_Stub"
+      ],
+      "dh": "4201b340",
+      "paramStorage": [
+        [
+          "dwParam1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LOGMANAGER_UnwindDestructor_NoOp",
+      "address": "0040eb30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb30"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_UnwindDestructor_NoOp"
+      ],
+      "dh": "aebba282"
+    },
+    {
+      "name": "Unreferenced_0040eb40",
+      "address": "0040eb40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb40"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Unreferenced_0040eb40"
+      ],
+      "dh": "97761594",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitCriticalSection",
+      "address": "0040eb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb50"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "InitCriticalSection"
+      ],
+      "dh": "a6a16dfd",
+      "paramStorage": [
+        [
+          "pElement",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitLogFilePathPointers",
+      "address": "0040eb90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb90"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "InitLogFilePathPointers"
+      ],
+      "usedTypes": [
+        "char[260]",
+        "uint32_t",
+        "uint8_t *"
+      ],
+      "dh": "3bb85820",
+      "paramStorage": [
+        [
+          "pPathPtrArray",
+          "ECX:4"
+        ],
+        [
+          "nCount",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "OpenLogFileWithTimestamp",
+      "address": "0040ebd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ebd0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "OpenLogFileWithTimestamp",
+        "SStrPrintf",
+        "SStrCopy",
+        "fopen",
+        "fclose",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "FILE",
+        "LPSYSTEMTIME",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a842201d",
+      "paramStorage": [
+        [
+          "szFilePrefix",
+          "ECX:4"
+        ],
+        [
+          "pSystemTime",
+          "EDX:4"
+        ],
+        [
+          "szOpenMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pbIsNewFile",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szOutPath",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nOutPathLen",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WriteLogFileHeader",
+      "address": "0040ecc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ecc0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "WriteLogFileHeader",
+        "fprintf",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "FILE",
+        "SYSTEMTIME",
+        "uint32_t"
+      ],
+      "dh": "8f851ece",
+      "paramStorage": [
+        [
+          "pFile",
+          "ECX:4"
+        ],
+        [
+          "pTime",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "WriteRealmStartupHeader",
+      "address": "0040ed40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ed40"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "WriteRealmStartupHeader",
+        "fprintf",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "FILE",
+        "uint32_t"
+      ],
+      "dh": "3983c9b2",
+      "paramStorage": [
+        [
+          "pFile",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FindOrOpenLogFileSlot",
+      "address": "0040ede0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ede0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "FindOrOpenLogFileSlot",
+        "GetTickCount",
+        "fclose",
+        "SStrLen",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "OpenLogFileWithTimestamp",
+        "WriteLogFileHeader",
+        "WriteRealmStartupHeader"
+      ],
+      "usedTypes": [
+        "FILE",
+        "_SYSTEMTIME",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "e7872eba",
+      "paramStorage": [
+        [
+          "szFileName",
+          "ECX:4"
+        ],
+        [
+          "pnSlotIndex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_GetUserMyDocumentsDiabloIIGameLogsFolder",
+      "address": "0040f000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f000"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "FILETOOLS_GetUserMyDocumentsDiabloIIGameLogsFolder",
+        "SStrCopy",
+        "SFILE_EnsurePathEndsWithBackslash",
+        "SStrPack",
+        "SafeCreateDirectoryTree",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c9b5f5da",
+      "paramStorage": [
+        [
+          "szGameLogsPath",
+          "ECX:4"
+        ],
+        [
+          "nGameLogsPathLength",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "WriteHexDumpLogEntry",
+      "address": "0040f070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f070"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "WriteHexDumpLogEntry",
+        "SStrLen",
+        "FindOrOpenLogFileSlot",
+        "SStrPrintf",
+        "SStrCopy",
+        "fprintf",
+        "SStrPack",
+        "__security_check_cookie",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "FILE",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "0bda8b80",
+      "paramStorage": [
+        [
+          "pLogRecord",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseStaleLogFileHandles",
+      "address": "0040f350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f350"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "CloseStaleLogFileHandles",
+        "GetTickCount",
+        "fclose",
+        "__security_check_cookie"
+      ],
+      "dh": "2e981ad6"
+    },
+    {
+      "name": "DeleteOldLogFile",
+      "address": "0040f3d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f3d0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DeleteOldLogFile",
+        "SStrLen",
+        "sscanf"
+      ],
+      "usedTypes": [
+        "FILETIME",
+        "SYSTEMTIME",
+        "_FILETIME",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "bde9d8a4",
+      "paramStorage": [
+        [
+          "pRefFileTime",
+          "ECX:4"
+        ],
+        [
+          "szFileName",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseLogFileByName",
+      "address": "0040f470",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f470"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "CloseLogFileByName",
+        "fclose"
+      ],
+      "usedTypes": [
+        "char[16]",
+        "uint8_t"
+      ],
+      "dh": "1f4f532e",
+      "paramStorage": [
+        [
+          "szFileName",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ComputeAbsoluteFromRelative",
+      "address": "0040f4f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f4f0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ComputeAbsoluteFromRelative"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "intptr_t",
+        "uint32_t"
+      ],
+      "dh": "446e4352",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ],
+        [
+          "pBase",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0040f520",
+      "address": "0040f520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f520"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Unreferenced_0040f520"
+      ],
+      "usedTypes": [
+        "StormLinkStrc"
+      ],
+      "dh": "6a86690b",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0040f580",
+      "address": "0040f580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f580"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Unreferenced_0040f580"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc",
+        "intptr_t"
+      ],
+      "dh": "19db7302",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_SetLogFilePathWithoutDateAndExtension2",
+      "address": "0040f5a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f5a0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "FILETOOLS_SetLogFilePathWithoutDateAndExtension2",
+        "FILETOOLS_GetUserMyDocumentsDiabloIIGameLogsFolder",
+        "SStrPrintf",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "2ed1235a",
+      "paramStorage": [
+        [
+          "szSuffix",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetLogFileSize",
+      "address": "0040f600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f600"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetLogFileSize",
+        "CloseLogFileByName",
+        "OpenLogFileWithTimestamp",
+        "fseek",
+        "ftell",
+        "fclose"
+      ],
+      "usedTypes": [
+        "FILE",
+        "_SYSTEMTIME",
+        "uint8_t"
+      ],
+      "dh": "454403a4",
+      "paramStorage": [
+        [
+          "szFileName",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ReadLogFileRange",
+      "address": "0040f670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f670"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ReadLogFileRange",
+        "AllocClientMemory",
+        "memset",
+        "CloseLogFileByName",
+        "OpenLogFileWithTimestamp",
+        "fseek",
+        "fread",
+        "fclose"
+      ],
+      "usedTypes": [
+        "FILE",
+        "_SYSTEMTIME",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "6d7eb47b",
+      "paramStorage": [
+        [
+          "szFileName",
+          "ECX:4"
+        ],
+        [
+          "nStartOffset",
+          "EDX:4"
+        ],
+        [
+          "nEndOffset",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LogToFile",
+      "address": "0040f720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f720"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LogToFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SStrLen",
+        "FindOrOpenLogFileSlot",
+        "fprintf",
+        "fwrite",
+        "GetTickCount"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "FILE",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f1928571",
+      "paramStorage": [
+        [
+          "pLogRecord",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0040f810",
+      "address": "0040f810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f810"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Unreferenced_0040f810"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "d4dae873",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UnlinkListNode",
+      "address": "0040f820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f820"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "UnlinkListNode"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "uint32_t"
+      ],
+      "dh": "bd3d5c7b",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "NormalizeListNodePointer",
+      "address": "0040f880",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f880"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "NormalizeListNodePointer"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "bcf16643",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "pNodePtr",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ExitOrCrashCleanup",
+      "address": "0040f8a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f8a0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ExitOrCrashCleanup",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetTickCount",
+        "fclose"
+      ],
+      "usedTypes": [
+        "FILE *",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ecbd2066"
+    },
+    {
+      "name": "ExitOrCrashCleanUpJmp",
+      "address": "0040f960",
+      "lines": [],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ExitOrCrashCleanup"
+      ]
+    },
+    {
+      "name": "DeleteOldLogFiles",
+      "address": "0040f970",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040f970"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DeleteOldLogFiles",
+        "GetTickCount",
+        "ExitOrCrashCleanup",
+        "FILETOOLS_GetUserMyDocumentsDiabloIIGameLogsFolder",
+        "SStrPrintf",
+        "DeleteOldLogFile",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "_FILETIME",
+        "_SYSTEMTIME",
+        "_WIN32_FIND_DATAA",
+        "uint32_t"
+      ],
+      "dh": "bac50674"
+    },
+    {
+      "name": "UnlinkListNodeDouble",
+      "address": "0040faa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040faa0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "UnlinkListNodeDouble"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "850ac47f",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitListHead",
+      "address": "0040fb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fb50"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "InitListHead"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc"
+      ],
+      "dh": "a5925f73",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InsertListNode",
+      "address": "0040fbb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fbb0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "InsertListNode"
+      ],
+      "usedTypes": [
+        "int *",
+        "int32_t"
+      ],
+      "dh": "b08bd32f",
+      "paramStorage": [
+        [
+          "ppListHead",
+          "ECX:4"
+        ],
+        [
+          "pNode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bInsertAtHead",
+          "Stack[0x8]:4"
+        ],
+        [
+          "ppTarget",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RemoveListNode",
+      "address": "0040fc60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fc60"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "RemoveListNode"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "StormLinkedListStrc",
+        "uint32_t"
+      ],
+      "dh": "74b685e3",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ],
+        [
+          "pNode",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ClearListNode",
+      "address": "0040fcb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fcb0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ClearListNode"
+      ],
+      "dh": "3e5805d2",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RemoveAllListNodes",
+      "address": "0040fd00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fd00"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "RemoveAllListNodes"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc",
+        "uint32_t"
+      ],
+      "dh": "b5254eda",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DestroyListWithHandler",
+      "address": "0040fd40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fd40"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DestroyListWithHandler",
+        "UnlinkListNodeDouble"
+      ],
+      "usedTypes": [
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "bea22a27",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "TeardownListFull",
+      "address": "0040fd90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fd90"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "TeardownListFull",
+        "RemoveAllListNodes"
+      ],
+      "usedTypes": [
+        "StormLinkStrc",
+        "StormLinkedListStrc",
+        "pfnEHHandlerRoutine",
+        "uint32_t"
+      ],
+      "dh": "e102d4d0",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ZeroListNode",
+      "address": "0040fe10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fe10"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "ZeroListNode"
+      ],
+      "dh": "adc39636",
+      "paramStorage": [
+        [
+          "pNode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DestroyListNodeAndFree",
+      "address": "0040fe60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fe60"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DestroyListNodeAndFree",
+        "UnlinkListNodeDouble",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "pfnEHHandlerRoutine",
+        "uint8_t"
+      ],
+      "dh": "c664d2e8",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "bFreeMemory",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DestroyAllListNodes",
+      "address": "0040fed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040fed0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "DestroyAllListNodes",
+        "UnlinkListNodeDouble",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "StormLinkedListStrc",
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "cf652c5b",
+      "paramStorage": [
+        [
+          "pListHead",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocateAndInsertMessageNode",
+      "address": "0040ff40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ff40"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "AllocateAndInsertMessageNode",
+        "SMemAlloc",
+        "InsertListNode"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "int *",
+        "int32_t",
+        "pfnEHHandlerRoutine",
+        "uint32_t"
+      ],
+      "dh": "6d644ec4",
+      "paramStorage": [
+        [
+          "ppListHead",
+          "ECX:4"
+        ],
+        [
+          "nInsertMode",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPayloadSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwAllocFlags",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "StopLogWriterThread",
+      "address": "0040ffd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ffd0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StopLogWriterThread",
+        "DestroyAllListNodes"
+      ],
+      "dh": "b7886dae"
+    },
+    {
+      "name": "EnqueueLogMessage",
+      "address": "00410040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410040"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "EnqueueLogMessage",
+        "SStrLen",
+        "AllocateAndInsertMessageNode",
+        "SStrCopy",
+        "memcpy"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "StormLinkStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "17828e62",
+      "paramStorage": [
+        [
+          "szText1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szText2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pData",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nDataLen",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pCategory",
+          "Stack[0x14]:4"
+        ],
+        [
+          "bSkipData",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nVerbose",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LOGMANAGER_LogWriterThreadProc",
+      "address": "004101c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004101c0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_LogWriterThreadProc",
+        "GetTickCount",
+        "LogToFile",
+        "WriteHexDumpLogEntry",
+        "UnlinkListNodeDouble",
+        "SMemFree",
+        "CloseStaleLogFileHandles",
+        "DeleteOldLogFiles"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "pfnEHHandlerRoutine",
+        "uint32_t"
+      ],
+      "dh": "7bb6a76a",
+      "paramStorage": [
+        [
+          "lpThreadParam",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EnqueueFormattedLogMessage",
+      "address": "00410340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410340"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "EnqueueFormattedLogMessage",
+        "_vsnprintf",
+        "SStrPack",
+        "SStrLen",
+        "AllocateAndInsertMessageNode",
+        "SStrCopy",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2LogRecordStrc",
+        "EH4_EXCEPTION_REGISTRATION",
+        "int32_t",
+        "uint32_t",
+        "va_list"
+      ],
+      "dh": "8528ea9c",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "nPriority",
+          "EDX:4"
+        ],
+        [
+          "bAppendNewline",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szFormat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "vaArgs",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "StartLogWriterThread",
+      "address": "00410540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410540"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StartLogWriterThread"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "deca685a"
+    },
+    {
+      "name": "LOGFILE_WriteStringToFile",
+      "address": "00410610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410610"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGFILE_WriteStringToFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "EnqueueFormattedLogMessage"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "ede8962c"
+    },
+    {
+      "name": "LOGMANAGER_TraceToModuleLog",
+      "address": "00410660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410660"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_TraceToModuleLog",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "EnqueueFormattedLogMessage"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9d1ef343"
+    },
+    {
+      "name": "LogWithCategory",
+      "address": "004106b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004106b0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LogWithCategory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "EnqueueFormattedLogMessage"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "5876fbd2"
+    },
+    {
+      "name": "LogSimple",
+      "address": "00410700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410700"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LogSimple",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "EnqueueFormattedLogMessage"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "67afe6f5"
+    },
+    {
+      "name": "LogWithCategoryVarArgs",
+      "address": "00410740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410740"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LogWithCategoryVarArgs",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "EnqueueFormattedLogMessage"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9e987a3d"
+    },
+    {
+      "name": "LOGMGR_GetTime32",
+      "address": "00410790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410790"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "_time32",
+        "LOGMGR_GetTime32"
+      ],
+      "usedTypes": [
+        "__time32_t"
+      ],
+      "dh": "c8915cca",
+      "paramStorage": [
+        [
+          "pTime",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LOGMGR_DeleteHighResTimerLock",
+      "address": "004107a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004107a0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMGR_DeleteHighResTimerLock"
+      ],
+      "dh": "c267d746"
+    },
+    {
+      "name": "Atomic64Store",
+      "address": "004107b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004107b0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Atomic64Store"
+      ],
+      "usedTypes": [
+        "int64_t"
+      ],
+      "dh": "064cf94d",
+      "paramStorage": [
+        [
+          "pllTarget",
+          "ECX:4"
+        ],
+        [
+          "pllValue",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Atomic64Load",
+      "address": "004107d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004107d0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "Atomic64Load"
+      ],
+      "usedTypes": [
+        "int64_t"
+      ],
+      "dh": "a2c1c061",
+      "paramStorage": [
+        [
+          "pllResult",
+          "ECX:4"
+        ],
+        [
+          "pllSource",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetFreeDiskSpaceForSavePath",
+      "address": "004107f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004107f0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetFreeDiskSpaceForSavePath",
+        "GetAndCreateSavePath",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "ULONGLONG",
+        "pfnGetDiskFreeSpaceEx",
+        "uint32_t"
+      ],
+      "dh": "19808b8c"
+    },
+    {
+      "name": "GetGlobalMemoryStatus",
+      "address": "00410930",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410930"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "GetGlobalMemoryStatus"
+      ],
+      "usedTypes": [
+        "LPMEMORYSTATUS"
+      ],
+      "dh": "e665ea82",
+      "paramStorage": [
+        [
+          "pMemoryStatus",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsWindowsNT",
+      "address": "00410960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410960"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "IsWindowsNT",
+        "memset",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "_OSVERSIONINFOA"
+      ],
+      "dh": "e8d20702"
+    },
+    {
+      "name": "InitHighResTimer",
+      "address": "004109d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004109d0"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "InitHighResTimer",
+        "Atomic64Store",
+        "Atomic64Load",
+        "_time32",
+        "GetTickCount",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2HighResTimestampStrc",
+        "int32_t",
+        "int64_t"
+      ],
+      "dh": "f7e3ddd3"
+    },
+    {
+      "name": "LOGMGR_GetHighResolutionTime",
+      "address": "00410a80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00410a80"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMGR_GetHighResolutionTime",
+        "GetTickCount",
+        "Atomic64Load",
+        "_time32",
+        "Atomic64Store"
+      ],
+      "usedTypes": [
+        "D2HighResTimestampStrc",
+        "uint32_t"
+      ],
+      "dh": "f23ae2aa"
+    },
+    {
+      "name": "LOGMANAGER_UnwindDestructor_NoOp_Unref_00413740",
+      "address": "00413740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00413740"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_UnwindDestructor_NoOp_Unref_00413740"
+      ],
+      "dh": "60c4157d"
+    },
+    {
+      "name": "LOGMANAGER_UnwindDestructor_NoOp_Unref_00416750",
+      "address": "00416750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00416750"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_UnwindDestructor_NoOp_Unref_00416750"
+      ],
+      "dh": "b6f970b6"
+    },
+    {
+      "name": "LOGMANAGER_UnwindDestructor_NoOp_Unref_00416760",
+      "address": "00416760",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00416760"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMANAGER_UnwindDestructor_NoOp_Unref_00416760"
+      ],
+      "dh": "da8b8945"
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9d08",
+      "address": "006c9d08",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9d08"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9d08",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "c3ddf12b",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9d3b",
+      "address": "006c9d3b",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9d3b"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9d3b",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "2fff6432",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9d98",
+      "address": "006c9d98",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9d98"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9d98",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "83a00ae3",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9dc8",
+      "address": "006c9dc8",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9dc8"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9dc8",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "c140479b",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9e11",
+      "address": "006c9e11",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9e11"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9e11",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "6ee90e1f",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6c9e38",
+      "address": "006c9e38",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9e38"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6c9e38",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "efdae5be",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SehHandler_6c9e6a",
+      "address": "006c9e6a",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c9e6a"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "SehHandler_6c9e6a",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT"
+      ],
+      "dh": "4e8d2ee4",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "StaticInit_gLogMessageQueueCS",
+      "address": "006ca700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca700"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StaticInit_gLogMessageQueueCS",
+        "atexit"
+      ],
+      "dh": "e874f2c1"
+    },
+    {
+      "name": "StaticInit_gLogFileCS",
+      "address": "006ca720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca720"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StaticInit_gLogFileCS",
+        "atexit"
+      ],
+      "dh": "2bb52838"
+    },
+    {
+      "name": "LOGMGR_InitMessageQueue",
+      "address": "006ca740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca740"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "LOGMGR_InitMessageQueue",
+        "atexit"
+      ],
+      "usedTypes": [
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "54f5c634"
+    },
+    {
+      "name": "StaticFini_gLogMessageQueueCS",
+      "address": "006cb070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cb070"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StaticFini_gLogMessageQueueCS"
+      ],
+      "dh": "370f926e"
+    },
+    {
+      "name": "StaticFini_gLogFileCS",
+      "address": "006cb080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cb080"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StaticFini_gLogFileCS"
+      ],
+      "dh": "a821afb9"
+    },
+    {
+      "name": "StaticFini_gLogMessageQueueHead",
+      "address": "006cb090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cb090"
+        }
+      ],
+      "namespace": "Fog::Src::LogManager",
+      "calledFunctions": [
+        "StaticFini_gLogMessageQueueHead",
+        "TeardownListFull"
+      ],
+      "dh": "6554d974"
+    }
+  ]
+}

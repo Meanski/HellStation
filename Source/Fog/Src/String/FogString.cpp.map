@@ -1,0 +1,142 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Src/String/FogString.cpp",
+  "functions": [
+    {
+      "name": "SMEM_TitleCaseString",
+      "address": "00411320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411320"
+        }
+      ],
+      "namespace": "Fog::Src::String::FogString",
+      "calledFunctions": [
+        "SMEM_TitleCaseString",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "toupper",
+        "tolower"
+      ],
+      "dh": "188def0f",
+      "paramStorage": [
+        [
+          "pMcpData",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SMemStringToUppercase",
+      "address": "004113c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004113c0"
+        }
+      ],
+      "namespace": "Fog::Src::String::FogString",
+      "calledFunctions": [
+        "SMemStringToUppercase"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "226e7c8e",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "nMaxLen",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SMemEscapeString",
+      "address": "004113e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004113e0"
+        }
+      ],
+      "namespace": "Fog::Src::String::FogString",
+      "calledFunctions": [
+        "SMemEscapeString",
+        "SStrPrintf",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "89e33d64",
+      "paramStorage": [
+        [
+          "pbDst",
+          "ECX:4"
+        ],
+        [
+          "pbSrc",
+          "EDX:4"
+        ],
+        [
+          "nBufSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "byQuoteChar",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "SMemFormat64BitWithSeparators",
+      "address": "00411540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411540"
+        }
+      ],
+      "namespace": "Fog::Src::String::FogString",
+      "calledFunctions": [
+        "SMemFormat64BitWithSeparators",
+        "memset",
+        "__security_check_cookie",
+        "_alldvrm"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "c1894d48",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "nWidth",
+          "EDX:4"
+        ],
+        [
+          "nValueLo",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nValueHi",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

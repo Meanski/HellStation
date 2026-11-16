@@ -1,0 +1,799 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2CMP/Draw.cpp",
+  "functions": [
+    {
+      "name": "DRAW_ConvertPaletteRGBtoHSL",
+      "address": "00604df0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00604df0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_ConvertPaletteRGBtoHSL",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2HSLColorStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "9932b210",
+      "paramStorage": [
+        [
+          "pHSLOut",
+          "ECX:4"
+        ],
+        [
+          "pRGBIn",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_GetHueSector",
+      "address": "00604fe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00604fe0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_GetHueSector"
+      ],
+      "dh": "a153b503",
+      "paramStorage": [
+        [
+          "m1",
+          "Stack[0x4]:8"
+        ],
+        [
+          "m2",
+          "Stack[0xc]:8"
+        ],
+        [
+          "dHue",
+          "Stack[0x14]:8"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_ConvertPaletteHSLtoRGB",
+      "address": "00605080",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605080"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_ConvertPaletteHSLtoRGB",
+        "DRAW_GetHueSector"
+      ],
+      "usedTypes": [
+        "D2HSLColorStrc",
+        "uint8_t"
+      ],
+      "dh": "606b339b",
+      "paramStorage": [
+        [
+          "pHSLIn",
+          "ECX:4"
+        ],
+        [
+          "pRGBOut",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "thunk_D2MEM_VirtualFree",
+      "address": "006051f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006051f0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "thunk_D2MEM_VirtualFree",
+        "D2MEM_VirtualFree"
+      ],
+      "dh": "d8a91842",
+      "paramStorage": [
+        [
+          "pMemory",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFX_FindNearestPaletteIndex",
+      "address": "00605210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605210"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ad39b949",
+      "paramStorage": [
+        [
+          "pPallete",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPaletteSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nRed",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nGreen",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nBlue",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_FindFarthestPaletteColor",
+      "address": "00605280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605280"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_FindFarthestPaletteColor"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "bd7e1b96",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPaletteSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nRed",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nGreen",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nBlue",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_006052f0",
+      "address": "006052f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006052f0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "Unreferenced_006052f0"
+      ],
+      "dh": "9a6ed1ce"
+    },
+    {
+      "name": "DRAW_SetTransparentColorRGB",
+      "address": "00605320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605320"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_SetTransparentColorRGB"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "95ee9c80",
+      "paramStorage": [
+        [
+          "nRGB",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_LoadPaletteFromPCX",
+      "address": "00605340",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605340"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_LoadPaletteFromPCX",
+        "__security_check_cookie",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2PcxHeaderStrc",
+        "PcxPaletteTrailer",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "2046c815",
+      "paramStorage": [
+        [
+          "szFilePath",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_InitPalette",
+      "address": "006054f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006054f0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_InitPalette",
+        "SStrLen",
+        "DRAW_LoadPaletteFromPCX",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "6a535aa4",
+      "paramStorage": [
+        [
+          "szPaletteFile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStartIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nEndIndex",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_SetTransparentColorEnabled",
+      "address": "006056c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006056c0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_SetTransparentColorEnabled"
+      ],
+      "dh": "e153809d",
+      "paramStorage": [
+        [
+          "bEnabled",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_FindNearestPaletteColor",
+      "address": "006056d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006056d0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_FindNearestPaletteColor"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "e7c30057",
+      "paramStorage": [
+        [
+          "nRed",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nGreen",
+          "Stack[0x8]:1"
+        ],
+        [
+          "nBlue",
+          "Stack[0xc]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_ConvertRGBAToIndexed",
+      "address": "006057a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006057a0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_ConvertRGBAToIndexed"
+      ],
+      "usedTypes": [
+        "pfnRGBToPaletteIndex",
+        "uint8_t"
+      ],
+      "dh": "da8882f4",
+      "paramStorage": [
+        [
+          "pRGBAIn",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pIndexedOut",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPixelCount",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pfnCustomColorFinder",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_SetDarkThresholdEnabled",
+      "address": "00605840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605840"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_SetDarkThresholdEnabled"
+      ],
+      "dh": "258191b4",
+      "paramStorage": [
+        [
+          "bEnabled",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_SetPaletteMask",
+      "address": "00605850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605850"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_SetPaletteMask"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "f25b78c4",
+      "paramStorage": [
+        [
+          "pMaskData",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildAlphaBlendTables",
+      "address": "00605880",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605880"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildAlphaBlendTables",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t"
+      ],
+      "dh": "c495ec95",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildAdditiveBlendTable",
+      "address": "006059b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006059b0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildAdditiveBlendTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t"
+      ],
+      "dh": "3dc6349e",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "PALETTE_BuildAdditiveBlendTable_Callback",
+      "address": "00605a90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605a90"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "PALETTE_BuildAdditiveBlendTable_Callback",
+        "DRAW_BuildAdditiveBlendTable"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY"
+      ],
+      "dh": "80bb9387",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ],
+        [
+          "unused",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildMultiplicativeBlendTable",
+      "address": "00605aa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605aa0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildMultiplicativeBlendTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY"
+      ],
+      "dh": "faec192b",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildScreenBlendAndDesatTable",
+      "address": "00605b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605b70"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildScreenBlendAndDesatTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "4b2e7be8",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildColorTintTable",
+      "address": "00605d20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605d20"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildColorTintTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "e408143c",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildDarkenTable",
+      "address": "00605de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605de0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildDarkenTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t"
+      ],
+      "dh": "219cb725",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildBrightenTable",
+      "address": "00605e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605e60"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildBrightenTable",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "LPPALETTEENTRY",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "21cf9a02",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildHSLTransformTables",
+      "address": "00605f00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00605f00"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildHSLTransformTables",
+        "DRAW_ConvertPaletteHSLtoRGB",
+        "D2GFX_FindNearestPaletteIndex",
+        "__CIsqrt"
+      ],
+      "usedTypes": [
+        "D2HSLColorStrc",
+        "LPPALETTEENTRY",
+        "tagRGBQUAD",
+        "uint32_t"
+      ],
+      "dh": "845db2b3",
+      "paramStorage": [
+        [
+          "pPalette",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pHSLPalette",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildBrightenLightnessTable",
+      "address": "00606890",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00606890"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildBrightenLightnessTable",
+        "DRAW_ConvertPaletteHSLtoRGB",
+        "D2GFX_FindNearestPaletteIndex"
+      ],
+      "usedTypes": [
+        "D2HSLColorStrc",
+        "LPPALETTEENTRY",
+        "tagRGBQUAD",
+        "uint32_t"
+      ],
+      "dh": "3ac9681f",
+      "paramStorage": [
+        [
+          "pHSLPalette",
+          "ECX:4"
+        ],
+        [
+          "pPalette",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildAllPaletteTables",
+      "address": "00606930",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00606930"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildAllPaletteTables",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2MEM_VirtualAlloc",
+        "DRAW_ConvertPaletteRGBtoHSL",
+        "DRAW_BuildAlphaBlendTables",
+        "DRAW_BuildDarkenTable",
+        "DRAW_BuildBrightenTable",
+        "DRAW_BuildAdditiveBlendTable",
+        "DRAW_BuildMultiplicativeBlendTable",
+        "DRAW_BuildHSLTransformTables",
+        "DRAW_BuildBrightenLightnessTable",
+        "DRAW_BuildScreenBlendAndDesatTable",
+        "DRAW_BuildColorTintTable"
+      ],
+      "usedTypes": [
+        "D2HSLColorStrc",
+        "LPPALETTEENTRY",
+        "int32_t",
+        "tagPALETTEENTRY"
+      ],
+      "dh": "23d8d12d",
+      "paramStorage": [
+        [
+          "pPaletteEntry",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_BuildPaletteTablesWrapper",
+      "address": "006069f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006069f0"
+        }
+      ],
+      "namespace": "D2CMP::Draw",
+      "calledFunctions": [
+        "DRAW_BuildPaletteTablesWrapper",
+        "DRAW_BuildAllPaletteTables"
+      ],
+      "usedTypes": [
+        "tagPALETTEENTRY"
+      ],
+      "dh": "28b6c1ce",
+      "paramStorage": [
+        [
+          "pPaletteEntry",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pdwSizeOut",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

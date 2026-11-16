@@ -1,0 +1,599 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/File.cpp",
+  "functions": [
+    {
+      "name": "CONTAINER_InitializeBuffer",
+      "address": "00403040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403040"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "CONTAINER_InitializeBuffer"
+      ],
+      "usedTypes": [
+        "CONTAINER_TypeInitialValue",
+        "int32_t"
+      ],
+      "dh": "466756ff",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTypeSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nBufferSize",
+          "Stack[0xc]:4"
+        ],
+        [
+          "fpInitValueCallback",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRASH_DumpRegisters",
+      "address": "004032f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004032f0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "CRASH_DumpRegisters",
+        "DEBUG_CaptureThreadContext",
+        "__snprintf_s",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "CONTEXT",
+        "CRASH_DumpRegisters_Slotm6e",
+        "Report",
+        "fnCrashOutputLine",
+        "uint32_t"
+      ],
+      "dh": "b296e3a4",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "pOutputCallback",
+          "EDX:4"
+        ],
+        [
+          "pReport",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRASH_EnumerateThreads",
+      "address": "00403a20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403a20"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "CRASH_EnumerateThreads",
+        "CRASH_DumpThreadContext"
+      ],
+      "usedTypes": [
+        "Report",
+        "THREADENTRY",
+        "fnCrashOutputLine",
+        "uint32_t"
+      ],
+      "dh": "aef6e267",
+      "paramStorage": [
+        [
+          "pOutputCallback",
+          "ECX:4"
+        ],
+        [
+          "pReport",
+          "EDX:4"
+        ],
+        [
+          "dwSkipThreadId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRASH_GetExceptionName",
+      "address": "00403ac0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403ac0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "CRASH_GetExceptionName",
+        "strncpy_s"
+      ],
+      "dh": "59d466d7",
+      "paramStorage": [
+        [
+          "szText",
+          "EDI:4"
+        ],
+        [
+          "dwExceptionCode",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "ERRORMANAGER_UnhandledExceptionFilter",
+      "address": "00403e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403e90"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "ERRORMANAGER_UnhandledExceptionFilter",
+        "CRASH_GetExceptionName",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2CrashReportStrc",
+        "_EXCEPTION_POINTERS",
+        "uint32_t"
+      ],
+      "dh": "89aa9c8b",
+      "paramStorage": [
+        [
+          "pExceptionPointers",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CRASH_SetExceptionHandler",
+      "address": "00403f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403f60"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "CRASH_SetExceptionHandler"
+      ],
+      "usedTypes": [
+        "pfnFogExceptionFilter"
+      ],
+      "dh": "70320148",
+      "paramStorage": [
+        [
+          "pfnFilter",
+          "ECX:4"
+        ],
+        [
+          "pContext",
+          "EDX:4"
+        ],
+        [
+          "nUnused",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_ExtractDirectory",
+      "address": "00403fa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00403fa0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_ExtractDirectory",
+        "strrchr",
+        "STRING_CopyStringBounded"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "f21a48ff",
+      "paramStorage": [
+        [
+          "szDest",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDestSize",
+          "EBX:4"
+        ],
+        [
+          "szSrcPath",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_ExtractFilename",
+      "address": "00404010",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404010"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_ExtractFilename",
+        "strrchr"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "ff5be53b",
+      "paramStorage": [
+        [
+          "szDest",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szSrcPath",
+          "EAX:4"
+        ],
+        [
+          "nDestSize",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STRING_AppendBlizzardErrorSubfolderToPath",
+      "address": "004040b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004040b0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "STRING_AppendBlizzardErrorSubfolderToPath",
+        "STRING_CopyStringBounded"
+      ],
+      "dh": "241329e7",
+      "paramStorage": [
+        [
+          "szPath",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STRING_CopyStringBounded",
+      "address": "00404110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404110"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "STRING_CopyStringBounded"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d7b8b7d4",
+      "paramStorage": [
+        [
+          "nDestSize",
+          "ECX:4"
+        ],
+        [
+          "szDest",
+          "EDX:4"
+        ],
+        [
+          "szSrc",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "STRING_AppendStringToString",
+      "address": "00404150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404150"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "STRING_AppendStringToString"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "49aa5334",
+      "paramStorage": [
+        [
+          "szDest",
+          "ECX:4"
+        ],
+        [
+          "nDestSize",
+          "EAX:4"
+        ],
+        [
+          "szSrc",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "STRING_FormatVarArgs",
+      "address": "004041f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004041f0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "STRING_FormatVarArgs",
+        "_vsnprintf"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "8a3d49ff"
+    },
+    {
+      "name": "FILETOOLS_StartApplicationWithCommandLine_UTF8",
+      "address": "00404210",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404210"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_StartApplicationWithCommandLine_UTF8",
+        "memset",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "_PROCESS_INFORMATION",
+        "_STARTUPINFOW",
+        "uint32_t"
+      ],
+      "dh": "8ac80b94",
+      "paramStorage": [
+        [
+          "lpApplicationName",
+          "ECX:4"
+        ],
+        [
+          "szCommandLine",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_CheckIfFileExists_UTF8",
+      "address": "00404330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404330"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_CheckIfFileExists_UTF8",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "_WIN32_FIND_DATAW",
+        "uint32_t"
+      ],
+      "dh": "c8e1d2e7",
+      "paramStorage": [
+        [
+          "lpMultiByteStr",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_OpenFile_WriteMode_UTF8",
+      "address": "004043c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004043c0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_OpenFile_WriteMode_UTF8",
+        "_wfopen",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "FILE",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "74cb3998",
+      "paramStorage": [
+        [
+          "lpMultiByteStr",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_CopyFile_UTF8",
+      "address": "00404450",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404450"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_CopyFile_UTF8",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "c39105b8",
+      "paramStorage": [
+        [
+          "szSrcPath",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szDestPath",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_GetTempPath_UTF8",
+      "address": "004044f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004044f0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_GetTempPath_UTF8",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "73c9e4ff",
+      "paramStorage": [
+        [
+          "szDest",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_CreateDirectoryW",
+      "address": "00404560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404560"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_CreateDirectoryW",
+        "wcsrchr"
+      ],
+      "dh": "edf6d86f",
+      "paramStorage": [
+        [
+          "lpPathName",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_CreateFolder_UTF8",
+      "address": "004045f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004045f0"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "FILETOOLS_CreateFolder_UTF8",
+        "__security_check_cookie",
+        "FILETOOLS_CreateDirectoryW"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "8c994949",
+      "paramStorage": [
+        [
+          "szPathName",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DEBUG_CaptureThreadContext",
+      "address": "00404660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00404660"
+        }
+      ],
+      "namespace": "Fog::File",
+      "calledFunctions": [
+        "DEBUG_CaptureThreadContext"
+      ],
+      "usedTypes": [
+        "LPCONTEXT",
+        "uint32_t"
+      ],
+      "dh": "6cc62a72",
+      "paramStorage": [
+        [
+          "dwThreadId",
+          "ECX:4"
+        ],
+        [
+          "pContext",
+          "EAX:4"
+        ]
+      ]
+    }
+  ]
+}

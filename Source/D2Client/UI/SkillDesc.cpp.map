@@ -1,0 +1,6453 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/SkillDesc.cpp",
+  "functions": [
+    {
+      "name": "SKILLDESC_InitMissileBuffers",
+      "address": "004a4260",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004a4260"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_InitMissileBuffers",
+        "CONTAINER_InitializeBuffer"
+      ],
+      "usedTypes": [
+        "D2QuestLogStrc"
+      ],
+      "dh": "37777740",
+      "paramStorage": [
+        [
+          "pQuestLog",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMonTypeLine",
+      "address": "004e4640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4640"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "GetMonTypeLine"
+      ],
+      "usedTypes": [
+        "D2MonTypeTxt",
+        "int32_t"
+      ],
+      "dh": "eaa4d28c",
+      "paramStorage": [
+        [
+          "nMonType",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatItemStatLine",
+      "address": "004e4670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4670"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatItemStatLine",
+        "GetLocaleString",
+        "STATLIST_GetItemStatBonusValues",
+        "SKILLDESC_GetStatNameString",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "SKILLS_GetCharClassFromSkillId_Validated"
+      ],
+      "usedTypes": [
+        "D2StatStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "a4ebace1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatListFlags",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nParam2",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DamageToUndeadText",
+      "address": "004e48b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e48b0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "DamageToUndeadText",
+        "GetLocaleString",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "wchar_t"
+      ],
+      "dh": "7b86b5d4",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pwszOutputBuffer",
+          "EDX:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildStatListDesc",
+      "address": "004e49c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e49c0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildStatListDesc",
+        "memset",
+        "STATLIST_GetBaseStatValue",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitStat"
+      ],
+      "dh": "e9dd6c0a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatList",
+          "EDI:4"
+        ],
+        [
+          "pnStatValues",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcStatGroupValue",
+      "address": "004e4c50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4c50"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcStatGroupValue",
+        "GetPlayerUnit_UI",
+        "STATSEX_GetCurrentStat",
+        "ITEMS_IsA"
+      ],
+      "usedTypes": [
+        "D2ItemStatCostTxt",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "68147c1b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nStatValue",
+          "EAX:4"
+        ],
+        [
+          "pItemStatCostTxt",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcStatGroupMinMax",
+      "address": "004e4ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4ce0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcStatGroupMinMax",
+        "STATLIST_GetBaseStatValue",
+        "SKILLDESC_CalcStatGroupValue"
+      ],
+      "usedTypes": [
+        "D2DataTableTxtStrc",
+        "D2ItemStatCostTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t"
+      ],
+      "dh": "bc89d1cc",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatList",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eUnitStat",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nGroupValue",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pItemStatCostTxt",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pbIsFirstInGroup",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ItemStatCost_DescFunc_DGrpFunc",
+      "address": "004e4d80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4d80"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "ItemStatCost_DescFunc_DGrpFunc",
+        "SKILLDESC_CalcStatGroupValue",
+        "SKILLDESC_CalcStatGroupMinMax",
+        "GetLocaleString",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "UNICODE_FormatWideString",
+        "INV_GetCharStatsTxtLine",
+        "SKILLDESC_GetStatNameString",
+        "DRLGENV_GetPeriodOfDayFromAct",
+        "ITEMMODS_GetByTimeAdjustment",
+        "GetMonTypeLine",
+        "TXT_MonStats_GetLine",
+        "SKILLS_GetCharClassFromSkillId_Validated",
+        "TXT_Skills_GetLine",
+        "GetPlayerUnit_UI"
+      ],
+      "usedTypes": [
+        "D2CharStatsTxt",
+        "D2ItemStatCostTxt",
+        "D2MonStatsTxt",
+        "D2MonTypeTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t",
+        "wchar_t"
+      ],
+      "dh": "2b5bbda3",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatList",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nStatId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nStatParam",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nStatValue",
+          "Stack[0x14]:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildStatDescription",
+      "address": "004e5a20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e5a20"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildStatDescription",
+        "memset",
+        "GetLocaleString",
+        "CONTAINER_InitializeBuffer",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "UNICODE_FormatWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "eD2UnitStat",
+        "wchar_t"
+      ],
+      "dh": "dc81d2dd",
+      "paramStorage": [
+        [
+          "eUnitStat",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "Stack[0x8]:4"
+        ],
+        [
+          "apnStatValues",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildChargeSkillDesc",
+      "address": "004e5e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e5e90"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildChargeSkillDesc",
+        "GetLocaleString",
+        "ITEM_GetItemData_nFileIndex",
+        "STATSEX_GetCurrentStat",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "STRING_CopyWideString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2SkillChargeDescStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "67c6cd3d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnStatData",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildStatBuffDesc",
+      "address": "004e60a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e60a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildStatBuffDesc",
+        "ITEM_GetItemData_wType",
+        "SKILLDESC_BuildChargeSkillDesc",
+        "GetStatList",
+        "AllocStatList",
+        "STATLIST_MergeBaseStats",
+        "INVENTORY_GetFirstItem",
+        "GetCarriedItem",
+        "INVENTORY_GetNextItem",
+        "GetLocaleString",
+        "ITEMS_IsA",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "DamageToUndeadText",
+        "AppendToBuffer",
+        "SKILLDESC_BuildStatListDesc",
+        "STATSEX_CopyStatPairsFromStatList",
+        "SKILLDESC_BuildStatDescription",
+        "ItemStatCost_DescFunc_DGrpFunc",
+        "STATLIST_GetBaseStatValue",
+        "TXT_Items_GetLine",
+        "STATSEX_GetCurrentStat",
+        "STATLIST_GetMaxDurabilityFromUnit",
+        "FreeStatList"
+      ],
+      "usedTypes": [
+        "D2DataTableTxtStrc",
+        "D2ItemsTxt",
+        "D2PoolManagerStrc",
+        "D2StatListExStrc",
+        "D2StatListStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2ItemTypes",
+        "eD2States",
+        "eD2UnitStat",
+        "eD2UnitType",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "3eb145f6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "EDX:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bIncludeUndeadDamage",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eState",
+          "Stack[0xc]:4"
+        ],
+        [
+          "eState2",
+          "Stack[0x10]:4"
+        ],
+        [
+          "eStatListFlags",
+          "Stack[0x14]:4"
+        ],
+        [
+          "bAppendNewline",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_AppendStatBuffText",
+      "address": "004e6410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6410"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_AppendStatBuffText",
+        "SKILLDESC_BuildStatBuffDesc",
+        "STRING_GetWideStringLength",
+        "AppendToBuffer",
+        "GetLocaleString"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "wchar_t"
+      ],
+      "dh": "19d1964d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "EDX:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bAppendNewline",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszPrefixText",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_AppendItemBuffText",
+      "address": "004e6560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6560"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_AppendItemBuffText",
+        "GetItemQuality",
+        "GetSetItemsLine",
+        "ITEMS_GetEquippedSetItemsMask",
+        "ITEM_GetTxtSetItems_setIndex",
+        "SKILLDESC_BuildStatBuffDesc"
+      ],
+      "usedTypes": [
+        "D2SetItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "8e162ea9",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pItem",
+          "EDX:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_AppendSetBonusTextByStateValue",
+      "address": "004e6680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6680"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_AppendSetBonusTextByStateValue",
+        "GetItemQuality",
+        "ITEM_GetItemData_nFileIndex",
+        "GetStatsByState",
+        "STATLIST_GetBaseStatValue",
+        "SKILLDESC_BuildStatBuffDesc"
+      ],
+      "usedTypes": [
+        "D2SetItemsTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "56f0f870",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pUnit2",
+          "EDX:4"
+        ],
+        [
+          "wszOutputBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatMagicPrefixDesc",
+      "address": "004e6720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6720"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatMagicPrefixDesc",
+        "ApplyRuneAndGemStats",
+        "SKILLDESC_AppendStatBuffText",
+        "AppendToBuffer",
+        "GetStatListByStateOrFlagsIfNotExists",
+        "STATLIST_RemoveAndRecalc",
+        "FreeStatList",
+        "STRING_GetWideStringLength"
+      ],
+      "usedTypes": [
+        "D2GemsTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1b87bc6d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pD2MagicAffixTxt",
+          "EDX:4"
+        ],
+        [
+          "nMagicAffixId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszText2",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatMagicSuffixDesc",
+      "address": "004e67d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e67d0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatMagicSuffixDesc",
+        "ApplyRuneAndGemStats",
+        "SKILLDESC_AppendStatBuffText",
+        "GetStatListByStateOrFlagsIfNotExists",
+        "STATLIST_RemoveAndRecalc",
+        "FreeStatList",
+        "STRING_GetWideStringLength"
+      ],
+      "usedTypes": [
+        "D2GemsTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "0acd011b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pD2MagicAffixTxt",
+          "EDX:4"
+        ],
+        [
+          "nMagicAffixId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszText2",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildMagicAffixDesc",
+      "address": "004e6850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6850"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildMagicAffixDesc",
+        "ITEMS_IsA",
+        "TXT_Items_GetLine",
+        "TXT_Gems_GetLine",
+        "GetLocaleString",
+        "AppendToBuffer",
+        "SKILLDESC_FormatMagicPrefixDesc",
+        "SKILLDESC_FormatMagicSuffixDesc",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2GemsTxt",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "546f1a1e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nMaxBufferSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_GetStatNameString",
+      "address": "004e6ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6ce0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_GetStatNameString"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "5ded5ce6",
+      "paramStorage": [
+        [
+          "nSkillId",
+          "ECX:4"
+        ],
+        [
+          "nStatOffset",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSkillLongDescription",
+      "address": "004e6de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6de0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "GetSkillLongDescription"
+      ],
+      "usedTypes": [
+        "eD2Skills",
+        "int16_t"
+      ],
+      "dh": "8665560e",
+      "paramStorage": [
+        [
+          "eSkill",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetAltSkillDescription",
+      "address": "004e6e30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6e30"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "GetAltSkillDescription"
+      ],
+      "usedTypes": [
+        "eD2Skills",
+        "int16_t"
+      ],
+      "dh": "0a3c0385",
+      "paramStorage": [
+        [
+          "eSkillId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ApplyPassiveFireMasteryDamage",
+      "address": "004e6ea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6ea0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "ApplyPassiveFireMasteryDamage",
+        "GetPlayerUnit_UI",
+        "STATSEX_GetCurrentStat",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "ecaec72d",
+      "paramStorage": [
+        [
+          "pSkillsTxt",
+          "EAX:4"
+        ],
+        [
+          "nMinElemDamage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxElemDamage",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ApplyPassiveLightningMasteryDamage",
+      "address": "004e6f00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6f00"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "ApplyPassiveLightningMasteryDamage",
+        "GetPlayerUnit_UI",
+        "STATSEX_GetCurrentStat",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "395f75cb",
+      "paramStorage": [
+        [
+          "pSkillsTxt",
+          "EAX:4"
+        ],
+        [
+          "nMinElemDamage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxElemDamage",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetDamageTypeLocale",
+      "address": "004e6f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6f60"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "GetDamageTypeLocale"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "e901af74",
+      "paramStorage": [
+        [
+          "nElemType",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_ElemTypeToColorIndex",
+      "address": "004e6fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6fb0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_ElemTypeToColorIndex"
+      ],
+      "usedTypes": [
+        "eD2ElementalDamageTypeDWORD",
+        "uint32_t"
+      ],
+      "dh": "784f3052",
+      "paramStorage": [
+        [
+          "nElemType",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_GetAuraBonusDamage",
+      "address": "004e6ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e6ff0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_GetAuraBonusDamage",
+        "GetPlayerUnit_UI",
+        "UNIT_GetUnitState",
+        "GetStatsByState",
+        "STATLIST_GetBaseStatValue",
+        "TXT_Skills_GetSkillRange"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2Skills",
+        "eD2States",
+        "int32_t"
+      ],
+      "dh": "713cfd56"
+    },
+    {
+      "name": "SKILLDESC_AccumulateAuraBonusDmg",
+      "address": "004e7120",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7120"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_AccumulateAuraBonusDmg",
+        "UNIT_GetUnitState",
+        "GetStatsByState",
+        "STATLIST_GetBaseStatValue",
+        "GetSkillDescription",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_ElemTypeToColorIndex"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillsTxt",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "36402b80",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnMinDmgAcc",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMaxDmgAcc",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pdwElemColorOut",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcSkillElemDamage",
+      "address": "004e72d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e72d0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLS_GetElementalLength",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "a1090d72",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnMinDmgAcc",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMaxDmgAcc",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pdwColorIdx",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkillDescTxt",
+          "EDI:4"
+        ],
+        [
+          "nSkillLevel",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatIntValue",
+      "address": "004e73e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e73e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatIntValue",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "eca82022",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDecimalValue",
+      "address": "004e7430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7430"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDecimalValue",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "3e622d54",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nValue",
+          "EAX:4"
+        ],
+        [
+          "nFraction",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDamageRange",
+      "address": "004e74a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e74a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDamageRange",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "06b23548",
+      "paramStorage": [
+        [
+          "bPrefixSign",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bUseFormat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMinDamage",
+          "ESI:4"
+        ],
+        [
+          "nMaxDamage",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDamageRangeWithCalc",
+      "address": "004e75b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e75b0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDamageRangeWithCalc",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_FormatDamageRange"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "a7341f57",
+      "paramStorage": [
+        [
+          "bPrefixSign",
+          "ECX:4"
+        ],
+        [
+          "nMinVal",
+          "EDX:4"
+        ],
+        [
+          "nMaxVal",
+          "EAX:4"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDecimalRange",
+      "address": "004e7610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7610"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDecimalRange",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "b1ec7449",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatRangeWithStrings",
+      "address": "004e7650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7650"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatRangeWithStrings",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "a293d9ff",
+      "paramStorage": [
+        [
+          "nBonusRatio",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStatNameId",
+          "Stack[0x8]:2"
+        ],
+        [
+          "nBonusValue",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatRangeDivided",
+      "address": "004e77a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e77a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatRangeDivided",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "1bcbdbae",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMinLabel",
+          "Stack[0x8]:2"
+        ],
+        [
+          "nMaxLabel",
+          "Stack[0xc]:2"
+        ],
+        [
+          "nMinValue",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nMaxValue",
+          "EAX:4"
+        ],
+        [
+          "nDivisor",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatStringWithCalc",
+      "address": "004e7930",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7930"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatStringWithCalc",
+        "GetLocaleString",
+        "AppendToBuffer",
+        "UNICODE_FormatWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "4363b62b",
+      "paramStorage": [
+        [
+          "dwSkillCalcCtx",
+          "ECX:4"
+        ],
+        [
+          "nFormatStringId",
+          "DX:2"
+        ],
+        [
+          "pStatValues",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatSignedValue",
+      "address": "004e79e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e79e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatSignedValue",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "b0468abe",
+      "paramStorage": [
+        [
+          "nSignedValue",
+          "ECX:4"
+        ],
+        [
+          "nStatLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nValue",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDecimalWithStrings",
+      "address": "004e7a90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7a90"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDecimalWithStrings",
+        "SKILLDESC_FormatDecimalValue",
+        "SKILLDESC_FormatIntValue",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "7b1c6687",
+      "paramStorage": [
+        [
+          "nPrefixLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nSuffixLabelId",
+          "Stack[0x8]:2"
+        ],
+        [
+          "nDivisor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nRawValue",
+          "ESI:4"
+        ],
+        [
+          "wszText",
+          "EBX:4"
+        ],
+        [
+          "bPrefixSign",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDecimalWithLabel",
+      "address": "004e7b90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7b90"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDecimalWithLabel",
+        "SKILLDESC_FormatIntValue",
+        "SKILLDESC_FormatDecimalValue",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "d7a30b1d",
+      "paramStorage": [
+        [
+          "nDecimalPart",
+          "ECX:4"
+        ],
+        [
+          "nLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nIntPart",
+          "EAX:4"
+        ],
+        [
+          "bPrefixSign",
+          "ESI:4"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatValuePercentage",
+      "address": "004e7c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7c30"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatValuePercentage",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer",
+        "GetLocaleString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "cd4f0e3d",
+      "paramStorage": [
+        [
+          "nValue",
+          "ECX:4"
+        ],
+        [
+          "nSuffixLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatValueTwoStrings",
+      "address": "004e7ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7ce0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatValueTwoStrings",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer",
+        "GetLocaleString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "2de5f935",
+      "paramStorage": [
+        [
+          "nValue",
+          "ECX:4"
+        ],
+        [
+          "nLabel1Id",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nLabel2Id",
+          "Stack[0x8]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatTwoValuesSigned",
+      "address": "004e7db0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7db0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatTwoValuesSigned",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer",
+        "GetLocaleString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "201cd712",
+      "paramStorage": [
+        [
+          "nSingularLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nPluralLabelId",
+          "Stack[0x8]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nValue",
+          "ESI:4"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatSignedRangeOrValue",
+      "address": "004e7e70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7e70"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatSignedRangeOrValue",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "2570b104",
+      "paramStorage": [
+        [
+          "nValue",
+          "ECX:4"
+        ],
+        [
+          "nPrefixLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nSuffixLabelId",
+          "Stack[0x8]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatMinMaxRange",
+      "address": "004e7f40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e7f40"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatMinMaxRange",
+        "SKILLDESC_FormatSignedRangeOrValue",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "a57500db",
+      "paramStorage": [
+        [
+          "nMinVal",
+          "ECX:4"
+        ],
+        [
+          "nMaxVal",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nPrefixLabelId",
+          "DI:2"
+        ],
+        [
+          "nSuffixLabelId",
+          "BX:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatMinMaxRangeLabelsFirst",
+      "address": "004e8020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e8020"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatMinMaxRangeLabelsFirst",
+        "SKILLDESC_FormatSignedRangeOrValue",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "7d235082",
+      "paramStorage": [
+        [
+          "nMinVal",
+          "ECX:4"
+        ],
+        [
+          "nMaxVal",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSuffixLabelId",
+          "DI:2"
+        ],
+        [
+          "nPrefixLabelId",
+          "BX:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDamageMinMax",
+      "address": "004e80f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e80f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDamageMinMax",
+        "SKILLDESC_FormatSignedValue",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "451ca827",
+      "paramStorage": [
+        [
+          "nMinDmg",
+          "ECX:4"
+        ],
+        [
+          "nMaxDmg",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bShowLabel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLabelId",
+          "BX:2"
+        ],
+        [
+          "bPrefixSign",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatThreeValues",
+      "address": "004e81c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e81c0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatThreeValues",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "2731699f",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "nLabel1Id",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nLabel2Id",
+          "Stack[0x8]:2"
+        ],
+        [
+          "nLabel3Id",
+          "Stack[0xc]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x10]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatDecimalSigned",
+      "address": "004e82a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e82a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatDecimalSigned",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "8afcb29b",
+      "paramStorage": [
+        [
+          "nValue",
+          "ECX:4"
+        ],
+        [
+          "nLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DistanceToYardsText",
+      "address": "004e83e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e83e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "DistanceToYardsText",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "e7643bf8",
+      "paramStorage": [
+        [
+          "nLabelId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ],
+        [
+          "nDistance",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatSkillCalcValue",
+      "address": "004e84f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e84f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatSkillCalcValue",
+        "GetLocaleString",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "30338e47",
+      "paramStorage": [
+        [
+          "nCalcValue",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine1_SkillParams",
+      "address": "004e85c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e85c0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine1_SkillParams",
+        "SKILLDESC_FormatSkillCalcValue",
+        "GetSkillDescription",
+        "SKILLDESC_FormatDecimalWithLabel",
+        "SKILLDESC_FormatDecimalWithStrings",
+        "SKILLDESC_FormatSignedValue"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillsTxt",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "5b70248e",
+      "paramStorage": [
+        [
+          "pSkillsTxt",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nCalcA",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nCalcValue",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcWeaponDamageRange",
+      "address": "004e86f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e86f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcWeaponDamageRange",
+        "GetSkillsTxt",
+        "GetEquipedWeapon",
+        "STATSEX_GetCurrentStat",
+        "TXT_Items_GetLine",
+        "INVENTORY_GetWeaponHandedness",
+        "STATLIST_GetStatForDamageCalc",
+        "SKILLS_GetItemBonusDamage",
+        "SKILLDESC_GetAuraBonusDamage",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "STATES_HasDamBlueFlagState",
+        "STATES_HasDamRedFlagState"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int16_t",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "931bf11d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nFlatDamageBonus",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nSrcDamage",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "bUseWeaponStatList",
+          "Stack[0x20]:4"
+        ],
+        [
+          "nDamagePctBonus",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcElemDamageRange",
+      "address": "004e89a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e89a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcElemDamageRange",
+        "STATSEX_GetCurrentStat",
+        "_alldiv",
+        "GetSkillsTxt",
+        "SKILLDESC_AccumulateAuraBonusDmg",
+        "STATES_HasDamBlueFlagState",
+        "STATES_HasDamRedFlagState"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "039f4dd2",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AdjustDamageByType",
+      "address": "004e8d90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e8d90"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "AdjustDamageByType",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "d1e22337",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ESI:4"
+        ],
+        [
+          "pMinDamage",
+          "EBX:4"
+        ],
+        [
+          "pMaxDamage",
+          "EDI:4"
+        ],
+        [
+          "nDamageType",
+          "AL:1"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcAttackRateBonus",
+      "address": "004e8ec0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e8ec0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcAttackRateBonus",
+        "GetSkillsTxt",
+        "GetAttackRate",
+        "GetEquipedWeapon",
+        "ITEM_GetItemData_wType",
+        "SKILLS_GetItemBonusDamage",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SKILLS_CalcToHit",
+        "STATSEX_GetCurrentStat",
+        "STATES_HasAttBlueFlagState",
+        "STATES_HasAttRedFlagState"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "16042a57",
+      "paramStorage": [
+        [
+          "pnAttackRate",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pUnit",
+          "EAX:4"
+        ],
+        [
+          "pUnit2",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcAttackRateForWeapon",
+      "address": "004e8fe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e8fe0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcAttackRateForWeapon",
+        "SKILLDESC_CalcAttackRateBonus"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "e73779be",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pnAttackRate",
+          "EDX:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0x4]:4"
+        ],
+        [
+          "param_1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwParam1",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x14]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcEquippedAttackRate",
+      "address": "004e9000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9000"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcEquippedAttackRate",
+        "GetEquipedWeapon",
+        "SKILLDESC_CalcAttackRateBonus"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "430cb636",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMinColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnMaxColor",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcCompareAttackRate",
+      "address": "004e9040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9040"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcCompareAttackRate",
+        "GetEquipedWeapon",
+        "GetAttackRate",
+        "SEVER_ITEM_GetOwner",
+        "STATLIST_SetItemStatActive",
+        "STATLIST_RemoveFromOwnerAndRecalc",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SKILLS_CalcToHit",
+        "STATSEX_GetCurrentStat",
+        "STATES_HasAttBlueFlagState",
+        "STATES_HasAttRedFlagState"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "7d3bdaba",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMinColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnMaxColor",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcAttackRateWithState",
+      "address": "004e9160",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9160"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcAttackRateWithState",
+        "GetSkillsTxt",
+        "GetAttackRate",
+        "GetEquipedWeapon",
+        "ITEM_GetItemData_wType",
+        "UNIT_GetUnitState",
+        "SKILLS_GetItemBonusDamage",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SKILLS_CalcToHit",
+        "STATES_HasAttBlueFlagState",
+        "STATES_HasAttRedFlagState"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "cad6d465",
+      "paramStorage": [
+        [
+          "pnAttackRate",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pUnit2",
+          "ESI:4"
+        ],
+        [
+          "pUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_GetPrimaryWeapon",
+      "address": "004e9260",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9260"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_GetPrimaryWeapon",
+        "CanDualWield",
+        "GetEquipedWeapon",
+        "GetBodyLocation",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEMS_IsA",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "SEVER_ITEM_GetOwner",
+        "STATLIST_SetItemStatActive"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2BodyLoc",
+        "uint32_t"
+      ],
+      "dh": "01708855",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_GetSecondaryWeapon",
+      "address": "004e9300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9300"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_GetSecondaryWeapon",
+        "CanDualWield",
+        "GetEquipedWeapon",
+        "GetBodyLocation",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEMS_IsA",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "STATLIST_SetItemStatActive"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2BodyLoc",
+        "uint32_t"
+      ],
+      "dh": "b6acbf92",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcDualWieldDamage",
+      "address": "004e93a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e93a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcDualWieldDamage",
+        "CanDualWield",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "ITEMS_IsA",
+        "GetEquipedWeapon",
+        "STATLIST_SetItemStatActive",
+        "SKILLDESC_GetPrimaryWeapon",
+        "SKILLDESC_GetSecondaryWeapon"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "pfnSkillDescWeaponDmgCalc",
+        "uint32_t"
+      ],
+      "dh": "a1eef615",
+      "paramStorage": [
+        [
+          "pUnit2",
+          "EAX:4"
+        ],
+        [
+          "pdwParam1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pdwParam2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwParam1",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pdwParam3",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pdwParam4",
+          "Stack[0x14]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pfnCalcWeaponDmg",
+          "Stack[0x20]:4"
+        ],
+        [
+          "dwParam3",
+          "Stack[0x24]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x28]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcDualWieldDmg",
+      "address": "004e94e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e94e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcDualWieldDmg",
+        "SKILLDESC_CalcDualWieldDamage"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "429eca44",
+      "paramStorage": [
+        [
+          "pSkill",
+          "ECX:4"
+        ],
+        [
+          "param_1",
+          "EDX:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pdwParam1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pdwParam2",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pdwParam3",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pUnit2",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcDualWieldWithAR",
+      "address": "004e9510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9510"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcDualWieldWithAR",
+        "CanDualWield",
+        "SKILLDESC_CalcDualWieldDamage",
+        "GetEquipedWeapon",
+        "SKILLDESC_CalcAttackRateBonus"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "57de9bf8",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMinColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnMaxColor",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcDualWieldWithARState",
+      "address": "004e9590",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9590"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcDualWieldWithARState",
+        "SKILLDESC_CalcAttackRateWithState"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "c83e909a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMinColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnMaxColor",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcDualWieldSimple",
+      "address": "004e95c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e95c0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcDualWieldSimple",
+        "SKILLDESC_CalcDualWieldDamage"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "e3cdafe6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMinColor",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnMaxColor",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawDamageWithRange",
+      "address": "004e9610",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9610"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawDamageWithRange",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "SKILLDESC_CalcElemDamageRange"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f4a9a671",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pnMinDamage",
+          "EDX:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnColor",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDamagePctBonus",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nFlatDamageBonus",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nSrcDamage",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawElemDamageWithRange",
+      "address": "004e9660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9660"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawElemDamageWithRange",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "SKILLDESC_CalcElemDamageRange"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "3f45af25",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pnMinDamage",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnColor",
+          "EBX:4"
+        ],
+        [
+          "pUnit2",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDI:4"
+        ],
+        [
+          "nSrcDamage",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawDamageNumbers",
+      "address": "004e96e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e96e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawDamageNumbers",
+        "UTF8_ConvertToWideChar",
+        "TEXT_CalcTextDimensions",
+        "SetAndReturnLastFont",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "347df5aa",
+      "paramStorage": [
+        [
+          "nMinDamage",
+          "ECX:4"
+        ],
+        [
+          "nMaxDamage",
+          "EDX:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nXStart",
+          "EDI:4"
+        ],
+        [
+          "nYOffset",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXEnd",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawTwoLineText",
+      "address": "004e9870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9870"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawTwoLineText",
+        "SetAndReturnLastFont",
+        "MISC_GetLanguageCode",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "09d30ccc",
+      "paramStorage": [
+        [
+          "wszText1",
+          "ECX:4"
+        ],
+        [
+          "wszText2",
+          "EDX:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nYBase",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwColor1",
+          "Stack[0x10]:4"
+        ],
+        [
+          "dwColor2",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSingleNumber",
+      "address": "004e9940",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9940"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSingleNumber",
+        "UTF8_ConvertToWideChar",
+        "SetAndReturnLastFont",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "9140c304",
+      "paramStorage": [
+        [
+          "nColorIdx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nScreenX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenZ",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nValue",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgPhysical",
+      "address": "004e99f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e99f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgPhysical",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_CalcDualWieldDamage",
+        "SKILLDESC_DrawDamageNumbers",
+        "CONTAINER_InitializeBuffer",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "pfnSkillDescWeaponDmgCalc",
+        "uint32_t"
+      ],
+      "dh": "1772d790",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSkillRecord",
+          "ECX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "EAX:4"
+        ],
+        [
+          "nItemClassId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pfnCalcWeaponDmg",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nExtraFlags",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pCompareUnit",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nScreenX",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nScreenZ",
+          "Stack[0x20]:4"
+        ],
+        [
+          "nElemDmg",
+          "Stack[0x24]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgElemental",
+      "address": "004e9d20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e9d20"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgElemental",
+        "SKILLDESC_DrawElemDamageWithRange",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "AdjustDamageByType",
+        "SKILLDESC_DrawDamageNumbers",
+        "CONTAINER_InitializeBuffer",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "0793c31b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgWithElem",
+      "address": "004ea010",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea010"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgWithElem",
+        "GetSkillDescription",
+        "GetSkillId",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "SKILLDESC_CalcElemDamageRange",
+        "D2ApplyPercent",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3b1f1776",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgType1",
+      "address": "004ea170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea170"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgType1",
+        "GetSkillDescription",
+        "CanDualWield",
+        "GetSkillId",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_DrawSkillDmgPhysical",
+        "SKILLDESC_DrawSkillDmgWithElem"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a9f46f22",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgType2",
+      "address": "004ea240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea240"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgType2",
+        "GetSkillDescription",
+        "CanDualWield",
+        "GetSkillId",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_DrawSkillDmgPhysical",
+        "SKILLDESC_DrawSkillDmgWithElem"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "95b44f13",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgType3",
+      "address": "004ea310",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea310"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgType3",
+        "GetSkillDescription",
+        "CanDualWield",
+        "GetSkillId",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_DrawSkillDmgPhysical",
+        "SKILLDESC_DrawDamageWithRange",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d3448606",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgBasic",
+      "address": "004ea450",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea450"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgBasic",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "0ac7f787",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_CalcAuraDamageRange",
+      "address": "004ea4a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea4a0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_CalcAuraDamageRange",
+        "GetEquipedWeapon",
+        "ITEM_GetTxtItemTypes_throwable",
+        "ITEMS_IsA",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "STATSEX_GetCurrentStat",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "UNIT_GetUnitState",
+        "SKILLS_GetItemBonusDamage",
+        "D2ApplyPercent",
+        "SKILLDESC_CalcElemDamageRange",
+        "ITEM_GetItemsTxt_wMissileType",
+        "GetMinDamage",
+        "GetMinElemDamage",
+        "GetMaxDamage",
+        "GetMaxElemDamage",
+        "GetElemTypeFromMissileId",
+        "GetElementalLength"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "int16_t",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "59bc2f1e",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pnMinDamage",
+          "EDX:4"
+        ],
+        [
+          "pnMaxDamage",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pElemType",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nAuraBonusPct",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwParam1",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkill",
+          "Stack[0x14]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgAura",
+      "address": "004ea790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea790"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgAura",
+        "GetEquipedWeapon",
+        "ITEM_GetTxtItemTypes_throwable",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "STATSEX_GetCurrentStat",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "UNIT_GetUnitState",
+        "SKILLS_GetItemBonusDamage",
+        "D2ApplyPercent",
+        "AdjustDamageByType",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int16_t",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "5d387e73",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgAuraElem",
+      "address": "004ea990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ea990"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgAuraElem",
+        "SKILLDESC_CalcAuraDamageRange",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "23bff141",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgDualWield",
+      "address": "004eaa30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eaa30"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgDualWield",
+        "SKILLDESC_GetPrimaryWeapon",
+        "SKILLDESC_CalcAuraDamageRange",
+        "SKILLDESC_GetSecondaryWeapon",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "8b520ac2",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgComplex",
+      "address": "004eaaa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eaaa0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgComplex",
+        "SKILLDESC_CalcAuraDamageRange",
+        "D2ApplyPercent",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_DrawDamageNumbers",
+        "CONTAINER_InitializeBuffer",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "089f9bff",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgElem2H",
+      "address": "004ead60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ead60"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgElem2H",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILLDESC_DrawElemDamageWithRange",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SKILLS_GetElementalLength",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "55b94a7a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgElem2HAlt",
+      "address": "004eae70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eae70"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgElem2HAlt",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SKILLDESC_DrawElemDamageWithRange",
+        "SKILLS_GetElementalLength",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "e109f120",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgRanged",
+      "address": "004eaf90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eaf90"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgRanged",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "SKILLDESC_CalcElemDamageRange",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_DrawDamageNumbers",
+        "CONTAINER_InitializeBuffer",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "606f0fb4",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgSimple",
+      "address": "004eb240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb240"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgSimple",
+        "D2GetSkillCalc",
+        "SKILLDESC_DrawSkillDmgPhysical"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "bbe66700",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgPoisonRange",
+      "address": "004eb290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb290"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgPoisonRange",
+        "GetSkillDescription",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "GetSkillId",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "97670ae0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgBow",
+      "address": "004eb390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb390"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgBow",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILLDESC_DrawElemDamageWithRange",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "cea0c4d2",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgThrow",
+      "address": "004eb460",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb460"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgThrow",
+        "INVENTORY_GetEquippedShield",
+        "TXT_Items_GetLine",
+        "GetSkillByIdAndOwner",
+        "UNIT_GetUnitState",
+        "GetSkillLevel",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "MISSILE_GetBoltSpeed",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "STATSEX_GetCurrentStat",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "STATES_HasDamBlueFlagState",
+        "STATES_HasDamRedFlagState",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int16_t",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ba33a306",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgKick",
+      "address": "004eb640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb640"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgKick",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILLDESC_DrawElemDamageWithRange",
+        "GetWeaponBySkill",
+        "INVENTORY_GetWeaponHandedness",
+        "STATSEX_GetCurrentStat",
+        "D2GetSkillCalc",
+        "D2ApplyPercent",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a7e284da",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgFist",
+      "address": "004eb830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb830"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgFist",
+        "CLIENT_CheckExpansion",
+        "SKILLDESC_CalcSkillElemDamage",
+        "STATSEX_GetCurrentStat",
+        "SKILL_GetConcentrationDamageBonus",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "89e61097",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgTrap",
+      "address": "004eb940",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eb940"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgTrap",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "GetSkillId",
+        "SKILLDESC_CalcElemDamageRange",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t"
+      ],
+      "dh": "2049a458",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgConversion",
+      "address": "004eba30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eba30"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgConversion",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SKILLDESC_GetAuraBonusDamage",
+        "TXT_Skills_GetSkillRange",
+        "SKILL_CalcKickDamage",
+        "D2ApplyPercent",
+        "SKILLDESC_AccumulateAuraBonusDmg",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t"
+      ],
+      "dh": "8fa8d30d",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgSummon",
+      "address": "004ebb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ebb50"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgSummon",
+        "SKILLDESC_ElemTypeToColorIndex",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SKILLDESC_GetAuraBonusDamage",
+        "SKILL_CalcKickDamage",
+        "D2ApplyPercent",
+        "D2GetSkillCalc",
+        "GetEquipedWeapon",
+        "GetBodyLocation",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEMS_IsA",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "SEVER_ITEM_GetOwner",
+        "STATLIST_SetItemStatActive",
+        "SKILLDESC_CalcElemDamageRange",
+        "SKILLDESC_DrawDamageNumbers"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2BodyLoc",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "4a0e6d83",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgProgressive",
+      "address": "004ebd50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ebd50"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgProgressive",
+        "GetSkillDescription",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_CalcWeaponDamageRange",
+        "SKILLDESC_CalcElemDamageRange",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_DrawDamageNumbers",
+        "CONTAINER_InitializeBuffer",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "SKILLDESC_DrawSkillDmgProgressive_Slotmc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c22b3721",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillDmgProgElem",
+      "address": "004ec040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec040"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillDmgProgElem",
+        "GetSkillDescription",
+        "SKILLDESC_DrawSkillDmgWithElem"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "d47ff2ac",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pSkill",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nXLeft",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nY",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nXRight",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLineD_AppendDuration",
+      "address": "004ec090",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec090"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLineD_AppendDuration",
+        "GetDificulity",
+        "memset",
+        "GAMEDATA_GetLadderOrGameType",
+        "MONSTER_CalculateLevelScaledStats",
+        "SKILLDESC_FormatSignedValue"
+      ],
+      "usedTypes": [
+        "D2MonStatsInitStrc",
+        "D2MonStatsTxt",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "efbe6543",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLifePercent",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLifeBonus",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMonStatsId",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DamgeTypeToText",
+      "address": "004ec140",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec140"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "DamgeTypeToText",
+        "GetDamageTypeLocale",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "81500f55",
+      "paramStorage": [
+        [
+          "eDamageType",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wDmgTypeStringId",
+          "AX:2"
+        ],
+        [
+          "nMinDamage",
+          "ECX:4"
+        ],
+        [
+          "nMaxDamage",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLineA_AppendDamageType",
+      "address": "004ec220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec220"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLineA_AppendDamageType",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "DamgeTypeToText"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "a648b442",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ],
+        [
+          "nSkillId",
+          "EBX:4"
+        ],
+        [
+          "wDmgTypeLocaleId",
+          "Stack[0x10]:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine32_MissileDamage",
+      "address": "004ec280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec280"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine32_MissileDamage",
+        "GetMinElemDamage",
+        "GetMaxElemDamage",
+        "GetElemTypeFromMissileId",
+        "DamgeTypeToText"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "205b8ea1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLevel",
+          "EAX:4"
+        ],
+        [
+          "nMissileId",
+          "EBX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wDmgTypeLocaleId",
+          "Stack[0xc]:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine9_ElemDamage",
+      "address": "004ec2e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec2e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine9_ElemDamage",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "_alldiv",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "7ae2dee6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nFlatBonus",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ],
+        [
+          "nPercentBonus",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine8_AppendToHit",
+      "address": "004ec510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec510"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine8_AppendToHit",
+        "SKILLS_CalcToHit",
+        "SKILLDESC_FormatSignedRangeOrValue"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "176797ac",
+      "paramStorage": [
+        [
+          "eSkill",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatMissileDamage",
+      "address": "004ec540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec540"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatMissileDamage",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "a22c6069",
+      "paramStorage": [
+        [
+          "nMinDamage",
+          "ECX:4"
+        ],
+        [
+          "nMaxDamage",
+          "EDX:4"
+        ],
+        [
+          "wDmgTypeStringId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine16_MissileDamage",
+      "address": "004ec620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec620"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine16_MissileDamage",
+        "GetMinElemDamage",
+        "GetMaxElemDamage",
+        "ApplyPassiveFireMasteryDamage",
+        "ApplyPassiveLightningMasteryDamage",
+        "GetElemTypeFromMissileId",
+        "SKILLDESC_FormatMissileDamage"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint8_t"
+      ],
+      "dh": "29710f61",
+      "paramStorage": [
+        [
+          "nMissileId",
+          "ECX:4"
+        ],
+        [
+          "pOwner",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "EDX:4"
+        ],
+        [
+          "nLevel",
+          "EAX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine1B_AppendDamage",
+      "address": "004ec6f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec6f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine1B_AppendDamage",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_FormatMissileDamage"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "fc4c6950",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EDI:4"
+        ],
+        [
+          "eSkillId",
+          "EBX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine1A_SkillDamage",
+      "address": "004ec740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec740"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine1A_SkillDamage",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_FormatMissileDamage"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "e3d4273b",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ],
+        [
+          "eSkillId",
+          "EDI:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine3F_SignedPctRange",
+      "address": "004ec7e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec7e0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine3F_SignedPctRange",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "a368fcb3",
+      "paramStorage": [
+        [
+          "nValue",
+          "ECX:4"
+        ],
+        [
+          "wStatStringId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bAppendPercent",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wLabelStringId",
+          "DI:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine2A_DecimalRange",
+      "address": "004ec900",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ec900"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine2A_DecimalRange",
+        "SKILLDESC_FormatDecimalValue",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "dbe675c9",
+      "paramStorage": [
+        [
+          "nValueMax",
+          "ECX:4"
+        ],
+        [
+          "wSuffixStringId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bAppendPercent",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wLabelStringId",
+          "DI:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "nCalcA",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine40_DecimalLabel",
+      "address": "004eca00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eca00"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine40_DecimalLabel",
+        "CONTAINER_InitializeBuffer",
+        "GetLocaleString",
+        "AppendToBuffer",
+        "SKILLDESC_FormatIntValue",
+        "UTF8_ConvertToWideChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "77bea974",
+      "paramStorage": [
+        [
+          "wSuffixStringId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "nCalcA",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wLabelStringId",
+          "DI:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "nSecondValue",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine41_AppendStrings",
+      "address": "004ecb10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ecb10"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine41_AppendStrings",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint16_t"
+      ],
+      "dh": "97c460d6",
+      "paramStorage": [
+        [
+          "wDescTextA",
+          "CX:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "wDescTextB",
+          "DI:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine45_DecimalLabel",
+      "address": "004ecb80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ecb80"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine45_DecimalLabel",
+        "SKILLDESC_FormatIntValue",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "3b7b9fbf",
+      "paramStorage": [
+        [
+          "wValuePrefixStringId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bAppendPercent",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wLabelStringId",
+          "DI:2"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "nCalcA",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine42_CalcByIndex",
+      "address": "004ecc80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ecc80"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine42_CalcByIndex",
+        "GetLocaleString",
+        "UNICODE_FormatWideString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "e4927ec8",
+      "paramStorage": [
+        [
+          "nCalcResult",
+          "ECX:4"
+        ],
+        [
+          "wFormatStringId",
+          "DX:2"
+        ],
+        [
+          "pSkillDescShort",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine27_SkillElemCalc",
+      "address": "004eccf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eccf0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine27_SkillElemCalc",
+        "memset",
+        "GetDificulity",
+        "GAMEDATA_GetLadderOrGameType",
+        "MONSTER_CalculateLevelScaledStats",
+        "D2GetSkillCalc",
+        "_alldiv",
+        "DamgeTypeToText"
+      ],
+      "usedTypes": [
+        "D2MonStatsInitStrc",
+        "D2MonStatsTxt",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "29bf61fa",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nCalcInputA",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine29_FormatMonster",
+      "address": "004ecf50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ecf50"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine29_FormatMonster",
+        "GetDificulity",
+        "memset",
+        "GAMEDATA_GetLadderOrGameType",
+        "MONSTER_CalculateLevelScaledStats",
+        "GetDamageTypeLocale",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2MonStatsInitStrc",
+        "D2MonStatsTxt",
+        "D2SkillsTxt",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "859f3f88",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMaxDmgBonus",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine2D_SkillPassive",
+      "address": "004ed0d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ed0d0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine2D_SkillPassive",
+        "SKILLDESC_FormatValuePercentage",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "b4b24a27",
+      "paramStorage": [
+        [
+          "nSkillLevel",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "EDX:4"
+        ],
+        [
+          "nSkillId",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine22_SkillSynergies",
+      "address": "004ed150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ed150"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine22_SkillSynergies",
+        "memset",
+        "GetDificulity",
+        "GAMEDATA_GetLadderOrGameType",
+        "MONSTER_CalculateLevelScaledStats",
+        "D2GetSkillCalc",
+        "_alldiv",
+        "DamgeTypeToText"
+      ],
+      "usedTypes": [
+        "D2MonStatsInitStrc",
+        "D2MonStatsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "703b4451",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine35_BonusList",
+      "address": "004ed3f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ed3f0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine35_BonusList",
+        "GetLocaleString",
+        "UNICODE_FormatWideString",
+        "AppendToBuffer",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint16_t"
+      ],
+      "dh": "bbd6d171",
+      "paramStorage": [
+        [
+          "pSkillArgs",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wLabelStringId",
+          "Stack[0x8]:2"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_HasAnyClassSkill",
+      "address": "004ed480",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ed480"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_HasAnyClassSkill",
+        "GetClassId",
+        "GetSkillByIdAndOwner",
+        "GetSkillLevel"
+      ],
+      "usedTypes": [
+        "D2DataTableTxtStrc",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t"
+      ],
+      "dh": "ac205be0",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DrawSkillInfo",
+      "address": "004ed570",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ed570"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DrawSkillInfo",
+        "GetSkillsTxt",
+        "GetSkillLevel",
+        "GetSkillId",
+        "GetSkillDescription",
+        "SetAndReturnLastFont",
+        "GetAltSkillDescription",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "UI_TranslateWideCharacterLookup",
+        "UI_DrawTextCentered",
+        "PLRSKILLS_CanUseSkillCheck",
+        "CONTAINER_InitializeBuffer",
+        "UNICODE_FormatWideString",
+        "UI_AppendColorCodeToString",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_DrawTwoLineText",
+        "SKILLDESC_DrawSingleNumber"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "597b8735",
+      "paramStorage": [
+        [
+          "pPlayerUnit",
+          "ECX:4"
+        ],
+        [
+          "pActiveSkill",
+          "EDX:4"
+        ],
+        [
+          "nLayoutIndex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_STAT_Damage",
+      "address": "004eda20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eda20"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "DRAW_UI_STAT_Damage",
+        "MISC_GetLanguageCode",
+        "GetLeftSkill",
+        "SKILLDESC_DrawSkillInfo",
+        "GetRightSkill"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "7eda12c1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_GetSkillBonusText",
+      "address": "004eda80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eda80"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_GetSkillBonusText",
+        "GetRightSkill",
+        "GetLeftSkill",
+        "GetSkillsTxt",
+        "GetSkillDescription",
+        "GetSkillLevel"
+      ],
+      "usedTypes": [
+        "D2SkillDescTxt",
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "2831da48",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "bLeftSkill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_FormatValueWithSign",
+      "address": "004edb30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004edb30"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_FormatValueWithSign",
+        "SKILLDESC_FormatIntValue",
+        "SKILLDESC_FormatDecimalValue",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "1705440f",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "wStrId",
+          "Stack[0x4]:2"
+        ],
+        [
+          "bPrefixSign",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLineB_SignedFormat",
+      "address": "004edc40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004edc40"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLineB_SignedFormat",
+        "SKILLS_GetElementalLength",
+        "SKILLDESC_FormatValueWithSign"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "62527b5e",
+      "paramStorage": [
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ],
+        [
+          "nSkillId",
+          "ECX:4"
+        ],
+        [
+          "pUnitStrc",
+          "EDX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLineE_PerLevelBonus",
+      "address": "004edca0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004edca0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLineE_PerLevelBonus",
+        "SKILLS_GetElementalLength",
+        "SERVER_MinDamage",
+        "SERVER_MaxDamage",
+        "SKILLDESC_FormatValueWithSign",
+        "GetDamageTypeLocale",
+        "UTF8_ConvertToWideChar",
+        "GetLocaleString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "8964ebbe",
+      "paramStorage": [
+        [
+          "nSkillId",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_DescLine30_DamageMinMax",
+      "address": "004eddd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eddd0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_DescLine30_DamageMinMax",
+        "CLIENT_CheckExpansion",
+        "SKILLDESC_CalcSkillElemDamage",
+        "SKILLDESC_FormatDamageMinMax",
+        "SKILLDESC_DescLineB_SignedFormat",
+        "SKILLDESC_DescLineA_AppendDamageType",
+        "SKILLDESC_DescLine9_ElemDamage",
+        "SKILLS_CalcToHit",
+        "SKILLDESC_FormatSignedRangeOrValue"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "064898b3",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSkillId",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nSkillLevel",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_ProcessDescLine",
+      "address": "004edea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004edea0"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_ProcessDescLine",
+        "GetSkillDescription",
+        "SKILLS_EvalDescCalcBytecode",
+        "SKILLDESC_DescLine1_SkillParams",
+        "SKILLDESC_FormatSignedRangeOrValue",
+        "SKILLDESC_FormatSignedValue",
+        "SKILLDESC_FormatValuePercentage",
+        "GetLocaleString",
+        "AppendToBuffer",
+        "SKILLDESC_DescLine8_AppendToHit",
+        "SKILLDESC_DescLine9_ElemDamage",
+        "SKILLDESC_DescLineA_AppendDamageType",
+        "SKILLDESC_DescLineB_SignedFormat",
+        "SKILLDESC_FormatValueWithSign",
+        "SKILLDESC_DescLineD_AppendDuration",
+        "SKILLDESC_DescLineE_PerLevelBonus",
+        "SKILLDESC_FormatRangeWithStrings",
+        "SKILLDESC_FormatMinMaxRange",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "SKILLDESC_FormatDecimalSigned",
+        "SKILLDESC_FormatThreeValues",
+        "SKILLDESC_DescLine16_MissileDamage",
+        "AppendAsWideChar",
+        "SKILLDESC_DescLine1A_SkillDamage",
+        "SKILLDESC_DescLine1B_AppendDamage",
+        "GetMissleById",
+        "GetDificulity",
+        "GetDifficultyLevels",
+        "SKILLDESC_DescLine22_SkillSynergies",
+        "UTF8_ConvertToWideChar",
+        "SKILLDESC_FormatTwoValuesSigned",
+        "DistanceToYardsText",
+        "SKILLDESC_DescLine27_SkillElemCalc",
+        "SKILLDESC_DescLine29_FormatMonster",
+        "SKILLDESC_DescLine2A_DecimalRange",
+        "SKILLDESC_FormatRangeDivided",
+        "SKILLDESC_DescLine2D_SkillPassive",
+        "UNICODE_FormatWideString",
+        "SKILLDESC_FormatDamageMinMax",
+        "SKILLDESC_DescLine30_DamageMinMax",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "SKILLDESC_DescLine32_MissileDamage",
+        "SKILLDESC_FormatStringWithCalc",
+        "SPELLSEL_FindChargedSkill1",
+        "SKILLDESC_DescLine35_BonusList",
+        "SPELLSEL_FindChargedSkill2",
+        "SPELLSEL_FindChargedSkill3",
+        "SPELLSEL_FindChargedSkill4",
+        "SKILLDESC_FormatMinMaxRangeLabelsFirst",
+        "DamgeTypeToText",
+        "SKILLDESC_FormatDecimalWithStrings",
+        "SKILLDESC_DescLine3F_SignedPctRange",
+        "SKILLDESC_DescLine40_DecimalLabel",
+        "SKILLDESC_DescLine41_AppendStrings",
+        "SKILLDESC_DescLine42_CalcByIndex",
+        "SKILLDESC_FormatValueTwoStrings",
+        "SKILLDESC_DescLine45_DecimalLabel",
+        "SKILLDESC_FormatIntValue"
+      ],
+      "usedTypes": [
+        "D2DifficultyLevelsTxt",
+        "D2MissilesTxt",
+        "D2SkillDescTxt",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "b3f0b982",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pwszOutput",
+          "EDX:4"
+        ],
+        [
+          "pSkillsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eSkill",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nCalcIndex",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nDescLineIndex",
+          "Stack[0x14]:4"
+        ],
+        [
+          "cCharClass",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildSkillTooltip",
+      "address": "004eef00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004eef00"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildSkillTooltip",
+        "GetSkillByIdAndOwner",
+        "GetSkillLevel",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SKILL_GetMaxLevelForSkill",
+        "SKILLDESC_ProcessDescLine",
+        "AppendToBuffer",
+        "UTF8_ConvertToWideChar",
+        "AppendAsWideChar",
+        "SKILLDESC_HasAnyClassSkill",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "9186ef82",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "eSkill",
+          "EDX:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCalcIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildSkillTooltip_NoMaxLevelCheck",
+      "address": "004ef410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ef410"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildSkillTooltip_NoMaxLevelCheck",
+        "GetSkillByIdAndOwner",
+        "GetSkillLevel",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SKILLDESC_ProcessDescLine",
+        "AppendToBuffer",
+        "UTF8_ConvertToWideChar",
+        "AppendAsWideChar",
+        "SKILLDESC_HasAnyClassSkill",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "24de74dd",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "eSkill",
+          "EDX:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCalcIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nScreenX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLDESC_BuildSkillShortTooltip",
+      "address": "004ef990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004ef990"
+        }
+      ],
+      "namespace": "D2Client::UI::SkillDesc",
+      "calledFunctions": [
+        "SKILLDESC_BuildSkillShortTooltip",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SKILLDESC_ProcessDescLine",
+        "UTF8_ConvertToWideChar",
+        "AppendToBuffer",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2SkillsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2Skills",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "61a9ae44",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "eSkill",
+          "EDX:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nCalcIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nParam1",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nScreenX",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x14]:4"
+        ]
+      ]
+    }
+  ]
+}

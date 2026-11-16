@@ -1,0 +1,462 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Src/AsyncData.cpp",
+  "functions": [
+    {
+      "name": "STRUCT_AllocAsyncData",
+      "address": "0040a390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a390"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "STRUCT_AllocAsyncData",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SFileSetAsyncBudget",
+        "SFileSetDataChunkSize",
+        "AllocClientMemory"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "75a13d60",
+      "paramStorage": [
+        [
+          "nEnable",
+          "ECX:4"
+        ],
+        [
+          "nReserved",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "STRUCT_FreeAsyncData",
+      "address": "0040a440",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a440"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "STRUCT_FreeAsyncData",
+        "FreeClientMemory"
+      ],
+      "usedTypes": [
+        "D2AsyncDataSlotStrc",
+        "uint32_t"
+      ],
+      "dh": "fee6a184"
+    },
+    {
+      "name": "ASYNCDATA_CancelAndCleanup",
+      "address": "0040a4c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a4c0"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_CancelAndCleanup",
+        "ERRORMANAGER_FCloseFile",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128"
+      ],
+      "dh": "a3d84442",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_AllocSlot",
+      "address": "0040a550",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a550"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_AllocSlot",
+        "ASYNCDATA_CancelAndCleanup"
+      ],
+      "usedTypes": [
+        "D2AsyncDataSlotStrc",
+        "uint32_t"
+      ],
+      "dh": "d91ec416"
+    },
+    {
+      "name": "STRUCT_AllocAsyncData_Line0x128",
+      "address": "0040a620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a620"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "STRUCT_AllocAsyncData_Line0x128",
+        "AllocServerMemory",
+        "memset",
+        "ARCHIVE_OpenD2FileWrap",
+        "SFILE_SetFilePointerThunk",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ERRORMANAGER_FGetFileSize",
+        "Alloc",
+        "ERRORMANAGER_FReadFile",
+        "ASYNCDATA_CancelAndCleanup",
+        "ASYNCDATA_AllocSlot",
+        "ERRORMANAGER_FCloseFile",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2AsyncDataCallbackStrc",
+        "D2AsyncDataSlotStrc",
+        "D2AsyncData_Line0x128",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "3b34f288",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "szText1",
+          "EDX:4"
+        ],
+        [
+          "bAsync",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFileOffset",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nReadSize",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pReadBuffer",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pCallback",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nPriority",
+          "Stack[0x18]:4"
+        ],
+        [
+          "szText2",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nLine",
+          "Stack[0x20]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_IsComplete",
+      "address": "0040a7f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a7f0"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_IsComplete",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ASYNCDATA_CancelAndCleanup"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "fa615e1e",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_SetPriority",
+      "address": "0040a850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a850"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "SFILE_SetRequestPriorityByBuffer",
+        "ASYNCDATA_SetPriority",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ASYNCDATA_HaltSetPriorityAtLine"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "uint32_t"
+      ],
+      "dh": "23cd3a0d",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ],
+        [
+          "nPriority",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_HaltSetPriorityAtLine",
+      "address": "0040a859",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a859"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ERROR_UnrecoverableInternalError_Halt",
+        "GetInstructionPointer",
+        "exit",
+        "ASYNCDATA_HaltSetPriorityAtLine"
+      ],
+      "dh": "4ff445e7",
+      "paramStorage": [
+        [
+          "nLine",
+          "Stack[0x0]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_DeferPriorityUpdates",
+      "address": "0040a8e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a8e0"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_DeferPriorityUpdates",
+        "SFILE_SetRequestPriorityByBuffer",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128"
+      ],
+      "dh": "e2847a3c",
+      "paramStorage": [
+        [
+          "bDefer",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_WaitForCompletion",
+      "address": "0040a960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a960"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_WaitForCompletion",
+        "ASYNCDATA_IsComplete",
+        "SFILE_SetRequestPriorityByBuffer",
+        "ASYNCDATA_CancelAndCleanup",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "4ef6de0a",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_GetResult",
+      "address": "0040a9e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a9e0"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_GetResult",
+        "ASYNCDATA_WaitForCompletion",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "int32_t"
+      ],
+      "dh": "2fc5aa14",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_GetReadSize",
+      "address": "0040aa40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040aa40"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_GetReadSize",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "int32_t"
+      ],
+      "dh": "695e957a",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_SetResult",
+      "address": "0040aa80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040aa80"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_SetResult",
+        "FreeServerMemory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "int32_t"
+      ],
+      "dh": "bed205b3",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ],
+        [
+          "pNewBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nNewSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ASYNCDATA_Free",
+      "address": "0040ab00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ab00"
+        }
+      ],
+      "namespace": "Fog::Src::AsyncData",
+      "calledFunctions": [
+        "ASYNCDATA_Free",
+        "ASYNCDATA_IsComplete",
+        "SFILE_CancelAsyncRequestNoReturn",
+        "ASYNCDATA_CancelAndCleanup",
+        "FreeServerMemory",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2AsyncData_Line0x128",
+        "D2AsyncData_Line0x128 *",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c5c421bf",
+      "paramStorage": [
+        [
+          "pAsyncData",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

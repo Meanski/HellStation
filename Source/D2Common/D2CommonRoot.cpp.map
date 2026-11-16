@@ -1,0 +1,197 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/D2CommonRoot.cpp",
+  "functions": [
+    {
+      "name": "DRLGROOMEX_SetFlagsFromNearCount",
+      "address": "0061bb50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0061bb50"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "DRLGROOMEX_SetFlagsFromNearCount"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc"
+      ],
+      "dh": "3f775f02",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ITEMTBLS_CalcExpr_ParseTokenType",
+      "address": "00631430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00631430"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "ITEMTBLS_CalcExpr_ParseTokenType",
+        "SStrCmpI"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "3680660f",
+      "paramStorage": [
+        [
+          "szKey",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ITEMTBLS_CalcExpr_GetConstTwo",
+      "address": "00631490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00631490"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "ITEMTBLS_CalcExpr_GetConstTwo"
+      ],
+      "dh": "52953bdb",
+      "paramStorage": [
+        [
+          "nFunctionIndex",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MISSILE_CalcVMCallback_GetSpecialParam",
+      "address": "0064b6e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0064b6e0"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "MISSILE_CalcVMCallback_GetSpecialParam",
+        "GetSpecialParamValue"
+      ],
+      "usedTypes": [
+        "D2MissileCalcContextStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "d880fdf8",
+      "paramStorage": [
+        [
+          "nCalcOp",
+          "ECX:4"
+        ],
+        [
+          "pCalcCtx",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ITEMMOD_RollRandomInRange",
+      "address": "0065c620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0065c620"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "ITEMMOD_RollRandomInRange",
+        "ITEM_GetItemData_wItemVersion",
+        "GetItemSeed",
+        "RANDOM_RandomNumberSelector"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "2b568e62",
+      "paramStorage": [
+        [
+          "nRangeStart",
+          "EAX:4"
+        ],
+        [
+          "nRangeEnd",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPRESET_GetObjectTableActCount",
+      "address": "00665860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00665860"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "DRLGPRESET_GetObjectTableActCount"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "00e20d9d",
+      "paramStorage": [
+        [
+          "nActNo",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPRESET_GetObjectIdFromActTable",
+      "address": "006658e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006658e0"
+        }
+      ],
+      "namespace": "D2Common",
+      "calledFunctions": [
+        "DRLGPRESET_GetObjectIdFromActTable"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "923c1d23",
+      "paramStorage": [
+        [
+          "nActNo",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nIndex",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

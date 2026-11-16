@@ -1,0 +1,396 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "3rdparty/crashy/crashyRoot.cpp",
+  "functions": [
+    {
+      "name": "CRT_LocalTime_Thunk",
+      "address": "00401000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401000"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "CRT_LocalTime_Thunk",
+        "_localtime64_s"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "7fb36cd0",
+      "paramStorage": [
+        [
+          "pLocalTime",
+          "ECX:4"
+        ],
+        [
+          "pTime",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FILETOOLS_GetTempPath_UTF8",
+      "address": "00401020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401020"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "FILETOOLS_GetTempPath_UTF8"
+      ],
+      "dh": "1b89d9ef",
+      "paramStorage": [
+        [
+          "pSrc",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "isDebuggerPresent",
+      "address": "004013a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004013a0"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "isDebuggerPresent"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "3551b64a"
+    },
+    {
+      "name": "SYSTEM_Win32TerminateProcess",
+      "address": "004013c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004013c0"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_Win32TerminateProcess"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "ee9d5cc0",
+      "paramStorage": [
+        [
+          "uExitCode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SYSTEM_GetCurrentProcessThreadCount",
+      "address": "004013d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004013d0"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_GetCurrentProcessThreadCount",
+        "memset",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "PROCESSENTRY32W"
+      ],
+      "dh": "d767e2bb"
+    },
+    {
+      "name": "SYSTEM_GetStackRegion",
+      "address": "00401480",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401480"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_GetStackRegion"
+      ],
+      "usedTypes": [
+        "_MEMORY_BASIC_INFORMATION",
+        "uint8_t"
+      ],
+      "dh": "dd4670a6",
+      "paramStorage": [
+        [
+          "ppStackBase",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pAddress",
+          "EAX:4"
+        ],
+        [
+          "ppStackTop",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SYSTEM_CaptureThreadContext",
+      "address": "00401540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401540"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_CaptureThreadContext",
+        "SYSTEM_GetStackRegion",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "CONTEXT",
+        "uint32_t"
+      ],
+      "dh": "58a47ee0",
+      "paramStorage": [
+        [
+          "pnStackTop",
+          "ECX:4"
+        ],
+        [
+          "dwThreadId",
+          "EDX:4"
+        ],
+        [
+          "pStackSize",
+          "Stack[0x4]:4"
+        ],
+        [
+          "ppEsp",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SYSTEM_GetThreadName",
+      "address": "00401640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401640"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_GetThreadName",
+        "strncpy_s"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "2d996b15",
+      "paramStorage": [
+        [
+          "wThreadId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pBuffer",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ILT_GetCurrentThreadId",
+      "address": "00401690",
+      "lines": [],
+      "namespace": "Fog::_3rdparty::crashy"
+    },
+    {
+      "name": "thunk_InitializeDebugSubsystem",
+      "address": "004016a0",
+      "lines": [],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "InitializeDebugSubsystem"
+      ]
+    },
+    {
+      "name": "InternalCheckCorp",
+      "address": "004016c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004016c0"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "InternalCheckCorp",
+        "__security_check_cookie",
+        "WSACleanup"
+      ],
+      "usedTypes": [
+        "WSADATA",
+        "hostent",
+        "uint32_t"
+      ],
+      "dh": "88f17501"
+    },
+    {
+      "name": "SYSTEM_SetGlobalString",
+      "address": "00401740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401740"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_SetGlobalString"
+      ],
+      "dh": "60c616c2",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ErrorReportingLaunch",
+      "address": "00401790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401790"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "ErrorReportingLaunch",
+        "STRING_AppendStringToString",
+        "FILETOOLS_CheckIfFileExists_UTF8",
+        "memset",
+        "FILETOOLS_StartApplicationWithCommandLine_UTF8",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2BlizzardErrorArgument",
+        "char *",
+        "uint32_t"
+      ],
+      "dh": "532a0ea6",
+      "paramStorage": [
+        [
+          "szText",
+          "ECX:4"
+        ],
+        [
+          "pArg",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ILT_strrchr",
+      "address": "00401a30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401a30"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "ILT_strrchr",
+        "strrchr"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b91cfdfb",
+      "paramStorage": [
+        [
+          "_Str",
+          "Stack[0x4]:4"
+        ],
+        [
+          "_Ch",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SYSTEM_EnterCriticalSection",
+      "address": "00401a40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401a40"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SYSTEM_EnterCriticalSection"
+      ],
+      "usedTypes": [
+        "LPCRITICAL_SECTION"
+      ],
+      "dh": "0a8db65c",
+      "paramStorage": [
+        [
+          "lpCriticalSection",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LeaveCriticalSection_System",
+      "address": "00401a60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00401a60"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "LeaveCriticalSection_System"
+      ],
+      "dh": "edccac54"
+    },
+    {
+      "name": "SetCurrentThreadId",
+      "address": "006ca6f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca6f0"
+        }
+      ],
+      "namespace": "Fog::_3rdparty::crashy",
+      "calledFunctions": [
+        "SetCurrentThreadId"
+      ],
+      "dh": "5aac6b3a"
+    }
+  ]
+}

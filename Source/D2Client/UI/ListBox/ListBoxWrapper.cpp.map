@@ -1,0 +1,579 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/ListBox/ListBoxWrapper.cpp",
+  "functions": [
+    {
+      "name": "Destructor",
+      "address": "004becc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004becc0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "Destructor"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper",
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "b319adb5",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "ScalarDeletingDestructor",
+      "address": "004bed10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed10"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "ScalarDeletingDestructor",
+        "Destructor",
+        "SMemFree"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper",
+        "uint32_t"
+      ],
+      "dh": "a9547170",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nFlags",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnDownArrow",
+      "address": "004bed40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed40"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnDownArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "06e3e70b",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnUpArrow",
+      "address": "004bed50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed50"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnUpArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "da22c0e3",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnRightArrow",
+      "address": "004bed60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed60"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnRightArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "7c75bb21",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnLeftArrow",
+      "address": "004bed70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed70"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnLeftArrow"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "60312501",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseDown",
+      "address": "004bed80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed80"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnMouseDown"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "38e5780f",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseUp",
+      "address": "004bed90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bed90"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnMouseUp"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "783edb9f",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseMove",
+      "address": "004beda0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004beda0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnMouseMove"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "bb01b007",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OnChar",
+      "address": "004bedb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bedb0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnChar"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "d1fee248",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetValue",
+      "address": "004bedc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bedc0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "GetValue"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper"
+      ],
+      "dh": "2612dd2c",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "Draw",
+      "address": "004bedd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bedd0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "Draw"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper"
+      ],
+      "dh": "198859ab",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "AddItem",
+      "address": "004bede0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bede0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "AddItem"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "c10eff96",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "wszLine0",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszLine1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszLine2",
+          "Stack[0xc]:4"
+        ],
+        [
+          "wszLine3",
+          "Stack[0x10]:4"
+        ],
+        [
+          "wszLine4",
+          "Stack[0x14]:4"
+        ],
+        [
+          "wszLine5",
+          "Stack[0x18]:4"
+        ],
+        [
+          "dwItemData",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x20]:4"
+        ],
+        [
+          "bUseDefaultColor",
+          "Stack[0x24]:4"
+        ],
+        [
+          "nFont",
+          "Stack[0x28]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetItemUserData",
+      "address": "004bedf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bedf0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "GetItemUserData"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper",
+        "uint32_t"
+      ],
+      "dh": "aaf1bd41",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nIndex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetItemCount",
+      "address": "004bee00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bee00"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "GetItemCount"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper"
+      ],
+      "dh": "b11e953e",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "Clear",
+      "address": "004bee10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bee10"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "Clear"
+      ],
+      "usedTypes": [
+        "ListBoxWrapper"
+      ],
+      "dh": "c660713a",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ]
+      ]
+    },
+    {
+      "name": "OnMouseWheel",
+      "address": "004bee20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bee20"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "OnMouseWheel"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "ListBoxWrapper"
+      ],
+      "dh": "df5bbbf0",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Constructor",
+      "address": "004bf8f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004bf8f0"
+        }
+      ],
+      "namespace": "D2Client::UI::ListBox::ListBoxWrapper",
+      "calledFunctions": [
+        "Constructor",
+        "SMemAlloc"
+      ],
+      "usedTypes": [
+        "ListBoxImplementation",
+        "ListBoxWrapper",
+        "fpListBoxItemActivated",
+        "pfnEHHandlerRoutine"
+      ],
+      "dh": "580e8291",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4 (auto)"
+        ],
+        [
+          "nPosX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nPosY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nItemSpacing",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nDefaultColor",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nDefaultFont",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pfnOnItemActivated",
+          "Stack[0x20]:4"
+        ],
+        [
+          "bTallRows",
+          "Stack[0x24]:1"
+        ]
+      ]
+    }
+  ]
+}

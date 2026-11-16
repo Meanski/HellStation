@@ -1,0 +1,266 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Drlg/DrlgAnim.cpp",
+  "functions": [
+    {
+      "name": "DRLGROOMTILE_CountAnimTilesFromGrid",
+      "address": "0066d290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d290"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "DRLGROOMTILE_CountAnimTilesFromGrid",
+        "GetGridFlags",
+        "TILEPROJECT_LookupTilesInAllProjects",
+        "TILEPROJECT_GetTileCount"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "a0e1f8f4",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "pGrid",
+          "EDX:4"
+        ],
+        [
+          "pOrientGrid",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnused",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nKillEdgeX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nKillEdgeY",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AnimateTile",
+      "address": "0066d3b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d3b0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "AnimateTile"
+      ],
+      "usedTypes": [
+        "D2DrlgAnimTileGridStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "09e5d9ba",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AnimateTiles",
+      "address": "0066d410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d410"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "AnimateTiles",
+        "AnimateTile"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc"
+      ],
+      "dh": "31670146",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGANIM_AllocAnimatedTiles",
+      "address": "0066d440",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d440"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "DRLGANIM_AllocAnimatedTiles",
+        "TILEPROJECT_GetTileCount",
+        "GetGridFlags",
+        "TILEPROJECT_LookupTilesInAllProjects",
+        "AllocServerMemory",
+        "memset",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TILEPROJECT_GetAnimatedTileDataPtr",
+        "DRLGROOMTILE_CreateFloorTileData",
+        "DRLGROOMTILE_CreateShadowTileData",
+        "DRLGROOMTILE_CreateWallTileData",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2DrlgAnimTileGridStrc",
+        "D2DrlgGridStrc",
+        "D2DrlgTileDataStrc",
+        "D2DrlgTileDataStrc *",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc",
+        "D2TileLibraryEntryStrc",
+        "D2TileLibraryEntryStrc *",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "a1ead50a",
+      "paramStorage": [
+        [
+          "pGrids",
+          "ECX:4"
+        ],
+        [
+          "pRoomEx",
+          "EDX:4"
+        ],
+        [
+          "nFrameStep",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pTiles",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nTileCount",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGROOMTILE_AllocAnimTiles",
+      "address": "0066d700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d700"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "DRLGROOMTILE_AllocAnimTiles",
+        "DRLGANIM_AllocAnimatedTiles"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "d3dd9abc",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nFrameStep",
+          "EDX:4"
+        ],
+        [
+          "pWallGrids",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nUnused1",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pFloorGrids",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nUnused2",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pRoofGrids",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGANIM_GetOrientationFromIndex_Unref_0066d7e0",
+      "address": "0066d7e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d7e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "DRLGANIM_GetOrientationFromIndex_Unref_0066d7e0"
+      ],
+      "dh": "4c532fc4",
+      "paramStorage": [
+        [
+          "nAnimIndex",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPRESET_MapTileType",
+      "address": "0066d7f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d7f0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgAnim",
+      "calledFunctions": [
+        "DRLGPRESET_MapTileType"
+      ],
+      "dh": "841883c8",
+      "paramStorage": [
+        [
+          "nAnimIndex",
+          "ECX:4"
+        ]
+      ]
+    }
+  ]
+}

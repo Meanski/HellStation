@@ -1,0 +1,701 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Drlg/DrlgLogic.cpp",
+  "functions": [
+    {
+      "name": "DRLGLOGIC_PopulateGridCoordIndices",
+      "address": "0066c580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c580"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_PopulateGridCoordIndices",
+        "GetGridFlags",
+        "DRLGGRID_FloodFillGridCoords"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordIndexCtxStrc",
+        "uint32_t"
+      ],
+      "dh": "a996af72",
+      "paramStorage": [
+        [
+          "pnFloodFillContext",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_GetGridFlagsAtWorldPos",
+      "address": "0066c620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c620"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_GetGridFlagsAtWorldPos",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2DrlgVertexStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "d9653b6e",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "pVertex",
+          "EDX:4"
+        ],
+        [
+          "nWorldX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nWorldY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocEmptyDrlgCoordList_Unused",
+      "address": "0066c660",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c660"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "AllocEmptyDrlgCoordList_Unused",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "79b79102",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pRoomEx",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocEmptyRoomCoordList_Unused",
+      "address": "0066c6a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c6a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "AllocEmptyRoomCoordList_Unused",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2PoolManagerStrc",
+        "D2RoomCoordListStrc",
+        "int32_t"
+      ],
+      "dh": "b506a0cd",
+      "paramStorage": [
+        [
+          "pMemory",
+          "ECX:4"
+        ],
+        [
+          "pDrlgCoordList",
+          "EDX:4"
+        ],
+        [
+          "nSize",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeDrlgCoordList",
+      "address": "0066c6e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c6e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "FreeDrlgCoordList",
+        "DRLGGRID_FreeGrid",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2PoolManagerStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "a808c24a",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitializeDrlgCoordList",
+      "address": "0066c770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c770"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "InitializeDrlgCoordList"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "8913e319",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nMatchIndex",
+          "EDX:4"
+        ],
+        [
+          "nNewIndex",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bNode",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_SetGridDoorFlags",
+      "address": "0066c7f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c7f0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_SetGridDoorFlags",
+        "AlterGridFlag"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgTileDataStrc",
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "b9de2571",
+      "paramStorage": [
+        [
+          "pGrid",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoomEx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0066c840",
+      "address": "0066c840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c840"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "Unreferenced_0066c840"
+      ],
+      "usedTypes": [
+        "D2DrlgTileDataStrc"
+      ],
+      "dh": "a191e893",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_SetGridWallFlags",
+      "address": "0066c870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c870"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_SetGridWallFlags",
+        "AlterGridFlag",
+        "DRLGCOORDS_IsPointInside"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgTileDataStrc",
+        "D2DrlgTileGridStrc",
+        "D2DrlgTileLinkStrc",
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "d58b465e",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pGrid",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_FillTileGridFlags",
+      "address": "0066c9c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066c9c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_FillTileGridFlags",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2DrlgTileDataStrc",
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "6d5dd3bd",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_BuildCoordRegions",
+      "address": "0066ca50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066ca50"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_BuildCoordRegions",
+        "DRLGGRID_InitGridCells",
+        "GetGridFlags",
+        "AllocServerMemory",
+        "memset",
+        "AlterGridFlag"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2PoolManagerStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "f55f403b",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCoordList",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocDrlgCoordList",
+      "address": "0066ccb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066ccb0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "AllocDrlgCoordList",
+        "AllocServerMemory",
+        "memset"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2DrlgLevelStrc",
+        "D2PoolManagerStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "14fdef09",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_GetRoomCoordListAt",
+      "address": "0066cda0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066cda0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_GetRoomCoordListAt",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "71acf728",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ESI:4"
+        ],
+        [
+          "nY",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_GetRoomCoordIndexAt",
+      "address": "0066cde0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066cde0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_GetRoomCoordIndexAt",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc"
+      ],
+      "dh": "86e9bb1b",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "EDI:4"
+        ],
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_ROOMEX_GetGridIndex",
+      "address": "0066ce30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066ce30"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLG_ROOMEX_GetGridIndex",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc",
+        "int32_t"
+      ],
+      "dh": "93724e8c",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_GetCoordListFromSubtilePos",
+      "address": "0066ceb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066ceb0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_GetCoordListFromSubtilePos",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc",
+        "int32_t"
+      ],
+      "dh": "3ea3820a",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetCoordList",
+      "address": "0066cf30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066cf30"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "GetCoordList",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc",
+        "int32_t"
+      ],
+      "dh": "8f7fc3df",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_LinkCoordListEntry",
+      "address": "0066cf60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066cf60"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_LinkCoordListEntry",
+        "DRLGCOORDS_IsPointInside",
+        "GetGridFlags",
+        "InitializeDrlgCoordList",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordListStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "4453e685",
+      "paramStorage": [
+        [
+          "pNeighborRoom",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSrcRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_LinkBorderCoordLists",
+      "address": "0066d040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d040"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_LinkBorderCoordLists",
+        "DRLGROOM_CoordsWithinDistance",
+        "DRLGLOGIC_LinkCoordListEntry"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc"
+      ],
+      "dh": "fc2f4686",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLOGIC_BuildRoomCoordList",
+      "address": "0066d110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d110"
+        }
+      ],
+      "namespace": "D2Common::Drlg::DrlgLogic",
+      "calledFunctions": [
+        "DRLGLOGIC_BuildRoomCoordList",
+        "AllocServerMemory",
+        "memset",
+        "DRLGLOGIC_SetGridDoorFlags",
+        "DRLGGRID_InitGridCells",
+        "FillGrid",
+        "DRLGLOGIC_SetGridWallFlags",
+        "DRLGLOGIC_PopulateGridCoordIndices",
+        "ResetGrid",
+        "DRLGLOGIC_BuildCoordRegions",
+        "DRLGLOGIC_FillTileGridFlags",
+        "DRLGLOGIC_LinkBorderCoordLists"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordIndexCtxStrc",
+        "D2DrlgCoordListStrc",
+        "D2DrlgGridStrc",
+        "D2DrlgLevelStrc",
+        "D2RoomCoordListStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "8af4fd3a",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nOrientGridFlags",
+          "EDX:4"
+        ],
+        [
+          "nFloorGridFlags",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pGrid",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

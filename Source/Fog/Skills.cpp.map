@@ -1,0 +1,380 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Skills.cpp",
+  "functions": [
+    {
+      "name": "SKILLS_PushValue",
+      "address": "006c0b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c0b80"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_PushValue"
+      ],
+      "dh": "af910520",
+      "paramStorage": [
+        [
+          "pStack",
+          "EAX:4"
+        ],
+        [
+          "value",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_PopValue",
+      "address": "006c0ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c0ba0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_PopValue"
+      ],
+      "dh": "382e1bba",
+      "paramStorage": [
+        [
+          "pValueStack",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_EvaluateCalcExpression",
+      "address": "006c0bc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c0bc0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "FOG_EvaluateCalcExpression",
+        "SKILLS_PopValue",
+        "SKILLS_PushValue"
+      ],
+      "usedTypes": [
+        "D2ItemsEventMethodStrc",
+        "fnSkillCalcMethod",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "f4cad570",
+      "paramStorage": [
+        [
+          "pFormula",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFormulaSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pFunction",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pFunctionArray",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nFunctionArraySize",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0x18]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_ParseSkillDescription",
+      "address": "006c11c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c11c0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_ParseSkillDescription",
+        "isspace",
+        "isdigit",
+        "__security_check_cookie",
+        "isalpha",
+        "isalnum"
+      ],
+      "usedTypes": [
+        "CalcGetKeyWordToNumber_t",
+        "CalcGetLinkerIndex_t",
+        "D2SkillCalcOperandStackStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "64d9c472",
+      "paramStorage": [
+        [
+          "pFuncLookup",
+          "ECX:4"
+        ],
+        [
+          "pfnSkillLookup",
+          "EDX:4"
+        ],
+        [
+          "nParserContext",
+          "Stack[0x4]:4"
+        ],
+        [
+          "szToken",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pTokenType",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnTokenValue",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_GetOpcodePrecedence",
+      "address": "006c1820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c1820"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_GetOpcodePrecedence"
+      ],
+      "usedTypes": [
+        "CalcGetFunctionParameterCount_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "c52a705c",
+      "paramStorage": [
+        [
+          "opcode",
+          "AL:1"
+        ],
+        [
+          "pFunctionTable",
+          "EDX:4"
+        ],
+        [
+          "nFunctionArg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_EmitFormulaBytecode",
+      "address": "006c18a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c18a0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_EmitFormulaBytecode",
+        "SKILLS_GetOpcodePrecedence"
+      ],
+      "usedTypes": [
+        "CalcGetFunctionParameterCount_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "c88174b0",
+      "paramStorage": [
+        [
+          "pWritePtr",
+          "EAX:4"
+        ],
+        [
+          "pOperatorStack",
+          "ESI:4"
+        ],
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nBufferSize",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bToken",
+          "Stack[0xc]:1"
+        ],
+        [
+          "pFunction",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nFunctionArg",
+          "Stack[0x14]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_WriteValueToBuffer",
+      "address": "006c19c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c19c0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_WriteValueToBuffer"
+      ],
+      "usedTypes": [
+        "D2QuestDataA5Q2Strc",
+        "uint8_t"
+      ],
+      "dh": "56e75d0f",
+      "paramStorage": [
+        [
+          "pBase",
+          "ECX:4"
+        ],
+        [
+          "nValue",
+          "EDX:4"
+        ],
+        [
+          "nBufferSize",
+          "ESI:4"
+        ],
+        [
+          "pStruct",
+          "EDI:4"
+        ],
+        [
+          "pWritePtr",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_WriteValueToBuffer2",
+      "address": "006c1a50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c1a50"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_WriteValueToBuffer2"
+      ],
+      "usedTypes": [
+        "D2QuestDataA5Q2Strc",
+        "uint8_t"
+      ],
+      "dh": "37a2fddf",
+      "paramStorage": [
+        [
+          "pBase",
+          "ECX:4"
+        ],
+        [
+          "nValue",
+          "EDX:4"
+        ],
+        [
+          "nBufferSize",
+          "ESI:4"
+        ],
+        [
+          "pStruct",
+          "EDI:4"
+        ],
+        [
+          "pWritePtr",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SKILLS_ParseCalcExpression",
+      "address": "006c1ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006c1ae0"
+        }
+      ],
+      "namespace": "Fog::Skills",
+      "calledFunctions": [
+        "SKILLS_ParseCalcExpression",
+        "SKILLS_ParseSkillDescription",
+        "SKILLS_GetOpcodePrecedence",
+        "SKILLS_EmitFormulaBytecode",
+        "SKILLS_WriteValueToBuffer",
+        "SKILLS_WriteValueToBuffer2",
+        "FOG_EvaluateCalcExpression",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "CalcGetFunctionParameterCount_t",
+        "CalcGetKeyWordToNumber_t",
+        "CalcGetLinkerIndex_t",
+        "D2SkillCalcOperandStackStrc",
+        "eD2SkillCalcOp",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "79e059a0",
+      "paramStorage": [
+        [
+          "szExpressionString",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pbByteCodeOutput",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMaxOutputSize",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDescTable",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pOpcodeInfo",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pfnGetLinkerIndex",
+          "Stack[0x18]:4"
+        ]
+      ]
+    }
+  ]
+}

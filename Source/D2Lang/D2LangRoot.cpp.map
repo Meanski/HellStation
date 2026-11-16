@@ -1,0 +1,335 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Lang/D2LangRoot.cpp",
+  "functions": [
+    {
+      "name": "UI_FormatNumberWithCommas",
+      "address": "00525fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00525fb0"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UI_FormatNumberWithCommas",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "_itoa",
+        "__security_check_cookie",
+        "UTF8_ConvertToWideChar",
+        "STRING_CopyWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "34d04455",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nNumber",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMaxLen",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_DecodeNextChar",
+      "address": "00526100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526100"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_DecodeNextChar"
+      ],
+      "usedTypes": [
+        "D2Utf8DecodeRowStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "29056967",
+      "paramStorage": [
+        [
+          "pUtf8",
+          "EAX:4"
+        ],
+        [
+          "pwCharOut",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxBytes",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EncodeUTF8CodePoint",
+      "address": "00526190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526190"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "EncodeUTF8CodePoint"
+      ],
+      "usedTypes": [
+        "D2Utf8DecodeRowStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ebf19c9c",
+      "paramStorage": [
+        [
+          "wCodePoint",
+          "Stack[0x4]:2"
+        ],
+        [
+          "pbyUtf8Out",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_GetNextCharWidth",
+      "address": "00526200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526200"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_GetNextCharWidth"
+      ],
+      "usedTypes": [
+        "D2Utf8DecodeRowStrc",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "f5edc2e8",
+      "paramStorage": [
+        [
+          "pUtf8",
+          "EAX:4"
+        ],
+        [
+          "nMaxBytes",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_GetStringLength",
+      "address": "005262a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005262a0"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_GetStringLength",
+        "UTF8_GetNextCharWidth"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "10344b7d",
+      "paramStorage": [
+        [
+          "szUtf8",
+          "ECX:4"
+        ],
+        [
+          "nMaxBytes",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_EncodeCodePoint",
+      "address": "005262f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005262f0"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_EncodeCodePoint",
+        "EncodeUTF8CodePoint",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "60663106",
+      "paramStorage": [
+        [
+          "pCodePoint",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_ConvertToWideChar",
+      "address": "00526320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526320"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_ConvertToWideChar",
+        "UTF8_DecodeNextChar"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "dc1df59a",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "szText",
+          "EDX:4"
+        ],
+        [
+          "nMaxWideChars",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "WideCharToUTF8",
+      "address": "005263e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005263e0"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "WideCharToUTF8",
+        "EncodeUTF8CodePoint"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "a8c312c7",
+      "paramStorage": [
+        [
+          "pDest",
+          "ECX:4"
+        ],
+        [
+          "pSrc",
+          "EDX:4"
+        ],
+        [
+          "nMaxBytes",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "UTF8_GetEncodedLength",
+      "address": "00526430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526430"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UTF8_GetEncodedLength",
+        "EncodeUTF8CodePoint",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "937fbfab",
+      "paramStorage": [
+        [
+          "pwszStr",
+          "ECX:4"
+        ],
+        [
+          "nMaxChars",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "UI_CompareCharsUsingLookupTable",
+      "address": "00526490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00526490"
+        }
+      ],
+      "namespace": "D2Lang",
+      "calledFunctions": [
+        "UI_CompareCharsUsingLookupTable"
+      ],
+      "usedTypes": [
+        "uint16_t"
+      ],
+      "dh": "7aa76d8b",
+      "paramStorage": [
+        [
+          "wChar1",
+          "Stack[0x4]:2"
+        ],
+        [
+          "wChar2",
+          "Stack[0x8]:2"
+        ]
+      ]
+    }
+  ]
+}

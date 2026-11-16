@@ -1,0 +1,446 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Merc.cpp",
+  "functions": [
+    {
+      "name": "MERC_GetWeaponAnimIndex",
+      "address": "006632c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006632c0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "MERC_GetWeaponAnimIndex",
+        "COMPOSIT_GetWeaponClassWithTransform"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "8736b307",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMonsterSequenceTable",
+      "address": "00663310",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00663310"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetMonsterSequenceTable",
+        "GetCurrentSkill",
+        "GetSequenceId",
+        "MERC_GetWeaponAnimIndex",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TXT_MonStats_GetLine",
+        "GetMonsterSequenceTableByIndex"
+      ],
+      "usedTypes": [
+        "D2MonSeqMonsterTbls",
+        "D2MonStatsTxt",
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "2994ba84",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MERC_GetSequenceTxt",
+      "address": "006633b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006633b0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "MERC_GetSequenceTxt",
+        "GetMonsterSequenceTable"
+      ],
+      "usedTypes": [
+        "D2MonSeqMonsterTbls",
+        "D2MonSeqTxt",
+        "D2UnitStrc"
+      ],
+      "dh": "2226ee0f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetCounter1",
+      "address": "006633d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006633d0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetCounter1",
+        "GetMonsterSequenceTable"
+      ],
+      "usedTypes": [
+        "D2MonSeqMonsterTbls",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "3188fba6",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetCounter2",
+      "address": "006633f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006633f0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetCounter2",
+        "GetMonsterSequenceTable"
+      ],
+      "usedTypes": [
+        "D2MonSeqMonsterTbls",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "2bf75f7c",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ANIM_GetSequenceFrameInfo",
+      "address": "00663410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00663410"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "ANIM_GetSequenceFrameInfo"
+      ],
+      "usedTypes": [
+        "D2MonSeqTxt",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "161ac9dc",
+      "paramStorage": [
+        [
+          "pSeqData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nStartFrame",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nEndFrame",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnMode",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnFrame",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pnDirection",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pnEvent",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ANIM_GetEventFrame",
+      "address": "006634c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006634c0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "ANIM_GetEventFrame"
+      ],
+      "usedTypes": [
+        "D2MonSeqTxt",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ce9c5b1a",
+      "paramStorage": [
+        [
+          "pSeqData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nFrameIdx",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnEvent",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MERC_GenerateStatsFromSeed",
+      "address": "006634f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006634f0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "MERC_GenerateStatsFromSeed",
+        "SEED_InitDefault",
+        "InitSeed_Param_666",
+        "RANDOM_RandomNumberSelector"
+      ],
+      "usedTypes": [
+        "D2MercRolledStatsStrc",
+        "D2SeedStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ee5d855d",
+      "paramStorage": [
+        [
+          "nSeed",
+          "ECX:4"
+        ],
+        [
+          "pMercStats",
+          "EDX:4"
+        ],
+        [
+          "nDifficulty",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "GetMercTypeString",
+      "address": "00663720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00663720"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetMercTypeString",
+        "GetLocaleString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "e0708eb3",
+      "paramStorage": [
+        [
+          "nIndex",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMercAct",
+      "address": "00663750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00663750"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetMercAct",
+        "GetHirelingEntryByClassId",
+        "GetHirelingEntryByNameId"
+      ],
+      "usedTypes": [
+        "D2HirelingTxt",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "b466c0a4",
+      "paramStorage": [
+        [
+          "bIsExpansion",
+          "ECX:4"
+        ],
+        [
+          "nClassId",
+          "EDX:4"
+        ],
+        [
+          "nMercNameId",
+          "Stack[0x4]:2"
+        ]
+      ]
+    },
+    {
+      "name": "GetBaseExperience",
+      "address": "00663790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00663790"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetBaseExperience"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "60ab1322",
+      "paramStorage": [
+        [
+          "nLevel",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nExpPerLevel",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetReviveCost",
+      "address": "006637b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006637b0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "GetReviveCost",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "70971a7a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollMercStats",
+      "address": "006637f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006637f0"
+        }
+      ],
+      "namespace": "D2Common::Merc",
+      "calledFunctions": [
+        "RollMercStats",
+        "SEED_InitDefault",
+        "InitSeed_Param_666",
+        "GetHirelingDataTable",
+        "RANDOM_RandomNumberSelector",
+        "STATSEX_GetCurrentStat"
+      ],
+      "usedTypes": [
+        "D2HirelingHireData",
+        "D2HirelingTxt",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "141035cd",
+      "paramStorage": [
+        [
+          "nVersion",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nMercSeed",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nAct",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nDifficulty",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pHireData",
+          "Stack[0x10]:4"
+        ]
+      ]
+    }
+  ]
+}

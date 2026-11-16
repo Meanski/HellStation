@@ -1,0 +1,3401 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Common/Drlg/Drlg.cpp",
+  "functions": [
+    {
+      "name": "PLAYER_SetSkillHitFlagAndStoreTarget",
+      "address": "00641f20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00641f20"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "PLAYER_SetSkillHitFlagAndStoreTarget",
+        "StoreLastSkillHit"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2Skills",
+        "int32_t"
+      ],
+      "dh": "453ebf05",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "eSkill",
+          "EDX:4"
+        ],
+        [
+          "nUnitType",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nUid",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACTMISC_LoadTileProjects",
+      "address": "00641f60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00641f60"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACTMISC_LoadTileProjects",
+        "memset",
+        "TILEPROJECT_AllocSlot",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2DrlgStrc",
+        "uint8_t"
+      ],
+      "dh": "aab2ddf9",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLEVEL_FreeLevelSubStructs",
+      "address": "00642010",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642010"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGLEVEL_FreeLevelSubStructs",
+        "FreeServerMemory",
+        "AllocServerMemory",
+        "memset",
+        "DRLGROOMEX_FreeDrlgRoomEx",
+        "DRLGPRESET_FreeDrlgMapList",
+        "DRLGMAZE_ResetMazeRecord",
+        "DRLGPRESET_FreePresetLevelData",
+        "DRLGOUTDOOR_FreeOutdoorLevelData"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelLinkNodeStrc",
+        "D2DrlgLevelStrc",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "34da3ddc",
+      "paramStorage": [
+        [
+          "pMemory",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bFreeSubStructs",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLevel",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACT_FreeDrlgActMisc",
+      "address": "00642190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642190"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACT_FreeDrlgActMisc",
+        "DRLGLEVEL_FreeLevelSubStructs",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgActWarpsInfoStrc",
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc"
+      ],
+      "dh": "abb7629d",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetHoradricStaffTombLevelId",
+      "address": "00642230",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642230"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetHoradricStaffTombLevelId"
+      ],
+      "usedTypes": [
+        "D2DrlgStrc",
+        "eD2LevelId"
+      ],
+      "dh": "97c98669",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetDirectionFromCoordinates",
+      "address": "00642240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642240"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetDirectionFromCoordinates"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "eDrlgDirection"
+      ],
+      "dh": "e73dbc54",
+      "paramStorage": [
+        [
+          "pDrlgCoords",
+          "ECX:4"
+        ],
+        [
+          "pDrlgCoords2",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RollSeed",
+      "address": "006422a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006422a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "QUEST_OnNpcDeactivate",
+        "RollSeed",
+        "CoordsRoomToWorld",
+        "AllocRoom"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomCoordsStrc",
+        "D2DrlgStrc",
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc",
+        "D2RoomStrc",
+        "D2SeedStrc",
+        "int32_t"
+      ],
+      "dh": "e1c6b9f4",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "pRoomEx",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGWARP_GetWarpCoordinatesFromRoomEx",
+      "address": "00642380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642380"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGWARP_GetWarpCoordinatesFromRoomEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelWarpCoordinatesStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "6459f399",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_ApplyRoomExStateFlags",
+      "address": "00642390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642390"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_ApplyRoomExStateFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "90c9e2ce",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGWARP_InitLevelWarpCoordinates",
+      "address": "006423d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006423d0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGWARP_InitLevelWarpCoordinates",
+        "CoordsRoomToWorld",
+        "DRLGWARP_GetWarpDestinationFromArray"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "a483f6d9",
+      "paramStorage": [
+        [
+          "pDrlgLevelStrc",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitLevel",
+      "address": "006424a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006424a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "InitLevel",
+        "InitSeed_Param_666",
+        "DRLGMAZE_GenerateLevel",
+        "DRLGPRESET_InitializeRoomEx",
+        "DRLG_ApplyRoomExStateFlags",
+        "DRLGWARP_InitLevelWarpCoordinates",
+        "DRLGOUTDOOR_GenerateLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "bda3893c",
+      "paramStorage": [
+        [
+          "pLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetMinAndMaxCoordinatesFromLevel",
+      "address": "00642520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642520"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetMinAndMaxCoordinatesFromLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "6f082544",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "pOutMinX",
+          "EDX:4"
+        ],
+        [
+          "pOutMinY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutMaxX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pOutMaxY",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLEVEL_AdjustRoomCoordinates",
+      "address": "00642590",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642590"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGLEVEL_AdjustRoomCoordinates",
+        "GetMinAndMaxCoordinatesFromLevel",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc",
+        "int32_t"
+      ],
+      "dh": "d79cb389",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRoomOfCoord",
+      "address": "00642630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642630"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetRoomOfCoord",
+        "AreXYInsideCoordinates",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc",
+        "int32_t"
+      ],
+      "dh": "b22570ac",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "LEVEL_CheckIfLevelIsTown",
+      "address": "006426a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006426a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "LEVEL_CheckIfLevelIsTown"
+      ],
+      "usedTypes": [
+        "eD2LevelId"
+      ],
+      "dh": "fa2054fb",
+      "paramStorage": [
+        [
+          "eLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_ReturnZero",
+      "address": "00642740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642740"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_ReturnZero"
+      ],
+      "dh": "860c6ab6"
+    },
+    {
+      "name": "TXT_LevelDefs_GetLevelType",
+      "address": "00642750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642750"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "TXT_LevelDefs_GetLevelType",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "D2LevelDefsTxt",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "c6d02372",
+      "paramStorage": [
+        [
+          "eLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00642770",
+      "address": "00642770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642770"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "Unreferenced_00642770",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "eD2LevelId"
+      ],
+      "dh": "d7a6253d",
+      "paramStorage": [
+        [
+          "eLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRoomByCoordsByLevel",
+      "address": "006427a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006427a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetRoomByCoordsByLevel",
+        "AreXYInsideCoordinates"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "int32_t"
+      ],
+      "dh": "3153ca27",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetActNoFromLevelNumber",
+      "address": "006427f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006427f0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetActNoFromLevelNumber"
+      ],
+      "usedTypes": [
+        "eAct",
+        "eD2LevelId"
+      ],
+      "dh": "bfe1b888",
+      "paramStorage": [
+        [
+          "eLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TXT_LevelDefs_GetSaveMonsters",
+      "address": "00642820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642820"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "TXT_LevelDefs_GetSaveMonsters",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "D2LevelDefsTxt",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "2b2e7e59",
+      "paramStorage": [
+        [
+          "eLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TXT_LevelDefs_GetLOSDraw",
+      "address": "00642840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642840"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "TXT_LevelDefs_GetLOSDraw",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "D2LevelDefsTxt",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "d84a3857",
+      "paramStorage": [
+        [
+          "eLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACT_AllocWarpsInfo",
+      "address": "00642860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642860"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACT_AllocWarpsInfo",
+        "TXT_LevelDefs_GetLine",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgActWarpsInfoStrc",
+        "D2DrlgStrc",
+        "D2LevelDefsTxt",
+        "eD2LevelId"
+      ],
+      "dh": "f3a72601",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACT_SetWarpConnection",
+      "address": "00642920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642920"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACT_SetWarpConnection"
+      ],
+      "usedTypes": [
+        "D2DrlgActWarpsInfoStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "1d93cde5",
+      "paramStorage": [
+        [
+          "pDrlgActWarpsInfo",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ],
+        [
+          "nWarpId",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nWarpInfoIndex",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "TXT_LvlTypes_GetActFromLvlTypeId",
+      "address": "006429e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006429e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "TXT_LvlTypes_GetActFromLvlTypeId",
+        "TXT_LvlTypes_GetLine"
+      ],
+      "usedTypes": [
+        "D2LvlTypesTxt",
+        "eAct",
+        "int32_t"
+      ],
+      "dh": "26779a6c",
+      "paramStorage": [
+        [
+          "nLvlTypeId",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACTMISC_CheckFlag0x1",
+      "address": "00642a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642a00"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACTMISC_CheckFlag0x1",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgStrc",
+        "int32_t"
+      ],
+      "dh": "3667a495",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitCache",
+      "address": "00642a30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642a30"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "InitCache",
+        "memset",
+        "TILEPROJECT_LookupTilesInAllProjects",
+        "DRLGROOMTILE_FillTileData",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgStrc",
+        "D2DrlgTileDataStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "34e63579",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "pDrlgActSub18",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGACTMISC_AllocDrlgLevel",
+      "address": "00642ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642ae0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGACTMISC_AllocDrlgLevel",
+        "AllocServerMemory",
+        "memset",
+        "TXT_LevelDefs_GetLine",
+        "InitSeed_Param_666",
+        "DRLGMAZE_InitializeLevel",
+        "DRLGLEVEL_InitializeWithPresetArea",
+        "DRLGLEVEL_InitializeWithWildernessLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2LevelDefsTxt",
+        "eD2DrlgType",
+        "eD2LevelId"
+      ],
+      "dh": "8e495b32",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetLevelAndAlloc",
+      "address": "00642bb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642bb0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetLevelAndAlloc",
+        "DRLGACTMISC_AllocDrlgLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc"
+      ],
+      "dh": "cd451d47",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eLevelId",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ACTMISC_CountLevelRooms",
+      "address": "00642be0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642be0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "ACTMISC_CountLevelRooms",
+        "DRLGACTMISC_AllocDrlgLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2RoomExStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "ba1b7c8b",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "eLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetRoomOfCoords",
+      "address": "00642c30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642c30"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "GetRoomOfCoords",
+        "AreXYInsideCoordinates",
+        "GetRoomByCoordsByLevel",
+        "DRLGACTMISC_AllocDrlgLevel",
+        "InitLevel",
+        "GetRoomOfCoord"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2RoomExStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "06e97d61",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ],
+        [
+          "pDrlg",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRoom",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLevel",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLEVEL_SetLevelSizeAndAlignVsDependentLevel",
+      "address": "00642d10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642d10"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLGLEVEL_SetLevelSizeAndAlignVsDependentLevel",
+        "TXT_LevelDefs_GetLine",
+        "DRLGACTMISC_AllocDrlgLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2LevelDefsTxt"
+      ],
+      "dh": "2d9f88c9",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ],
+        [
+          "pLevel",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_AllocDrlgActMisc",
+      "address": "00642da0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642da0"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_AllocDrlgActMisc",
+        "GetMemPoolFromAct",
+        "AllocServerMemory",
+        "memset",
+        "InitSeed_Param_666",
+        "DRLGACTMISC_LoadTileProjects",
+        "DRLGACTMISC_InitializeSubA0",
+        "DRLGACTMISC_AllocDrlgLevelForAct",
+        "DRLGACTMISC_AllocDrlgLevel",
+        "InitLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgActStrc",
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2PoolManagerStrc",
+        "SGAMEDATA",
+        "eAct",
+        "eD2LevelId",
+        "fAutoMap",
+        "fTownAutoMap",
+        "int64_t",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "160e6670",
+      "paramStorage": [
+        [
+          "pAct",
+          "ECX:4"
+        ],
+        [
+          "nActNo",
+          "DL:1"
+        ],
+        [
+          "pDS1MemPool",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwInitSeed",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nTownLevelId",
+          "Stack[0xc]:4"
+        ],
+        [
+          "dwFlags",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pGame",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nDifficulty",
+          "Stack[0x18]:1"
+        ],
+        [
+          "pfAutoMap",
+          "Stack[0x1c]:4"
+        ],
+        [
+          "pfTownAutoMap",
+          "Stack[0x20]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddActiveCountToDrlgLevel",
+      "address": "00642f70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00642f70"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "AddActiveCountToDrlgLevel",
+        "DRLGWARP_GetVisArrayFromLevelId",
+        "DRLGACTMISC_AllocDrlgLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "6bd6f179",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "nCount",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ChangeActiveRoomBetweenLevels",
+      "address": "00643020",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00643020"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "ChangeActiveRoomBetweenLevels",
+        "AddActiveCountToDrlgLevel"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "988f6a6c",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "pRoomEx2",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_FreeAdjacentLevelRoomData",
+      "address": "00643060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00643060"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_FreeAdjacentLevelRoomData",
+        "DRLGWARP_GetVisArrayFromLevelId",
+        "DRLGACTMISC_AllocDrlgLevel",
+        "DRLGROOMEX_FreeDrlgRoomTile",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc",
+        "eD2LevelId",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1f4cbefa",
+      "paramStorage": [
+        [
+          "pLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_FreeInactiveLevelData",
+      "address": "00643200",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00643200"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_FreeInactiveLevelData",
+        "DRLG_FreeAdjacentLevelRoomData",
+        "DRLGLEVEL_FreeLevelSubStructs"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2PoolManagerStrc"
+      ],
+      "dh": "efdb7cf6",
+      "paramStorage": [
+        [
+          "pDrlg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_ReturnZero_Unref_00643600",
+      "address": "00643600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00643600"
+        }
+      ],
+      "namespace": "D2Common::Drlg::Drlg",
+      "calledFunctions": [
+        "DRLG_ReturnZero_Unref_00643600"
+      ],
+      "dh": "3bc5a82b"
+    },
+    {
+      "name": "DRLGANIM_PropagateAnimationData",
+      "address": "0066d750",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d750"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGANIM_PropagateAnimationData"
+      ],
+      "usedTypes": [
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc",
+        "D2RoomExStrc *"
+      ],
+      "dh": "0d4dd893",
+      "paramStorage": [
+        [
+          "pRoomExSrc",
+          "ECX:4"
+        ],
+        [
+          "pRoomExDst",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLG_FindHTile",
+      "address": "0066d820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066d820"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLG_FindHTile",
+        "TILEPROJECT_LookupTilesInAllProjects",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "TILEPROJECT_GetAnimatedTileDataPtr"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc",
+        "D2SeedStrc",
+        "D2TileLibraryEntryStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ad0fc772",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nTileType",
+          "EDX:4"
+        ],
+        [
+          "nGridFlags",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FreeRoomEx",
+      "address": "0066f1a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066f1a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "FreeRoomEx",
+        "DRLGROOM_RemoveRoomFromAct",
+        "FreeDrlgCoordList",
+        "DRLGROOMTILE_FreeRoomTilesAll",
+        "DRLGOUTROOM_FreeOutRoomEx",
+        "DRLGPRESET_FreePresetRoomGridsFromRoomEx"
+      ],
+      "usedTypes": [
+        "D2DrlgRoomExRoomTileNodeStrc",
+        "D2DrlgStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "5ef18e90",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "bServerSide",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGROOMEX_InitTileData",
+      "address": "0066f240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066f240"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGROOMEX_InitTileData",
+        "TXT_LvlTypes_GetLine",
+        "TILEPROJECT_AllocSlot",
+        "memset",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "D2LvlTypesTxt",
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "ce8c0d96",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTDOOR_GetSecondaryFloorGridFlags",
+      "address": "0066f350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066f350"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTDOOR_GetSecondaryFloorGridFlags",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "5e4496b6",
+      "paramStorage": [
+        [
+          "pLevelCtx",
+          "EAX:4"
+        ],
+        [
+          "nGridY",
+          "EDX:4"
+        ],
+        [
+          "nGridX",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTDOOR_CopyPresetUnitsFromSubTxt",
+      "address": "0066fa10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066fa10"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTDOOR_CopyPresetUnitsFromSubTxt",
+        "CoordsRoomToWorld",
+        "AllocPresetUnit"
+      ],
+      "usedTypes": [
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "D2PoolManagerStrc",
+        "D2PresetUnitStrc",
+        "int32_t"
+      ],
+      "dh": "f39eb420",
+      "paramStorage": [
+        [
+          "roomX",
+          "ECX:4"
+        ],
+        [
+          "roomY",
+          "EDX:4"
+        ],
+        [
+          "pRoomCtx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMemory",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLvlSub",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pRect",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTDOOR_ApplyLvlSubTileData",
+      "address": "0066fad0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066fad0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTDOOR_ApplyLvlSubTileData",
+        "GetGridFlags",
+        "DRLGROOMTILE_GrowTileDataArray",
+        "AlterGridFlag",
+        "DRLGROOMTILE_CreateShadowTileFromGrid",
+        "DRLGOUTDOOR_CopyPresetUnitsFromSubTxt"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgTileGridStrc",
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "6e743e4c",
+      "paramStorage": [
+        [
+          "pMemory",
+          "Stack[0x4]:4"
+        ],
+        [
+          "baseX",
+          "Stack[0x8]:4"
+        ],
+        [
+          "baseY",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pRoomCtx",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pRect",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pSubTxt",
+          "Stack[0x18]:4"
+        ],
+        [
+          "rectOffsetY",
+          "Stack[0x1c]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTDOOR_MatchSubTileTypes",
+      "address": "0066fe00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066fe00"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTDOOR_MatchSubTileTypes",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "56784f5c",
+      "paramStorage": [
+        [
+          "nRoomX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nRoomY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pDrlgUnkn",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pLvlSubTxt",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnGroupEntry",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckAll",
+      "address": "0066ff50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0066ff50"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "CheckAll",
+        "DRLGOUTDOOR_CheckSubTileOverlap",
+        "DRLGOUTDOOR_ApplyLvlSubTileData",
+        "DRLGOUTDOOR_MatchSubTileTypes"
+      ],
+      "usedTypes": [
+        "D2DrlgFileStrc",
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "D2PoolManagerStrc",
+        "int32_t",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "8bc96f75",
+      "paramStorage": [
+        [
+          "pWallLayerGrids",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSubTxt",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DoNotCheckAll",
+      "address": "00670170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00670170"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DoNotCheckAll",
+        "DRLGOUTDOOR_CheckSubTileOverlap",
+        "DRLGOUTDOOR_ApplyLvlSubTileData"
+      ],
+      "usedTypes": [
+        "D2DrlgFileStrc",
+        "D2DrlgSubstGroupStrc",
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "D2PoolManagerStrc",
+        "D2RoomExStrc",
+        "D2SeedStrc",
+        "int32_t",
+        "int64_t",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "f68ea7a6",
+      "paramStorage": [
+        [
+          "pRoomCtx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pSubTxt",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGTILESUB_FreeDrlgFile",
+      "address": "00670630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00670630"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGTILESUB_FreeDrlgFile",
+        "DRLGGRID_FreeGrid",
+        "DRLGPRESET_ReleaseDrlgFile"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2LvlSubTxt"
+      ],
+      "dh": "d317f924",
+      "paramStorage": [
+        [
+          "pLvlSubTxtRecord",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGROOMEX_RollLevelSubstitutionMask",
+      "address": "006706a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006706a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGROOMEX_RollLevelSubstitutionMask",
+        "TXT_LvlSub_GetLineFromSubType"
+      ],
+      "usedTypes": [
+        "D2LvlSubTxt",
+        "D2RoomExStrc",
+        "D2SeedStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c068e7d6",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ],
+        [
+          "nSubType",
+          "EDX:4"
+        ],
+        [
+          "nSubTheme",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SubTypeWpShrine",
+      "address": "006707a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006707a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "SubTypeWpShrine",
+        "TXT_LvlSub_GetLineFromSubType",
+        "InitializeDrlgFile",
+        "DoNotCheckAll",
+        "CheckAll"
+      ],
+      "usedTypes": [
+        "D2DrlgWallLayerGridsStrc",
+        "D2LvlSubTxt",
+        "D2PoolManagerStrc",
+        "uint32_t"
+      ],
+      "dh": "d22bf900",
+      "paramStorage": [
+        [
+          "pWallLayerGrids",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGMAZE_IsPresetSingleFile",
+      "address": "00670810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00670810"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGMAZE_IsPresetSingleFile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "int32_t"
+      ],
+      "dh": "66685b56",
+      "paramStorage": [
+        [
+          "pDrlgMap",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTPLACE_CalcEdgeBorderCoords",
+      "address": "00675de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00675de0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTPLACE_CalcEdgeBorderCoords"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "int32_t"
+      ],
+      "dh": "ac65ae2c",
+      "paramStorage": [
+        [
+          "pOutCoords",
+          "EAX:4"
+        ],
+        [
+          "pLevelCoords",
+          "ECX:4"
+        ],
+        [
+          "nVariant",
+          "EDX:4"
+        ],
+        [
+          "nDirection",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTPLACE_CalcEdgeBorderCoordsFlipped",
+      "address": "00675eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00675eb0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTPLACE_CalcEdgeBorderCoordsFlipped"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "int32_t"
+      ],
+      "dh": "9b29a4e7",
+      "paramStorage": [
+        [
+          "pOutCoords",
+          "EAX:4"
+        ],
+        [
+          "pLevelCoords",
+          "ECX:4"
+        ],
+        [
+          "nVariant",
+          "EDX:4"
+        ],
+        [
+          "nDirection",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTPLACE_CalcCornerBorderCoords",
+      "address": "00675f80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00675f80"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTPLACE_CalcCornerBorderCoords"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "int32_t"
+      ],
+      "dh": "f11963f6",
+      "paramStorage": [
+        [
+          "pLevelCoords",
+          "EAX:4"
+        ],
+        [
+          "pOutCoords",
+          "ECX:4"
+        ],
+        [
+          "nVariant",
+          "EDX:4"
+        ],
+        [
+          "nCornerType",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLDE1",
+      "address": "006760f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006760f0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLDE1",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelPlacementStrc",
+        "D2LevelDefsTxt"
+      ],
+      "dh": "90a777cc",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLDE2",
+      "address": "00676150",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676150"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLDE2"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "42147e77",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLevelDataEntry",
+      "address": "00676280",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676280"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLevelDataEntry"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "e4115c09",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLDE4",
+      "address": "00676450",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676450"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLDE4"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "b55fbf4b",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLDE3",
+      "address": "00676650",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676650"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLDE3"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "e343ebae",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpLDE5",
+      "address": "006768c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006768c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "fpLDE5"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelPlacementStrc"
+      ],
+      "dh": "7071a872",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_Adjacent2DirRandom",
+      "address": "006769a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006769a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_Adjacent2DirRandom"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc"
+      ],
+      "dh": "bbfb7204",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_Adjacent8DirAligned",
+      "address": "00676ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676ae0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_Adjacent8DirAligned"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "fa5f128e",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_Adjacent4DirMirrored",
+      "address": "00676c00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676c00"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_Adjacent4DirMirrored"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc"
+      ],
+      "dh": "79bcb370",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT1_ValidatePlacementList1",
+      "address": "00676dd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676dd0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT1_ValidatePlacementList1",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "eD2LevelId",
+        "int32_t"
+      ],
+      "dh": "041cd115",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT1_ValidatePlacementList2WithGap",
+      "address": "00676eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676eb0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT1_ValidatePlacementList2WithGap",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "86a4a613",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT2_ValidatePlacementList1",
+      "address": "00676f50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676f50"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT2_ValidatePlacementList1",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "79868f7c",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT2_ValidatePlacementList2",
+      "address": "00676fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00676fc0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT2_ValidatePlacementList2",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "fb6aa921",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT5_ValidatePlacementList3",
+      "address": "00677030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00677030"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT5_ValidatePlacementList3",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "c6720fbb",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT4_ValidatePlacementList1",
+      "address": "006770a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006770a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT4_ValidatePlacementList1",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "5362424b",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_ACT4_ValidatePlacementList2",
+      "address": "00677110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00677110"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_ACT4_ValidatePlacementList2",
+        "DRLGROOM_CoordsWithinDistance"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "int32_t"
+      ],
+      "dh": "802c8128",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ],
+        [
+          "nIndexMax",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ACT1_fpLevelDataFn2_A",
+      "address": "00677180",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00677180"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "ACT1_fpLevelDataFn2_A"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "eD2LevelId"
+      ],
+      "dh": "c0c866c6",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "nNodeOffset",
+          "EDX:4"
+        ],
+        [
+          "nDirTableBase",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGLEVEL_ParseLevelData",
+      "address": "006772c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006772c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGLEVEL_ParseLevelData",
+        "memset",
+        "TXT_LevelDefs_GetLine",
+        "GetLevelAndAlloc",
+        "DRLGACT_AllocWarpsInfo",
+        "DRLGACT_SetWarpConnection"
+      ],
+      "usedTypes": [
+        "D2DrlgActWarpsInfoStrc",
+        "D2DrlgLevelDataEntry",
+        "D2DrlgLevelDataList",
+        "D2DrlgLevelDataPresetArea",
+        "D2DrlgLevelPlacementStrc",
+        "D2DrlgLevelStrc",
+        "D2DrlgStrc",
+        "D2LevelDefsTxt",
+        "eD2DrlgType",
+        "eD2LevelId",
+        "fpLevelDataFn1",
+        "fpLevelDataFn2",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "008a44f6",
+      "paramStorage": [
+        [
+          "pLevelData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "fnPlacementValidator",
+          "Stack[0x8]:4"
+        ],
+        [
+          "fnLevelDataCallback",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDrlg",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGGRID_OrFlagOnCellList",
+      "address": "0067c890",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067c890"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGGRID_OrFlagOnCellList"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgVertexStrc",
+        "int32_t"
+      ],
+      "dh": "e15556da",
+      "paramStorage": [
+        [
+          "nGridPtr",
+          "ECX:4"
+        ],
+        [
+          "pnCellNode",
+          "EDX:4"
+        ],
+        [
+          "nFlag",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGROOMEX_AllocAndInitRoomGrids",
+      "address": "0067d2d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d2d0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGROOMEX_AllocAndInitRoomGrids",
+        "GetActNoFromLevelNumber",
+        "TXT_LevelDefs_GetLine",
+        "DRLGGRID_InitGridCells",
+        "AlterGridFlag",
+        "DRLGOUTROOM_InitAct1RoomGridCells",
+        "DRLGROOMTILE_AllocRoomTileGrid",
+        "memset",
+        "SubTypeWpShrine",
+        "GetGridFlags",
+        "FlagOperations"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2DrlgOutdoorRoomStrc",
+        "D2DrlgWallLayerGridsStrc",
+        "D2LevelDefsTxt",
+        "D2RoomExStrc",
+        "eAct",
+        "eD2LevelId",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ecbe158c",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGROOMEX_InitializeOutdoorRoom",
+      "address": "0067d710",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d710"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGROOMEX_InitializeOutdoorRoom",
+        "DRLGROOMTILE_AllocRoomTileGrid",
+        "DRLGROOMTILE_CountWallTilesFromGrid",
+        "DRLGROOMTILE_CountTilesFromGrid",
+        "DRLGROOMTILE_AllocTileDataArrays",
+        "InitRoomTiles",
+        "AllocDrlgCoordList"
+      ],
+      "usedTypes": [
+        "D2DrlgTileGridStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "516c469b",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_HasOutdoorBorderFlag",
+      "address": "0067d7a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d7a0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_HasOutdoorBorderFlag"
+      ],
+      "usedTypes": [
+        "D2RoomExStrc",
+        "uint32_t"
+      ],
+      "dh": "debf68f9",
+      "paramStorage": [
+        [
+          "pRoomEx",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_SetupRoomCoordsFromTable",
+      "address": "0067d7e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d7e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_SetupRoomCoordsFromTable"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "0fe576dc",
+      "paramStorage": [
+        [
+          "pOutCoords",
+          "ECX:4"
+        ],
+        [
+          "nDirection",
+          "EDX:4"
+        ],
+        [
+          "pSrcCoords",
+          "ESI:4"
+        ],
+        [
+          "nTableRow",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_OrientedFixedOffset",
+      "address": "0067d830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d830"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_OrientedFixedOffset"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "0a4c1d1c",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_OrientedAbsolutePos",
+      "address": "0067d8e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d8e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_OrientedAbsolutePos",
+        "TXT_LevelDefs_GetLine"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelPlacementStrc",
+        "D2LevelDefsTxt",
+        "uint32_t"
+      ],
+      "dh": "3d58fe8b",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGPLACE_OrientedTableLookup",
+      "address": "0067d980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067d980"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGPLACE_OrientedTableLookup"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelPlacementStrc",
+        "D2SeedStrc",
+        "uint32_t"
+      ],
+      "dh": "9f148fdc",
+      "paramStorage": [
+        [
+          "pLevelUnknown",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTJUNG_BuildKurastDocktownBorders",
+      "address": "0067ead0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067ead0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTJUNG_BuildKurastDocktownBorders",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "65e1ddec",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTJUNG_BuildKurastUpperBorders",
+      "address": "0067ec30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067ec30"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTJUNG_BuildKurastUpperBorders",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "4a80b3f9",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTJUNG_BuildKurastCausewayBorders",
+      "address": "0067ed70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067ed70"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTJUNG_BuildKurastCausewayBorders",
+        "SpawnOutdoorLevelPresetEx"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "00787057",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_FindWarpExitInColumn",
+      "address": "0067fb90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067fb90"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_FindWarpExitInColumn",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "uint32_t"
+      ],
+      "dh": "7a38fa4e",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ],
+        [
+          "nX",
+          "EBX:4"
+        ],
+        [
+          "pFoundX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pFoundY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_FindLeftExitPosition",
+      "address": "0067fc20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067fc20"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_FindLeftExitPosition",
+        "DRLGOUTROOM_FindWarpExitInColumn"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "6af1fd44",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "pOutX",
+          "EDX:4"
+        ],
+        [
+          "pOutY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_FindRightExitPosition",
+      "address": "0067fc50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0067fc50"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_FindRightExitPosition",
+        "DRLGOUTROOM_FindWarpExitInColumn"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "9ab8fd42",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "pOutX",
+          "EDX:4"
+        ],
+        [
+          "pOutY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_SlideGridNeighborBuffer",
+      "address": "00680950",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680950"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_SlideGridNeighborBuffer",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "int32_t"
+      ],
+      "dh": "a167d2bf",
+      "paramStorage": [
+        [
+          "pGrid",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nRow",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nCol",
+          "EBX:4"
+        ],
+        [
+          "pNeighborBuffer",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_InitGridNeighborBuffer",
+      "address": "006809c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006809c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_InitGridNeighborBuffer",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "eD2GridCellFlags",
+        "int32_t"
+      ],
+      "dh": "dc95a815",
+      "paramStorage": [
+        [
+          "nX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nRow",
+          "EAX:4"
+        ],
+        [
+          "pDrlgGridStrc",
+          "EDI:4"
+        ],
+        [
+          "peD2GridCellFlags",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGGRID_SetOutRoomEdgeFlags",
+      "address": "00680a70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680a70"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGGRID_SetOutRoomEdgeFlags",
+        "DRLGGRID_SetLineFlagsWithWidth"
+      ],
+      "usedTypes": [
+        "D2DrlgCoordsStrc",
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgOutdoorRoomStrc",
+        "D2DrlgVertexStrc",
+        "D2DrlgVertexStrc *",
+        "D2RoomExStrc"
+      ],
+      "dh": "20824d78",
+      "paramStorage": [
+        [
+          "pDrlgLevelData",
+          "ECX:4"
+        ],
+        [
+          "pRoomEx",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_ComputeWallOrientations",
+      "address": "00680b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680b10"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_ComputeWallOrientations",
+        "DRLGOUTROOM_InitGridNeighborBuffer",
+        "AlterGridFlag",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgGridStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "d63a42db",
+      "paramStorage": [
+        [
+          "pLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_InitAct1RoomGridCells",
+      "address": "00680c80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680c80"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_InitAct1RoomGridCells",
+        "DRLGGRID_InitGridCells",
+        "DRLGGRID_SetOutRoomEdgeFlags",
+        "DRLGOUTROOM_ComputeWallOrientations"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2RoomExStrc"
+      ],
+      "dh": "e7bd8da0",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "pLevelRoom",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_SnapVertexToGrid",
+      "address": "00680cc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680cc0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_SnapVertexToGrid"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "345c9dab",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ESI:4"
+        ],
+        [
+          "pOutCoords",
+          "ECX:4"
+        ],
+        [
+          "pVertex",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_BuildExitPointArray",
+      "address": "00680d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00680d70"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "exit",
+        "DRLGOUTROOM_BuildExitPointArray",
+        "GetGridFlags",
+        "DRLGOUTROOM_SnapVertexToGrid"
+      ],
+      "usedTypes": [
+        "D2DrlgExitPointStrc",
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgOrthStrc",
+        "uint32_t"
+      ],
+      "dh": "7bb98b88",
+      "paramStorage": [
+        [
+          "pLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_ComputeExitTargetPositions",
+      "address": "00681000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681000"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_ComputeExitTargetPositions",
+        "DRLGOUTROOM_FindLeftExitPosition",
+        "DRLGOUTDOOR_IsGridCellEmpty",
+        "DRLGOUTROOM_SnapVertexToGrid"
+      ],
+      "usedTypes": [
+        "D2DrlgExitPointStrc",
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc"
+      ],
+      "dh": "395656c7",
+      "paramStorage": [
+        [
+          "pLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_BuildVertexPathsWithJitter",
+      "address": "00681240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681240"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_BuildVertexPathsWithJitter",
+        "DRLGVER_AllocVertex"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgVertexStrc",
+        "D2PoolManagerStrc",
+        "D2SeedStrc"
+      ],
+      "dh": "f1d788ba",
+      "paramStorage": [
+        [
+          "pLevel",
+          "EAX:4"
+        ],
+        [
+          "nPathIdx",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_LinkOutdoorRoomExits",
+      "address": "00681420",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681420"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_LinkOutdoorRoomExits",
+        "DRLGOUTROOM_BuildExitPointArray",
+        "DRLGOUTROOM_ComputeExitTargetPositions",
+        "DRLGOUTROOM_FindPathBetweenExits",
+        "DRLGGRID_OrFlagOnCellList",
+        "DRLGOUTROOM_BuildVertexPathsWithJitter"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgVertexStrc *"
+      ],
+      "dh": "394a2fef",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_EstimatePathDistance",
+      "address": "006814e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006814e0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_EstimatePathDistance"
+      ],
+      "dh": "f72ad891",
+      "paramStorage": [
+        [
+          "nX1",
+          "EAX:4"
+        ],
+        [
+          "nY1",
+          "ECX:4"
+        ],
+        [
+          "nX2",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nY2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_GetDirectionChangeCost",
+      "address": "00681510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681510"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_GetDirectionChangeCost"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "df76f14e",
+      "paramStorage": [
+        [
+          "pint",
+          "EAX:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwParam3",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_GetDirectionDeltaLookup",
+      "address": "00681540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681540"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_GetDirectionDeltaLookup"
+      ],
+      "dh": "ce1f9551",
+      "paramStorage": [
+        [
+          "nDirection",
+          "Stack[0x4]:1"
+        ],
+        [
+          "nParentDirection",
+          "AL:1"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_AdvancePathDirection",
+      "address": "00681560",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681560"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_AdvancePathDirection"
+      ],
+      "usedTypes": [
+        "D2DrlgOutRoomPathNodeStrc",
+        "D2DrlgOutRoomPathPoolStrc"
+      ],
+      "dh": "7a802130",
+      "paramStorage": [
+        [
+          "pnNodeListHead",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pNode",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_ValidatePathStep",
+      "address": "006815c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006815c0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_ValidatePathStep",
+        "AreXYInsideCoordinates",
+        "GetGridFlags"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgOutRoomPathNodeStrc",
+        "uint32_t"
+      ],
+      "dh": "524fa36a",
+      "paramStorage": [
+        [
+          "pTargetCoords",
+          "EAX:4"
+        ],
+        [
+          "nX",
+          "EDI:4"
+        ],
+        [
+          "nY",
+          "EBX:4"
+        ],
+        [
+          "pLevelCtx",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pVisitedList",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_PathSearchStep",
+      "address": "00681630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00681630"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_PathSearchStep",
+        "DRLGOUTROOM_ValidatePathStep",
+        "DRLGPATH_GetPathDirection",
+        "DRLGOUTROOM_AdvancePathDirection"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelStrc",
+        "D2DrlgOutRoomPathNodeStrc",
+        "D2DrlgOutRoomPathPoolStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "6638dc8d",
+      "paramStorage": [
+        [
+          "ppNodeList",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMaxFCost",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLevelCtx",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnTargetPos",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRLGOUTROOM_FindPathBetweenExits",
+      "address": "006817d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006817d0"
+        }
+      ],
+      "namespace": "D2Common::Drlg",
+      "calledFunctions": [
+        "DRLGOUTROOM_FindPathBetweenExits",
+        "DRLGPATH_GetPathDirection",
+        "DRLGOUTROOM_PathSearchStep",
+        "DRLGVER_AllocVertex"
+      ],
+      "usedTypes": [
+        "D2DrlgLevelDataWildernessLevel",
+        "D2DrlgLevelStrc",
+        "D2DrlgOutRoomPathNodeStrc",
+        "D2DrlgOutRoomPathPoolStrc",
+        "D2DrlgVertexStrc",
+        "int32_t"
+      ],
+      "dh": "ca841d2e",
+      "paramStorage": [
+        [
+          "pLevel",
+          "ECX:4"
+        ],
+        [
+          "nExitIndex",
+          "EDX:4"
+        ]
+      ]
+    }
+  ]
+}

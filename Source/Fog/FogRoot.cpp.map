@@ -1,0 +1,331 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/FogRoot.cpp",
+  "functions": [
+    {
+      "name": "D2CheckExpansionGame",
+      "address": "00408f20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00408f20"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "D2CheckExpansionGame",
+        "__security_check_cookie",
+        "SFILE_GetInstallPath",
+        "SStrPack",
+        "SStrCopy"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "79239757"
+    },
+    {
+      "name": "BitScanReverse",
+      "address": "00409000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00409000"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "BitScanReverse"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "0595ff27",
+      "paramStorage": [
+        [
+          "dwBits",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Return_Unref_00409c70",
+      "address": "00409c70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00409c70"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return_Unref_00409c70"
+      ],
+      "dh": "10abd1e1"
+    },
+    {
+      "name": "Return_Unref_0040a030",
+      "address": "0040a030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a030"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return_Unref_0040a030"
+      ],
+      "dh": "d3272118"
+    },
+    {
+      "name": "FOG_GetAsyncFileCount_ReturnZero_Unref_0040a070",
+      "address": "0040a070",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040a070"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "FOG_GetAsyncFileCount_ReturnZero_Unref_0040a070"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "4980e571"
+    },
+    {
+      "name": "FOG_GetAsyncFileCount_ReturnZero",
+      "address": "0040abe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040abe0"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "FOG_GetAsyncFileCount_ReturnZero"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "1d370344"
+    },
+    {
+      "name": "Return_Unref_0040ada0",
+      "address": "0040ada0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040ada0"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return_Unref_0040ada0"
+      ],
+      "dh": "2e87f2a9"
+    },
+    {
+      "name": "Return_Unref_0040b110",
+      "address": "0040b110",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040b110"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return_Unref_0040b110"
+      ],
+      "dh": "0b7ba199"
+    },
+    {
+      "name": "Return_Unref_0040b120",
+      "address": "0040b120",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040b120"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return_Unref_0040b120"
+      ],
+      "dh": "16d2b6f3"
+    },
+    {
+      "name": "Return",
+      "address": "0040b320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040b320"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "Return"
+      ],
+      "dh": "b60b6b8c"
+    },
+    {
+      "name": "MATH_sinTable_f32_LookupOffset",
+      "address": "0040b330",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040b330"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "MATH_sinTable_f32_LookupOffset"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "f219aafa",
+      "paramStorage": [
+        [
+          "findex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MATH_sinTable_f32_Lookup",
+      "address": "0040b350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040b350"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "MATH_sinTable_f32_Lookup"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "31e15c90",
+      "paramStorage": [
+        [
+          "findex",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "THREADING_DeleteCriticalSection_Thunk",
+      "address": "0040eb60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb60"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "THREADING_DeleteCriticalSection_Thunk"
+      ],
+      "dh": "8d199925",
+      "paramStorage": [
+        [
+          "pElement",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "THREADING_EnterCriticalSection_Thunk",
+      "address": "0040eb70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb70"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "THREADING_EnterCriticalSection_Thunk"
+      ],
+      "dh": "55c74a2a",
+      "paramStorage": [
+        [
+          "pElement",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "THREADING_LeaveCriticalSection_Thunk",
+      "address": "0040eb80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0040eb80"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "THREADING_LeaveCriticalSection_Thunk"
+      ],
+      "dh": "9ec100aa",
+      "paramStorage": [
+        [
+          "pElement",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "__GSHandlerCheck_EH_6ca548",
+      "address": "006ca548",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006ca548"
+        }
+      ],
+      "namespace": "Fog",
+      "calledFunctions": [
+        "__GSHandlerCheck_EH_6ca548",
+        "__security_check_cookie"
+      ],
+      "usedTypes": [
+        "EHExceptionRecord",
+        "EHRegistrationNode",
+        "_CONTEXT",
+        "_EXCEPTION_DISPOSITION"
+      ],
+      "dh": "28e696a1",
+      "paramStorage": [
+        [
+          "pExceptionRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pRegistrationNode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pContext",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pDispatcherContext",
+          "Stack[0x10]:4"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,681 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/Help.cpp",
+  "functions": [
+    {
+      "name": "GetSeenHelpMenuValue",
+      "address": "004942d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004942d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "GetSeenHelpMenuValue",
+        "SRegLoadValue"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "2dbc6c94"
+    },
+    {
+      "name": "SetSeenHelpMenu",
+      "address": "00494300",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494300"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "SetSeenHelpMenu",
+        "SRegSaveValue"
+      ],
+      "dh": "fbef6b08",
+      "paramStorage": [
+        [
+          "bSeenHelpMenu",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "LoadBorder",
+      "address": "00494320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494320"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "LoadBorder",
+        "D2GFX_GetResolutionMode",
+        "DC6_FreeAndDelete",
+        "ARCHIVE_LoadOverlayImageUsedInGame"
+      ],
+      "dh": "82c90ed7"
+    },
+    {
+      "name": "DrawBorderClassic",
+      "address": "004943b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004943b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawBorderClassic",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "857083bb"
+    },
+    {
+      "name": "DrawBorderXpac",
+      "address": "004944f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004944f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawBorderXpac",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "f24843c5"
+    },
+    {
+      "name": "HELP_DrawDarkOverlay_B",
+      "address": "004945f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004945f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_DrawDarkOverlay_B",
+        "SetRedToBlack",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "dh": "0b468ca8"
+    },
+    {
+      "name": "DrawYellowBullet",
+      "address": "00494620",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494620"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawYellowBullet",
+        "memset",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "19285118"
+    },
+    {
+      "name": "DrawWhiteBulletClassic",
+      "address": "00494680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494680"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawWhiteBulletClassic",
+        "memset",
+        "D2GFX_DrawImage",
+        "D2GFX_DrawLine"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "f187c845"
+    },
+    {
+      "name": "DrawWhiteBulletXpac",
+      "address": "00494a00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494a00"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawWhiteBulletXpac",
+        "memset",
+        "D2GFX_DrawImage",
+        "D2GFX_DrawLine"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "4e1133b1"
+    },
+    {
+      "name": "DrawSellBtn",
+      "address": "00494e40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494e40"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawSellBtn",
+        "memset",
+        "GetBuySellBtnDC6",
+        "D2GFX_GetResolutionMode",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc"
+      ],
+      "dh": "ffde0b4a"
+    },
+    {
+      "name": "HELP_DrawDarkOverlay",
+      "address": "00494eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494eb0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_DrawDarkOverlay",
+        "SetRedToBlack",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "dh": "53e8d21b"
+    },
+    {
+      "name": "FreeHelpBorder",
+      "address": "00494ee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494ee0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "FreeHelpBorder",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "1f499ed6"
+    },
+    {
+      "name": "INPUT_HelpCloseButtonDown",
+      "address": "00494f30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494f30"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "INPUT_HelpCloseButtonDown",
+        "D2GFX_GetResolutionMode",
+        "SMsgBreakHandlerChain",
+        "GAMEDATA_ClearQueuedClicks"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "b320e761",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_MiniPanelKeyNoOp",
+      "address": "00494fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494fb0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_MiniPanelKeyNoOp"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "4c94970d",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_HideMiniPanel",
+      "address": "00494fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494fc0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_HideMiniPanel",
+        "SetUIFlag"
+      ],
+      "dh": "60f95bd6"
+    },
+    {
+      "name": "MouseIsInRange",
+      "address": "00494ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00494ff0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "MouseIsInRange",
+        "GetMouseX",
+        "GetMouseY"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e7bd8382",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "EBX:4"
+        ],
+        [
+          "nSizeX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSizeY",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_DrawHelpButtonTooltip",
+      "address": "00495030",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00495030"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_DrawHelpButtonTooltip",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "CMD_GetKeyForCommand",
+        "memset",
+        "CMD_GetKeyDescForCommand",
+        "UNICODE_FormatWideString",
+        "AppendToBuffer",
+        "DRAW_text0",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "e210b7c6"
+    },
+    {
+      "name": "HELP_DrawHelpButton",
+      "address": "00495180",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00495180"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_DrawHelpButton",
+        "GetUIFlag",
+        "GetSeenHelpMenuValue",
+        "memset",
+        "HELP_DrawHelpButtonTooltip",
+        "D2GFX_DrawImage",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "int32_t"
+      ],
+      "dh": "68d16816"
+    },
+    {
+      "name": "INPUT_HelpScrollButtonDown",
+      "address": "004952b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004952b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "INPUT_HelpScrollButtonDown",
+        "GetMouseX",
+        "GetMouseY",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "78881d33",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_HelpScrollButtonUp",
+      "address": "00495320",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00495320"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "INPUT_HelpScrollButtonUp",
+        "GetMouseX",
+        "GetMouseY",
+        "SetUIFlag",
+        "SRegSaveValue",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "3aafd756",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_CenterTextAndGetX",
+      "address": "004953c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004953c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_CenterTextAndGetX",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "507d0cea",
+      "paramStorage": [
+        [
+          "nStringId",
+          "CX:2"
+        ],
+        [
+          "nCenterX",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_HelpXpac",
+      "address": "00495410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00495410"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DRAW_UI_HelpXpac",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0",
+        "DRAW_text",
+        "SetAndReturnLastFont",
+        "CMD_GetKeyNameForCommand",
+        "UNICODE_FormatWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "a4a8ad6d"
+    },
+    {
+      "name": "DRAW_UI_HelpClassic",
+      "address": "00495dc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00495dc0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DRAW_UI_HelpClassic",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "DRAW_text0",
+        "DRAW_text",
+        "SetAndReturnLastFont",
+        "CMD_GetKeyNameForCommand",
+        "UNICODE_FormatWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "4f341d38"
+    },
+    {
+      "name": "DrawBackgroundHelpMenu",
+      "address": "004966c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004966c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "DrawBackgroundHelpMenu",
+        "GetUIFlag",
+        "SetUIFlag",
+        "D2GFX_GetResolutionMode",
+        "DrawBorderXpac",
+        "DrawSellBtn",
+        "DrawYellowBullet",
+        "DrawWhiteBulletXpac",
+        "DRAW_UI_HelpXpac",
+        "DrawBorderClassic",
+        "DrawWhiteBulletClassic",
+        "DRAW_UI_HelpClassic"
+      ],
+      "dh": "ff7163af"
+    },
+    {
+      "name": "INPUT_HelpCloseButtonUp",
+      "address": "00496720",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00496720"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "INPUT_HelpCloseButtonUp",
+        "D2GFX_GetResolutionMode",
+        "SetUIFlag",
+        "HELP_HideMiniPanel",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "c1a6ab4d",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_OnEscapeOrSpace",
+      "address": "004967a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004967a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_OnEscapeOrSpace",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "2144e3aa",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_SetUIVarW",
+      "address": "004967aa",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004967aa"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_SetUIVarW",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "eD2UIvars",
+        "eD2UIvarsSetType"
+      ],
+      "dh": "fdd403f4",
+      "paramStorage": [
+        [
+          "eUIVar",
+          "ECX:4"
+        ],
+        [
+          "eUIVarSetType",
+          "EDX:4"
+        ],
+        [
+          "dwArg1",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "HELP_MiniPanelKeyNoOp_Unref_004e4040",
+      "address": "004e4040",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004e4040"
+        }
+      ],
+      "namespace": "D2Client::UI::Help",
+      "calledFunctions": [
+        "HELP_MiniPanelKeyNoOp_Unref_004e4040"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "9da3a6df",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    }
+  ]
+}

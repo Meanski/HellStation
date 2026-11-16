@@ -1,0 +1,170 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/Fog/Save.cpp",
+  "functions": [
+    {
+      "name": "CalculateChecksum",
+      "address": "00411130",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411130"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "CalculateChecksum"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "2b414aed",
+      "paramStorage": [
+        [
+          "pSaveFile",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAVE_CalculateChecksum",
+      "address": "00411170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00411170"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "SAVE_CalculateChecksum"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "7b374e0d",
+      "paramStorage": [
+        [
+          "pbData",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAVEFILE_ReadEncodedInt14Bit",
+      "address": "006bbf20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006bbf20"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "SAVEFILE_ReadEncodedInt14Bit"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "73260793",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAVEFILE_WriteEncodedInt14Bit",
+      "address": "006bbf40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006bbf40"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "SAVEFILE_WriteEncodedInt14Bit"
+      ],
+      "usedTypes": [
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "9c4315f8",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nValue",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SAVEFILE_ReadEncodedInt32Bit",
+      "address": "006bbf60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006bbf60"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "SAVEFILE_ReadEncodedInt32Bit"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "00a989bf",
+      "paramStorage": [
+        [
+          "pBuffer",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "FOG_ParseStringValue",
+      "address": "006bbfa0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006bbfa0"
+        }
+      ],
+      "namespace": "Fog::Save",
+      "calledFunctions": [
+        "FOG_ParseStringValue"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "d49bef52",
+      "paramStorage": [
+        [
+          "szText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nNumber",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

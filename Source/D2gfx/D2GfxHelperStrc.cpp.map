@@ -1,0 +1,496 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2gfx/D2GfxHelperStrc.cpp",
+  "functions": [
+    {
+      "name": "D2GFX_ClearYBuffer",
+      "address": "004f7e70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f7e70"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFX_ClearYBuffer"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "f0a16302"
+    },
+    {
+      "name": "fpDrawVisTile",
+      "address": "004f7ea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f7ea0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpDrawVisTile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "memcpy"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "224e679b",
+      "paramStorage": [
+        [
+          "pbTileData",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_DrawWallTileWithLighting",
+      "address": "004f8050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8050"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "DRAW_DrawWallTileWithLighting",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2GFX_DrawWallTileBasic",
+        "D2GFX_DrawGroundTileBasic"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "95de63dd",
+      "paramStorage": [
+        [
+          "nTileDataPtr",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLightLevel",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpDrawWallTile",
+      "address": "004f8120",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8120"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpDrawWallTile",
+        "fpDrawVisTile",
+        "DRAW_DrawWallTileWithLighting",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "D2GFX_DrawWallTileWithPerspective",
+        "D2GFX_DrawGroundTileWithPerspective"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "67fb9d15",
+      "paramStorage": [
+        [
+          "pTileData",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCoords",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpDrawBlendedVisTile",
+      "address": "004f82d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f82d0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpDrawBlendedVisTile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "690c0b18",
+      "paramStorage": [
+        [
+          "pTileData",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLightVal",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpDrawRoofTile",
+      "address": "004f84f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f84f0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpDrawRoofTile",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t",
+        "uint32_t",
+        "uint8_t",
+        "uint8_t[32]"
+      ],
+      "dh": "f621e624",
+      "paramStorage": [
+        [
+          "pTileData",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pCoords",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLightVal",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFXHELPER_DrawGroundTileDispatch1",
+      "address": "004f8810",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8810"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFXHELPER_DrawGroundTileDispatch1",
+        "D2GFX_DrawWallTileBasic",
+        "D2GFX_DrawTileSimple"
+      ],
+      "usedTypes": [
+        "D2GroundSubTileStrc",
+        "uint8_t"
+      ],
+      "dh": "eac6f87e",
+      "paramStorage": [
+        [
+          "pSubTile",
+          "ECX:4"
+        ],
+        [
+          "pDst",
+          "EDX:4"
+        ],
+        [
+          "byLightVal",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFXHELPER_DrawGroundTileDispatch2",
+      "address": "004f8850",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8850"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFXHELPER_DrawGroundTileDispatch2",
+        "D2GFX_DrawWallTileWithPerspective",
+        "D2GFX_DrawTileAdvanced"
+      ],
+      "usedTypes": [
+        "D2GroundSubTileStrc",
+        "uint8_t"
+      ],
+      "dh": "56d327ef",
+      "paramStorage": [
+        [
+          "nSubTilePtr",
+          "ECX:4"
+        ],
+        [
+          "pDst",
+          "EDX:4"
+        ],
+        [
+          "pLightCorners",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFXHELPER_DrawGroundTileWithLight",
+      "address": "004f88b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f88b0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFXHELPER_DrawGroundTileWithLight",
+        "D2GFX_DrawGroundTileBasic"
+      ],
+      "usedTypes": [
+        "D2GroundSubTileStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3f8e66c7",
+      "paramStorage": [
+        [
+          "pSubTile",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pDstBase",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nLightVal",
+          "Stack[0xc]:1"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFXHELPER_DrawGroundTileWithPerspectiveLight",
+      "address": "004f89f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f89f0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFXHELPER_DrawGroundTileWithPerspectiveLight",
+        "D2GFX_DrawGroundTileWithPerspective"
+      ],
+      "usedTypes": [
+        "D2GroundSubTileStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "7d61a3df",
+      "paramStorage": [
+        [
+          "pSubTile",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pDstBase",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pLightCorners",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "fpDrawGroundTile",
+      "address": "004f8b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8b80"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpDrawGroundTile",
+        "D2GFXHELPER_DrawGroundTileWithLight",
+        "D2GFXHELPER_DrawGroundTileWithPerspectiveLight",
+        "D2GFXHELPER_DrawGroundTileDispatch1",
+        "D2GFXHELPER_DrawGroundTileDispatch2"
+      ],
+      "usedTypes": [
+        "D2GfxLightExStrc",
+        "D2GroundSubTileStrc",
+        "D2TileLibraryEntryStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "8a070412",
+      "paramStorage": [
+        [
+          "nTileBlockPtr",
+          "ECX:4"
+        ],
+        [
+          "nScreenX",
+          "EDX:4"
+        ],
+        [
+          "nScreenY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nLightTablePtr",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "D2GFX_SetupRenderFunctions",
+      "address": "004f8dc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8dc0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "D2GFX_SetupRenderFunctions",
+        "D2GFX_InitializeLineBuffer"
+      ],
+      "dh": "2c1a4c3b"
+    },
+    {
+      "name": "fpFillYBufferTable",
+      "address": "004f8de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004f8de0"
+        }
+      ],
+      "namespace": "D2gfx::D2GfxHelperStrc",
+      "calledFunctions": [
+        "fpFillYBufferTable",
+        "D2GFX_ClearYBuffer",
+        "D2GFX_FillYBufferFast"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "11233409",
+      "paramStorage": [
+        [
+          "ppvBits",
+          "ECX:4"
+        ],
+        [
+          "nWidth",
+          "EDX:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x4]:4"
+        ],
+        [
+          "a4",
+          "Stack[0x8]:4"
+        ]
+      ]
+    }
+  ]
+}

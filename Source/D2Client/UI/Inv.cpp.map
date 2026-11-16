@@ -1,0 +1,5875 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Client/UI/Inv.cpp",
+  "functions": [
+    {
+      "name": "InitializeiInventoryPages",
+      "address": "004835b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004835b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "InitializeiInventoryPages",
+        "CLIENT_CheckExpansion",
+        "GetPlayerUnit_UI",
+        "UNITS_GetInventoryRecordId",
+        "GetInvDimensions",
+        "GetGridDimensions",
+        "GetBodyDimensions",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eInventoryPage",
+        "int32_t"
+      ],
+      "dh": "f853596f"
+    },
+    {
+      "name": "InitializeColors",
+      "address": "00483960",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483960"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "InitializeColors",
+        "D2GFX_GetColorFromCurrentPallete"
+      ],
+      "dh": "608aaf7f"
+    },
+    {
+      "name": "DrawItemSolidBackground",
+      "address": "004839d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004839d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DrawItemSolidBackground",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "usedTypes": [
+        "D2GridScreenCoordinates",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "11850722",
+      "paramStorage": [
+        [
+          "nItemHeight",
+          "CL:1"
+        ],
+        [
+          "nItemWidth",
+          "DL:1"
+        ],
+        [
+          "nCellX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nColorIndex",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nCellY",
+          "EAX:4"
+        ],
+        [
+          "pCoords",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawBodySlotHighlight",
+      "address": "00483a70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483a70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawBodySlotHighlight",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "usedTypes": [
+        "D2InventoryEntryStrc",
+        "int32_t"
+      ],
+      "dh": "b5abc3f8",
+      "paramStorage": [
+        [
+          "pSlotRect",
+          "EAX:4"
+        ],
+        [
+          "nColorIndex",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInInventoryScreenRange",
+      "address": "00483ab0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483ab0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInInventoryScreenRange"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "603ea3b6",
+      "paramStorage": [
+        [
+          "nX",
+          "ECX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInTradepage1ScreenRange",
+      "address": "00483ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483ae0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInTradepage1ScreenRange"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9c5eab1d",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInTradePage2ScreenRange",
+      "address": "00483b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483b10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInTradePage2ScreenRange"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "a728cf7f",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInBankPageScreenRange",
+      "address": "00483b40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483b40"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInBankPageScreenRange",
+        "CLIENT_CheckExpansion"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "cb301f91",
+      "paramStorage": [
+        [
+          "nX",
+          "ESI:4"
+        ],
+        [
+          "nY",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInBankPageScreenRangeOpenTop",
+      "address": "00483ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483ba0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInBankPageScreenRangeOpenTop",
+        "CLIENT_CheckExpansion"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e2ea68d5",
+      "paramStorage": [
+        [
+          "nX",
+          "ESI:4"
+        ],
+        [
+          "nY",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "IsInTransmogrifyScreenRange",
+      "address": "00483bf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483bf0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "IsInTransmogrifyScreenRange"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b961db7e",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawGridPlacementHighlight",
+      "address": "00483c50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483c50"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawGridPlacementHighlight",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "GetMouseX",
+        "GetMouseY",
+        "INVENTORY_CheckGridCollisions",
+        "DrawItemSolidBackground",
+        "INVENTORY_CheckGridOccupancy",
+        "TXT_Items_GetLine",
+        "GetYPosFromDynamicPathUnit",
+        "GetXPosFromDynamicPathUnit"
+      ],
+      "usedTypes": [
+        "D2GridScreenCoordinates",
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "23da69ff",
+      "paramStorage": [
+        [
+          "pInventory",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "EDI:4"
+        ],
+        [
+          "byColor",
+          "EBX:4"
+        ],
+        [
+          "nGridIndex",
+          "EAX:4"
+        ],
+        [
+          "pGridCoords",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsPlayerInventoryMode",
+      "address": "00483e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483e10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsPlayerInventoryMode"
+      ],
+      "dh": "ddc63b3a"
+    },
+    {
+      "name": "INV_DrawSocketedItems",
+      "address": "00483e40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483e40"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawSocketedItems",
+        "CheckItemFlag",
+        "INVENTORY_GetFirstItem",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "ITEM_GetSocketsCount",
+        "memset",
+        "D2GFX_DrawImage",
+        "GetCarriedItem",
+        "DrawItemGfx",
+        "INVENTORY_GetNextItem"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2GridScreenCoordinates",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "5d416d55",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pGridCoords",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nBaseX",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBaseY",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsQuestItemConsumable",
+      "address": "00483f80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483f80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsQuestItemConsumable",
+        "GetQuestInfo",
+        "GetQuestState"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "D2ItemsTxt",
+        "eD2QuestState",
+        "eD2Quests"
+      ],
+      "dh": "69c67415",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_InventoryContent",
+      "address": "00483ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00483ff0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DRAW_UI_InventoryContent",
+        "InitializeiInventoryPages",
+        "GetPlayerUnit_UI",
+        "CLIENT_CheckExpansion",
+        "UNITS_GetInventoryRecordId",
+        "INVENTORY_GetFirstItem",
+        "INVENTORY_GetNextItem",
+        "GetCarriedItem",
+        "ITEM_GetItemData_eD2InventoryGridType",
+        "GetXPos",
+        "GetYPos",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "ITEM_GetContainingInventoryPage",
+        "GetItemType",
+        "ITEM_CheckItemsTxt_bTransmogrify",
+        "DrawItemSolidBackground",
+        "DrawItemGfx",
+        "ITEM_GetItemsTxt_bHasInv",
+        "ITEM_GetMaxSockCount",
+        "CheckItemFlag",
+        "INV_DrawSocketedItems",
+        "ITEM_CheckEquipRequirements",
+        "PlayerIsUnInterruptable",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "TXT_Items_GetLine",
+        "INV_IsQuestItemConsumable",
+        "INVENTORY_GetHandItem",
+        "GetMouseX",
+        "GetMouseY",
+        "IsInTradePage2ScreenRange",
+        "IsInInventoryScreenRange",
+        "IsInBankPageScreenRange",
+        "IsInTransmogrifyScreenRange",
+        "INV_DrawGridPlacementHighlight"
+      ],
+      "usedTypes": [
+        "D2GridScreenCoordinates",
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "eD2UnitType",
+        "eInventoryPage",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "4d3251c7",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ITEM_CanTheseBeSocketed",
+      "address": "004843e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004843e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "ITEM_CanTheseBeSocketed",
+        "ITEM_IsSocketable",
+        "CheckItemFlag",
+        "ITEM_GetItemsTxt_bHasInv",
+        "ITEM_GetMaxSockCount",
+        "ITEM_GetSocketsCount",
+        "ITEM_ItemsInItem"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "16cb80b1",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pTargetItem",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawBodySlotCursorHighlight",
+      "address": "004844a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004844a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawBodySlotCursorHighlight",
+        "GetMouseX",
+        "GetMouseY",
+        "INVENTORY_GetHandItem",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "ITEMS_CheckBodyLocationFit",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_CanTheseBeSocketed",
+        "GetPlayerUnit_UI",
+        "ITEM_CheckEquipRequirements",
+        "INV_DrawBodySlotHighlight"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "71f60925",
+      "paramStorage": [
+        [
+          "pInventory",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "InitInventory",
+      "address": "004845a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004845a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "InitInventory",
+        "CLIENT_CheckExpansion",
+        "GetPlayerUnit_UI",
+        "UNITS_GetInventoryRecordId",
+        "InitializeiInventoryPages",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "INVENTORY_GetWeaponHandedness",
+        "ITEM_GetTxtItemTypes_quiver",
+        "DrawItemGfx",
+        "D2GFX_DrawSolidRectExBySize",
+        "GetItemType",
+        "ITEM_GetItemsTxt_bHasInv",
+        "ITEM_GetMaxSockCount",
+        "CheckItemFlag",
+        "INV_DrawSocketedItems",
+        "ITEM_GetTxtItemTypes_shoots",
+        "ITEM_CheckEquipRequirements",
+        "PlayerIsUnInterruptable",
+        "ITEM_CheckIfItemIsNotBrokenAndNotDisabled",
+        "INV_DrawBodySlotCursorHighlight"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "7cf29269"
+    },
+    {
+      "name": "INV_GetInventoryPageName",
+      "address": "00484a70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484a70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_GetInventoryPageName",
+        "GetLocaleString",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "eec0e1cc",
+      "paramStorage": [
+        [
+          "nPageIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatEtherealSocketedText",
+      "address": "00484b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484b10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatEtherealSocketedText",
+        "GetLocaleString",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "STRING_CopyWideString",
+        "CheckItemFlag",
+        "AppendToBuffer",
+        "ITEM_GetSocketsCount",
+        "SStrPrintf"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "4ba507e9",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatPlayerNameOnItem",
+      "address": "00484c90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484c90"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatPlayerNameOnItem",
+        "CheckItemFlag",
+        "GetItemQuality",
+        "ITEM_GetItemData_szPlayerName",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "MISC_GetLanguageCode",
+        "UNICODE_FormatPossessiveName",
+        "STRING_CopyWideString"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "0dcebcce",
+      "paramStorage": [
+        [
+          "wszText",
+          "EBX:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatPlayerNameWithBase",
+      "address": "00484d30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484d30"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatPlayerNameWithBase",
+        "CheckItemFlag",
+        "ITEM_GetItemData_szPlayerName",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "MISC_GetLanguageCode",
+        "UNICODE_FormatPossessiveName"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "2b9bd48d",
+      "paramStorage": [
+        [
+          "wszText1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatQuantityText",
+      "address": "00484db0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484db0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatQuantityText",
+        "GetLocaleString",
+        "STATSEX_GetCurrentStat",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR"
+      ],
+      "dh": "abe48c78",
+      "paramStorage": [
+        [
+          "pQualityRecord",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatDurabilityText",
+      "address": "00484e90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484e90"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatDurabilityText",
+        "GetLocaleString",
+        "ITEM_CheckIfItemHasDurability",
+        "STATLIST_GetMaxDurabilityFromUnit",
+        "ITEM_GetTxtItemTypes_throwable",
+        "STATLIST_GetStatBonusFromLists",
+        "STRING_CopyWideString",
+        "STATSEX_GetCurrentStat",
+        "SStrPrintf",
+        "AppendToBuffer",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendAsWideChar"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "68716c45",
+      "paramStorage": [
+        [
+          "wszText",
+          "ESI:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatStackCountText",
+      "address": "00484ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00484ff0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatStackCountText",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "2bc93bfb",
+      "paramStorage": [
+        [
+          "nStackCount",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatReqStrText",
+      "address": "004850a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004850a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatReqStrText",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "18657fa3",
+      "paramStorage": [
+        [
+          "pItemsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nReqAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatReqDexText",
+      "address": "00485170",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485170"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatReqDexText",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "f2404a2a",
+      "paramStorage": [
+        [
+          "pItemsTxt",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nReqAdjust",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_CalcWeaponDamageRange",
+      "address": "00485240",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485240"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_CalcWeaponDamageRange",
+        "SEVER_ITEM_GetOwner",
+        "STATLIST_SetItemStatActive",
+        "STATSEX_GetCurrentStat",
+        "STATLIST_RemoveFromOwnerAndRecalc",
+        "SERVER_GetUnitStat",
+        "DRLGENV_GetPeriodOfDayFromAct",
+        "ITEMMODS_GetByTimeAdjustment",
+        "D2ApplyPercent"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2UnitStat",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1058bc3b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eMinDmgStat",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eMaxDmgStat",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnOutMin",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pnOutMax",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pbOutModified",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pItem",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "szPrintfBuffer",
+      "address": "00485410",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485410"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "szPrintfBuffer",
+        "GetLocaleString",
+        "GetPlayerUnit_UI",
+        "ITEMS_IsA",
+        "BARBARIAN_CheckItemData_b1or2Handed_isTrue",
+        "IsTwoHanded",
+        "INV_CalcWeaponDamageRange",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer",
+        "AppendAsWideChar",
+        "STATLIST_GetStatBonusFromLists",
+        "ITEM_GetTxtItemTypes_throwable",
+        "ITEM_GetItemsTxt_wMissileType",
+        "GetMinElemDamage",
+        "GetMaxElemDamage",
+        "GetElemTypeFromMissileId",
+        "GetElementalLength",
+        "GetMinDamage",
+        "GetMaxDamage"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t",
+        "wchar_t"
+      ],
+      "dh": "a394e799",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatBlockChanceText",
+      "address": "00485be0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485be0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatBlockChanceText",
+        "STATSEX_GetCurrentStat",
+        "GetPlayerUnit_UI",
+        "SKILLS_GetSkillByEnum",
+        "UNIT_GetUnitState",
+        "GetSkillLevel",
+        "SKILLS_GetParam45WithDiminishing",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendAsWideChar",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2CharStatsTxt",
+        "D2ItemsTxt",
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "20a339fb",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItemsTxt",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatDefenseRangeText",
+      "address": "00485d40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485d40"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatDefenseRangeText",
+        "GetLocaleString",
+        "ITEMS_IsA",
+        "GetPlayerUnit_Net",
+        "SKILLS_GetSkillByEnum",
+        "UNIT_GetUnitState",
+        "GetSkillLevel",
+        "SKILL_CalcMinDamage",
+        "SKILL_CalcMaxDamage",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "269de826",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pStatRecord",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatArmorClassText",
+      "address": "00485ee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00485ee0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatArmorClassText",
+        "GetLocaleString",
+        "SEVER_ITEM_GetOwner",
+        "STATLIST_SetItemStatActive",
+        "STATLIST_GetDefenseFromUnit",
+        "STATLIST_RemoveFromOwnerAndRecalc",
+        "SERVER_GetUnitStat",
+        "STATSEX_GetCurrentStat",
+        "DRLGENV_GetPeriodOfDayFromAct",
+        "ITEMMODS_GetByTimeAdjustment",
+        "D2ApplyPercent",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendAsWideChar"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "554c9a38",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit2",
+          "Stack[0x8]:4"
+        ],
+        [
+          "wszText",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "AppendQuanity",
+      "address": "00486100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486100"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "AppendQuanity",
+        "GetLocaleString",
+        "STATSEX_GetCurrentStat",
+        "ITEM_GetMaxStack",
+        "STRING_CopyWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR"
+      ],
+      "dh": "7cfc547d",
+      "paramStorage": [
+        [
+          "wszText",
+          "EDI:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatAttackSpeedText",
+      "address": "004861d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004861d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatAttackSpeedText",
+        "GetLocaleString",
+        "GetPlayerUnit_Net",
+        "ITEM_CalcWeaponAttackSpeed",
+        "STATLIST_GetStatBonusFromLists",
+        "ITEMS_IsA",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "AppendAsWideChar"
+      ],
+      "usedTypes": [
+        "D2AttackSpeedStringStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "c48be120",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatItemSpellDescText",
+      "address": "00486370",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486370"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatItemSpellDescText",
+        "GetPlayerUnit_UI",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "CONTAINER_InitializeBuffer",
+        "ITEMMODS_EvaluateItemFormula",
+        "ITEMS_GetBonusLifeBasedOnClass",
+        "ITEMS_GetBonusManaBasedOnClass",
+        "UNICODE_FormatWideString",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "383d9a17",
+      "paramStorage": [
+        [
+          "pItem",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItemsTxt",
+          "EDI:4"
+        ],
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatSocketFillerDesc",
+      "address": "004865d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004865d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatSocketFillerDesc",
+        "GetLocaleString",
+        "ITEMS_IsA",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SKILLDESC_BuildMagicAffixDesc",
+        "AppendToBuffer"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ee05dd07",
+      "paramStorage": [
+        [
+          "wszText",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatRunewordName",
+      "address": "00486670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486670"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatRunewordName",
+        "GetLocaleString",
+        "INVENTORY_GetFirstItem",
+        "GetCarriedItem",
+        "ITEMS_IsA",
+        "TXT_Items_GetLine",
+        "TXT_Gems_GetLine",
+        "AppendToBuffer",
+        "UTF8_ConvertToWideChar",
+        "INVENTORY_GetNextItem"
+      ],
+      "usedTypes": [
+        "D2GemsTxt",
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "76113c3a",
+      "paramStorage": [
+        [
+          "wszText",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "GetSetItem",
+      "address": "00486770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486770"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "GetSetItem",
+        "INVENTORY_GetFirstItem",
+        "GetCarriedItem",
+        "GetItemQuality",
+        "CheckItemFlag",
+        "ITEM_GetContainingInventoryPage",
+        "ITEM_GetItemData_eD2InventoryGridType",
+        "ITEM_GetItemData_nFileIndex",
+        "INVENTORY_GetNextItem"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2InventoryGridType",
+        "eInventoryPage",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "c6a48423",
+      "paramStorage": [
+        [
+          "nId",
+          "EBX:4"
+        ],
+        [
+          "pInventory",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseInRect",
+      "address": "00486820",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486820"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseInRect",
+        "GetMouseX",
+        "GetMouseY"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "b1159894",
+      "paramStorage": [
+        [
+          "nLeftX",
+          "EAX:4"
+        ],
+        [
+          "nBottomY",
+          "EBX:4"
+        ],
+        [
+          "nWidth",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nHeight",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverWeaponSwapSlot",
+      "address": "00486860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486860"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverWeaponSwapSlot"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "72f3c9ba",
+      "paramStorage": [
+        [
+          "nX",
+          "EDX:4"
+        ],
+        [
+          "nY",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_LoadBodySlotImages",
+      "address": "004868b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004868b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_LoadBodySlotImages",
+        "ARCHIVE_LoadOverlayImageUsedInGame",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion"
+      ],
+      "dh": "aeaaeeec"
+    },
+    {
+      "name": "INV_FreeBodySlotImages",
+      "address": "00486980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486980"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FreeBodySlotImages",
+        "DC6_FreeAndDelete",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion"
+      ],
+      "dh": "980a4bd8"
+    },
+    {
+      "name": "Unreferenced_00486ad0",
+      "address": "00486ad0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486ad0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Unreferenced_00486ad0"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "e8dc1e18"
+    },
+    {
+      "name": "INV_GetGoldButtonX",
+      "address": "00486ae0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486ae0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_GetGoldButtonX",
+        "CLIENT_CheckExpansion"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "73e06ac7"
+    },
+    {
+      "name": "INV_GetGoldButtonY",
+      "address": "00486b00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486b00"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_GetGoldButtonY",
+        "CLIENT_CheckExpansion"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "4228fc7a"
+    },
+    {
+      "name": "INV_IsInteractiveMode",
+      "address": "00486b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486b30"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsInteractiveMode"
+      ],
+      "dh": "9d028ae9"
+    },
+    {
+      "name": "INV_IsInteractiveModeEx",
+      "address": "00486b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486b80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsInteractiveModeEx"
+      ],
+      "dh": "215c5fd8"
+    },
+    {
+      "name": "INV_CalcGridCellFromMouse",
+      "address": "00486bd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486bd0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_CalcGridCellFromMouse",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "GFXUTIL_GetOverlayDimensions"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "debeff5c",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nMouseX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nMouseY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pnCol",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pnRow",
+          "Stack[0x10]:4"
+        ],
+        [
+          "pGridLayout",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_CheckActionThrottle",
+      "address": "00486d10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486d10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_CheckActionThrottle",
+        "CLIENT_GetD2GSGameType",
+        "TRADE_IsTradeThrottled",
+        "CancelTrade",
+        "GetTickCount"
+      ],
+      "usedTypes": [
+        "eD2GSGameType"
+      ],
+      "dh": "1e5b88de"
+    },
+    {
+      "name": "Unreferenced_00486d70",
+      "address": "00486d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486d70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Unreferenced_00486d70"
+      ],
+      "dh": "84cc9883"
+    },
+    {
+      "name": "INV_IsMouseOverGoldButton",
+      "address": "00486da0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486da0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverGoldButton",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "a6768aa3",
+      "paramStorage": [
+        [
+          "nX",
+          "EDI:4"
+        ],
+        [
+          "nY",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverCloseButton",
+      "address": "00486e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486e10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverCloseButton"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "0e6ca86f",
+      "paramStorage": [
+        [
+          "nMouseX",
+          "ECX:4"
+        ],
+        [
+          "nMouseY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleHighResDropClick",
+      "address": "00486e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486e60"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleHighResDropClick",
+        "D2GFX_GetResolutionMode",
+        "PANEL_CalculateBeltSlotIndex",
+        "DRAW_GetTypeOfBorder",
+        "GetItemType",
+        "UI_DropCursorItemOnGround",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "97fb04c9",
+      "paramStorage": [
+        [
+          "nMouseY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMsg",
+          "ESI:4"
+        ],
+        [
+          "nMouseX",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleInventoryRightClick",
+      "address": "00486ef0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00486ef0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleInventoryRightClick",
+        "GetPlayerUnit_UI",
+        "PANEL_CalculateBeltSlotIndex",
+        "SetUIFlag",
+        "INVENTORY_GetHandItem",
+        "INV_IsMouseOverGoldButton",
+        "UI_ShowGoldTransactionDialog",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "5f42b3fe",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_UpdateItemUnderCursor",
+      "address": "00487000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487000"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_UpdateItemUnderCursor",
+        "CLIENT_CheckExpansion",
+        "UNITS_GetInventoryRecordId",
+        "GetUnitAndXAndY",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "GetXPosFromDynamicPathUnit",
+        "GetYPosFromDynamicPathUnit",
+        "GFXUTIL_GetOverlayDimensions"
+      ],
+      "usedTypes": [
+        "D2GridScreenCoordinates",
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "0c2a5a2b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pInventory",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pCursorItem",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nMouseX",
+          "Stack[0x10]:4"
+        ],
+        [
+          "nMouseY",
+          "Stack[0x14]:4"
+        ],
+        [
+          "nPage",
+          "Stack[0x18]:4"
+        ],
+        [
+          "pGridLayout",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_UpdateBodySlotUnderCursor",
+      "address": "00487230",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487230"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_UpdateBodySlotUnderCursor",
+        "INVENTORY_GetHandItem",
+        "INVENTORY_GetWeaponHandedness",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEMS_IsA"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5d2d450d",
+      "paramStorage": [
+        [
+          "nBodyLoc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ],
+        [
+          "pInventory",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleMouseMove",
+      "address": "004873a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004873a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleMouseMove",
+        "GAMEDATA_GetExitFlag3",
+        "IsPlayerDead",
+        "GetPlayerUnit_UI",
+        "InitializeiInventoryPages",
+        "PANEL_CalculateBeltSlotIndex",
+        "IsInInventoryScreenRange",
+        "INVENTORY_GetHandItem",
+        "INV_UpdateItemUnderCursor",
+        "INV_UpdateBodySlotUnderCursor",
+        "GetUIFlag",
+        "IsInTransmogrifyScreenRange",
+        "IsInBankPageScreenRange",
+        "CLIENT_CheckExpansion",
+        "IsInTradepage1ScreenRange",
+        "IsInTradePage2ScreenRange"
+      ],
+      "usedTypes": [
+        "D2GridScreenCoordinates",
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "bb938cd8",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ClickItemRight",
+      "address": "00487740",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487740"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "ClickItemRight",
+        "CLIENT_CheckExpansion",
+        "UNITS_GetInventoryRecordId",
+        "GetUnitAndXAndY",
+        "INVENTORY_GetHandItem",
+        "ITEM_CheckItemsTxt_bTransmogrify",
+        "PlayerIsUnInterruptable",
+        "NET_D2GS_CLIENT_Send_INT",
+        "ITEM_RemoveClientSide",
+        "IsUseable",
+        "IsUnique",
+        "TXT_Items_GetLine",
+        "TEXT_OpenQuestScroll",
+        "GetXPos",
+        "GetYPos",
+        "INV_CheckActionThrottle",
+        "GetUIFlag",
+        "ITEM_GetItemsTxt_szCode",
+        "NET_D2GS_CLIENT_Send_INT_INT_INT",
+        "ITEM_PlayItemUseSound",
+        "SOUND_PlaySound"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "eD2Sounds",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "bd7860fa",
+      "paramStorage": [
+        [
+          "pItem",
+          "ECX:4"
+        ],
+        [
+          "pGridCoords",
+          "EDX:4"
+        ],
+        [
+          "nPage",
+          "EAX:4"
+        ],
+        [
+          "pPlayer",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pInventory",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ResetHoverAndContextState",
+      "address": "00487990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487990"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ResetHoverAndContextState"
+      ],
+      "dh": "ca4f49f8"
+    },
+    {
+      "name": "INV_ClearItemDescription",
+      "address": "004879d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004879d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ClearItemDescription"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "f301cfe8",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_SetShopPageFromNpc",
+      "address": "00487a10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487a10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetShopPageFromNpc",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "INVENTORY_GetFirstItem",
+        "GetCarriedItem",
+        "ITEM_GetContainingInventoryPage",
+        "INVENTORY_GetNextItem"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eInventoryPage",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "c5d3337e",
+      "paramStorage": [
+        [
+          "byPage",
+          "Stack[0x4]:1"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ResetInventoryState",
+      "address": "00487b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487b30"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ResetInventoryState",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "9746c5cc"
+    },
+    {
+      "name": "INV_SetRefreshFlag",
+      "address": "00487b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487b70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetRefreshFlag"
+      ],
+      "dh": "a69597af"
+    },
+    {
+      "name": "INV_SetMercInventoryMode",
+      "address": "00487b80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487b80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetMercInventoryMode"
+      ],
+      "dh": "ff056382"
+    },
+    {
+      "name": "INV_HandleShopAction",
+      "address": "00487ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487ba0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopAction",
+        "ShopAction",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "4b87f1cb",
+      "paramStorage": [
+        [
+          "nAction",
+          "ECX:4"
+        ],
+        [
+          "pTarget",
+          "EDX:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "dwSell",
+          "Stack[0x8]:4"
+        ],
+        [
+          "dwParam2",
+          "Stack[0xc]:4"
+        ],
+        [
+          "bSkipConfirm",
+          "ESI:4"
+        ],
+        [
+          "dwMode",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_EnterShopMode",
+      "address": "00487be0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487be0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_EnterShopMode",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "4c11bf5b"
+    },
+    {
+      "name": "INV_ReturnToShopFromRepair",
+      "address": "00487c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487c20"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ReturnToShopFromRepair",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "d3cd7b66"
+    },
+    {
+      "name": "INV_SetRepairMode",
+      "address": "00487c60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487c60"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetRepairMode",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "0da415f2"
+    },
+    {
+      "name": "INV_TrySetRepairMode",
+      "address": "00487ca0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487ca0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_TrySetRepairMode"
+      ],
+      "dh": "a0483840"
+    },
+    {
+      "name": "INV_SelectDefaultNpcButton",
+      "address": "00487cc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487cc0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SelectDefaultNpcButton",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "dcc50854"
+    },
+    {
+      "name": "INV_SetIdentifyMode",
+      "address": "00487d30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487d30"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetIdentifyMode"
+      ],
+      "dh": "0a207ae3"
+    },
+    {
+      "name": "INV_ExitIdentifyMode",
+      "address": "00487d40",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487d40"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ExitIdentifyMode",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "7a10bbc7"
+    },
+    {
+      "name": "INV_SetNpcButtonBuy",
+      "address": "00487e20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487e20"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetNpcButtonBuy"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "e3bd902f",
+      "paramStorage": [
+        [
+          "nButtonIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_SetNpcButtonSell",
+      "address": "00487e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487e60"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetNpcButtonSell"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "39191f69",
+      "paramStorage": [
+        [
+          "nButtonIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ClearNpcButton",
+      "address": "00487ea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487ea0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ClearNpcButton"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d3f3dab0",
+      "paramStorage": [
+        [
+          "nButtonIndex",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_InitNpcButtonsByClass",
+      "address": "00487ed0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00487ed0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_InitNpcButtonsByClass",
+        "NPCMENU_GetCurrentShopMode",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "INV_SetNpcButtonBuy",
+        "INV_SetNpcButtonSell",
+        "INV_ClearNpcButton"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "a53e0e45"
+    },
+    {
+      "name": "DRAW_UI_INVENTORY_Gold",
+      "address": "00488100",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488100"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DRAW_UI_INVENTORY_Gold",
+        "SetAndReturnLastFont",
+        "memset",
+        "GetPlayerUnit_UI",
+        "STATSEX_GetCurrentStat",
+        "CLIENT_CheckExpansion",
+        "INV_IsMouseInRect",
+        "GetLocaleString",
+        "TEXT_TooltipSetAttributes",
+        "DRAW_text0",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "DRAW_text",
+        "D2GFX_DrawImage"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2UnitStat",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "b3c0a3c4",
+      "paramStorage": [
+        [
+          "nGoldPanelMode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_Inventory_DrawShop",
+      "address": "00488400",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488400"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DRAW_UI_Inventory_DrawShop",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand",
+        "memset",
+        "D2GFX_DrawImage",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "DRAW_UI_InventoryContent",
+        "GetBuySellBtnDC6",
+        "SetAndReturnLastFont",
+        "GetLocaleString",
+        "DRAW_text0",
+        "NPCMENU_GetCurrentShopMode",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "PD2NpcShopTabHasItems",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "4c3e99ff"
+    },
+    {
+      "name": "INV_DrawNpcButtonTooltip",
+      "address": "004886c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004886c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawNpcButtonTooltip",
+        "CONTAINER_InitializeBuffer",
+        "GetPlayerUnit_UI",
+        "GetInteractedUnit",
+        "GetQuestInfo",
+        "GetDificulity",
+        "ITEMS_CalculateRepairAllCost",
+        "GetLocaleString",
+        "UNICODE_FormatWideString",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "D2NpcShopButtonStrc",
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t",
+        "pfnItemTransactionCb"
+      ],
+      "dh": "7acba8a0"
+    },
+    {
+      "name": "Unreferenced_00488890",
+      "address": "00488890",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488890"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Unreferenced_00488890"
+      ],
+      "dh": "e255c9f6"
+    },
+    {
+      "name": "INV_CanReturnToShop",
+      "address": "004888c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004888c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_CanReturnToShop",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetItemType"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "426759fb"
+    },
+    {
+      "name": "INV_HandleShopEscapeKey",
+      "address": "00488910",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488910"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopEscapeKey",
+        "UI_GetFlag",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand",
+        "SMsgBreakHandlerChain",
+        "NPCMENU_CloseShopUI"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "ce8af3b0",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleShopMouseMove",
+      "address": "004889d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004889d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopMouseMove",
+        "GetCursorItem",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "INV_UpdateItemUnderCursor",
+        "INV_HandleMouseMove"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "75c3f958",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleShopLeftClick",
+      "address": "00488b00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488b00"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopLeftClick",
+        "GetCursorItem",
+        "INV_CanReturnToShop",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand",
+        "SMsgBreakHandlerChain",
+        "NPCMENU_CloseShopUI",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "INV_ResetHoverAndContextState",
+        "ShopAction",
+        "UI_SetCursorToSpecialIcon",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverCloseButton"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "PD2NpcShopButtonAction",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "ff428b55",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ConsumeInputEvent",
+      "address": "00488df0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488df0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ConsumeInputEvent",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "ddc11b33",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_UpdateNpcButtonHighlightState",
+      "address": "00488e10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488e10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_UpdateNpcButtonHighlightState"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "1449257c",
+      "paramStorage": [
+        [
+          "nSelection",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleShopEnterKey",
+      "address": "00488e70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488e70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopEnterKey",
+        "UI_GetFlag",
+        "NPCMENU_IsAnyNpcDialogOpen",
+        "SetUIFlag",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "9303b58a",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleShopRightClick",
+      "address": "00488ec0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488ec0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopRightClick",
+        "UI_ToggleBeltRows",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "44ea44a0",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleShopReturnAction",
+      "address": "00488f10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00488f10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleShopReturnAction",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetItemType",
+        "ITEM_SetItemOnHand",
+        "INV_UpdateNpcButtonHighlightState",
+        "UI_SetCursorToSpecialIcon",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "GetMouseX",
+        "GetMouseY",
+        "INV_UpdateItemUnderCursor"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "adb3d05e"
+    },
+    {
+      "name": "INV_HandleInventoryMouseMove",
+      "address": "00489060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489060"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleInventoryMouseMove",
+        "INV_HandleMouseMove"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "d2acf22a",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleInventoryLeftClick",
+      "address": "004890b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004890b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleInventoryLeftClick",
+        "SMsgBreakHandlerChain",
+        "thunk_NPCSHOP_IsRepairTabActive"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t"
+      ],
+      "dh": "0ac5265f",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleInventoryLeftDown",
+      "address": "00489190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489190"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleInventoryLeftDown",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "cd04abec",
+      "paramStorage": [
+        [
+          "pMsg",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_LoadShopTabImages",
+      "address": "00489220",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489220"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_LoadShopTabImages",
+        "SStrPrintf",
+        "IMAGE_LoadDC6Ex",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion"
+      ],
+      "dh": "4ac1efb6"
+    },
+    {
+      "name": "INV_FreeShopTabImages",
+      "address": "004892f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004892f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FreeShopTabImages",
+        "DC6_FreeAndDelete",
+        "CLIENT_CheckExpansion"
+      ],
+      "dh": "b130d390"
+    },
+    {
+      "name": "INV_InitTradeMode",
+      "address": "00489360",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489360"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_InitTradeMode",
+        "SOUND_PlaySound",
+        "TypeOfUiOverlayOverWorld",
+        "SStrPrintf",
+        "IMAGE_LoadDC6Ex"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "57d9c68d",
+      "paramStorage": [
+        [
+          "nTradeMode",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverAcceptTradeBtn",
+      "address": "00489430",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489430"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverAcceptTradeBtn"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "9ef25ca2",
+      "paramStorage": [
+        [
+          "nMouseY",
+          "EDX:4"
+        ],
+        [
+          "nMouseX",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverCancelTradeBtn",
+      "address": "00489480",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489480"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverCancelTradeBtn"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "fbd2260e",
+      "paramStorage": [
+        [
+          "nMouseY",
+          "EDX:4"
+        ],
+        [
+          "nMouseX",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleTradeMouseMove",
+      "address": "004894d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004894d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleTradeMouseMove",
+        "INV_HandleMouseMove",
+        "INV_ResetHoverAndContextState",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "7411811b",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleTradeLeftClick",
+      "address": "00489580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489580"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleTradeLeftClick",
+        "GetPlayerUnit_UI",
+        "PANEL_CalculateBeltSlotIndex",
+        "INVENTORY_GetHandItem",
+        "INV_IsMouseOverCloseButton",
+        "TRADE_CloseTrade",
+        "SMsgBreakHandlerChain",
+        "CancelTrade",
+        "INV_IsMouseOverAcceptTradeBtn",
+        "INV_IsMouseOverCancelTradeBtn",
+        "INV_IsMouseOverGoldButton",
+        "UI_ShowGoldTransactionDialog",
+        "AcceptTrade"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "08847095",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleTradeRightClick",
+      "address": "00489770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489770"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleTradeRightClick",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "69693180",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleTradeEscapeKey",
+      "address": "004897a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004897a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleTradeEscapeKey",
+        "SMsgBreakHandlerChain",
+        "UI_GetFlag",
+        "TRADE_CloseTrade"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "69feb845",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_PlayTradeStatusSound",
+      "address": "004897e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004897e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_PlayTradeStatusSound",
+        "SOUND_PlaySound"
+      ],
+      "usedTypes": [
+        "eD2Sounds",
+        "int32_t"
+      ],
+      "dh": "bc0c6802",
+      "paramStorage": [
+        [
+          "bLocalAcceptState",
+          "ECX:4"
+        ],
+        [
+          "bPartnerAcceptState",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsShopBuySellMode",
+      "address": "00489840",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489840"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsShopBuySellMode"
+      ],
+      "dh": "3e9e66cb"
+    },
+    {
+      "name": "INV_IsRepairMode",
+      "address": "00489860",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489860"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsRepairMode"
+      ],
+      "usedTypes": [
+        "uint32_t"
+      ],
+      "dh": "a1aab70e"
+    },
+    {
+      "name": "INV_GetGambleFlag",
+      "address": "00489870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489870"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_GetGambleFlag"
+      ],
+      "dh": "31e2b63b"
+    },
+    {
+      "name": "INV_StashOpened",
+      "address": "00489880",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489880"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_StashOpened"
+      ],
+      "dh": "2bc33c78"
+    },
+    {
+      "name": "INV_StashOpenedWithGold",
+      "address": "004898a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004898a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_StashOpenedWithGold",
+        "SetUIFlag"
+      ],
+      "dh": "a079ce72"
+    },
+    {
+      "name": "INV_SetInventoryActive",
+      "address": "004898d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004898d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetInventoryActive"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "35bdc496",
+      "paramStorage": [
+        [
+          "bActive",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverStashCloseBtn",
+      "address": "00489920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489920"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverStashCloseBtn",
+        "CLIENT_CheckExpansion"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "dabada10",
+      "paramStorage": [
+        [
+          "nMouseX",
+          "EDI:4"
+        ],
+        [
+          "nMouseY",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_IsMouseOverStashGoldBtn",
+      "address": "00489980",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489980"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverStashGoldBtn",
+        "CLIENT_CheckExpansion",
+        "INV_GetGoldButtonY"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "f919cec5",
+      "paramStorage": [
+        [
+          "nMouseY",
+          "EDI:4"
+        ],
+        [
+          "nMouseX",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_00489a10",
+      "address": "00489a10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489a10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Unreferenced_00489a10",
+        "SetUIFlag",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT"
+      ],
+      "dh": "210bced4"
+    },
+    {
+      "name": "INV_HandleStashMouseMove",
+      "address": "00489a30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489a30"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleStashMouseMove",
+        "IsInBankPageScreenRange",
+        "TEXT_TooltipSetAttributes",
+        "INV_HandleMouseMove"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "b4b7388d",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleStashLeftClick",
+      "address": "00489ac0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489ac0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleStashLeftClick",
+        "GetPlayerUnit_UI",
+        "PANEL_GetBeltSlotHoverFlag",
+        "PANEL_CalculateBeltSlotIndex",
+        "INVENTORY_GetHandItem",
+        "INV_IsMouseOverCloseButton",
+        "SetUIFlag",
+        "INV_IsMouseOverStashGoldBtn",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT",
+        "SMsgBreakHandlerChain",
+        "INV_IsMouseOverGoldButton",
+        "UI_ShowGoldTransactionDialog",
+        "INV_IsMouseOverStashCloseBtn"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "b39b188b",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_PanelKeyNoOp_Unref_00489cd0",
+      "address": "00489cd0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489cd0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_PanelKeyNoOp_Unref_00489cd0"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "5943a668",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleStashEscapeKey",
+      "address": "00489ce0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489ce0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleStashEscapeKey",
+        "SMsgBreakHandlerChain",
+        "UI_GetFlag",
+        "SetUIFlag",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "6fe87f8c",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleStashRightClick",
+      "address": "00489d70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489d70"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleStashRightClick",
+        "UI_ToggleBeltRows",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "ea8ca36d",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_SetStashNpcGuid",
+      "address": "00489da0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489da0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetStashNpcGuid",
+        "UNITS_GetRoom",
+        "GetPlayerUnit_UI",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetActNoFromLevelNumber"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "eAct",
+        "eD2LevelId"
+      ],
+      "dh": "5d60bb3f",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseStash2",
+      "address": "00489e00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489e00"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "CloseStash2",
+        "SetUIFlag",
+        "CUNIT_IterateItemsWithCallback",
+        "UI_ResetInputState"
+      ],
+      "dh": "1e535870"
+    },
+    {
+      "name": "INV_LoadStashImages",
+      "address": "00489e50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489e50"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_LoadStashImages",
+        "SStrPrintf",
+        "IMAGE_LoadDC6Ex",
+        "D2CheckExpansionGame"
+      ],
+      "dh": "0214d8df"
+    },
+    {
+      "name": "INV_FreeStashImages",
+      "address": "00489ee0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489ee0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FreeStashImages",
+        "SetUIFlag",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "3dc7058d"
+    },
+    {
+      "name": "CloseStash",
+      "address": "00489f50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489f50"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "CloseStash",
+        "SetUIFlag",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "68507f6b"
+    },
+    {
+      "name": "INV_IsMouseOverTransmuteBtn",
+      "address": "00489fb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00489fb0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseOverTransmuteBtn"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d3af7929",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CheckSomeCoords",
+      "address": "0048a000",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a000"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "CheckSomeCoords"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "81f01d01",
+      "paramStorage": [
+        [
+          "nX",
+          "EAX:4"
+        ],
+        [
+          "nY",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseCube",
+      "address": "0048a050",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a050"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "CloseCube",
+        "SetUIFlag",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT",
+        "UNITS_FindClientSideUnit",
+        "INTERACT_AnyObject"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "38cad9c6"
+    },
+    {
+      "name": "Transmute",
+      "address": "0048a0d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a0d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Transmute",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "ae4f392a",
+      "paramStorage": [
+        [
+          "nParam",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleCubeMouseMove",
+      "address": "0048a0f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a0f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleCubeMouseMove",
+        "TEXT_TooltipSetAttributes",
+        "INV_HandleMouseMove"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "41677467",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleCubeLeftClick",
+      "address": "0048a190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a190"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleCubeLeftClick",
+        "GetPlayerUnit_UI",
+        "PANEL_GetBeltSlotHoverFlag",
+        "INVENTORY_GetHandItem",
+        "INV_IsMouseOverCloseButton",
+        "SetUIFlag",
+        "CloseCube",
+        "CheckSomeCoords",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverGoldButton",
+        "UI_ShowGoldTransactionDialog",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a53aa1c2",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleCubeRightClick",
+      "address": "0048a3b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a3b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleCubeRightClick",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "2f33b166",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleCubeEscapeKey",
+      "address": "0048a3e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a3e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleCubeEscapeKey",
+        "SMsgBreakHandlerChain",
+        "GetUIFlag",
+        "UI_GetFlag",
+        "CloseCube"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "7cb2e5eb",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "OpenCube",
+      "address": "0048a460",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a460"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "SetUIFlag",
+        "UI_ResetInputState",
+        "OpenCube"
+      ],
+      "dh": "f5e6b5bb"
+    },
+    {
+      "name": "INV_LoadCubeImages",
+      "address": "0048a4b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a4b0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_LoadCubeImages",
+        "SStrPrintf",
+        "IMAGE_LoadDC6Ex"
+      ],
+      "dh": "40a810ea"
+    },
+    {
+      "name": "INV_FreeCubeImages",
+      "address": "0048a500",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a500"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FreeCubeImages",
+        "CloseCube",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "4ad796c2"
+    },
+    {
+      "name": "INV_StartCubeTransmuteAnim",
+      "address": "0048a540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a540"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_StartCubeTransmuteAnim",
+        "GetQuestInfo",
+        "GetQuestState",
+        "SetQuestState",
+        "GetTickCount",
+        "SStrPrintf",
+        "IMAGE_LoadDC6Ex"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "eD2Quests",
+        "int32_t"
+      ],
+      "dh": "1ac07f6c",
+      "paramStorage": [
+        [
+          "nMenuActionId",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FreeItemGfxCache",
+      "address": "0048a600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a600"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FreeItemGfxCache",
+        "DC6_FreeAndDelete"
+      ],
+      "dh": "b4a1d032"
+    },
+    {
+      "name": "INV_HandleGambleMessage",
+      "address": "0048a630",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a630"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleGambleMessage",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand",
+        "TEXT_HandleEventMessagePacket"
+      ],
+      "usedTypes": [
+        "D2Packet0x5aEventStructure",
+        "D2UnitStrc"
+      ],
+      "dh": "1eefafcb"
+    },
+    {
+      "name": "INV_ResetOverlayFlag",
+      "address": "0048a680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a680"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ResetOverlayFlag"
+      ],
+      "dh": "5942b68a"
+    },
+    {
+      "name": "INV_ResetShopState",
+      "address": "0048a6a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a6a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ResetShopState",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "13cdc04a"
+    },
+    {
+      "name": "INV_SetItemDescPending",
+      "address": "0048a6e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a6e0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SetItemDescPending"
+      ],
+      "dh": "04e47e82"
+    },
+    {
+      "name": "INV_ClearItemDescPending",
+      "address": "0048a6f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a6f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ClearItemDescPending"
+      ],
+      "dh": "888ce209"
+    },
+    {
+      "name": "INV_ToggleExpansionTab",
+      "address": "0048a700",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a700"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ToggleExpansionTab",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion"
+      ],
+      "dh": "68a96cac"
+    },
+    {
+      "name": "INV_SwapWeaponSet",
+      "address": "0048a730",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a730"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_SwapWeaponSet",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion",
+        "SOUND_PlaySound",
+        "NET_D2GS_CLIENT_Send_CMD",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_RemoveClientSide"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "a1e84e8c"
+    },
+    {
+      "name": "INV_IsMouseInRectLTRB",
+      "address": "0048a790",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a790"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_IsMouseInRectLTRB",
+        "GetMouseX",
+        "GetMouseY"
+      ],
+      "usedTypes": [
+        "int32_t"
+      ],
+      "dh": "d96bb75f",
+      "paramStorage": [
+        [
+          "nLeft",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nTop",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nRight",
+          "Stack[0xc]:4"
+        ],
+        [
+          "nBottom",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawHirelingName",
+      "address": "0048a7d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a7d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingName",
+        "SetAndReturnLastFont",
+        "GetName",
+        "WSTRING_PutWideCharIntoBuffer",
+        "DRAW_text0",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "f2877582",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawHirelingStatLabels",
+      "address": "0048a890",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a890"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingStatLabels",
+        "SetAndReturnLastFont",
+        "GetLocaleString",
+        "WSTRING_PutWideCharIntoBuffer",
+        "UI_AppendColorCodeToString",
+        "DRAW_text",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t"
+      ],
+      "dh": "2080a5bc"
+    },
+    {
+      "name": "INV_DrawHirelingStats",
+      "address": "0048a990",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048a990"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingStats",
+        "SetAndReturnLastFont",
+        "STATSEX_GetCurrentStat",
+        "SERVER_GetUnitStat",
+        "STATLIST_GetMaxLifeFromUnit",
+        "GetGUID",
+        "GetRosterPerHPPercent",
+        "IsActive",
+        "SStrPrintf",
+        "UTF8_ConvertToWideChar",
+        "INVENTORY_GetItemByGridOffset",
+        "GetClassId",
+        "IsTwoHanded",
+        "ITEM_GetItemsTxt_wStrBonus",
+        "ITEM_GetItemsTxt_wDexBonus",
+        "SKILLS_GetItemBonusDamage",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "GetDefense",
+        "STATES_HasArmBlueFlagState",
+        "GetDificulity",
+        "GetDifficultyLevels",
+        "STATES_HasRfBlueFlagState",
+        "STATES_HasRfRedFlagState",
+        "STATES_HasRlBlueFlagState",
+        "STATES_HasRlRedFlagState",
+        "STATES_HasRcBlueFlagState",
+        "STATES_HasRcRedFlagState",
+        "STATES_HasRpBlueFlagState",
+        "STATES_HasRpRedFlagState",
+        "CLIENT_CheckExpansion",
+        "UI_FormatNumberWithCommas",
+        "TEXT_CalcTextDimensions",
+        "DRAW_text0",
+        "DRAW_text",
+        "UI_DrawTextCentered"
+      ],
+      "usedTypes": [
+        "D2DifficultyLevelsTxt",
+        "D2UnitStrc",
+        "INV_DrawHirelingStats_Slotm",
+        "eD2UnitStat",
+        "int16_t",
+        "int32_t",
+        "uint32_t",
+        "uint8_t",
+        "wchar_t"
+      ],
+      "dh": "d425255a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EBX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawHirelingEmptySlots",
+      "address": "0048b0a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b0a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingEmptySlots",
+        "memset",
+        "INVENTORY_GetItemByGridOffset",
+        "D2GFX_DrawImage",
+        "INVENTORY_GetWeaponHandedness"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2InventoryStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "1bca98fb",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_CanHirelingEquipItem",
+      "address": "0048b290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b290"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_CanHirelingEquipItem",
+        "CLIENT_CheckExpansion",
+        "CheckItemFlag",
+        "ITEMS_IsA",
+        "GetRosterClass",
+        "IsTwoHanded",
+        "ITEM_CheckEquipRequirements"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "3006fa4c",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pItem",
+          "EBX:4"
+        ],
+        [
+          "pbSlotMatch",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawHirelingCursorHighlight",
+      "address": "0048b3f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b3f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingCursorHighlight",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "GetMouseX",
+        "GetMouseY",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "ITEMS_CheckBodyLocationFit",
+        "INV_CanHirelingEquipItem",
+        "ITEM_CheckEquipRequirements",
+        "D2GFX_DrawSolidRectExBySize"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ce01b343",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawHirelingEquippedItems",
+      "address": "0048b540",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b540"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawHirelingEquippedItems",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_GetItemsTxt_nWidthAndHeight",
+        "DrawItemGfx",
+        "ITEM_GetItemsTxt_bHasInv",
+        "ITEM_GetMaxSockCount",
+        "CheckItemFlag",
+        "INV_DrawSocketedItems"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "95c18598",
+      "paramStorage": [
+        [
+          "pMercUnit",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_0048b640",
+      "address": "0048b640",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b640"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "Unreferenced_0048b640",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2UnitStrc"
+      ],
+      "dh": "7003c783"
+    },
+    {
+      "name": "INV_HandleMercInvLeftDown",
+      "address": "0048b680",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b680"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleMercInvLeftDown",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "GetMouseX",
+        "GetMouseY",
+        "SOUND_PlaySound",
+        "SMsgBreakHandlerChain",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "7a3092fa",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleMercInvLeftClick",
+      "address": "0048b7c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048b7c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleMercInvLeftClick",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "UI_HandleCursorMouseUp",
+        "GetMouseX",
+        "GetMouseY",
+        "SetUIFlag",
+        "INVENTORY_GetHandItem",
+        "ITEMS_CheckBodyLocationFit",
+        "ITEM_CheckEquipRequirements",
+        "INV_CanHirelingEquipItem",
+        "ITEM_RemoveClientSide",
+        "SOUND_GetIdFromUnit",
+        "SOUND_PlaySound",
+        "NET_D2GS_CLIENT_Send_SHORT",
+        "UNITSND_PlaySoundForMercenary",
+        "INVENTORY_GetItemByGridOffset",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "eD2Sounds",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "5d71207b",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_HandleMercInvMouseMove",
+      "address": "0048ba50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048ba50"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleMercInvMouseMove",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "UNITS_FindClientSideUnit",
+        "GetMouseX",
+        "GetMouseY",
+        "INV_IsMouseInRectLTRB",
+        "INV_ResetHoverAndContextState",
+        "INVENTORY_GetHandItem",
+        "INVENTORY_GetItemByGridOffset",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "025154c2",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "CloseScrollOfWhatever",
+      "address": "0048bbe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048bbe0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "CloseScrollOfWhatever",
+        "STRING_CopyWideString",
+        "SetUIFlag"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t"
+      ],
+      "dh": "9acdd5cd",
+      "paramStorage": [
+        [
+          "pThis",
+          "ECX:4"
+        ],
+        [
+          "nColor",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_DrawRecipeScroll",
+      "address": "0048bc10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048bc10"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_DrawRecipeScroll",
+        "CLIENT_CheckExpansion",
+        "GetUIFlag",
+        "ARCHIVE_LoadOverlayImageUsedInGame",
+        "memset",
+        "D2GFX_DrawImage",
+        "SetAndReturnLastFont",
+        "DRAW_text"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "DC6",
+        "int32_t"
+      ],
+      "dh": "b30d311a"
+    },
+    {
+      "name": "INV_HandleRecipeScrollClick",
+      "address": "0048bd80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048bd80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleRecipeScrollClick",
+        "GetMouseX",
+        "GetMouseY",
+        "SetUIFlag",
+        "GAMEDATA_ClearQueuedClicks",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "1662bddb",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_PanelKeyNoOp",
+      "address": "0048bdf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048bdf0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_PanelKeyNoOp"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "316e30e3",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ExtractTextBetweenBrackets",
+      "address": "0048be00",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048be00"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ExtractTextBetweenBrackets",
+        "UNICODE_FindSubstring",
+        "STRING_GetWideStringLength",
+        "WSTRING_PutWideCharIntoBuffer",
+        "STRING_CopyWideString"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "int32_t",
+        "uint16_t"
+      ],
+      "dh": "406823f4",
+      "paramStorage": [
+        [
+          "wszText",
+          "ECX:4"
+        ],
+        [
+          "wszDelimStart",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "wsprintf",
+      "address": "0048be80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048be80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "wsprintf",
+        "STRING_CopyWideString",
+        "UNICODE_FindWideChar",
+        "INV_ExtractTextBetweenBrackets",
+        "CONTAINER_InitializeBuffer",
+        "WSTRING_PutWideCharIntoBuffer",
+        "INV_SubstituteFormatToken"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "WCHAR *"
+      ],
+      "dh": "7a16cded"
+    },
+    {
+      "name": "GetItemName",
+      "address": "0048c060",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048c060"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "GetItemName",
+        "GetLocaleString",
+        "TXT_Items_GetLine",
+        "ITEM_GetItemData_wType",
+        "CheckItemFlag",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "INV_SkipColorCodeSuffix",
+        "AppendToBuffer",
+        "GetMagicPrefix",
+        "AppendAsWideChar",
+        "GetItemQuality",
+        "ITEM_GetItemData_nFileIndex",
+        "TXT_LowQualityItems_GetLine",
+        "ITEMS_IsA",
+        "GetMagicSuffix",
+        "ITEM_GetItemData_nEarLevel",
+        "SStrPrintf",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "ITEM_GetItemData_szPlayerName",
+        "INV_GetInventoryPageName",
+        "MISC_GetLanguageCode",
+        "UNICODE_FormatPossessiveName",
+        "ITEM_ItemsInItem",
+        "wsprintf",
+        "TXT_MonStats_GetLine",
+        "TXT_magicaffixes_GetLine",
+        "UTF8_ConvertToWideChar",
+        "STRING_GetWideStringLength",
+        "GetSetItemsLine",
+        "INV_FormatPlayerNameWithBase",
+        "GetRarePrefix",
+        "TXT_RareAffixes_GetLine",
+        "GetRareSuffix",
+        "INV_GetUniqueItemsTxtLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "INV_FormatPlayerNameOnItem",
+        "MoveArgumentToEAX",
+        "STATSEX_GetCurrentStat",
+        "GetDificulity"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2MagicAffixTxt",
+        "D2MonStatsTxt",
+        "D2RareAffixTxt",
+        "D2SetItemsTxt",
+        "D2UniqueItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t",
+        "wchar_t"
+      ],
+      "dh": "e77a0e22",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "wBuffer",
+          "EDX:4"
+        ],
+        [
+          "nSize",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_FormatItemTooltipWithCost",
+      "address": "0048cea0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048cea0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_FormatItemTooltipWithCost",
+        "GetLocaleString",
+        "STRING_CopyWideString",
+        "CheckItemFlag",
+        "AppendToBuffer",
+        "AppendAsWideChar",
+        "NPCMENU_CalculateItemTransactionCost"
+      ],
+      "usedTypes": [
+        "WCHAR",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "9e60239f",
+      "paramStorage": [
+        [
+          "wszSrc",
+          "Stack[0x4]:4"
+        ],
+        [
+          "wszDest",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ShowBookTooltip",
+      "address": "0048cff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048cff0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ShowBookTooltip",
+        "GetLocaleString",
+        "ITEM_GetItemData_wType",
+        "TXT_Items_GetLine",
+        "AppendQuanity",
+        "AppendToBuffer",
+        "CONTAINER_InitializeBuffer",
+        "GetItemName",
+        "MoveArgumentToEAX",
+        "INV_FormatItemTooltipWithCost",
+        "STRING_CopyWideString",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "WCHAR",
+        "eD2ItemTypes",
+        "int32_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "89f3430b"
+    },
+    {
+      "name": "ITEM_BuildSetItemTooltip",
+      "address": "0048d1d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048d1d0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "ITEM_BuildSetItemTooltip",
+        "GetLocaleString",
+        "MONSTER_GetMercType",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "TXT_Items_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ITEM_GetItemData_nFileIndex",
+        "GetSetItemsLine",
+        "GetSetsLine",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "ITEM_CheckEquipRequirements",
+        "INV_FormatDurabilityText",
+        "ITEM_GetRequiredLevel",
+        "INV_FormatStackCountText",
+        "ITEMS_IsA",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "D2ApplyPercent",
+        "CheckItemFlag",
+        "INV_FormatReqStrText",
+        "INV_FormatReqDexText",
+        "AppendAsWideChar",
+        "TXT_ItemTypes_GetClass",
+        "INV_FormatAttackSpeedText",
+        "STATLIST_GetMinDamageFromUnit",
+        "STATLIST_GetMaxDamageFromUnit",
+        "szPrintfBuffer",
+        "TXT_ItemTypes_CheckClass",
+        "INV_FormatDefenseRangeText",
+        "INV_FormatBlockChanceText",
+        "STATLIST_GetDefenseFromUnit",
+        "INV_FormatArmorClassText",
+        "GetItemName",
+        "CONTAINER_InitializeBuffer",
+        "INV_FormatEtherealSocketedText",
+        "SKILLDESC_AppendStatBuffText",
+        "SKILLDESC_AppendItemBuffText",
+        "SKILLDESC_AppendSetBonusTextByStateValue",
+        "GetSetItem",
+        "wsprintf",
+        "NPCMENU_CalculateItemTransactionCost",
+        "MoveArgumentToEAX",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2SetItemsTxt",
+        "D2SetsTxt",
+        "D2UnitStrc",
+        "ITEM_BuildSetItemTooltip_Slotm",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "db1a448b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "INV_ShowTransmogrifyTooltip",
+      "address": "0048db80",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048db80"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_ShowTransmogrifyTooltip",
+        "GetLocaleString",
+        "ITEM_CheckItemsTxt_bTransmogrify",
+        "TXT_Items_GetLine",
+        "ConvertItemCodeToClassIdAndGetItemsTxtLine",
+        "STRING_CopyWideString",
+        "AppendToBuffer",
+        "CONTAINER_InitializeBuffer",
+        "GetItemName",
+        "MoveArgumentToEAX",
+        "INV_FormatItemTooltipWithCost",
+        "TEXT_CalcTextDimensions",
+        "TEXT_TooltipSetAttributes",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2ItemsTxt",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "ae839874"
+    },
+    {
+      "name": "LoadItemDesc",
+      "address": "0048dd90",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048dd90"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "LoadItemDesc",
+        "GetLocaleString",
+        "GetPlayerUnit_UI",
+        "PANEL_GetBeltSlotHoverFlag",
+        "GetUIFlag",
+        "GetMouseX",
+        "GetMouseY",
+        "TEXT_TooltipSetAttributes",
+        "NPCMENU_IsAnyNpcDialogOpen",
+        "D2CheckExpansionGame",
+        "CLIENT_CheckExpansion",
+        "INV_IsMouseOverWeaponSwapSlot",
+        "CONTAINER_InitializeBuffer",
+        "STRING_CopyWideString",
+        "CMD_GetKeyForCommand",
+        "AppendToBuffer",
+        "CMD_GetKeyDescForCommand",
+        "INVENTORY_GetHandItem",
+        "INVENTORY_CheckDoItemBelongToInventory",
+        "NPCMENU_GetCurrentShopMode",
+        "GetItemQuality",
+        "GetItemType",
+        "ITEM_CheckItemsTxt_bTransmogrify",
+        "INV_ShowTransmogrifyTooltip",
+        "CheckItemFlag",
+        "ITEM_BuildSetItemTooltip",
+        "ITEM_GetItemData_wType",
+        "INV_ShowBookTooltip",
+        "TXT_ItemTypes_GetClass",
+        "TXT_Items_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "ITEM_GetTxtItemTypes_quiver",
+        "INV_FormatDurabilityText",
+        "INV_FormatQuantityText",
+        "ITEM_CheckEquipRequirements",
+        "ITEM_GetRequiredLevel",
+        "INV_FormatStackCountText",
+        "ITEMS_IsA",
+        "INV_FormatSocketFillerDesc",
+        "ITEM_GetItemsTxt_bHasInv",
+        "INV_FormatRunewordName",
+        "INV_FormatEtherealSocketedText",
+        "STATLIST_UnitGetStatValueUnchecked",
+        "D2ApplyPercent",
+        "INV_FormatReqDexText",
+        "INV_FormatReqStrText",
+        "STATLIST_GetMinDamageFromUnit",
+        "STATLIST_GetMaxDamageFromUnit",
+        "szPrintfBuffer",
+        "INV_FormatAttackSpeedText",
+        "INV_FormatDefenseRangeText",
+        "TXT_ItemTypes_CheckClass",
+        "INV_FormatBlockChanceText",
+        "STATLIST_GetDefenseFromUnit",
+        "INV_FormatArmorClassText",
+        "AppendQuanity",
+        "SKILLDESC_AppendStatBuffText",
+        "INV_FormatItemSpellDescText",
+        "GetItemName",
+        "AppendAsWideChar",
+        "INV_FormatItemTooltipWithCost",
+        "MoveArgumentToEAX",
+        "STRING_GetWideStringLength",
+        "TEXT_CalcTextDimensions"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "WCHAR",
+        "eD2ItemTypes",
+        "eD2PlayerClassIDDWORD",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "wchar_t"
+      ],
+      "dh": "396f8a47",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "bUsePlayer",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DRAW_UI_Inventory",
+      "address": "0048edf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048edf0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DRAW_UI_Inventory",
+        "GetMouseX",
+        "GetMouseY",
+        "GetTickCount",
+        "GetInteractedUnitGuid",
+        "INV_SetShopPageFromNpc",
+        "DRAW_UI_Inventory_DrawShop",
+        "DRAW_UI_INVENTORY_Gold",
+        "memset",
+        "CLIENT_CheckExpansion",
+        "D2GFX_DrawImage",
+        "GetPlayerUnit_UI",
+        "GetStashGoldLimit",
+        "CONTAINER_InitializeBuffer",
+        "GetLocaleString",
+        "UNICODE_FormatWideString",
+        "DRAW_text",
+        "DRAW_UI_InventoryContent",
+        "GetBuySellBtnDC6",
+        "INV_GetGoldButtonY",
+        "INV_GetGoldButtonX",
+        "DRAW_text0",
+        "GAMEDATA_GetExitFlag3",
+        "IsPlayerDead",
+        "SetUIFlag",
+        "NET_D2GS_CLIENT_Send_SHORT_SHORT_SHORT",
+        "DC6_FreeAndDelete",
+        "SetAndReturnLastFont",
+        "INV_IsMouseOverTransmuteBtn",
+        "CheckSomeCoords",
+        "TEXT_TooltipSetAttributes",
+        "InitializeiInventoryPages",
+        "D2CheckExpansionGame",
+        "INVENTORY_GetItemByGridOffset",
+        "INVENTORY_GetWeaponHandedness",
+        "D2GFX_DrawShiftedImage",
+        "GetPlayerRosterName",
+        "STRING_CopyCharToWCharWithSetMaxSize",
+        "TRADE_GetTradeWindowPtr",
+        "STRING_CopyWideString",
+        "STRING_GetWideStringLength",
+        "D2CLIENT_GetTradeAcceptedFlags",
+        "SStrPrintf",
+        "D2CLIENT_GetTradePlayerGoldAmount",
+        "InitInventory",
+        "INV_DrawNpcButtonTooltip",
+        "UNITS_FindClientSideUnit",
+        "LoadItemDesc"
+      ],
+      "usedTypes": [
+        "D2GamePalShiftGreenBloodStrc",
+        "D2GfxDataStrc",
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "DRAWMODE",
+        "GLOBALPALLETE",
+        "WCHAR",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "b4bbc5a4"
+    },
+    {
+      "name": "ClickItemLeft",
+      "address": "0048ffe0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "0048ffe0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "ClickItemLeft",
+        "INVENTORY_GetHandItem",
+        "CLIENT_CheckExpansion",
+        "UNITS_GetInventoryRecordId",
+        "GetItemType",
+        "GetCursorItem",
+        "GetUnitAndXAndY",
+        "PlayerIsUnInterruptable",
+        "GetPlayerUnit_UI",
+        "INV_CheckActionThrottle",
+        "NET_D2GS_CLIENT_Send_INT_INT",
+        "ITEM_RemoveClientSide",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INV_IsInteractiveMode",
+        "ShopAction",
+        "ITEM_SetItemOnHand",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "ITEM_CheckItemData_eD2ItemFlag_Monster",
+        "GetQuestInfo",
+        "GetDificulity",
+        "GetPlayerUnit_Net",
+        "CalculateTransactionCost_Thunk",
+        "NET_D2GS_CLIENT_Send_INT_INT_INT_INT",
+        "UNITSND_PlayPlayerSound",
+        "ITEM_GetTxtItemTypes_beltable",
+        "ITEM_GetContainingInventoryPage",
+        "SOUND_PlaySound",
+        "INVENTORY_CheckGridCollisions",
+        "TXT_Items_GetLine",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "INV_CalcGridCellFromMouse",
+        "ITEMS_AreStackablesEqual",
+        "ITEM_CanTheseBeSocketed",
+        "SOUND_GetIdFromUnit",
+        "ITEMS_IsA",
+        "GetMagicSuffix",
+        "SPELLSEL_ClearChargedSkillBindings",
+        "INVENTORY_CheckGridOccupancy",
+        "INVENTORY_FindItemGridPosition"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "D2InventoryLayout",
+        "D2InventoryStrc",
+        "D2ItemsTxt",
+        "D2UnitStrc",
+        "eD2Sounds",
+        "eInventoryPage",
+        "int32_t",
+        "uint16_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "4601b3ab",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pInventory",
+          "Stack[0x8]:4"
+        ],
+        [
+          "x",
+          "Stack[0xc]:4"
+        ],
+        [
+          "y",
+          "Stack[0x10]:4"
+        ],
+        [
+          "targetItem",
+          "Stack[0x14]:4"
+        ],
+        [
+          "pInvLayout",
+          "Stack[0x18]:4"
+        ],
+        [
+          "nPage",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "EQUIP_ItemRight",
+      "address": "00490780",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00490780"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "EQUIP_ItemRight",
+        "INVENTORY_GetHandItem",
+        "INVENTORY_GetItemByGridOffset",
+        "GetItemType",
+        "GetCursorItem",
+        "PlayerIsUnInterruptable",
+        "INV_CheckActionThrottle",
+        "NET_D2GS_CLIENT_Send_INT_INT",
+        "ITEM_RemoveClientSide",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INVENTORY_GetEquipActionForBodySlot",
+        "TXT_ItemTypes_GetClass",
+        "UNITSND_PlayPlayerSound",
+        "SOUND_GetIdFromUnit",
+        "SOUND_PlaySound",
+        "INV_IsInteractiveModeEx",
+        "NET_D2GS_CLIENT_Send_SHORT",
+        "ShopAction",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2PlayerClassIDDWORD",
+        "eD2Sounds",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "17986801",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pInventory",
+          "EDX:4"
+        ],
+        [
+          "nBodySlot",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EQUIP_ItemLeft",
+      "address": "00490ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00490ba0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "EQUIP_ItemLeft",
+        "INVENTORY_GetHandItem",
+        "INVENTORY_GetItemByGridOffset",
+        "GetItemType",
+        "GetCursorItem",
+        "PlayerIsUnInterruptable",
+        "INV_CheckActionThrottle",
+        "NET_D2GS_CLIENT_Send_INT_INT",
+        "ITEM_RemoveClientSide",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INVENTORY_GetEquipActionForBodySlot",
+        "TXT_ItemTypes_GetClass",
+        "UNITSND_PlayPlayerSound",
+        "SOUND_GetIdFromUnit",
+        "SOUND_PlaySound",
+        "INV_IsInteractiveModeEx",
+        "NET_D2GS_CLIENT_Send_SHORT",
+        "ShopAction",
+        "ITEM_SetItemOnHand"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2PlayerClassIDDWORD",
+        "eD2Sounds",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "90c672d9",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pInventory",
+          "EDX:4"
+        ],
+        [
+          "nBodySlot",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "EQUIP_ItemDefault",
+      "address": "00490fc0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00490fc0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "EQUIP_ItemDefault",
+        "INVENTORY_GetHandItem",
+        "GetItemType",
+        "GetCursorItem",
+        "INVENTORY_GetItemByGridOffset",
+        "PlayerIsUnInterruptable",
+        "INV_CheckActionThrottle",
+        "NET_D2GS_CLIENT_Send_INT_INT",
+        "ITEM_RemoveClientSide",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INVENTORY_GetEquipActionForBodySlot",
+        "TXT_ItemTypes_GetClass",
+        "UNITSND_PlayPlayerSound",
+        "SOUND_GetIdFromUnit",
+        "SOUND_PlaySound",
+        "INV_IsInteractiveModeEx",
+        "ShopAction",
+        "ITEM_SetItemOnHand",
+        "NET_D2GS_CLIENT_Send_SHORT"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UnitStrc",
+        "eD2PlayerClassIDDWORD",
+        "eD2Sounds",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "429eea80",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "pInventory",
+          "EDX:4"
+        ],
+        [
+          "bodyLocation",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "ClickItemHandler",
+      "address": "004912a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004912a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "ClickItemHandler",
+        "GAMEDATA_GetExitFlag3",
+        "IsPlayerDead",
+        "SMsgBreakHandlerChain",
+        "GetPlayerUnit_UI",
+        "InitializeiInventoryPages",
+        "PANEL_GetBeltSlotHoverFlag",
+        "INV_IsMouseOverGoldButton",
+        "SOUND_PlaySound",
+        "INV_IsMouseOverCloseButton",
+        "PANEL_CalculateBeltSlotIndex",
+        "IsInInventoryScreenRange",
+        "SetUIFlag",
+        "INVENTORY_GetHandItem",
+        "GetItemType",
+        "INVENTORY_GetItemByGridOffset",
+        "ITEM_CanTheseBeSocketed",
+        "PlayerIsUnInterruptable",
+        "INV_CheckActionThrottle",
+        "NET_D2GS_CLIENT_Send_INT_INT",
+        "ITEM_RemoveClientSide",
+        "SOUND_GetIdFromUnit",
+        "CLIENT_CheckExpansion",
+        "INV_IsMouseOverWeaponSwapSlot",
+        "INV_SwapWeaponSet",
+        "ClickItemLeft",
+        "UI_DropCursorItemOnGround",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INV_HandleHighResDropClick",
+        "CancelTrade"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "eD2Sounds",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "2a3779e4",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_InventoryRightClick",
+      "address": "004917c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004917c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_InventoryRightClick",
+        "GAMEDATA_GetExitFlag3",
+        "IsPlayerDead",
+        "GetPlayerUnit_UI",
+        "InitializeiInventoryPages",
+        "PANEL_CalculateBeltSlotIndex",
+        "ClickItemRight",
+        "GetItemType",
+        "UI_DropCursorItemOnGround",
+        "NET_D2GS_CLIENT_Send_INT",
+        "SMsgBreakHandlerChain",
+        "INV_EnterShopMode"
+      ],
+      "usedTypes": [
+        "D2InventoryStrc",
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "a5dce349",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SelectDefaultTabForNPC",
+      "address": "00491940",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00491940"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "SelectDefaultTabForNPC",
+        "INV_InitNpcButtonsByClass",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "INV_SetShopPageFromNpc",
+        "GetTickCount"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "ab3e03ea"
+    },
+    {
+      "name": "INV_HandleRightClick",
+      "address": "00491ad0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00491ad0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INV_HandleRightClick",
+        "GetPlayerUnit_UI",
+        "GAMEDATA_GetExitFlag3",
+        "IsPlayerDead",
+        "INPUT_InventoryRightClick",
+        "PANEL_CalculateBeltSlotIndex",
+        "GetItemType",
+        "UI_DropCursorItemOnGround",
+        "NET_D2GS_CLIENT_Send_INT",
+        "INVENTORY_GetHandItem",
+        "IsInTransmogrifyScreenRange",
+        "IsInBankPageScreenRange",
+        "IsInInventoryScreenRange",
+        "ClickItemRight",
+        "UNITSND_PlayPlayerSound",
+        "SMsgBreakHandlerChain",
+        "INV_CanReturnToShop",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "ShopAction",
+        "ITEM_SetItemOnHand",
+        "INV_EnterShopMode"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b7046e91",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_InventoryLeftClick",
+      "address": "00491d20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00491d20"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_InventoryLeftClick",
+        "SMsgBreakHandlerChain",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverCloseButton",
+        "INV_IsPlayerInventoryMode",
+        "SOUND_PlaySound",
+        "GetCursorItem",
+        "GetItemType",
+        "GetInteractedUnitGuid",
+        "UNITS_FindClientSideUnit",
+        "CONTAINER_InitializeBuffer",
+        "NPCMENU_CalculateItemTransactionCost",
+        "ShopAction",
+        "ITEM_SetItemOnHand",
+        "INV_EnterShopMode",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "ClickItemLeft",
+        "ClickItemHandler",
+        "INV_SetShopPageFromNpc"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "INPUT_InventoryLeftClick_Slotm",
+        "WCHAR",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "b7e60de9",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_InventoryMouseMove",
+      "address": "004922a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004922a0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_InventoryMouseMove",
+        "SMsgBreakHandlerChain",
+        "ClickItemHandler"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t"
+      ],
+      "dh": "aa415942",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_TradeScreenLeftClick",
+      "address": "00492310",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492310"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_TradeScreenLeftClick",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverCloseButton",
+        "SOUND_PlaySound",
+        "SMsgBreakHandlerChain",
+        "IsInTradePage2ScreenRange",
+        "ClickItemHandler",
+        "GetPlayerUnit_UI",
+        "INVENTORY_GetHandItem",
+        "INV_IsMouseOverAcceptTradeBtn",
+        "INV_IsMouseOverCancelTradeBtn",
+        "INV_IsMouseOverGoldButton",
+        "CancelTrade"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "4ee0c686",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_StashLeftClick",
+      "address": "00492510",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492510"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_StashLeftClick",
+        "PANEL_GetBeltSlotHoverFlag",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverStashCloseBtn",
+        "INV_IsMouseOverStashGoldBtn",
+        "IsInInventoryScreenRange",
+        "IsInBankPageScreenRange",
+        "INV_IsMouseOverGoldButton",
+        "SOUND_PlaySound",
+        "SMsgBreakHandlerChain",
+        "IsInBankPageScreenRangeOpenTop",
+        "INV_HandleHighResDropClick",
+        "ClickItemHandler"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "bab535f7",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_WeaponSwap",
+      "address": "00492770",
+      "lines": [
+        {
+          "line": 1,
+          "address": "00492770"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_WeaponSwap",
+        "CLIENT_CheckExpansion",
+        "UI_GetFlag",
+        "INV_SwapWeaponSet",
+        "SMsgBreakHandlerChain"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc"
+      ],
+      "dh": "99bf2add",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "INPUT_CubeLeftClick",
+      "address": "004927c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004927c0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "INPUT_CubeLeftClick",
+        "PANEL_CalculateBeltSlotIndex",
+        "INV_IsMouseOverCloseButton",
+        "SOUND_PlaySound",
+        "SMsgBreakHandlerChain",
+        "INV_IsMouseOverTransmuteBtn",
+        "CheckSomeCoords",
+        "GetCursorItem",
+        "IsInInventoryScreenRange",
+        "IsInTransmogrifyScreenRange",
+        "INV_IsMouseOverGoldButton",
+        "ClickItemHandler",
+        "INV_HandleHighResDropClick"
+      ],
+      "usedTypes": [
+        "D2UIMouseMsgStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "bb676d99",
+      "paramStorage": [
+        [
+          "pMsg",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "DrawMercInventory",
+      "address": "004929f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "004929f0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "DrawMercInventory",
+        "CLIENT_CheckExpansion",
+        "GetPlayerUnit_UI",
+        "GetRosterPetGUID",
+        "SetUIFlag",
+        "UNITS_FindClientSideUnit",
+        "InitializeiInventoryPages",
+        "memset",
+        "D2GFX_DrawImage",
+        "GetBuySellBtnDC6",
+        "INV_DrawHirelingName",
+        "INV_DrawHirelingStatLabels",
+        "INV_DrawHirelingStats",
+        "INV_DrawHirelingEmptySlots",
+        "INV_DrawHirelingEquippedItems",
+        "INV_DrawHirelingCursorHighlight",
+        "LoadItemDesc"
+      ],
+      "usedTypes": [
+        "D2GfxDataStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "a3491e01"
+    },
+    {
+      "name": "StaticInit_gpInvRecipeScrollImage",
+      "address": "006cabf0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "006cabf0"
+        }
+      ],
+      "namespace": "D2Client::UI::Inv",
+      "calledFunctions": [
+        "StaticInit_gpInvRecipeScrollImage"
+      ],
+      "usedTypes": [
+        "uint8_t"
+      ],
+      "dh": "f6630446"
+    }
+  ]
+}

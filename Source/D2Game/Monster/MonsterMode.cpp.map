@@ -1,0 +1,1742 @@
+{
+  "source": "Redivivus, https://github.com/jaenster/redivivus (MIT, the Redivivus contributors)",
+  "version": 2,
+  "file": "Source/D2Game/Monster/MonsterMode.cpp",
+  "functions": [
+    {
+      "name": "GetAiParamFromUnit",
+      "address": "005a6190",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6190"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "GetAiParamFromUnit"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "703a0f0a",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_ConsumeStoredPosition",
+      "address": "005a61b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a61b0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_ConsumeStoredPosition"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc"
+      ],
+      "dh": "e3dcc5bc",
+      "paramStorage": [
+        [
+          "pX",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pY",
+          "Stack[0x8]:4"
+        ],
+        [
+          "szText",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pMonData",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "ResetEngagedCombatAndStats",
+      "address": "005a61f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a61f0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "ResetEngagedCombatAndStats"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "D2UnitStrc"
+      ],
+      "dh": "df14f6cd",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_GetStoredPosition",
+      "address": "005a6230",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6230"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_GetStoredPosition"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "c289a9a6",
+      "paramStorage": [
+        [
+          "pMonData",
+          "ECX:4"
+        ],
+        [
+          "pOutStoredX",
+          "EDX:4"
+        ],
+        [
+          "pOutStoredY",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pOutStoredFlags",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "Unreferenced_005a6250",
+      "address": "005a6250",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6250"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "Unreferenced_005a6250"
+      ],
+      "dh": "99a6da47",
+      "paramStorage": [
+        [
+          "param_1",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_SetPathOverrides",
+      "address": "005a6260",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6260"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_SetPathOverrides"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "57907830",
+      "paramStorage": [
+        [
+          "pPathParam",
+          "ECX:4"
+        ],
+        [
+          "nPathType",
+          "EDX:4"
+        ],
+        [
+          "nVelocity",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nSteps",
+          "Stack[0x8]:1"
+        ]
+      ]
+    },
+    {
+      "name": "GetPathCount",
+      "address": "005a6290",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6290"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "GetPathCount",
+        "OverwriteDistanceAndMaxDistance",
+        "GetTargetUnit",
+        "GetXSP1",
+        "GetYSP1",
+        "PATH_SetPathType",
+        "PATH_CalculatePath",
+        "GetPathPointsSize",
+        "ROOM_LinkUnitToUpdateList"
+      ],
+      "usedTypes": [
+        "D2DynamicPathStrc",
+        "D2MonsterPathParamStrc",
+        "D2UnitStrc",
+        "eD2PathTypes",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "ed06d1a3",
+      "paramStorage": [
+        [
+          "ePathType",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nDistance",
+          "AL:1"
+        ],
+        [
+          "pUnit",
+          "EBX:4"
+        ],
+        [
+          "pPathParam",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_SetVelocityPercent",
+      "address": "005a6380",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6380"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTER_SetVelocityPercent",
+        "GetStatsByFlags",
+        "AllocStatList",
+        "STATLIST_AttachStatListToUnit",
+        "STATLIST_SetStatValue",
+        "UpdateAnimSpeed"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "int32_t"
+      ],
+      "dh": "13304cb2",
+      "paramStorage": [
+        [
+          "pPathParam",
+          "EAX:4"
+        ],
+        [
+          "pUnit",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "AddGamePathCount",
+      "address": "005a63f0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a63f0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "AddGamePathCount",
+        "GetPathCount",
+        "GetTargetUnit"
+      ],
+      "usedTypes": [
+        "D2DynamicPathStrc",
+        "D2MonsterPathParamStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2PathTypes",
+        "int32_t",
+        "uint8_t"
+      ],
+      "dh": "05e2243e",
+      "paramStorage": [
+        [
+          "ePathTypeOrEngaged",
+          "EDX:4"
+        ],
+        [
+          "byMonStat2OrDist",
+          "AL:1"
+        ],
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "nMonStatOrVelocity",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pPathParam",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "AllocAiParam",
+      "address": "005a6490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6490"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "AllocAiParam",
+        "AllocServerMemory"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "9ea23ed9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERDATA_FreeMonsterMode",
+      "address": "005a64d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a64d0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERDATA_FreeMonsterMode",
+        "FreeServerMemory"
+      ],
+      "usedTypes": [
+        "D2MonsterPathParamStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "ec095a6b",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pPathParam",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_OnDeath",
+      "address": "005a6520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6520"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_OnDeath",
+        "Free",
+        "ROOM_LinkUnitToUpdateList",
+        "RemoveMinionsFromAiIfFlag1Set2Not",
+        "MONSTER_FreeUnitNodes",
+        "STATLIST_RecalcAfterRemove",
+        "UnitIsMarkedBoss",
+        "STATES_FilterStatesByContext",
+        "STATES_HasHideFlagState",
+        "TXT_MonStats_MonStats2_GetFlagsByBitOffset",
+        "PATH_SetCorpseCollision",
+        "SetDirectionAndNewDirection",
+        "MONSTER_RemoveAiAndRegenTimers"
+      ],
+      "usedTypes": [
+        "D2DynamicPathStrc",
+        "D2MonStatsTxt",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "8a502bae",
+      "paramStorage": [
+        [
+          "nDirection",
+          "Stack[0x4]:1"
+        ],
+        [
+          "pGame",
+          "EBX:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "SERVER_ITEM_DecideDrops",
+      "address": "005a6600",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6600"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "SERVER_ITEM_DecideDrops",
+        "UNITS_GetRoom",
+        "DRLGROOM_GetLevelIdFromRoom",
+        "GetActNoFromLevelNumber",
+        "GetLevel",
+        "MONSTER_GetBossNo",
+        "CheckMonsterType",
+        "TXT_SuperUniques_GetLine",
+        "GetOwnerUnit",
+        "STATES_HasExpFlagState",
+        "GetStatsByFlags",
+        "GetOwnerType",
+        "GetOwnerGUID",
+        "FindUnitFromTable",
+        "GetQuestBitBuffer",
+        "GetQuestState",
+        "SERVER_ITEM_RollItemAndGetTreasureClass",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2BitBufferStrc",
+        "D2MonStatsTxt",
+        "D2ObjectOperateFnArg",
+        "D2RoomStrc",
+        "D2StatListExStrc",
+        "D2SuperUniquesTxt",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2LevelId",
+        "eD2UnitType",
+        "int32_t",
+        "uint16_t",
+        "uint32_t"
+      ],
+      "dh": "0aa3a11c",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bIsItemFindDrop",
+          "Stack[0xc]:4"
+        ],
+        [
+          "pUnitKill",
+          "Stack[0x10]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_TryDropTreasure",
+      "address": "005a6830",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6830"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_TryDropTreasure",
+        "GetYPosFromDynamicPathUnit",
+        "GetXPosFromDynamicPathUnit",
+        "UNITS_GetRoom",
+        "CheckCollision_BlockPlayerMissile",
+        "TXT_MonStats_GetLine",
+        "SERVER_ITEM_DecideDrops",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2ObjectOperateFnArg",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eCollisionFlags",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "037116d0",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnitKill",
+          "EDX:4"
+        ],
+        [
+          "dwParam",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "SetAiState",
+      "address": "005a68e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a68e0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "SetAiState",
+        "GetAiState"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "uint32_t"
+      ],
+      "dh": "f51067c4",
+      "paramStorage": [
+        [
+          "pUnit",
+          "EDI:4"
+        ],
+        [
+          "nNewAiState",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "RegenAndPsnDecreaser",
+      "address": "005a6920",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6920"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "RegenAndPsnDecreaser",
+        "STATSEX_GetCurrentStat",
+        "STATES_HasLifeFlagState",
+        "SERVER_GetUnitStat",
+        "UNIT_GetUnitState",
+        "SetEvent",
+        "EVENT_RemoveUnitTimersByType",
+        "STATLIST_GetMaxLifeFromUnit",
+        "UNITS_GetRoom",
+        "DRLGROOM_IsRoomInTown",
+        "STATLIST_SetUnitStat",
+        "MONSTER_GetHpPercent128",
+        "UnitQueuePacket0xAB",
+        "GetStatsByState",
+        "GetOwnerGUID",
+        "GetOwnerType",
+        "FindUnitFromTable",
+        "SetState",
+        "SERVER_KillMonster",
+        "UNITEVENT_DispatchEventsByType"
+      ],
+      "usedTypes": [
+        "D2RoomStrc",
+        "D2StatListExStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2States",
+        "eD2UnitType",
+        "int32_t",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "f5bd7449",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nArg1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nArg2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_HasAnimModeSequence",
+      "address": "005a6b10",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6b10"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTER_HasAnimModeSequence",
+        "TXT_MonStats_GetMonStats2"
+      ],
+      "usedTypes": [
+        "D2MonStats2Txt",
+        "D2UnitStrc",
+        "eD2MonsterAnimMode",
+        "uint32_t"
+      ],
+      "dh": "ba6a45e5",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "eAnimMode",
+          "EAX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MISSILE_SpawnFromMaggot",
+      "address": "005a6b70",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6b70"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MISSILE_SpawnFromMaggot",
+        "GetTargetEx",
+        "GetXSP1",
+        "GetYSP1",
+        "GetXPos",
+        "GetYPos",
+        "SetTarget",
+        "SEED_InitDefault",
+        "InitSeed_Param_666",
+        "SetSP1",
+        "CreatingAMissile"
+      ],
+      "usedTypes": [
+        "D2DynamicPathStrc",
+        "D2MonStatsTxt",
+        "D2SeedStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2UnitType",
+        "eMissilesId",
+        "uint32_t",
+        "uint64_t"
+      ],
+      "dh": "ecc25f1a",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ],
+        [
+          "eMissileId",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_FireSpecialMissile",
+      "address": "005a6d50",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6d50"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTER_FireSpecialMissile",
+        "MONSTER_GetMissileForAnimEvent",
+        "GetDifficultyLevels",
+        "STATSEX_GetCurrentStat",
+        "CreatingAMissile",
+        "MISSILE_SpawnFromMaggot"
+      ],
+      "usedTypes": [
+        "D2DifficultyLevelsTxt",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eMissilesId",
+        "int32_t"
+      ],
+      "dh": "927961fc",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nSkillLevel",
+          "Stack[0x4]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_RemoveModeChangeTimer",
+      "address": "005a6de0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6de0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_RemoveModeChangeTimer",
+        "EVENT_RemoveUnitTimersByType"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "3d8e6005",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_ApplyDeathAreaDamage",
+      "address": "005a6df0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6df0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_ApplyDeathAreaDamage",
+        "UNITS_GetRoom",
+        "GetCollisionDistance",
+        "TestCollisionBetweenInteractingUnits",
+        "memset",
+        "STATSEX_GetCurrentStat",
+        "UNIT_GetUnitState",
+        "DAMAGE_ApplyDefensiveReduction",
+        "DAMAGE_ApplyDamageToUnit",
+        "SERVER_GetHitCalculation"
+      ],
+      "usedTypes": [
+        "D2DamageStrc",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "92bb932d",
+      "paramStorage": [
+        [
+          "pGame",
+          "EBX:4"
+        ],
+        [
+          "pUnit",
+          "EDI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_OwnerCastOrDie",
+      "address": "005a6eb0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6eb0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_OwnerCastOrDie",
+        "GetOwnerUnit",
+        "GetXPos",
+        "GetYPos",
+        "GetUnitSizeX",
+        "UNITS_GetRoom",
+        "GetFreeCoordinates_WithNeighboorRooms",
+        "STATSEX_GetAlignment",
+        "SERVER_UNIT_CastSkill",
+        "EVENT_RemoveUnitTimersByType",
+        "SERVER_KillMonster"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "POINT",
+        "SGAMEDATA",
+        "eCollisionFlags",
+        "eD2UnitType",
+        "int32_t"
+      ],
+      "dh": "4a825c83",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pUnit",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTER_OnDeathDispatch",
+      "address": "005a6ff0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a6ff0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTER_OnDeathDispatch",
+        "FreeCombatAndChangeAnimMode",
+        "MONSTERMODE_OnDeath",
+        "MONSTERMODE_TryDropTreasure",
+        "IncreaseMonKillCount",
+        "UNITS_GetRoom",
+        "SaveKilledUnitGUID",
+        "GetXPos",
+        "GetYPos",
+        "CreatingAMissile",
+        "GetDifficultyLevels",
+        "memset",
+        "STATSEX_GetCurrentStat",
+        "MONSTER_CalculateLevelScaledStats",
+        "D2ApplyPercent",
+        "_allmul",
+        "_alldiv",
+        "RANDOM_RandomNumberSelector",
+        "DAMAGE_ApplyAreaOfEffectDamage",
+        "MONMODE_OwnerCastOrDie",
+        "MONSTERMODE_ApplyDeathAreaDamage"
+      ],
+      "usedTypes": [
+        "D2DamageStrc",
+        "D2DifficultyLevelsTxt",
+        "D2ModeChangeStrc",
+        "D2MonStatsInitStrc",
+        "D2MonStatsTxt",
+        "D2RoomStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2UnitType",
+        "int32_t",
+        "int64_t",
+        "uint32_t"
+      ],
+      "dh": "5d7512aa",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_HandleSpecialEndDeath",
+      "address": "005a72b0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a72b0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_HandleSpecialEndDeath",
+        "FreeCombatAndChangeAnimMode",
+        "UNITEVENT_DispatchEventsByType",
+        "MONSTER_TransformMonsterClass",
+        "MONSTERAI_RescheduleThink",
+        "GetOwnerUnit",
+        "SERVER_KillMonster"
+      ],
+      "usedTypes": [
+        "D2MonStatsTxt",
+        "D2UnitStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "3f9654ba",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_UpdateDeath",
+      "address": "005a7350",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7350"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_UpdateDeath",
+        "MONSTER_IsSandLeaper",
+        "UNITS_ProcessUnitMovement",
+        "AdvanceAnimFrame",
+        "IsAtEndOfFrameCycle",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "uint32_t"
+      ],
+      "dh": "23f341b5",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartDead",
+      "address": "005a7390",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7390"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartDead",
+        "MONSTERMODE_OnDeath",
+        "FreeCombatAndChangeAnimMode",
+        "EVENT_RemoveUnitTimersByType"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "af4e957b",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartNeutral",
+      "address": "005a73e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a73e0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartNeutral",
+        "FreeCombatAndChangeAnimMode",
+        "EVENT_GetTimerFrame",
+        "UNIT_GetUnitState",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2States",
+        "uint32_t",
+        "uint8_t"
+      ],
+      "dh": "3c155061",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartSkill3",
+      "address": "005a7490",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7490"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartSkill3",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "eb13963d",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_UpdateSkill3",
+      "address": "005a74a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a74a0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_UpdateSkill3",
+        "UNITS_ProcessUnitMovement",
+        "AdvanceAnimFrame",
+        "IsAtEndOfFrameCycle",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "uint32_t"
+      ],
+      "dh": "b67d6be9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERMODE_Mode10_OnEndFrame_NoOp",
+      "address": "005a74d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a74d0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERMODE_Mode10_OnEndFrame_NoOp"
+      ],
+      "usedTypes": [
+        "D2UnitStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "abaa536e",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartSkill4",
+      "address": "005a74e0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a74e0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartSkill4",
+        "FreeCombatAndChangeAnimMode",
+        "SetEvent"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "c19d8f9a",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartWalking",
+      "address": "005a7520",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7520"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartWalking",
+        "GetPathPointsSize",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "2fe24d65",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartRunning",
+      "address": "005a7550",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7550"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartRunning",
+        "GetPathPointsSize",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "0f72d513",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartGetHit",
+      "address": "005a7580",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7580"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartGetHit",
+        "GetSomeMonsterStatFlag",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA",
+        "uint32_t"
+      ],
+      "dh": "1504218a",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartAttackOrSkill",
+      "address": "005a75c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a75c0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartAttackOrSkill",
+        "MONSTER_HasAnimModeSequence",
+        "GetPathPointsSize",
+        "TXT_MonStats_GetBaseId",
+        "PATH_CalculatePath",
+        "FreeCombatAndChangeAnimMode",
+        "GetCurrentSkill",
+        "SKILLS_StartCurrentSkill"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "D2SkillStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "35896ff9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_ProcessSkillCast",
+      "address": "005a7670",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7670"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_ProcessSkillCast",
+        "GetCurrentSkill",
+        "MONSTER_HasAnimModeSequence",
+        "UNITS_ProcessUnitMovement",
+        "AdvanceAnimFrame",
+        "IsAtEndOfFrameCycle",
+        "MONSTER_FireSpecialMissile",
+        "MONSTER_AttackTarget",
+        "GetTargetEx",
+        "DAMAGE_ProcessCombatQueueEntry",
+        "SKILL_GetFlags",
+        "GetTarget",
+        "SKILL_SetFlags",
+        "SKILLS_PeriodicSkillSpawnAndTimer"
+      ],
+      "usedTypes": [
+        "D2SkillStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "1f5c99a8",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartBlock",
+      "address": "005a77c0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a77c0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartBlock",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA"
+      ],
+      "dh": "415f0c8d",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartKnockback",
+      "address": "005a77d0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a77d0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartKnockback",
+        "GetSomeMonsterStatFlag",
+        "PATH_SetPathType",
+        "TXT_MonStats_GetBaseId",
+        "SetDistance",
+        "PATH_CalculatePath",
+        "FreeCombatAndChangeAnimMode"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "b39615c9",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_StartSequence",
+      "address": "005a7870",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7870"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_StartSequence",
+        "FreeCombatAndChangeAnimMode",
+        "SKILLS_StartCurrentSkill"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "a9f29fdb",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pMonsterKill",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_GetModeTableRow",
+      "address": "005a78a0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a78a0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_GetModeTableRow"
+      ],
+      "usedTypes": [
+        "D2MonModeTableRowStrc",
+        "D2UnitStrc",
+        "eD2MonsterClassId",
+        "uint32_t"
+      ],
+      "dh": "5a2de218",
+      "paramStorage": [
+        [
+          "pUnit",
+          "ECX:4"
+        ],
+        [
+          "nAnimMode",
+          "EDX:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_RequestNeutral",
+      "address": "005a7b30",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7b30"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_RequestNeutral",
+        "SetCurrentSkill",
+        "CheckForModeZeroDeath",
+        "MONMODE_StartNeutral"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2MonsterAnimMode"
+      ],
+      "dh": "5356334e",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "eAnimMode",
+          "EDI:4"
+        ],
+        [
+          "pUnit",
+          "ESI:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_EventModeUpdate",
+      "address": "005a7ba0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7ba0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_EventModeUpdate",
+        "MONMODE_GetModeTableRow",
+        "MONMODE_RequestNeutral"
+      ],
+      "usedTypes": [
+        "D2MonModeTableRowStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "int32_t"
+      ],
+      "dh": "22599402",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nArg1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nArg2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_EventEndAnimation",
+      "address": "005a7be0",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7be0"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_EventEndAnimation",
+        "MONMODE_GetModeTableRow",
+        "MONMODE_RequestNeutral"
+      ],
+      "usedTypes": [
+        "D2MonModeTableRowStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2MonsterAnimMode",
+        "int32_t"
+      ],
+      "dh": "5db2e025",
+      "paramStorage": [
+        [
+          "pGame",
+          "ECX:4"
+        ],
+        [
+          "pUnit",
+          "EDX:4"
+        ],
+        [
+          "nArg1",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nArg2",
+          "Stack[0x8]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONSTERAI_ExecuteLifecycleTransition",
+      "address": "005a7c20",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7c20"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONSTERAI_ExecuteLifecycleTransition",
+        "UNIT_GetUnitState",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SetUninterruptableState",
+        "CheckForModeZeroDeath",
+        "PATH_AddUnitCollision",
+        "SetAiState",
+        "SetSP1",
+        "SetTarget",
+        "SetDistanceWithChecks",
+        "AddGamePathCount",
+        "MONSTER_RecalculateCombatStats",
+        "MONSTER_DispatchUModModeStart",
+        "MONMODE_GetModeTableRow",
+        "SetCurrentSkill",
+        "MONMODE_StartNeutral",
+        "InitAnimFrame",
+        "MONSTER_SetVelocityPercent",
+        "MONSTER_DispatchUModModeChange",
+        "UNITS_ClearAnimTimerEvents",
+        "MONSTER_HasAnimModeSequence",
+        "UNITS_SetupAnimTimerEvents",
+        "UNITS_ClearAnimAndTriggerEndAnim",
+        "PATH_SetPathType",
+        "OverwriteDistanceAndMaxDistance",
+        "MONMODE_RequestNeutral"
+      ],
+      "usedTypes": [
+        "D2DynamicPathStrc",
+        "D2ModeChangeStrc",
+        "D2MonModeTableRowStrc",
+        "D2MonsterPathParamStrc",
+        "D2UnitStrc",
+        "SGAMEDATA",
+        "eD2MonsterAnimMode",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "2cccc340",
+      "paramStorage": [
+        [
+          "pGame",
+          "Stack[0x4]:4"
+        ],
+        [
+          "pMonsterKill",
+          "Stack[0x8]:4"
+        ],
+        [
+          "bResetSkillOnSameMode",
+          "Stack[0xc]:4"
+        ]
+      ]
+    },
+    {
+      "name": "MONMODE_InitModeChange",
+      "address": "005a7e60",
+      "lines": [
+        {
+          "line": 1,
+          "address": "005a7e60"
+        }
+      ],
+      "namespace": "D2Game::Monster::MonsterMode",
+      "calledFunctions": [
+        "MONMODE_InitModeChange",
+        "GetInstructionPointer",
+        "ERROR_UnrecoverableInternalError_Halt",
+        "exit",
+        "SetCurrentSkill",
+        "MONSTER_HasAnimModeSequence"
+      ],
+      "usedTypes": [
+        "D2ModeChangeStrc",
+        "D2UnitStrc",
+        "eD2MonsterAnimMode",
+        "int32_t",
+        "uint32_t"
+      ],
+      "dh": "cec0126b",
+      "paramStorage": [
+        [
+          "pUnit",
+          "Stack[0x4]:4"
+        ],
+        [
+          "nUnitMode",
+          "Stack[0x8]:4"
+        ],
+        [
+          "pModeChange",
+          "Stack[0xc]:4"
+        ]
+      ]
+    }
+  ]
+}
