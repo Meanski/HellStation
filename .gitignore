@@ -21,3 +21,5 @@ a.out
 *.iso
 /bios/
 d2crash-*.txt
+*.o
+tools/port/ps2-smoke/*.elf

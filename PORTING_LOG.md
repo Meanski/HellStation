@@ -33,3 +33,16 @@ measurement, a decision and its evidence.
   `qemu-i386` through `tonistiigi/binfmt` when the probe fails; the registration doesn't survive a
   Docker restart.
 - CMake 3.25 in bookworm is above the ≥3.24 the brief requires.
+
+## 2026-11-17: first pixels on an emulated PS2
+
+- `tools/port/ps2-smoke` (gsKit) draws a 640×480 PSMT8 texture with a 256-entry CT32 CLUT, scaled
+  to the display, and cycles the palette every frame without re-uploading the indices. That's the
+  presentation path planned for D2Gdi's back buffer.
+- Runs in PCSX2 2.8.2 (native arm64, Metal) on OpenPS2BIOS 0.6 (MIT, no Sony firmware; sha256
+  `3702baa5…1a84`, kept outside the repo in PCSX2's bios folder). Boots with
+  `-fastboot -elf`; GS 640×448 NTSC, 60 FPS / 60 VPS, GPU 3%. Gradient and CLUT ordering are correct
+  (the CSM1 8–15/16–23 swizzle is handled).
+- The ps2dev image ships no make or cmake. `tools/port/Dockerfile.ps2` layers make, cmake, ninja,
+  ccache and python3 on the pinned `v2.0.0` image as `hellstation/ps2dev:v2.0.0`.
+- PCSX2 rejects a hand-written ini without `[UI] SettingsVersion = 1`.

@@ -1,0 +1,5 @@
+# Phase 2 build environment: the pinned ps2dev toolchain plus build tools it doesn't ship.
+FROM ps2dev/ps2dev:v2.0.0
+RUN apk add --no-cache make cmake ninja ccache python3 git bash
+ENV CCACHE_DIR=/ccache
+WORKDIR /src
