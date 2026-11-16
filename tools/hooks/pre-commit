@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Refuses commits that add game data or binaries, or edit generated code
+# outside an upstream merge. Install: git config core.hooksPath tools/hooks
+set -euo pipefail
+fail=0
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$staged" ] && exit 0
+in_merge=0; [ -f "$(git rev-parse --git-dir)/MERGE_HEAD" ] && in_merge=1
+
+while IFS= read -r f; do
+  lc=$(printf '%s' "$f" | tr '[:upper:]' '[:lower:]')
+  case "$lc" in
+    *.mpq|*.d2s|*.d2x|*.key|*.ma[0-9]|*.dc6|*.dcc|*.dt1|*.ds1|*.cof|*.bik|*.smk|*.iso|*.bin|*.rom|*.nvm|*.mec|*.elf|*.exe|*.dll)
+      echo "pre-commit: refusing game data/binary: $f" >&2; fail=1 ;;
+    *game.exe|*diabloii_macho*|*scph*)
+      echo "pre-commit: refusing Blizzard/Sony binary: $f" >&2; fail=1 ;;
+  esac
+  if [ "$in_merge" -eq 0 ]; then
+    case "$f" in
+      Source/*|3rdparty/Storm/*|3rdparty/crashy/*)
+        echo "pre-commit: $f is generated code (edits are lost at regen); route it through Redivivus/port/ or report upstream" >&2; fail=1 ;;
+    esac
+  fi
+  if [ -f "$f" ]; then
+    size=$(wc -c < "$f")
+    if [ "$size" -gt 2097152 ]; then echo "pre-commit: $f is $((size/1024)) KB (> 2 MB)" >&2; fail=1; fi
+  fi
+done <<< "$staged"
+exit $fail

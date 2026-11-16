@@ -5,3 +5,19 @@ compile-errors.txt
 sites2.tsv
 /build/
 a.out
+
+# HellStation
+/build*/
+/d2data/
+*.mpq
+*.MPQ
+*.d2s
+*.d2x
+*.key
+*.ma[0-9]
+*.padskills
+*.bik
+*.smk
+*.iso
+/bios/
+d2crash-*.txt

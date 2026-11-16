@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Commits carry the owner's identity only: no co-author trailers, no tool attribution.
+set -euo pipefail
+if grep -viE '^#' "$1" | grep -qiE 'co-authored-by|generated (with|by)|c[l]aude|a[n]thropic|chatgpt|copilot|\bllm\b|\bai-generated'; then
+  echo "commit-msg: message contains attribution or tool references; remove them." >&2
+  exit 1
+fi

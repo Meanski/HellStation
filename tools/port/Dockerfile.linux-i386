@@ -1,0 +1,8 @@
+# Phase 1 build/run environment: native i386 Debian userland (emulated on arm64 hosts).
+FROM debian:bookworm
+RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
+      build-essential cmake ninja-build ccache gdb git python3 pkg-config \
+      libsdl2-dev xvfb x11-apps imagemagick \
+    && rm -rf /var/lib/apt/lists/*
+ENV CCACHE_DIR=/ccache
+WORKDIR /src
