@@ -20,7 +20,7 @@ marker with what was checked and how.
 ## Phases and exit criteria
 
 **Phase 0: baseline.** Stock mingw `d2.exe` builds on the Mac (done 2026-11-17, see `PORTING_LOG.md`).
-Exit: also reaches the main menu with the owner's 1.14d data, under Wine/CrossOver or on a Windows PC.
+Exit: also reaches the main menu with the owner's 1.14d data under Wine (done 2026-11-17).
 
 **Phase 1: i686 Linux + SDL2** (container: `tools/port/linux-i386.sh`).
 1. `REDIVIVUS_PORT` option and `cmake/linux-i686-sdl.cmake`; loosen the `NOT WIN32` guard behind it.

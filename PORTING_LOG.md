@@ -46,3 +46,15 @@ measurement, a decision and its evidence.
 - The ps2dev image ships no make or cmake. `tools/port/Dockerfile.ps2` layers make, cmake, ninja,
   ccache and python3 on the pinned `v2.0.0` image as `hellstation/ps2dev:v2.0.0`.
 - PCSX2 rejects a hand-written ini without `[UI] SettingsVersion = 1`.
+
+## 2026-11-17: Phase 0 exit: main menu under Wine
+
+- `tools/port/run-wine.sh` runs `build/d2.exe -w` (Homebrew mingw, UCRT) under Wine 11.0 (Gcenx build;
+  Homebrew's own Wine casks were disabled on 2026-09-01), prefix `~/.wine-hellstation`, from a run dir
+  of symlinks to `$D2DATA`. Data: the owner's 1.14d LoD set, all 11 MPQs (`MPQ\x1a` headers checked)
+  plus binkw32/SmackW32/ijl11.
+- Reaches the LoD main menu with the `R2109` build stamp. The UCRT `FILE` concern above didn't block
+  startup; it stays on the watch list until a save/load and a log write have been exercised.
+- Not yet exercised: single player, character creation, in game.
+- `tools/port/winshot.sh` captures one app's window by CoreGraphics window id. Full-screen captures
+  are not used: they pick up whatever else is on the owner's screen.
