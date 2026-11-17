@@ -1,47 +1,85 @@
-# HellStation
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="HellStation: Diablo II, Lord of Destruction, native on PS2" width="100%">
+</p>
 
-Diablo II: Lord of Destruction 1.14d running natively on the PlayStation 2. It isn't emulated,
-streamed or a remake: it's the game's own code, compiled for the PS2's Emotion Engine.
+<p align="center">
+  <img alt="Platform: PlayStation 2" src="https://img.shields.io/badge/platform-PlayStation%202-1f4ea0?style=for-the-badge">
+  <img alt="Game: Diablo II LoD 1.14d" src="https://img.shields.io/badge/Diablo%20II-LoD%201.14d-8b1a1a?style=for-the-badge">
+  <img alt="Status: in game on PCSX2" src="https://img.shields.io/badge/status-in%20game%20on%20PCSX2-e36209?style=for-the-badge">
+  <br>
+  <a href="https://github.com/Meanski/HellStation/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/Meanski/HellStation?style=for-the-badge&color=6e7681"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f?style=for-the-badge"></a>
+  <a href="https://github.com/jaenster/redivivus"><img alt="Built on Redivivus" src="https://img.shields.io/badge/built%20on-Redivivus-5a1410?style=for-the-badge"></a>
+</p>
 
-HellStation is built on [Redivivus](https://github.com/jaenster/redivivus), jaenster's
-reverse-engineering of 1.14d into C++ that builds and runs. Redivivus supplies the game. HellStation
-supplies everything a PS2 needs underneath it: a fake Windows, a GS renderer, pad input, and a
-build that fits the EE.
+<p align="center">
+  <a href="#status">Status</a> ·
+  <a href="#roadmap">Roadmap</a> ·
+  <a href="#build-and-run">Build</a> ·
+  <a href="#controls">Controls</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="PORTING_LOG.md">Dev log</a>
+</p>
+
+---
+
+**Diablo II: Lord of Destruction 1.14d, running natively on the PlayStation 2.** It isn't emulated,
+streamed or remade: it's the game's own code, compiled for the PS2's Emotion Engine, with
+everything a PS2 needs underneath it. That means a fake Windows, a GS renderer, DualShock 2 input,
+and a build tuned for the EE.
 
 ## Status
 
-|Milestone|State|
-|-|-|
-|Main menu on an emulated PS2 (PCSX2)|done|
-|In game: new LoD character, Rogue Encampment, walking, inventory|done, 25 FPS (the game's own cap)|
-|DualShock 2 as a virtual mouse plus D2 hotkeys (controller layer 0)|done|
-|Fits a retail PS2's 32 MB of RAM|**not yet**: needs PCSX2's Extended RAM for now|
-|Sound|not yet|
-|Real hardware|not yet tried|
-|Typing a character name with the pad|not yet (new characters need the input script for now)|
+| | Where it stands |
+|:-:|-|
+| ✅ | Boots to the LoD main menu on an emulated PS2 (PCSX2) |
+| ✅ | In game: new character, Rogue Encampment, walking, inventory, at a steady **25 FPS** (the game's own cap) |
+| ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys (controller layer 0) |
+| 🚧 | Fit a retail PS2's **32 MB**: for now it needs PCSX2's Extended RAM ([#5](https://github.com/Meanski/HellStation/issues/5)) |
+| 🚧 | Sound ([#1](https://github.com/Meanski/HellStation/issues/1)) |
+| 🚧 | Naming a character with the pad ([#2](https://github.com/Meanski/HellStation/issues/2)) |
+| ⏳ | Real hardware ([#8](https://github.com/Meanski/HellStation/issues/8)) |
 
-The dated engineering log, with every measurement and decision, is [PORTING_LOG.md](PORTING_LOG.md).
-The plan and its exit criteria are in [docs/port/PLAN.md](docs/port/PLAN.md).
+## Roadmap
+
+**[Playable on PCSX2](https://github.com/Meanski/HellStation/milestone/1)**: from start to Act 1
+with sound and the pad alone.
+
+- [ ] Sound on audsrv ([#1](https://github.com/Meanski/HellStation/issues/1))
+- [ ] Name entry with the pad ([#2](https://github.com/Meanski/HellStation/issues/2))
+- [ ] Walk with the stick, soft targeting, skill slots ([#3](https://github.com/Meanski/HellStation/issues/3))
+
+**[Retail PS2](https://github.com/Meanski/HellStation/milestone/2)**: stock 32 MB, data from USB,
+on real hardware.
+
+- [ ] Fit in 32 MB ([#5](https://github.com/Meanski/HellStation/issues/5))
+- [ ] Data from USB storage ([#6](https://github.com/Meanski/HellStation/issues/6)) and saves ([#7](https://github.com/Meanski/HellStation/issues/7))
+- [ ] Real hardware ([#8](https://github.com/Meanski/HellStation/issues/8))
+- [ ] NTSC, 480p and letterboxing ([#9](https://github.com/Meanski/HellStation/issues/9))
+- [ ] Panels by d-pad ([#4](https://github.com/Meanski/HellStation/issues/4))
+
+Everything else is on the [issue list](https://github.com/Meanski/HellStation/issues).
 
 ## You bring the game
 
-This repository holds no game data and never will. You need your own Diablo II and Lord of
-Destruction, patched to 1.14d. Put these files in a folder (default `~/d2data`, or set `$D2DATA`):
+> [!IMPORTANT]
+> This repository holds no game data and never will. You need your own Diablo II and Lord of
+> Destruction, patched to 1.14d, and a BIOS dumped from your own PS2.
+
+Put these files in a folder (default `~/d2data`, or point `$D2DATA` at it):
 
 ```
 d2char.mpq  d2data.mpq  d2exp.mpq  d2music.mpq  d2sfx.mpq  d2speech.mpq
 d2video.mpq  d2xmusic.mpq  d2xtalk.mpq  d2xvideo.mpq  patch_d2.mpq
 ```
 
-PCSX2 also needs a BIOS dumped from your own console.
-
 ## Build and run
 
-The host is macOS on Apple Silicon with Docker. The PS2 toolchain runs in the `ps2dev/ps2dev`
-container, which `tools/port/ps2.sh` wraps.
+You'll need macOS on Apple Silicon, with Docker and PCSX2. The PS2 toolchain runs in the
+`ps2dev/ps2dev` container, which `tools/port/ps2.sh` wraps.
 
 ```sh
-git config core.hooksPath tools/hooks          # once: no game data, no stray binaries
+git config core.hooksPath tools/hooks          # once: keeps game data and binaries out of git
 
 tools/port/ps2.sh cmake -S . -B build-ps2 -G Ninja -DREDIVIVUS_PORT=ON \
   -DCMAKE_TOOLCHAIN_FILE=cmake/ps2-ee.cmake -DHS_PS2_EXTENDED_RAM=ON
@@ -50,60 +88,65 @@ tools/port/ps2.sh cmake --build build-ps2
 tools/port/run-pcsx2.sh --extra-ram --seconds 5
 ```
 
-`run-pcsx2.sh` stages the ELF next to your game folder, turns on the PCSX2 settings the port
-needs (host file access, Extended RAM), and starts it. Add
-`--script tools/port/scripts/town-walk.txt` to play back a scripted run that makes a Barbarian and
-walks around the Rogue Encampment.
+`run-pcsx2.sh` stages the ELF next to your game folder, turns on the PCSX2 settings the port needs
+(host file access, Extended RAM), and starts it. Add `--script tools/port/scripts/town-walk.txt` to
+watch a scripted run make a Barbarian and walk around the Rogue Encampment.
 
-The port also builds for 32-bit Linux with SDL2 (Phase 1, the debugging target), and the stock
-Windows build is kept working. Both are covered in [AGENTS.md](AGENTS.md).
+<details>
+<summary>Other targets</summary>
 
-## Controls (DualShock 2)
+The port also builds for 32-bit Linux with SDL2 (the debugging target), and the stock Windows build
+is kept working. Both are covered in [AGENTS.md](AGENTS.md).
 
-|Pad|Does|
+</details>
+
+## Controls
+
+| DualShock 2 | Does |
 |-|-|
-|Left stick / right stick|Cursor, fast / precise|
-|✕ or R2|Left click|
-|○ or L2|Right click|
-|Start|Esc (game menu)|
-|△ / □ / R1|Inventory / skill tree / character sheet|
-|Select|Automap|
-|L1 (hold)|Shift: stand still|
-|L3 / R3|Toggle run / show items|
-|D-pad|Belt slots 1–4|
+| Left stick / right stick | Cursor, fast / precise |
+| ✕ or R2 | Left click |
+| ○ or L2 | Right click |
+| Start | Game menu (Esc) |
+| △ / □ / R1 | Inventory / skill tree / character sheet |
+| Select | Automap |
+| L1 (hold) | Stand still (Shift) |
+| L3 / R3 | Toggle run / show items |
+| D-pad | Belt slots 1–4 |
 
-This is layer 0, the pad as a mouse. Walking with the stick, auto-targeting and pad-driven
-inventory are designed in [docs/port/controller.md](docs/port/controller.md).
+This is layer 0: the pad acts as a mouse. Walking with the stick, auto-targeting and pad-driven
+panels are designed in [docs/port/controller.md](docs/port/controller.md).
 
 ## How it works
 
-- **No game code is edited.** The decompiled tree is regenerated upstream, so everything PS2-specific
-  sits beside it: a forced-include prelude, a Win32 shim (`Redivivus/port/win32/`), link-time
-  overrides, and backends (`Redivivus/port/backend/`).
+- **No game code is edited.** Everything PS2-specific sits beside the decompiled tree: a
+  forced-include prelude, a Win32 shim (`Redivivus/port/win32/`), link-time overrides, and the
+  backends (`Redivivus/port/backend/`).
 - **Rendering** uses the game's own software renderer. Each 8-bit frame goes to the GS as a
   paletted texture with its colour table.
-- **Files** are read straight from your MPQs through the `host:` device (PCSX2's host file system
+- **Files** are read straight from your MPQs through the `host:` device (PCSX2's host file system,
   for now).
-- **Interesting bugs** are written up in [PORTING_LOG.md](PORTING_LOG.md). For example, units
-  teleported along walks because PCSX2's EE recompiler mishandles one unaligned-load instruction
-  (`LWR`). The build now compensates, and a report for PCSX2 is drafted in
-  [docs/port/upstream/](docs/port/upstream/).
+- **The bugs are the fun part**, and they're all in the [dev log](PORTING_LOG.md). For example,
+  NPCs used to teleport mid-walk because PCSX2's EE recompiler mishandles one unaligned-load
+  instruction (`LWR`). The build now compensates, and a report for PCSX2 is
+  [drafted](docs/port/upstream/pcsx2-lwr-sign-extension.md).
 
 ## Credits
 
-- [Redivivus](https://github.com/jaenster/redivivus) by jaenster and the Redivivus contributors:
-  the reverse-engineered game this runs, imported as a snapshot (the first commit here, with the
-  upstream revision in `UPSTREAM`). Fixes that belong to Redivivus go back there.
-- [ps2dev](https://github.com/ps2dev): the PS2 toolchain, ps2sdk and gsKit.
-- [PCSX2](https://pcsx2.net): the emulator used for bring-up.
-- Controller design was informed by d2decomped, D2Vita, DevilutionX and D2R. None of their code is
-  used; see [docs/port/controller.md](docs/port/controller.md).
+- **[Redivivus](https://github.com/jaenster/redivivus)** by jaenster and the Redivivus contributors:
+  the reverse-engineered 1.14d this is built on, imported as a snapshot (the first commit here, the
+  revision in [`UPSTREAM`](UPSTREAM)). HellStation wouldn't exist without it. Fixes that belong to
+  Redivivus go back there.
+- **[ps2dev](https://github.com/ps2dev)**: the PS2 toolchain, ps2sdk and gsKit.
+- **[PCSX2](https://pcsx2.net)**: the emulator used for bring-up.
+- The controller design was informed by d2decomped, D2Vita, DevilutionX and D2R. None of their code
+  is used.
 
 ## License
 
 MIT, see [LICENSE](LICENSE). The imported Redivivus code keeps its own copyright notice there, and
 its `.cpp.map` files are used under its terms: credit to Redivivus, linked above.
 
-Diablo and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. PlayStation is a
-trademark of Sony Interactive Entertainment. This project is not affiliated with or endorsed by
-either.
+<sub>Diablo and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. PlayStation
+is a trademark of Sony Interactive Entertainment. HellStation is not affiliated with or endorsed by
+either.</sub>
