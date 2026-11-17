@@ -28,3 +28,6 @@ tools/port/ps2-smoke/*.elf
 /build-ps2*/
 tools/port/ps2-cxx-probe/*.elf
 *.o
+
+# Local build logs
+/build*.log

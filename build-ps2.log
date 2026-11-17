@@ -1,6 +1,0 @@
-[1/2] Re-checking globbed directories...
-[1/5] Building CXX object CMakeFiles/hs_backend.dir/Redivivus/port/backend/ps2/atomics.cpp.obj
-[2/5] Building CXX object CMakeFiles/hs_win32.dir/Redivivus/port/win32/msvcrt.cpp.obj
-[3/5] Linking CXX static library libhs_backend.a
-[4/5] Linking CXX static library libhs_win32.a
-[5/5] Linking CXX executable d2.elf
