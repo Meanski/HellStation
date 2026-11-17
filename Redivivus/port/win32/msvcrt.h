@@ -27,4 +27,16 @@ char*  _i64toa(long long value, char* buf, int radix);
 char*  _ui64toa(unsigned long long value, char* buf, int radix);
 int    _access(const char* path, int mode);
 int    _mkdir(const char* path);
+int    hs_msvc_rand(void);
+void   hs_msvc_srand(unsigned seed);
+FILE*  hs_fopen(const char* path, const char* mode);
 }
+
+// MSVC's rand(): its own LCG, RAND_MAX 0x7FFF, per-thread state.
+#undef RAND_MAX
+#define RAND_MAX 0x7FFF
+#define rand  hs_msvc_rand
+#define srand hs_msvc_srand
+// fopen takes Windows paths in the game; translate them like CreateFileA does.
+#define fopen hs_fopen
+namespace std { using ::hs_msvc_rand; using ::hs_msvc_srand; using ::hs_fopen; }

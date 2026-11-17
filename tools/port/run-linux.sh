@@ -19,7 +19,7 @@ mkdir -p "$ROOT/build-linux/run"
 [ -n "$FRAMES" ] && { rm -rf "$ROOT/$FRAMES"; mkdir -p "$ROOT/$FRAMES"; }
 exec "$ROOT/tools/port/linux-i386.sh" sh -c '
   export SDL_VIDEODRIVER=${SDL_VIDEODRIVER:-dummy} SDL_AUDIODRIVER=${SDL_AUDIODRIVER:-dummy}
-  export HS_ROOT=/src/build-linux/run
+  export HS_ROOT=/src/build-linux/run HS_TRACE=${HS_TRACE:-1} HS_TRACE_WAITS=${HS_TRACE_WAITS:-}
   [ -n "'"$FRAMES"'" ] && export HS_FRAME_DUMP=/src/'"$FRAMES"'
   if [ '"$SECS"' -gt 0 ]; then timeout -s INT '"$SECS"' ./build-linux/d2 "$@"; rc=$?; else ./build-linux/d2 "$@"; rc=$?; fi
   if [ -n "'"$FRAMES"'" ]; then for f in /src/'"$FRAMES"'/*.ppm; do [ -e "$f" ] && convert "$f" "${f%.ppm}.png" && rm "$f"; done; fi

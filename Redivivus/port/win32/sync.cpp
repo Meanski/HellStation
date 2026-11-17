@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <process.h>
 #include <atomic>
+#include <cstdlib>
 #include <cstring>
 #include <vector>
 
@@ -108,7 +109,14 @@ DWORD wait_objects(DWORD n, const HANDLE* hs, BOOL all, DWORD timeout) {
             if (spent >= timeout) { hs_mutex_unlock(g_lock()); return WAIT_TIMEOUT; }
             left = timeout - spent;
         }
-        hs_cond_wait(g_cond(), g_lock(), left);
+        uint32_t slice = left < 2000 ? left : 2000;
+        if (hs_cond_wait(g_cond(), g_lock(), slice) && hs_trace_enabled() && hs_ticks_ms() - start >= 2000 &&
+            (hs_ticks_ms() - start) % 10000 < 2000) {
+            hs_log("wait: thread %lu blocked %us on %lu object(s), first kind %d", (unsigned long)tid,
+                   (unsigned)((hs_ticks_ms() - start) / 1000), (unsigned long)n, (int)ws[0]->kind);
+            static thread_local bool s_dumped;
+            if (!s_dumped) { s_dumped = true; hs_backtrace("long wait"); }
+        }
     }
 }
 
@@ -125,6 +133,10 @@ HANDLE WINAPI CreateEventW(LPSECURITY_ATTRIBUTES sa, BOOL manual, BOOL initial, 
     return CreateEventA(sa, manual, initial, nullptr);
 }
 BOOL WINAPI SetEvent(HANDLE h) {
+    if (hs_trace_enabled() && getenv("HS_TRACE_WAITS")) {
+        static std::atomic<int> n{0};
+        if (n++ < 40) hs_log("SetEvent(%p) thread %lu", h, (unsigned long)GetCurrentThreadId());
+    }
     HsEvent* e = hs_handle_as<HsEvent>(h);
     if (!e) return FALSE;
     hs_mutex_lock(g_lock()); e->state = true; wake_all(); hs_mutex_unlock(g_lock());
@@ -176,7 +188,13 @@ BOOL WINAPI ReleaseMutex(HANDLE h) {
     return ok;
 }
 
-DWORD WINAPI WaitForSingleObject(HANDLE h, DWORD timeout) { return wait_objects(1, &h, FALSE, timeout); }
+DWORD WINAPI WaitForSingleObject(HANDLE h, DWORD timeout) {
+    if (hs_trace_enabled() && getenv("HS_TRACE_WAITS")) {
+        static std::atomic<int> n{0};
+        if (n++ < 40) hs_log("WaitForSingleObject(%p, %lu) thread %lu", h, (unsigned long)timeout, (unsigned long)GetCurrentThreadId());
+    }
+    return wait_objects(1, &h, FALSE, timeout);
+}
 DWORD WINAPI WaitForSingleObjectEx(HANDLE h, DWORD timeout, BOOL) { return wait_objects(1, &h, FALSE, timeout); }
 DWORD WINAPI WaitForMultipleObjects(DWORD n, const HANDLE* hs, BOOL all, DWORD timeout) {
     return wait_objects(n, hs, all, timeout);
@@ -210,6 +228,22 @@ static hs_mutex* cs_mutex(LPCRITICAL_SECTION cs) {
     return (hs_mutex*)cs->LockSemaphore;
 }
 void WINAPI EnterCriticalSection(LPCRITICAL_SECTION cs) {
+    if (hs_trace_enabled()) {
+        uint32_t start = hs_ticks_ms();
+        bool reported = false;
+        while (!hs_mutex_trylock(cs_mutex(cs))) {
+            if (!reported && hs_ticks_ms() - start > 2000) {
+                reported = true;
+                hs_log("EnterCriticalSection(%p): thread %lu blocked >2s, owner %lu, recursion %ld", (void*)cs,
+                       (unsigned long)GetCurrentThreadId(), (unsigned long)(uintptr_t)cs->OwningThread, (long)cs->RecursionCount);
+                hs_backtrace("critical section wait");
+            }
+            hs_sleep_ms(1);
+        }
+        cs->OwningThread = (HANDLE)(uintptr_t)GetCurrentThreadId();
+        cs->RecursionCount++;
+        return;
+    }
     hs_mutex_lock(cs_mutex(cs));
     cs->OwningThread = (HANDLE)(uintptr_t)GetCurrentThreadId();
     cs->RecursionCount++;

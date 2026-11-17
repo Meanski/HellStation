@@ -91,3 +91,40 @@ measurement, a decision and its evidence.
   `__i386__` paths) takes the generic paths the PS2 build takes, so Phase 1 tests PS2 code paths on
   an easy-to-debug host. Calling-convention attributes are fixed earlier by the prelude, so the i386
   ABI is unchanged. A per-thread `%fs` TIB is no longer needed and was removed.
+
+## 2026-11-17: Phase 1: the LoD main menu renders on i686 Linux
+
+`build-linux/d2 -w` (the generated tree unchanged + `Redivivus/port/`) boots in the Phase 1 container,
+opens all 11 LoD MPQs through the virtual `C:\Diablo II`, creates its 800×600 window and DIB section,
+and presents the animated main menu through D2Gdi → GDI shim → SDL (headless frame dumps, stable for 4
+minutes). Steps and findings, in order:
+
+- **Link:** 162 undefined symbols, all resolved: 116 real, 42 stub-ok (no counterpart on port
+  targets), 4 stub-todo (DirectSound, FindFirstFileW). `docs/port/symbols.tsv` has each one with its file.
+- **The link-name trap:** Win32 functions that share a name with a host-library function (Winsock vs
+  BSD sockets: `socket`, `select`, `send`, `gethostbyname`, …; also `rand`, `fopen`) never showed up as
+  undefined. The linker bound the game's stdcall calls to glibc's cdecl functions with other structures.
+  The first crash (`NET_GetLocalIp`) came from this. Fixed by defining them in the shim; MSVC `rand`
+  (own LCG, `RAND_MAX` 0x7FFF) and path-translating `fopen` come in through `msvcrt.h`.
+  **Guard:** `tools/port/check-imports.sh` runs post-link and fails on any host import not in
+  `docs/port/host-imports.txt`. It caught a mis-typed `select` immediately.
+- **The reverse trap:** SDL's own `socket()` call bound to *our* stdcall `socket` (a non-PIE executable
+  exports what shared libraries reference) and smashed the stack inside SDL init. Fixed with
+  `-fvisibility=hidden` for game, shim and backend; check-imports now also fails on exported symbols.
+- **Storm needs Windows' VirtualAlloc guarantees:** (1) reservations are cheap: zero-filling a whole
+  reservation up front stalled Storm's async I/O worker for minutes under qemu. Now `hs_vm_reserve`
+  (lazy mmap), decommit = zeroed pages. (2) Reservations are 64 KiB-aligned: `SMemFree` finds a heap's
+  descriptor from the top 16 bits of a block address (`uLink << 16`), so 4 KiB alignment crashed.
+  **PS2 note:** there's no virtual memory there; Storm's reservation sizes will need tuning to real RAM.
+- **Handles:** the game passes non-window HWNDs (e.g. `GetDesktopWindow()`); window handles are
+  validated by registry membership, never by dereferencing.
+- **Diagnostics built on the way:** symbolized crash/long-wait/critical-section stacks
+  (`tools/port/symbolize.sh`), frame-pointer walking from the signal context (glibc `backtrace()` fails
+  inside handlers under qemu), stack scanning for frames interrupted in libraries, all-thread sampling on
+  SIGINT, `HS_TRACE`/`HS_TRACE_WAITS`. Non-PIE link so addresses are file addresses (as on the PS2).
+- **Not yet ported from upstream's `d2_patch.cpp`:** the LRU single-node unlink fix (Blizzard's bug; its
+  callers are in the same TU, so `--wrap` can't reach them; it needs a weakened-symbol override),
+  the `R2109` version stamp, and the Patch_D2/levels check.
+- **Watch:** Storm's lists treat negative pointers as terminators (`(intptr_t)p <= 0`), which assumes
+  every node is below 2 GB. That holds here (stack 0x408…, heap low) and on the PS2, but anything
+  that moves allocations above 0x80000000 would break it.

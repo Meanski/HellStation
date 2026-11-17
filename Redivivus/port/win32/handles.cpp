@@ -1,5 +1,6 @@
 #include "Redivivus/port/win32/handles.h"
 #include "Redivivus/port/platform.h"
+#include <cstdlib>
 
 HsObject* hs_handle_get(HANDLE h, HsObject::Kind kind) {
     HsObject* o = (HsObject*)h;
@@ -11,6 +12,12 @@ HsObject* hs_handle_get(HANDLE h, HsObject::Kind kind) {
 }
 
 HANDLE hs_handle_new(HsObject* o) { return (HANDLE)o; }
+
+bool hs_trace_enabled() {
+    static int on = -1;
+    if (on < 0) { const char* v = getenv("HS_TRACE"); on = v && *v && *v != '0'; }
+    return on == 1;
+}
 
 void hs_stub_once(const char* name, const char* note) {
     hs_log("STUB %s: %s", name, note ? note : "");

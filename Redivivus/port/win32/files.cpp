@@ -73,6 +73,7 @@ HANDLE WINAPI CreateFileA(LPCSTR name, DWORD access, DWORD, LPSECURITY_ATTRIBUTE
              : HS_OPEN_EXISTING;
     int fd = hs_file_open(target.c_str(), acc, disp);
     if (fd < 0 && write && !(access & GENERIC_READ)) fd = hs_file_open(target.c_str(), HS_OPEN_WRITE, disp);
+    if (hs_trace_enabled()) hs_log("CreateFileA(\"%s\") -> %s %s", name, target.c_str(), fd < 0 ? "FAILED" : "ok");
     if (fd < 0) {
         SetLastError(win_error(hs_errno()));
         return INVALID_HANDLE_VALUE;

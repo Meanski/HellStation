@@ -525,3 +525,52 @@ COLORREF WINAPI GetPixel(HDC, int, int) { return 0; }
 BOOL WINAPI GetCharWidthA(HDC, UINT first, UINT last, LPINT w) { for (UINT i = first; i <= last; i++) w[i - first] = 8; return TRUE; }
 LONG WINAPI RegDeleteKeyA(HKEY, LPCSTR) { return ERROR_SUCCESS; }
 LONG WINAPI RegEnumValueA(HKEY, DWORD, LPSTR, LPDWORD, LPDWORD, LPDWORD, LPBYTE, LPDWORD) { return ERROR_NO_MORE_ITEMS; }
+
+// ---- Winsock name and socket calls -------------------------------------------------------------
+// These share names with the host C library's BSD sockets, which have a
+// different calling convention and different structures. Defining them here
+// keeps the game's (stdcall, Winsock-layout) calls off the host's versions.
+// Single player has no network: names resolve to loopback, sockets fail.
+
+namespace {
+int net_down() { t_wsaError = WSAENETDOWN; return SOCKET_ERROR; }
+}  // namespace
+int WSAAPI gethostname(char* name, int n) { std::snprintf(name, (size_t)n, "hellstation"); return 0; }
+struct hostent* WSAAPI gethostbyname(const char*) {
+    static u_long loopback = 0x0100007F;  // 127.0.0.1 in network order
+    static char* addrs[] = {(char*)&loopback, nullptr};
+    static char* aliases[] = {nullptr};
+    static char name[] = "hellstation";
+    static struct hostent h = {name, aliases, AF_INET, 4, addrs};
+    return &h;
+}
+u_short WSAAPI htons(u_short v) { return (u_short)((v << 8) | (v >> 8)); }
+u_short WSAAPI ntohs(u_short v) { return htons(v); }
+u_long WSAAPI htonl(u_long v) { return ((v & 0xFF) << 24) | ((v & 0xFF00) << 8) | ((v >> 8) & 0xFF00) | (v >> 24); }
+u_long WSAAPI ntohl(u_long v) { return htonl(v); }
+unsigned long WSAAPI inet_addr(const char* s) {
+    unsigned a, b, c, d;
+    if (!s || std::sscanf(s, "%u.%u.%u.%u", &a, &b, &c, &d) != 4 || a > 255 || b > 255 || c > 255 || d > 255) return INADDR_NONE;
+    return (unsigned long)(a | (b << 8) | (c << 16) | (d << 24));
+}
+char* WSAAPI inet_ntoa(struct in_addr in) {
+    static char buf[16];
+    unsigned long v;
+    std::memcpy(&v, &in, 4);
+    std::snprintf(buf, sizeof buf, "%lu.%lu.%lu.%lu", v & 0xFF, (v >> 8) & 0xFF, (v >> 16) & 0xFF, v >> 24);
+    return buf;
+}
+SOCKET WSAAPI socket(int, int, int) { t_wsaError = WSAENETDOWN; return INVALID_SOCKET; }
+int WSAAPI bind(SOCKET, const struct sockaddr*, int) { return net_down(); }
+int WSAAPI connect(SOCKET, const struct sockaddr*, int) { return net_down(); }
+int WSAAPI listen(SOCKET, int) { return net_down(); }
+SOCKET WSAAPI accept(SOCKET, struct sockaddr*, int*) { t_wsaError = WSAENETDOWN; return INVALID_SOCKET; }
+int WSAAPI send(SOCKET, const char*, int, int) { return net_down(); }
+int WSAAPI recv(SOCKET, char*, int, int) { return net_down(); }
+int WSAAPI setsockopt(SOCKET, int, int, const char*, int) { return net_down(); }
+int WSAAPI getsockname(SOCKET, struct sockaddr*, int*) { return net_down(); }
+int WSAAPI getpeername(SOCKET, struct sockaddr*, int*) { return net_down(); }
+int WSAAPI select(int, fd_set*, fd_set*, fd_set*, const TIMEVAL* timeout) {
+    if (timeout) hs_sleep_ms((uint32_t)(timeout->tv_sec * 1000 + timeout->tv_usec / 1000));
+    return 0;
+}

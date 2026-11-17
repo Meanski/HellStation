@@ -22,3 +22,6 @@ HANDLE hs_handle_new(HsObject* o);
 // Log the first call to a function that is not (fully) implemented yet.
 void hs_stub_once(const char* name, const char* note);
 #define HS_STUB(note) do { static bool s_logged; if (!s_logged) { s_logged = true; hs_stub_once(__func__, note); } } while (0)
+
+// HS_TRACE=1 in the environment: log file opens and long waits.
+bool hs_trace_enabled();

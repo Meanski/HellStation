@@ -118,4 +118,17 @@ int _access(const char* path, int) {
 }
 int _mkdir(const char* path) { return hs_file_mkdir(hs_win_to_target(path, true).c_str()); }
 
+namespace { thread_local unsigned t_randSeed = 1; }
+int hs_msvc_rand(void) {
+    t_randSeed = t_randSeed * 214013u + 2531011u;
+    return (int)((t_randSeed >> 16) & 0x7FFF);
+}
+void hs_msvc_srand(unsigned seed) { t_randSeed = seed; }
+
+#undef fopen
+FILE* hs_fopen(const char* path, const char* mode) {
+    bool write = mode && (std::strchr(mode, 'w') || std::strchr(mode, 'a') || std::strchr(mode, '+'));
+    return std::fopen(hs_win_to_target(path, write).c_str(), mode);
+}
+
 }  // extern "C"

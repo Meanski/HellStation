@@ -1,0 +1,19 @@
+# Symbols the port binary may import from the host's shared libraries.
+#
+# Anything else is a bug: usually a Win32 function the shim doesn't define yet
+# that happens to share a name with a host-library function (BSD sockets,
+# POSIX file calls), so the linker bound the game's stdcall call to a cdecl
+# function with different structures. tools/port/check-imports.sh enforces this.
+#
+# C runtime with identical semantics to MSVC's for how the game uses it:
+abort atoi bsearch calloc exit fclose fflush fgets fprintf fputc fputs fread free fseek ftell fwrite
+isalnum isalpha isspace malloc memalign memcmp memcpy memmove memset printf qsort realloc setvbuf
+snprintf sprintf stderr strcat strchr strcmp strcpy strcspn strdup strlen strncat strncmp strncpy
+strnlen strpbrk strrchr strstr strtok time tolower toupper vfprintf vsnprintf vsprintf
+gmtime_r localtime_r timegm strcasecmp strncasecmp
+# Math (double precision, as the original's x87 code computes them):
+cos cosl floor log log10 log10l logl pow powl sin sinl sqrt
+# Backend only (POSIX, SDL, threads, crash handling):
+backtrace backtrace_symbols_fd clock_gettime close closedir fopen fstat fstat64 lseek64 mkdir
+nanosleep open opendir raise read readdir rename sched_yield sigaction signal stat stat64 unlink
+write getenv usleep pthread_kill mmap munmap madvise pthread_getattr_np pthread_attr_getstack pthread_attr_destroy

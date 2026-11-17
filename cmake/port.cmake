@@ -36,7 +36,10 @@ function(hs_port_sources var)
 endfunction()
 
 set(HS_GAME_DEFS -D_WIN32 -DHELLSTATION_PORT)
-set(HS_GAME_FLAGS -fshort-wchar "-I${HS_PORT_DIR}/include" "SHELL:-idirafter ${HS_MINGW_INCLUDE}")
+# -fvisibility=hidden: the game's and the shim's Win32 names (socket, select,
+# send, ...) must never be exported, or host libraries that call the POSIX
+# function of the same name would bind to the stdcall Win32 one.
+set(HS_GAME_FLAGS -fshort-wchar -fvisibility=hidden "-I${HS_PORT_DIR}/include" "SHELL:-idirafter ${HS_MINGW_INCLUDE}")
 
 function(hs_port_flags target)
     # BEFORE: the prelude has to precede d2_platform.h's forced include.
@@ -78,4 +81,13 @@ function(hs_port_link target)
     endif()
     # Every Win32 gap the link reports at once, not one at a time.
     target_link_options(${target} PRIVATE -Wl,--unresolved-symbols=report-all)
+    # Nothing in the executable is for shared libraries to bind to.
+    target_compile_options(hs_backend PRIVATE -fvisibility=hidden)
+    # The link-name trap: refuse a binary that binds a game call to an unreviewed host symbol.
+    add_custom_command(TARGET ${target} POST_BUILD
+        COMMAND "${D2_ROOT}/tools/port/check-imports.sh" "$<TARGET_FILE:${target}>"
+        WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
+    # Fixed addresses, like the PS2's ELF: crash reports map straight to file:line.
+    set_target_properties(${target} PROPERTIES POSITION_INDEPENDENT_CODE OFF)
+    target_link_options(${target} PRIVATE -no-pie)
 endfunction()

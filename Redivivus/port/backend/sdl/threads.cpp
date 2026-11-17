@@ -5,12 +5,27 @@
 #include <cerrno>
 #include <ctime>
 #include <pthread.h>
+#include <sys/mman.h>
+#include <csignal>
 
 struct hs_mutex { pthread_mutex_t m; };
 struct hs_cond { pthread_cond_t c; };
 struct hs_thread { pthread_t t; void (*fn)(void*); void* arg; };
 
 extern "C" {
+
+void* hs_vm_reserve(size_t size, size_t align) {
+    if (align < 4096) align = 4096;
+    size_t span = size + align;
+    void* p = mmap(nullptr, span, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
+    if (p == MAP_FAILED) return nullptr;
+    uintptr_t base = (uintptr_t)p, aligned = (base + align - 1) & ~(uintptr_t)(align - 1);
+    if (aligned > base) munmap(p, aligned - base);                       // trim the head
+    if (base + span > aligned + size) munmap((void*)(aligned + size), base + span - aligned - size);  // and tail
+    return (void*)aligned;
+}
+void hs_vm_decommit(void* p, size_t size) { madvise(p, size, MADV_DONTNEED); }
+void hs_vm_release(void* p, size_t size) { munmap(p, size); }
 
 hs_mutex* hs_mutex_create(void) {
     hs_mutex* m = new hs_mutex;
@@ -47,7 +62,31 @@ int hs_cond_wait(hs_cond* c, hs_mutex* m, uint32_t timeoutMs) {
 }
 void hs_cond_broadcast(hs_cond* c) { pthread_cond_broadcast(&c->c); }
 
+// Every thread registers itself so a stall can be sampled (hs_dump_all_threads).
+static pthread_mutex_t g_regLock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_t g_threads[64];
+static int g_threadCount;
+static thread_local uintptr_t t_stackTop;
+uintptr_t hs_current_stack_top(void) { return t_stackTop; }
+void hs_register_current_thread(void) {
+    pthread_attr_t a;
+    if (pthread_getattr_np(pthread_self(), &a) == 0) {
+        void* lo;
+        size_t size;
+        if (pthread_attr_getstack(&a, &lo, &size) == 0) t_stackTop = (uintptr_t)lo + size;
+        pthread_attr_destroy(&a);
+    }
+    pthread_mutex_lock(&g_regLock);
+    if (g_threadCount < 64) g_threads[g_threadCount++] = pthread_self();
+    pthread_mutex_unlock(&g_regLock);
+}
+void hs_dump_all_threads(int sig) {
+    for (int i = 0; i < g_threadCount; i++)
+        if (!pthread_equal(g_threads[i], pthread_self())) pthread_kill(g_threads[i], sig);
+}
+
 static void* trampoline(void* p) {
+    hs_register_current_thread();
     hs_thread* t = (hs_thread*)p;
     t->fn(t->arg);
     return nullptr;

@@ -61,16 +61,44 @@ SIZE_T WINAPI GlobalSize(HGLOBAL p) { return p ? heap_size(p) : 0; }
 HLOCAL WINAPI LocalAlloc(UINT flags, SIZE_T n) { return heap_alloc(n, flags & LMEM_ZEROINIT); }
 HLOCAL WINAPI LocalFree(HLOCAL p) { heap_free(p); return nullptr; }
 
-// VirtualAlloc: reserve and commit are the same thing here; memory is zeroed,
-// page-aligned, and freed only by a MEM_RELEASE of the base address.
+// VirtualAlloc: a reservation is zero-filled, 64 KiB-aligned address space
+// (Storm derives a heap's descriptor from the top 16 bits of its blocks'
+// addresses, so the Windows allocation granularity is load-bearing) from the platform
+// (lazily backed on Phase 1); committing inside it is free; decommit returns
+// pages to zero, as Windows guarantees for a later recommit.
+namespace {
+std::mutex g_vmLock;
+std::map<uintptr_t, size_t>& vm_regions() { static std::map<uintptr_t, size_t> m; return m; }
+size_t page_round(size_t n) { return (n + 4095) & ~(size_t)4095; }
+}  // namespace
+
 LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
-    if (addr && (type & MEM_COMMIT) && !(type & MEM_RESERVE)) return addr;  // commit inside a reservation
-    void* p = memalign(4096, n ? n : 1);
-    if (p) std::memset(p, 0, n);
+    if (addr && !(type & MEM_RESERVE)) return addr;  // commit inside an existing reservation
+    if (addr) HS_STUB("VirtualAlloc at a fixed address is not honoured; returning a new region");
+    size_t size = page_round(n ? n : 1);
+    void* p = hs_vm_reserve(size, 0x10000);  // Windows allocation granularity
+    if (!p) { SetLastError(ERROR_NOT_ENOUGH_MEMORY); return nullptr; }
+    std::lock_guard<std::mutex> l(g_vmLock);
+    vm_regions()[(uintptr_t)p] = size;
     return p;
 }
-BOOL WINAPI VirtualFree(LPVOID p, SIZE_T, DWORD type) {
-    if (type & MEM_RELEASE) std::free(p);
+BOOL WINAPI VirtualFree(LPVOID p, SIZE_T n, DWORD type) {
+    if (type & MEM_RELEASE) {
+        size_t size = 0;
+        {
+            std::lock_guard<std::mutex> l(g_vmLock);
+            auto it = vm_regions().find((uintptr_t)p);
+            if (it == vm_regions().end()) { SetLastError(ERROR_INVALID_ADDRESS); return FALSE; }
+            size = it->second;
+            vm_regions().erase(it);
+        }
+        hs_vm_release(p, size);
+        return TRUE;
+    }
+    if (type & MEM_DECOMMIT) {
+        uintptr_t start = (uintptr_t)p & ~(uintptr_t)4095;
+        hs_vm_decommit((void*)start, page_round(n + ((uintptr_t)p - start)));
+    }
     return TRUE;
 }
 BOOL WINAPI VirtualProtect(LPVOID, SIZE_T, DWORD newProt, PDWORD oldProt) {

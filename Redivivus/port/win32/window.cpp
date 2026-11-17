@@ -129,9 +129,11 @@ bool matches(const MSG& m, HWND h, UINT lo, UINT hi) {
 
 }  // namespace
 
+// Validated by membership, never by dereferencing: the game passes handles
+// such as GetDesktopWindow() that aren't window records.
 HsWindow* hs_window_from(HWND h) {
-    HsWindow* w = (HsWindow*)h;
-    return (w && w->magic == HsWindow::kMagic) ? w : nullptr;
+    for (HsWindow* w : g_windows) if ((HWND)w == h) return w;
+    return nullptr;
 }
 
 HsWindow* hs_main_window() { return g_windows.empty() ? nullptr : g_windows.front(); }

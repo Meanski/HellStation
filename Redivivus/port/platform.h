@@ -20,6 +20,14 @@ const char* hs_data_dir(void);
 void hs_log(const char* fmt, ...) __attribute__((format(printf, 1, 2)));
 void hs_fatal(const char* fmt, ...) __attribute__((format(printf, 1, 2), noreturn));
 
+// ---- Virtual memory -----------------------------------------------------------
+// Reserve `size` bytes of zero-filled, read-write address space aligned to
+// `align` (a power of two; Win32 VirtualAlloc needs 64 KiB), lazily backed where
+// the target can. Decommit returns pages to zero; release frees.
+void* hs_vm_reserve(size_t size, size_t align);
+void  hs_vm_decommit(void* p, size_t size);
+void  hs_vm_release(void* p, size_t size);
+
 // ---- Files ------------------------------------------------------------------
 // Paths given to the backend are already translated to target spelling
 // (see win32/paths.cpp). Lookup is case-insensitive per component, as on
