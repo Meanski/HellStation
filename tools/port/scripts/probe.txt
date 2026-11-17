@@ -1,0 +1,2 @@
+# Main menu -> Single Player, then look at the next screen.
+700 click 400 308

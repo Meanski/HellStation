@@ -109,9 +109,11 @@ void dump_frame() {
     static const char* dir = std::getenv("HS_FRAME_DUMP");
     if (!dir) return;
     static uint32_t every = std::getenv("HS_FRAME_DUMP_EVERY") ? (uint32_t)std::atoi(std::getenv("HS_FRAME_DUMP_EVERY")) : 60;
+    if (std::getenv("HS_FRAME_DUMP_LAST")) every = 1;  // keep only the newest frame (overwritten)
     if (!every || g_frameNo % every) return;
     char path[512];
-    std::snprintf(path, sizeof path, "%s/frame-%06u.ppm", dir, g_frameNo);
+    if (std::getenv("HS_FRAME_DUMP_LAST")) std::snprintf(path, sizeof path, "%s/last.ppm", dir);
+    else std::snprintf(path, sizeof path, "%s/frame-%06u.ppm", dir, g_frameNo);
     FILE* f = std::fopen(path, "wb");
     if (!f) return;
     std::fprintf(f, "P6\n%d %d\n255\n", g_frameW, g_frameH);
@@ -120,6 +122,92 @@ void dump_frame() {
         std::fwrite(px, 1, 3, f);
     }
     std::fclose(f);
+}
+
+// ---- Scripted input (HS_INPUT_SCRIPT=<file>) -----------------------------------
+// One step per line, keyed to the presented-frame count so replays don't depend
+// on host speed:
+//   <frame> move <x> <y>          mouse to frame coordinates
+//   <frame> click <x> <y> [right] move, press, release
+//   <frame> key <vk>              press and release a Windows virtual key (hex or decimal)
+//   <frame> text <characters...>  typed characters (rest of the line)
+//   <frame> quit                  close the window
+// '#' starts a comment. Events from a step are delivered one per poll.
+struct ScriptStep { uint32_t frame; std::vector<hs_event> events; };
+std::vector<ScriptStep> g_script;
+size_t g_scriptNext;
+std::vector<hs_event> g_pending;
+size_t g_pendingNext;
+
+void load_script() {
+    static bool loaded;
+    if (loaded) return;
+    loaded = true;
+    const char* path = std::getenv("HS_INPUT_SCRIPT");
+    if (!path) return;
+    FILE* f = std::fopen(path, "r");
+    if (!f) { hs_log("input script %s: cannot open", path); return; }
+    char line[512];
+    while (std::fgets(line, sizeof line, f)) {
+        if (char* hash = std::strchr(line, '#')) *hash = 0;
+        unsigned frame;
+        char cmd[16];
+        int used = 0;
+        if (std::sscanf(line, "%u %15s %n", &frame, cmd, &used) < 2) continue;
+        const char* rest = line + used;
+        ScriptStep step{frame, {}};
+        hs_event e{};
+        int x = 0, y = 0;
+        if (!std::strcmp(cmd, "move") || !std::strcmp(cmd, "click")) {
+            char which[16] = "";
+            std::sscanf(rest, "%d %d %15s", &x, &y, which);
+            e.type = HS_EV_MOUSE_MOVE; e.x = x; e.y = y;
+            step.events.push_back(e);
+            if (!std::strcmp(cmd, "click")) {
+                e.type = HS_EV_MOUSE_BUTTON;
+                e.button = !std::strcmp(which, "right") ? HS_BUTTON_RIGHT : HS_BUTTON_LEFT;
+                e.down = 1; step.events.push_back(e);
+                e.down = 0; step.events.push_back(e);
+            }
+        } else if (!std::strcmp(cmd, "key")) {
+            e.type = HS_EV_KEY;
+            e.vk = (int)std::strtol(rest, nullptr, 0);
+            e.scancode = set1_from_vk(e.vk);
+            e.down = 1; step.events.push_back(e);
+            e.down = 0; step.events.push_back(e);
+        } else if (!std::strcmp(cmd, "text")) {
+            for (const char* c = rest; *c && *c != '\n' && *c != '\r'; ++c) {
+                hs_event ch{};
+                ch.type = HS_EV_CHAR; ch.ch = (unsigned char)*c;
+                step.events.push_back(ch);
+            }
+        } else if (!std::strcmp(cmd, "quit")) {
+            e.type = HS_EV_QUIT; step.events.push_back(e);
+        } else {
+            hs_log("input script: unknown command '%s'", cmd);
+            continue;
+        }
+        g_script.push_back(step);
+    }
+    std::fclose(f);
+    hs_log("input script %s: %zu steps", path, g_script.size());
+}
+
+bool next_scripted(hs_event* ev) {
+    load_script();
+    if (g_pendingNext >= g_pending.size() && g_scriptNext < g_script.size() && g_frameNo >= g_script[g_scriptNext].frame) {
+        hs_log("input script: frame %u step %zu", g_frameNo, g_scriptNext);
+        g_pending = g_script[g_scriptNext++].events;
+        g_pendingNext = 0;
+    }
+    if (g_pendingNext >= g_pending.size()) return false;
+    *ev = g_pending[g_pendingNext++];
+    if (ev->type == HS_EV_MOUSE_MOVE || ev->type == HS_EV_MOUSE_BUTTON) { g_mouseX = ev->x; g_mouseY = ev->y; }
+    if (ev->type == HS_EV_MOUSE_BUTTON && ev->button == HS_BUTTON_LEFT) g_keys[0x01] = ev->down;
+    if (ev->type == HS_EV_MOUSE_BUTTON && ev->button == HS_BUTTON_RIGHT) g_keys[0x02] = ev->down;
+    if (ev->type == HS_EV_KEY) g_keys[ev->vk & 0xFF] = ev->down;
+    ev->x = g_mouseX; ev->y = g_mouseY;
+    return true;
 }
 
 }  // namespace
@@ -177,6 +265,7 @@ void hs_video_present(const uint8_t* pixels, int width, int height, int pitch, c
 
 int hs_input_poll(hs_event* ev) {
     std::lock_guard<std::mutex> l(g_videoLock);
+    if (next_scripted(ev)) return 1;
     if (!SDL_WasInit(SDL_INIT_EVENTS)) return 0;
     SDL_Event e;
     while (SDL_PollEvent(&e)) {

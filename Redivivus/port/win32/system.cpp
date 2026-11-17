@@ -178,7 +178,17 @@ HMODULE WINAPI LoadLibraryA(LPCSTR name) {
     SetLastError(ERROR_MOD_NOT_FOUND);
     return nullptr;
 }
-HMODULE WINAPI LoadLibraryExA(LPCSTR name, HANDLE, DWORD) { return LoadLibraryA(name); }
+// LOAD_LIBRARY_AS_DATAFILE is how the game opens its language module (D2.LNG)
+// for resources only: accelerators and error strings, both of which have
+// fallbacks. There are no PE resources on a port target, so a data-file load
+// yields a resource-less module and every resource lookup misses.
+HMODULE WINAPI LoadLibraryExA(LPCSTR name, HANDLE, DWORD flags) {
+    if (flags & LOAD_LIBRARY_AS_DATAFILE) {
+        hs_log("LoadLibraryExA(\"%s\", AS_DATAFILE): resource-less module", name ? name : "");
+        return (HMODULE)(uintptr_t)0x00410000;
+    }
+    return LoadLibraryA(name);
+}
 BOOL WINAPI FreeLibrary(HMODULE) { return TRUE; }
 FARPROC WINAPI GetProcAddress(HMODULE, LPCSTR name) {
     hs_log("GetProcAddress(\"%s\"): not available on this target",

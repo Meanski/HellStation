@@ -128,3 +128,24 @@ minutes). Steps and findings, in order:
 - **Watch:** Storm's lists treat negative pointers as terminators (`(intptr_t)p <= 0`), which assumes
   every node is below 2 GB. That holds here (stack 0x408…, heap low) and on the PS2, but anything
   that moves allocations above 0x80000000 would break it.
+
+## 2026-11-17: Phase 1: in game, Rogue Encampment (Act 1), on i686 Linux
+
+`tools/port/scripts/rogue-encampment.txt` drives the build headlessly: main menu → Single Player → new
+**LoD** Barbarian "Hellstation" → OK → Rogue Encampment, next to Warriv, with rain, the campfire and the
+full HUD. It stayed stable in town for thousands of frames (14,600 presented frames in the run).
+
+- **Scripted input:** `HS_INPUT_SCRIPT` steps keyed to the presented-frame count (deterministic at any
+  host speed), injected through the same event path as real input. This is the smoke test and the
+  future controller harness.
+- **`D2.LNG`:** the game loads its language module as a data file for accelerators and error strings,
+  both of which have fallbacks. The owner's 1.14d bundle has no `D2.LNG`, and port targets have no PE
+  resources anyway; `LOAD_LIBRARY_AS_DATAFILE` loads now yield a resource-less module.
+- **First generator defect found:** `PALETTE_LoadFromFile` computes the end of its path buffer from
+  another local's address (a VC8 frame-layout artefact), so under GCC entering a game halts (Fog line
+  57). An upstream issue is drafted in `docs/port/upstream/palette-frame-artefact.md`.
+- **Overrides mechanism** (`HS_PORT_OVERRIDES`, `docs/port/overrides.md`): weaken the generated
+  definition in the module archive (`objcopy`), rename and globalize the file-statics it needs, and link
+  the hand-written replacement as objects into the executable. A per-module stamp source makes the table
+  a build input. The palette fix and upstream's LRU single-node unlink fix (portable now: no x86
+  `CALL` rewriting) both use it.

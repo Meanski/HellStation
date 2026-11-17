@@ -1,0 +1,6 @@
+# Smoke test: main menu -> Single Player -> new Barbarian -> Rogue Encampment.
+# Frame numbers are presented frames (deterministic under any host speed).
+700  click 400 308      # Single Player
+1500 click 400 300      # Barbarian
+2300 text Hellstation   # character name
+2500 click 700 555      # OK
