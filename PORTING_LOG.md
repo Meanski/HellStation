@@ -240,3 +240,54 @@ interpose everywhere else). x86 doesn't care about alignment, which is why Linux
 Memory: the heap ran past 32 MB into Extended RAM before the menu (DC6 buffers at 0x23…). Fitting a
 retail PS2 means trimming Storm/Fog pool reservations (~20 MB at the menu) and the 6.7 MB of
 unoptimised code: Phase 3.
+
+## 2026-11-17: in game on PS2; -O0 was the frame-rate problem
+
+- The Rogue Encampment smoke script now runs on the EE as well (`run-pcsx2.sh --script`, staged as
+  `host:input.txt`). The script player moved to `Redivivus/port/input/script.cpp`, shared with SDL.
+- Controller layer 0 is in: `input/virtual_mouse.cpp` (neutral) + `backend/ps2/pad.cpp` (rom0
+  SIO2MAN/PADMAN, libpad). Left stick coarse cursor, right stick fine, ✕/R2 left click, ○/L2 right
+  click, Start Esc, △ I, □ S, R1 C, Select Tab, L1 Shift, L3 R, R3 Alt, D-pad belt 1-4. The pad
+  comes up digital (mode 4); analogue is re-requested every 30 reads until it reports mode 7.
+- Measured in PCSX2 (Extended RAM, EE at 100% speed), standing in town next to Warriv:
+  - default build (no -O, -g): 10 FPS;
+  - `-O2 -fno-inline -fno-ipa-{cp,sra,icf,modref,pure-const} -fno-strict-aliasing -fwrapv
+    -fno-delete-null-pointer-checks`: 25 FPS, the game's own cap.
+- Plain -O2 doesn't link: inlining removes the statics the override mechanism weakens and patches
+  (SMemCalculateAllocationLayout, LRUCACHE_PopOldest), and template members a TU instantiated only
+  inline are never emitted for other TUs (TSHashTable). No inlining and no IPA cloning keep every
+  function a real, patchable symbol. The other flags cover UB the decompiled code may lean on.
+- In-game hs.log cost: Storm reserves 64 KiB blocks continually (4,247 log lines per run), each
+  written to host: one byte per syscall. Reserve logging is now per 4 MiB of growth, and log writes
+  go one per contiguous ring run.
+
+## 2026-11-17: units teleporting in town = PCSX2 recompiler LWR bug
+
+- Symptom: NPCs and the player sometimes covered a whole walk (4-11 subtiles) in one frame, at
+  the same spots every time. Linux x86, same script: 0 jumps. PS2: 43 per run.
+- Chain, each link measured: no server corrections (packet 0x15 never fired); frame pacing clean
+  (1 server tick per frame); the jump is one `PATH_AdvanceUnitAlongPath` step;
+  `PATH_ComputeDirectMovementVector` decided the target was within one step and set the velocity
+  to the whole remaining distance (seen as `DRLGPATH_NormalizeFixedPointPair` input (0x80000,
+  -0x30000)). Its velocity fields sit at unaligned offsets in packed `D2DynamicPathStrc` (0x72,
+  0x76) and load through LWL/LWR, then `slt` compares 64-bit registers. Every snapping walk had a
+  negative velocity component.
+- Probe (`backend/ps2/lwlr_probe.cpp`, packed int -4263): recompiler `lwl;lwr` gives
+  0x00000000ffffef59, interpreter gives 0xffffffffffffef59. `lwr;lwl` and `lwl;lwr;sll 0` are
+  correct on both. PCSX2's EE recompiler zeroes the upper half on a non-aligned LWR.
+- Fix: every EE object goes through `tools/port/ee-cc-launcher.sh` -> `ee-lwr-fixup.py`, which
+  appends `sll rt,rt,0` after each LWR (a delay-slot LWR is hoisted above an ordinary branch;
+  branch-likely or a conflict fails the build). After: 0 snaps, 1 jump (the spawn, as on Linux).
+- Real hardware is expected to be unaffected (interpreter follows MIPS III) but is unverified.
+  Draft report: `docs/port/upstream/pcsx2-lwr-sign-extension.md`.
+- `-mstrict-align` doesn't stop GCC emitting LWL/LWR for the R5900.
+
+## 2026-11-17: EE build optimised by default
+
+- `cmake/ps2-ee.cmake` now builds `-O2 -g -fno-inline -fno-ipa-{cp,sra,icf,modref,pure-const}
+  -fno-strict-aliasing -fwrapv -fno-delete-null-pointer-checks` (was: no -O). Town in PCSX2: 10 FPS
+  -> 25 FPS (the game's cap), steady 40 ms frames.
+- The investigation's diagnostics (pacing trace, warp/jump detector, path-step wraps, function
+  instrumentation, a pre-empted D2PathPointStrc that turned out not to matter) are removed. The LWR
+  probe stays as a one-line start-up `CPU check:`.
+- `-DHS_EE_LWR_FIXUP=OFF` rebuilds without the fix-up, to reproduce the bug.

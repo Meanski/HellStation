@@ -103,6 +103,12 @@ keep the TSV current in the same commit as the shim change.
   NaN test, divide-by-zero or double-dependent RNG/physics as suspect.
 - EE threads are priority-scheduled without time slicing: every shim wait or spin must yield.
 - GS has 4 MB eDRAM; NTSC is 640×448 (scale or letterbox the 640×480 frame).
+- PCSX2's EE recompiler loses the upper half of a non-aligned `LWR`, so unaligned (packed-struct)
+  loads of negative values go wrong there. Every EE object passes through `tools/port/ee-lwr-fixup.py`
+  to compensate; don't bypass the launcher, and check the `CPU check:` line in `hs.log` when moving
+  to another emulator or PCSX2 version.
+- The EE build is optimised (`cmake/ps2-ee.cmake`), but never inlining or IPA-cloning: overrides
+  patch functions by symbol.
 
 ## Upstream
 
