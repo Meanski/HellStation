@@ -1,10 +1,13 @@
-// PS2 backend: GS presentation through gsKit, and (for now) no input.
+// PS2 backend: GS presentation through gsKit, and input (pad as virtual mouse,
+// plus the scripted replay from host:input.txt when it exists).
 //
 // The game's 8-bit frame is uploaded as a PSMT8 texture (1024 wide, the GS
 // buffer-width constraint for 8-bit textures, covering the 800-pixel frame)
 // with a 256-entry CT32 CLUT, and drawn scaled to the display mode. Palette and
 // gamma changes cost only the 1 KiB CLUT upload. Same path as tools/port/ps2-smoke.
 #include "Redivivus/port/platform.h"
+#include "Redivivus/port/backend/ps2/pad.h"
+#include "Redivivus/port/input/input.h"
 
 #include <cstring>
 #include <dmaKit.h>
@@ -17,10 +20,17 @@ constexpr int kTexH = 1024;
 GSGLOBAL* g_gs;
 GSTEXTURE g_tex;
 int g_frameW, g_frameH;
+uint32_t g_frameNo;      // presented frames: the clock for scripts and the pad
+uint32_t g_padFrame = ~0u;
+hs::input::Script g_script;
+hs::input::VirtualMouse g_mouse;
+int g_mouseX = 400, g_mouseY = 300;
+bool g_keys[256];
 
 // CSM1 CLUT: entries 8-15 and 16-23 of each 32-entry block are swapped.
 unsigned clut_slot(unsigned i) { return (i & ~0x18u) | ((i & 0x08u) << 1) | ((i & 0x10u) >> 1); }
 }  // namespace
+
 
 extern "C" {
 
@@ -72,13 +82,46 @@ void hs_video_present(const uint8_t* pixels, int width, int height, int pitch, c
                               GS_SETREG_RGBAQ(0x80, 0x80, 0x80, 0x80, 0));
     gsKit_queue_exec(g_gs);
     gsKit_sync_flip(g_gs);
+    // Frame pacing, logged every 250 presented frames: the longest gap and the slow frames.
+    static uint32_t last, worst, slow;
+    uint32_t now = hs_ticks_ms(), dt = last ? now - last : 0;
+    last = now;
+    if (dt > worst) worst = dt;
+    if (dt > 50) slow++;
+    if (++g_frameNo % 250 == 0) {
+        hs_log("frame %u: worst gap %u ms, %u frames over 50 ms", (unsigned)g_frameNo, (unsigned)worst, (unsigned)slow);
+        worst = slow = 0;
+    }
 }
 
-// Input arrives in a later step (USB mouse/keyboard, then the pad).
-int hs_input_poll(hs_event*) { return 0; }
-int hs_input_key_down(int) { return 0; }
-void hs_input_mouse_pos(int* x, int* y) { *x = 0; *y = 0; }
-void hs_input_warp_mouse(int, int) {}
-void hs_input_show_cursor(int) {}
+// Called from the game's message pump. The pad is sampled once per presented
+// frame, so cursor speed follows the game's frame rate, not the polling rate.
+int hs_input_poll(hs_event* ev) {
+    static bool started;
+    if (!started) {
+        started = true;
+        hs_ps2_pad_init();
+        g_script.load("host:input.txt");
+    }
+    bool got = g_script.next(g_frameNo, ev);
+    if (!got && g_frameW && g_padFrame != g_frameNo) {
+        g_padFrame = g_frameNo;
+        hs::input::PadState pad;
+        hs_ps2_pad_read(&pad);
+        g_mouse.update(pad, &g_mouseX, &g_mouseY, g_frameW, g_frameH);
+    }
+    if (!got) got = g_mouse.next(ev);
+    if (!got) return 0;
+    if (ev->type == HS_EV_MOUSE_MOVE || ev->type == HS_EV_MOUSE_BUTTON) { g_mouseX = ev->x; g_mouseY = ev->y; }
+    if (ev->type == HS_EV_MOUSE_BUTTON) g_keys[ev->button == HS_BUTTON_LEFT ? 0x01 : ev->button == HS_BUTTON_RIGHT ? 0x02 : 0x04] = ev->down;
+    if (ev->type == HS_EV_KEY) g_keys[ev->vk & 0xFF] = ev->down;
+    ev->x = g_mouseX;
+    ev->y = g_mouseY;
+    return 1;
+}
+int hs_input_key_down(int vk) { return g_keys[vk & 0xFF]; }
+void hs_input_mouse_pos(int* x, int* y) { *x = g_mouseX; *y = g_mouseY; }
+void hs_input_warp_mouse(int x, int y) { g_mouseX = x; g_mouseY = y; }
+void hs_input_show_cursor(int) {}  // D2 draws its own cursor into the frame
 
 }  // extern "C"

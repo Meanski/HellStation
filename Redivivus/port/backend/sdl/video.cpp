@@ -5,6 +5,7 @@
 // writes every Nth presented frame (HS_FRAME_DUMP_EVERY, default 60) as a PPM,
 // which is how headless runs produce screenshots.
 #include "Redivivus/port/platform.h"
+#include "Redivivus/port/input/input.h"
 
 #include <SDL2/SDL.h>
 #include <atomic>
@@ -79,22 +80,7 @@ int vk_from_scancode(SDL_Scancode sc) {
 }
 
 // PC set-1 scancode for the lParam of WM_KEY*: the subset the game reads.
-int set1_from_vk(int vk) {
-    static const char* const kRow = "QWERTYUIOP";
-    for (int i = 0; kRow[i]; i++) if (vk == kRow[i]) return 0x10 + i;
-    static const char* const kRow2 = "ASDFGHJKL";
-    for (int i = 0; kRow2[i]; i++) if (vk == kRow2[i]) return 0x1E + i;
-    static const char* const kRow3 = "ZXCVBNM";
-    for (int i = 0; kRow3[i]; i++) if (vk == kRow3[i]) return 0x2C + i;
-    if (vk >= '1' && vk <= '9') return 0x02 + (vk - '1');
-    if (vk == '0') return 0x0B;
-    if (vk >= 0x70 && vk <= 0x79) return 0x3B + (vk - 0x70);
-    switch (vk) {
-    case 0x1B: return 0x01; case 0x0D: return 0x1C; case 0x20: return 0x39; case 0x09: return 0x0F;
-    case 0x08: return 0x0E; case 0x10: return 0x2A; case 0x11: return 0x1D; case 0x12: return 0x38;
-    default: return 0;
-    }
-}
+using hs::input::set1_from_vk;
 
 void to_frame_coords(int wx, int wy, int* fx, int* fy) {
     if (!g_renderer || !g_frameW) { *fx = wx; *fy = wy; return; }
@@ -124,84 +110,13 @@ void dump_frame() {
     std::fclose(f);
 }
 
-// ---- Scripted input (HS_INPUT_SCRIPT=<file>) -----------------------------------
-// One step per line, keyed to the presented-frame count so replays don't depend
-// on host speed:
-//   <frame> move <x> <y>          mouse to frame coordinates
-//   <frame> click <x> <y> [right] move, press, release
-//   <frame> key <vk>              press and release a Windows virtual key (hex or decimal)
-//   <frame> text <characters...>  typed characters (rest of the line)
-//   <frame> quit                  close the window
-// '#' starts a comment. Events from a step are delivered one per poll.
-struct ScriptStep { uint32_t frame; std::vector<hs_event> events; };
-std::vector<ScriptStep> g_script;
-size_t g_scriptNext;
-std::vector<hs_event> g_pending;
-size_t g_pendingNext;
-
-void load_script() {
-    static bool loaded;
-    if (loaded) return;
-    loaded = true;
-    const char* path = std::getenv("HS_INPUT_SCRIPT");
-    if (!path) return;
-    FILE* f = std::fopen(path, "r");
-    if (!f) { hs_log("input script %s: cannot open", path); return; }
-    char line[512];
-    while (std::fgets(line, sizeof line, f)) {
-        if (char* hash = std::strchr(line, '#')) *hash = 0;
-        unsigned frame;
-        char cmd[16];
-        int used = 0;
-        if (std::sscanf(line, "%u %15s %n", &frame, cmd, &used) < 2) continue;
-        const char* rest = line + used;
-        ScriptStep step{frame, {}};
-        hs_event e{};
-        int x = 0, y = 0;
-        if (!std::strcmp(cmd, "move") || !std::strcmp(cmd, "click")) {
-            char which[16] = "";
-            std::sscanf(rest, "%d %d %15s", &x, &y, which);
-            e.type = HS_EV_MOUSE_MOVE; e.x = x; e.y = y;
-            step.events.push_back(e);
-            if (!std::strcmp(cmd, "click")) {
-                e.type = HS_EV_MOUSE_BUTTON;
-                e.button = !std::strcmp(which, "right") ? HS_BUTTON_RIGHT : HS_BUTTON_LEFT;
-                e.down = 1; step.events.push_back(e);
-                e.down = 0; step.events.push_back(e);
-            }
-        } else if (!std::strcmp(cmd, "key")) {
-            e.type = HS_EV_KEY;
-            e.vk = (int)std::strtol(rest, nullptr, 0);
-            e.scancode = set1_from_vk(e.vk);
-            e.down = 1; step.events.push_back(e);
-            e.down = 0; step.events.push_back(e);
-        } else if (!std::strcmp(cmd, "text")) {
-            for (const char* c = rest; *c && *c != '\n' && *c != '\r'; ++c) {
-                hs_event ch{};
-                ch.type = HS_EV_CHAR; ch.ch = (unsigned char)*c;
-                step.events.push_back(ch);
-            }
-        } else if (!std::strcmp(cmd, "quit")) {
-            e.type = HS_EV_QUIT; step.events.push_back(e);
-        } else {
-            hs_log("input script: unknown command '%s'", cmd);
-            continue;
-        }
-        g_script.push_back(step);
-    }
-    std::fclose(f);
-    hs_log("input script %s: %zu steps", path, g_script.size());
-}
+// ---- Scripted input (HS_INPUT_SCRIPT=<file>, format in port/input/input.h) ----
+hs::input::Script g_script;
 
 bool next_scripted(hs_event* ev) {
-    load_script();
-    if (g_pendingNext >= g_pending.size() && g_scriptNext < g_script.size() && g_frameNo >= g_script[g_scriptNext].frame) {
-        hs_log("input script: frame %u step %zu", g_frameNo, g_scriptNext);
-        g_pending = g_script[g_scriptNext++].events;
-        g_pendingNext = 0;
-    }
-    if (g_pendingNext >= g_pending.size()) return false;
-    *ev = g_pending[g_pendingNext++];
+    static bool loaded;
+    if (!loaded) { loaded = true; g_script.load(std::getenv("HS_INPUT_SCRIPT")); }
+    if (!g_script.next(g_frameNo, ev)) return false;
     if (ev->type == HS_EV_MOUSE_MOVE || ev->type == HS_EV_MOUSE_BUTTON) { g_mouseX = ev->x; g_mouseY = ev->y; }
     if (ev->type == HS_EV_MOUSE_BUTTON && ev->button == HS_BUTTON_LEFT) g_keys[0x01] = ev->down;
     if (ev->type == HS_EV_MOUSE_BUTTON && ev->button == HS_BUTTON_RIGHT) g_keys[0x02] = ev->down;

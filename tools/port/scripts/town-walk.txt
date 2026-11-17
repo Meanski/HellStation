@@ -1,0 +1,15 @@
+# Rogue Encampment, then a short walk and the inventory (800x600 frame coordinates).
+# Frame numbers are presented frames; the player stands at the frame centre (~400,285).
+700  click 400 308      # Single Player
+1500 click 400 300      # Barbarian
+2300 text Hellstation   # character name
+2500 click 700 555      # OK -> loads into town
+3300 click 620 380      # walk south-east
+3400 click 640 200      # walk north-east
+3500 click 250 330      # walk west
+3600 key 0x49           # I: open inventory
+3725 key 0x49           # I: close it
+3775 click 520 420      # walk south
+3850 click 300 200      # walk north-west
+3950 key 0x49           # inventory again
+4075 key 0x1B           # Esc closes it

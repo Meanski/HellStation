@@ -169,7 +169,8 @@ function(hs_port_link target)
 
     # The backend: plain target code (no Windows headers) behind port/platform.h.
     file(GLOB_RECURSE HS_BACKEND_SOURCES CONFIGURE_DEPENDS
-        "${HS_PORT_DIR}/backend/${HS_PORT_BACKEND}/*.cpp" "${HS_PORT_DIR}/backend/posix/*.cpp")
+        "${HS_PORT_DIR}/backend/${HS_PORT_BACKEND}/*.cpp" "${HS_PORT_DIR}/backend/posix/*.cpp"
+        "${HS_PORT_DIR}/input/*.cpp")
     add_library(hs_backend STATIC ${HS_BACKEND_SOURCES})
     target_include_directories(hs_backend PRIVATE "${D2_ROOT}")
     target_compile_features(hs_backend PRIVATE cxx_std_17)
@@ -178,7 +179,7 @@ function(hs_port_link target)
     if(HS_PORT_BACKEND STREQUAL "ps2")
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
-        target_link_libraries(hs_backend PUBLIC gskit dmakit pthread)
+        target_link_libraries(hs_backend PUBLIC gskit dmakit pad pthread)
         target_link_options(${target} PRIVATE -Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=memalign,--wrap=__cxa_throw,--wrap=pthread_mutex_lock,--wrap=pthread_mutex_unlock,--wrap=CreateSema,--wrap=DeleteSema,--wrap=_ZN5Storm6Source5SFile16SFileOpenArchiveEPcPijPP13D2ArchiveStrc)
         option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (not retail hardware)" OFF)
         if(HS_PS2_EXTENDED_RAM)
