@@ -220,3 +220,23 @@ unaligned read in a decompressor or the hash/block table code (PCSX2 doesn't fau
 **Memory at this point:** image 10.3 MB + ~19.7 MB of Storm/Fog heap reservations before the main
 menu. On the EE every reservation is real RAM; fitting 32 MB means tuning those pools (Phase 3).
 `docs/port/overrides.md` notes the temporary `STRTABLE_CalculateCRC` diagnostic override.
+
+## 2026-11-17: Phase 2 milestone: the LoD main menu on an emulated PS2
+
+PCSX2 2.8.2 (owner's SCPH-70004 BIOS, Extended RAM for bring-up), `d2.elf` from this tree: the 1.14d
+LoD main menu renders through D2Gdi → GDI shim → gsKit PSMT8+CLUT, animated (snow, torches), at 25
+FPS with emulation at 100% speed, PAL 640×512. Data read from the owner's MPQs over `host:`.
+
+The last blocker was a **second generator defect**: `Storm::SMem::SMemCalculateAllocationLayout`
+emits `(n ? 7 : 0) + n` for the original `(n + 7) & ~7`, so every Storm heap block is 15 bytes over its
+request and none is 8-aligned. Storm's archive records landed at odd addresses (0x…2F3); on MIPS their
+32-bit fields are unaligned loads (PCSX2 returns wrong data rather than faulting), so every lookup
+except in the first archive failed (`patchstring.tbl` "not found"). The function is static and
+reached through its section, so it can't be redirected at link time: on MIPS its entry is patched at
+the first `SMemAlloc` to jump to a corrected copy (`overrides/storm_align.cpp`), and `SMemAlloc` is
+wrapped to round requests (new `HS_PORT_WRAPS` mechanism: rename the definition in one object,
+interpose everywhere else). x86 doesn't care about alignment, which is why Linux never saw it.
+
+Memory: the heap ran past 32 MB into Extended RAM before the menu (DC6 buffers at 0x23…). Fitting a
+retail PS2 means trimming Storm/Fog pool reservations (~20 MB at the menu) and the 6.7 MB of
+unoptimised code: Phase 3.

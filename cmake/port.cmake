@@ -75,10 +75,39 @@ endfunction()
 set(HS_PORT_OVERRIDES
     "D2CMP|_ZN5D2CMP7Pallete20PALETTE_LoadFromFileEPci|_ZL17gaItemPaletteData=hs_D2CMP_gaItemPaletteData"
     "D2Lang|_ZN6D2Lang8StrTable8strtable21STRTABLE_CalculateCRCEPtPhjj|"
+    "Storm|-|_ZN5Storm6Source4SMemL29SMemCalculateAllocationLayoutEjPiS2_S2_S2_=hs_Storm_SMemCalculateAllocationLayout,_ZL11DebugMemory=hs_Storm_DebugMemory,_ZL13ProtectMemory=hs_Storm_ProtectMemory"
+    "D2Hell|_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i|"
     "D2CMP|_ZN5D2CMP3SRC8LRUCache15LRUCACHE_UnlinkEP18D2LRUCacheNodeStrcP14D2LRUCacheStrc|_ZN5D2CMP3SRC8LRUCacheL18LRUCACHE_PopOldestEP14D2LRUCacheStrc=hs_D2CMP_LRUCACHE_PopOldest"
 )
 
+# Wraps: generated functions the port interposes on rather than replaces. Before
+# the module's archive is built, the definition in one object file is renamed to
+# hs_orig_<symbol>; every caller outside that object then reaches the wrapper in
+# Redivivus/port/overrides/, which calls hs_orig_<symbol>.
+# Format: module|source file (tree-relative)|symbol
+set(HS_PORT_WRAPS
+    "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem9SMemAllocEjPcjj"
+)
+
+function(hs_port_apply_wraps)
+    foreach(entry IN LISTS HS_PORT_WRAPS)
+        string(REPLACE "|" ";" parts "${entry}")
+        list(GET parts 0 module)
+        list(GET parts 1 source)
+        list(GET parts 2 symbol)
+        set(obj "${CMAKE_BINARY_DIR}/CMakeFiles/${module}.dir/${source}${CMAKE_CXX_OUTPUT_EXTENSION}")
+        add_custom_command(TARGET ${module} PRE_LINK
+            COMMAND "${CMAKE_OBJCOPY}" "--redefine-sym=${symbol}=hs_orig_${symbol}" "${obj}"
+            COMMENT "port wrap: ${symbol}" VERBATIM)
+        string(APPEND HS_OVERRIDE_TEXT_${module} "// wrap ${entry}\n")
+        set(HS_OVERRIDE_TEXT_${module} "${HS_OVERRIDE_TEXT_${module}}" PARENT_SCOPE)
+        set(HS_WRAP_MODULES ${HS_WRAP_MODULES} ${module} PARENT_SCOPE)
+    endforeach()
+endfunction()
+
 function(hs_port_apply_overrides)
+    hs_port_apply_wraps()
+    list(APPEND HS_OVERRIDE_MODULES ${HS_WRAP_MODULES})
     if(NOT CMAKE_OBJCOPY)
         message(FATAL_ERROR "port overrides need objcopy")
     endif()
@@ -87,7 +116,11 @@ function(hs_port_apply_overrides)
         list(GET parts 0 module)
         list(GET parts 1 symbol)
         list(LENGTH parts n)
-        set(cmds COMMAND "${CMAKE_OBJCOPY}" "--weaken-symbol=${symbol}" "$<TARGET_FILE:${module}>")
+        if(symbol STREQUAL "-")  # nothing to weaken: only globalize the statics below
+            set(cmds)
+        else()
+            set(cmds COMMAND "${CMAKE_OBJCOPY}" "--weaken-symbol=${symbol}" "$<TARGET_FILE:${module}>")
+        endif()
         if(n GREATER 2)
             list(GET parts 2 statics)
             if(statics)
@@ -101,7 +134,9 @@ function(hs_port_apply_overrides)
                 endforeach()
             endif()
         endif()
-        add_custom_command(TARGET ${module} POST_BUILD ${cmds} COMMENT "port override: ${symbol}" VERBATIM)
+        if(cmds)
+            add_custom_command(TARGET ${module} POST_BUILD ${cmds} COMMENT "port override: ${entry}" VERBATIM)
+        endif()
         list(APPEND HS_OVERRIDE_MODULES ${module})
         string(APPEND HS_OVERRIDE_TEXT_${module} "// ${entry}\n")
     endforeach()
@@ -144,7 +179,7 @@ function(hs_port_link target)
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
         target_link_libraries(hs_backend PUBLIC gskit dmakit pthread)
-        target_link_options(${target} PRIVATE -Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=memalign,--wrap=__cxa_throw,--wrap=pthread_mutex_lock,--wrap=pthread_mutex_unlock,--wrap=CreateSema,--wrap=DeleteSema)
+        target_link_options(${target} PRIVATE -Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=memalign,--wrap=__cxa_throw,--wrap=pthread_mutex_lock,--wrap=pthread_mutex_unlock,--wrap=CreateSema,--wrap=DeleteSema,--wrap=_ZN5Storm6Source5SFile16SFileOpenArchiveEPcPijPP13D2ArchiveStrc)
         option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (not retail hardware)" OFF)
         if(HS_PS2_EXTENDED_RAM)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_EXTENDED_RAM)

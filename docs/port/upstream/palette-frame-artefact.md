@@ -33,3 +33,18 @@ i686 Linux build of the same tree.
 
 **Workaround in HellStation:** a link-time override (`docs/port/overrides.md`), to be retired when this
 is fixed in the generator.
+
+---
+
+# Draft upstream issue: SMemCalculateAllocationLayout lost its rounding
+
+**Function:** `Storm::Source::SMem::SMemCalculateAllocationLayout` (`3rdparty/Storm/Source/SMem.cpp`).
+
+**Emitted:** `int nAlignedSize = (nHeaderSize ? 7U : 0) + nHeaderSize;`
+**Expected:** `(nHeaderSize + 7) & ~7` (the padding byte it stores, `nAligned - nHeader`, only makes
+sense with the mask; as emitted it is always 7).
+
+**Effect:** every SMem block is 15 bytes larger than its request and no block after the first odd-sized
+one is aligned. Harmless on x86; on MIPS (HellStation's PS2 build) Storm's archive records sit at odd
+addresses and every 32-bit field read from them is an unaligned load. Probably the same `x ? c : 0`
+lowering that dropped an AND elsewhere: worth a generator fixture.
