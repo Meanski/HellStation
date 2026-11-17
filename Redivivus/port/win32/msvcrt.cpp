@@ -118,6 +118,11 @@ int _access(const char* path, int) {
 }
 int _mkdir(const char* path) { return hs_file_mkdir(hs_win_to_target(path, true).c_str()); }
 
+// MSVC rotate intrinsics (declared by the SDK; x86 gets them inline). The names
+// are parenthesised because the SDK also defines them as function-like macros.
+unsigned int __cdecl (_rotl)(unsigned int v, int s) { s &= 31; return s ? (v << s) | (v >> (32 - s)) : v; }
+unsigned int __cdecl (_rotr)(unsigned int v, int s) { s &= 31; return s ? (v >> s) | (v << (32 - s)) : v; }
+
 namespace { thread_local unsigned t_randSeed = 1; }
 int hs_msvc_rand(void) {
     t_randSeed = t_randSeed * 214013u + 2531011u;

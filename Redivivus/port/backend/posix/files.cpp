@@ -1,4 +1,4 @@
-// Phase 1 backend: POSIX files with Windows-style case-insensitive lookup, and
+// POSIX backend (Linux and the PS2's newlib): files with Windows-style case-insensitive lookup, and
 // the game folder as an overlay of a writable root over the read-only data dir.
 #include "Redivivus/port/platform.h"
 
@@ -13,6 +13,13 @@
 #include <sys/stat.h>
 #include <thread>
 #include <unistd.h>
+
+#if !defined(__linux__)  // newlib: off_t is already 64-bit where it matters
+#  define lseek64 lseek
+#  define fstat64 fstat
+#  define stat64 stat
+#  define off64_t off_t
+#endif
 
 namespace {
 thread_local int t_err;
@@ -69,12 +76,15 @@ std::string env_or(const char* name, const std::string& fallback) {
     return v && *v ? v : fallback;
 }
 }  // namespace
+extern "C" const char* hs_default_root_dir(void);  // per backend
+namespace {
+}  // namespace
 
 extern "C" {
 
 const char* hs_root_dir(void) {
     static std::string root = [] {
-        std::string r = env_or("HS_ROOT", env_or("HOME", "/tmp") + "/.hellstation/c");
+        std::string r = env_or("HS_ROOT", hs_default_root_dir());
         std::string acc;
         for (size_t i = 0; i <= r.size(); i++) {  // mkdir -p
             if (i == r.size() || r[i] == '/') { if (!acc.empty()) mkdir(acc.c_str(), 0755); }
@@ -113,6 +123,9 @@ int hs_file_open(const char* path, int access, int disposition) {
     case HS_TRUNCATE_EXISTING: flags |= O_TRUNC; break;
     default: break;
     }
+#ifndef O_CLOEXEC
+#  define O_CLOEXEC 0
+#endif
     int fd = open(p.c_str(), flags | O_CLOEXEC, 0644);
     if (fd < 0) return fail();
     struct stat st;
@@ -184,6 +197,9 @@ int hs_dir_list(const char* dir, void (*fn)(void*, const char*, int, int64_t), v
 }
 
 // ---- Time ---------------------------------------------------------------------
+#ifndef CLOCK_MONOTONIC
+#  define CLOCK_MONOTONIC CLOCK_REALTIME
+#endif
 uint32_t hs_ticks_ms(void) {
     timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);

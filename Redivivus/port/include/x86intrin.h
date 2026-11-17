@@ -18,6 +18,16 @@ extern "C" unsigned long long hs_rdtsc(void);
 #endif
 
 #if defined(HELLSTATION_PORT)
+// Restore the names the prelude moved aside, with portable definitions.
+#  undef NtCurrentTeb
+#  undef __debugbreak
+#  undef D2_Cpuid
+extern "C" struct _TEB* hs_NtCurrentTeb(void);   // a fake TEB/PEB (port/win32/teb.cpp)
+#  define NtCurrentTeb hs_NtCurrentTeb
+#  define __debugbreak() ((void)0)
+// CPUID: no CPU features reported (the renderer's MMX/SSE paths stay off).
+static inline int D2_Cpuid(unsigned int) { static unsigned int aRegs[4]; return (int)(unsigned long)aRegs; }
+
 #  undef __i386__
 #  undef __i386
 #  undef i386

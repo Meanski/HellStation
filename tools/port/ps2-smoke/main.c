@@ -12,6 +12,8 @@
 #include <string.h>
 #include <gsKit.h>
 #include <dmaKit.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #define FB_W 640
 #define FB_H 480
@@ -37,6 +39,8 @@ static void fill_palette(u32 *clut, unsigned phase) {
 }
 
 int main(void) {
+    int lf = open("host:smoke.log", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (lf >= 0) { write(lf, "smoke: host write ok\n", 21); close(lf); }
     GSGLOBAL *gs = gsKit_init_global();
     gs->PSM = GS_PSM_CT24;
     gs->PSMZ = GS_PSMZ_16S;

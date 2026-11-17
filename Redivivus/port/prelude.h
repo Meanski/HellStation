@@ -94,6 +94,19 @@ struct _iobuf;
 #  define HS_FAKE_I386 1
 #endif
 
+// EE: rename the Win32 names the PS2 toolchain's libraries also define.
+#if defined(_EE)
+#  include "Redivivus/port/include/hs_ps2_renames.h"
+#endif
+
+// x86 inline assembly that the SDK headers and d2_platform.h's early part define
+// (a %fs TEB read, INT3, CPUID). Renamed while they're read, so their bodies land
+// under dead names; Redivivus/port/include/x86intrin.h restores the real names
+// with portable definitions straight after.
+#define NtCurrentTeb __hs_sdk_NtCurrentTeb
+#define __debugbreak __hs_sdk_debugbreak
+#define D2_Cpuid     __hs_d2p_Cpuid
+
 // --- MSVC CRT semantics ----------------------------------------------------
 
 // wchar_t is 16-bit on Windows, and the game's literals and buffers assume it

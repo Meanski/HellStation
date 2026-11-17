@@ -1,11 +1,16 @@
-// Phase 1 backend: pthreads.
+// POSIX backend: pthreads (glibc on Linux, ps2sdk's pthread glue on the PS2).
 #include "Redivivus/port/platform.h"
 
 #include <atomic>
 #include <cerrno>
 #include <ctime>
 #include <pthread.h>
-#include <sys/mman.h>
+#if defined(__linux__)
+#  include <sys/mman.h>
+#else
+#  include <malloc.h>
+#  include <cstring>
+#endif
 #include <csignal>
 
 struct hs_mutex { pthread_mutex_t m; };
@@ -14,6 +19,7 @@ struct hs_thread { pthread_t t; void (*fn)(void*); void* arg; };
 
 extern "C" {
 
+#if defined(__linux__)
 void* hs_vm_reserve(size_t size, size_t align) {
     if (align < 4096) align = 4096;
     size_t span = size + align;
@@ -26,6 +32,20 @@ void* hs_vm_reserve(size_t size, size_t align) {
 }
 void hs_vm_decommit(void* p, size_t size) { madvise(p, size, MADV_DONTNEED); }
 void hs_vm_release(void* p, size_t size) { munmap(p, size); }
+#else
+// No virtual memory: a reservation is real, zeroed memory up front.
+void* hs_vm_reserve(size_t size, size_t align) {
+    static size_t total;
+    void* p = memalign(align < 16 ? 16 : align, size);
+    total += p ? size : 0;
+    hs_log("hs_vm_reserve(%u KiB) -> %p, total %u KiB", (unsigned)(size >> 10), p, (unsigned)(total >> 10));
+    if (p) std::memset(p, 0, size);
+    else hs_log("hs_vm_reserve: out of memory for %u bytes", (unsigned)size);
+    return p;
+}
+void hs_vm_decommit(void* p, size_t size) { std::memset(p, 0, size); }
+void hs_vm_release(void* p, size_t) { free(p); }
+#endif
 
 hs_mutex* hs_mutex_create(void) {
     hs_mutex* m = new hs_mutex;
@@ -69,6 +89,7 @@ static int g_threadCount;
 static thread_local uintptr_t t_stackTop;
 uintptr_t hs_current_stack_top(void) { return t_stackTop; }
 void hs_register_current_thread(void) {
+#if defined(__linux__)
     pthread_attr_t a;
     if (pthread_getattr_np(pthread_self(), &a) == 0) {
         void* lo;
@@ -76,13 +97,18 @@ void hs_register_current_thread(void) {
         if (pthread_attr_getstack(&a, &lo, &size) == 0) t_stackTop = (uintptr_t)lo + size;
         pthread_attr_destroy(&a);
     }
+#endif
     pthread_mutex_lock(&g_regLock);
     if (g_threadCount < 64) g_threads[g_threadCount++] = pthread_self();
     pthread_mutex_unlock(&g_regLock);
 }
 void hs_dump_all_threads(int sig) {
+#if defined(__linux__)
     for (int i = 0; i < g_threadCount; i++)
         if (!pthread_equal(g_threads[i], pthread_self())) pthread_kill(g_threads[i], sig);
+#else
+    (void)sig;
+#endif
 }
 
 static void* trampoline(void* p) {
@@ -95,7 +121,14 @@ hs_thread* hs_thread_start(void (*fn)(void*), void* arg, uint32_t stackSize) {
     hs_thread* t = new hs_thread{{}, fn, arg};
     pthread_attr_t a;
     pthread_attr_init(&a);
+#if defined(__linux__)
     if (stackSize) pthread_attr_setstacksize(&a, stackSize < 65536 ? 65536 : stackSize);
+#else
+    // Windows stack sizes are virtual reservations the game asks for freely
+    // (megabytes); on the EE a stack is real RAM, so every thread gets 1 MiB.
+    (void)stackSize;
+    pthread_attr_setstacksize(&a, 1024 * 1024);
+#endif
     int rc = pthread_create(&t->t, &a, trampoline, t);
     pthread_attr_destroy(&a);
     if (rc != 0) { delete t; return nullptr; }

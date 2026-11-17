@@ -149,3 +149,40 @@ full HUD. It stayed stable in town for thousands of frames (14,600 presented fra
   the hand-written replacement as objects into the executable. A per-module stamp source makes the table
   a build input. The palette fix and upstream's LRU single-node unlink fix (portable now: no x86
   `CALL` rewriting) both use it.
+
+## 2026-11-17: Phase 2: the game builds for the PS2 and boots in PCSX2 (blocked in OpenPS2BIOS)
+
+- **Compile:** all 476 TUs for `mips64r5900el-ps2-elf` (GCC 15.2, n32 ILP32) with the same prelude.
+  On non-x86 the SDK headers are shown `__i386__` (the x86 layouts the game was decompiled against)
+  and the interposer retires it. x86 asm bodies the SDK and `d2_platform.h`'s early part define
+  (`%fs` TEB read, INT3, CPUID) are renamed aside and restored as portable definitions; `NtCurrentTeb`
+  is a fake TEB/PEB with an empty module list. `time_t` is the C library's; `int32_t` is forced to
+  `int` for game code (EE GCC makes it `long`, which collapses `d2_platform.h`'s overloads); RDTSC is a
+  counter; `d2_crt_impl.cpp`'s x87 `__ftol2` is excluded (declared, never called).
+- **Link:** `cmake/ps2-ee.cmake` on ps2dev's own toolchain file minus `-O2`, plus the WHOLE_ARCHIVE
+  link feature CMake lacks for "Generic". The R5900 has no LL/SC, so `__sync_*`/`__atomic_*` are
+  library calls; `backend/ps2/atomics.cpp` implements them with interrupts masked (one core).
+- **Size:** first link was 27.3 MB, mostly 16.6 MB of `.rodata`. `d2_enums.h` gives every TU its own
+  copy of thousands of namespace-scope `static const` constants. `-ffunction-sections
+  -fdata-sections --gc-sections` (all port targets) cut the image to **10.3 MB** (text 6.7 MB, rodata
+  0.2 MB, bss 2.5 MB), leaving about 21 MB of a stock 32 MB PS2 for the heap. No Extended RAM needed so
+  far (and OpenPS2BIOS mis-places the stack at 0xFFFF8000 when it's enabled).
+- **Backend:** `backend/posix` (files, threads) is now shared by Linux and the EE (newlib + ps2sdk
+  pthread glue); `backend/ps2` adds gsKit PSMT8+CLUT presentation, logging and the atomics.
+  Data reaches the EE through PCSX2's `host:` (needs `[EmuCore] HostFs = true`).
+- **Debugging without a console:** OpenPS2BIOS doesn't route EE printf, and file I/O is unavailable
+  during static construction (fio is set up by a constructor). `hs_log` writes into a 64 KiB RAM
+  ring, and `tools/port/pine-log.py` reads it out of a paused/crashed PCSX2 over PINE. abort/terminate
+  log their callers; `--wrap=malloc…` logs large allocations with callers.
+- **Found with those:** (1) the game asks `CreateThread` for multi-MB stacks (virtual on Windows, real
+  RAM on the EE); EE thread stacks are fixed at 1 MiB. (2) **The link-name trap, EE edition:**
+  ps2sdk's kernel `CreateThread(ee_thread_t*)` was bound to our Win32 `CreateThread` (pthread glue's
+  thread creation landed in Win32 code), and likewise for Exit/Resume/Suspend/TerminateThread, the
+  BSD socket calls and newlib's internal `_mkdir`. `include/hs_ps2_renames.h` renames them (`hs_w32_`)
+  for game and shim code; `tools/port/ps2-collisions.sh` runs post-link and fails on any new collision.
+- **Blocked:** static construction now gets as far as the game's own threads, then OpenPS2BIOS halts
+  with "unsupported syscall=0161ed98" at `SignalSema` (ps2sdk's stub is `li v1,66; syscall`).
+  OpenPS2BIOS reads `v1` correctly, so `v1` was changed between those two instructions: an interrupt
+  (or a reschedule from one) returning without restoring `v1`. This is a BIOS-level fault, reportable
+  to TamaribaEmu/OpenPS2BIOS. Play! 0.72 loads the ELF but shows nothing and doesn't map `host:` to the
+  ELF's folder.

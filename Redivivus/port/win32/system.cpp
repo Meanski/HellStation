@@ -19,6 +19,7 @@ namespace {
 constexpr size_t kHdr = 16;
 void* heap_alloc(size_t n, bool zero) {
     void* p = memalign(16, n + kHdr);
+    if (n >= (256u << 10)) hs_log("HeapAlloc(%u KiB) -> %p", (unsigned)(n >> 10), p);
     if (!p) return nullptr;
     *(size_t*)p = n;
     if (zero) std::memset((char*)p + kHdr, 0, n);

@@ -4,6 +4,7 @@
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
+#include <string>
 #include <execinfo.h>
 #include <initializer_list>
 #include <csignal>
@@ -27,6 +28,11 @@ void hs_fatal(const char* fmt, ...) {
     va_end(ap);
     std::fputc('\n', stderr);
     std::abort();
+}
+
+extern "C" const char* hs_default_root_dir(void) {
+    static std::string r = std::string(std::getenv("HOME") ? std::getenv("HOME") : "/tmp") + "/.hellstation/c";
+    return r.c_str();
 }
 
 const char* hs_data_dir(void) {

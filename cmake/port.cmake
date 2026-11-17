@@ -15,7 +15,7 @@ endif()
 # mingw-w64's Win32 API headers: declarations only, a build dependency
 # (Debian: mingw-w64-i686-dev). Searched after the target's own headers.
 find_path(HS_MINGW_INCLUDE NAMES windows.h winsock2.h
-    PATHS /usr/i686-w64-mingw32/include /usr/share/mingw-w64/include
+    PATHS "$ENV{HS_MINGW_INCLUDE}" /usr/i686-w64-mingw32/include /usr/share/mingw-w64/include /opt/mingw-w64/include
     NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
 if(NOT HS_MINGW_INCLUDE)
     message(FATAL_ERROR "REDIVIVUS_PORT needs mingw-w64's headers (mingw-w64-i686-dev); set HS_MINGW_INCLUDE")
@@ -32,14 +32,30 @@ set(HS_PORT_REPLACED
 function(hs_port_sources var)
     set(srcs ${${var}})
     list(REMOVE_ITEM srcs ${HS_PORT_REPLACED})
+    if(HS_PORT_BACKEND STREQUAL "ps2")
+        # x87 inline asm; port/win32/crt_impl_portable.cpp carries the rest.
+        list(REMOVE_ITEM srcs "${D2_ROOT}/Redivivus/d2_crt_impl.cpp")
+    endif()
     set(${var} ${srcs} PARENT_SCOPE)
 endfunction()
 
 set(HS_GAME_DEFS -D_WIN32 -DHELLSTATION_PORT)
+if(HS_PORT_BACKEND STREQUAL "ps2")
+    # int32_t is int on every platform the tree was built for (d2_platform.h
+    # overloads on int32_t vs LONG); the EE's GCC makes it long.
+    list(APPEND HS_GAME_DEFS -U__INT32_TYPE__ -D__INT32_TYPE__=int
+        -U__UINT32_TYPE__ "-D__UINT32_TYPE__=unsigned int"
+        -U__INT_LEAST32_TYPE__ -D__INT_LEAST32_TYPE__=int
+        -U__UINT_LEAST32_TYPE__ "-D__UINT_LEAST32_TYPE__=unsigned int")
+endif()
 # -fvisibility=hidden: the game's and the shim's Win32 names (socket, select,
 # send, ...) must never be exported, or host libraries that call the POSIX
 # function of the same name would bind to the stdcall Win32 one.
-set(HS_GAME_FLAGS -fshort-wchar -fvisibility=hidden "-I${HS_PORT_DIR}/include" "SHELL:-idirafter ${HS_MINGW_INCLUDE}")
+# -ffunction-sections/-fdata-sections + --gc-sections: d2_enums.h gives every TU
+# its own copy of thousands of static const enum constants (16.6 MB of .rodata
+# on the EE at -O0) and the tree carries code no port reaches; the linker drops
+# whatever nothing references.
+set(HS_GAME_FLAGS -fshort-wchar -fvisibility=hidden -ffunction-sections -fdata-sections "-I${HS_PORT_DIR}/include" "SHELL:-idirafter ${HS_MINGW_INCLUDE}")
 
 function(hs_port_flags target)
     # BEFORE: the prelude has to precede d2_platform.h's forced include.
@@ -116,12 +132,19 @@ function(hs_port_link target)
     target_link_libraries(hs_win32 PRIVATE d2_flags)
 
     # The backend: plain target code (no Windows headers) behind port/platform.h.
-    file(GLOB_RECURSE HS_BACKEND_SOURCES CONFIGURE_DEPENDS "${HS_PORT_DIR}/backend/${HS_PORT_BACKEND}/*.cpp")
+    file(GLOB_RECURSE HS_BACKEND_SOURCES CONFIGURE_DEPENDS
+        "${HS_PORT_DIR}/backend/${HS_PORT_BACKEND}/*.cpp" "${HS_PORT_DIR}/backend/posix/*.cpp")
     add_library(hs_backend STATIC ${HS_BACKEND_SOURCES})
     target_include_directories(hs_backend PRIVATE "${D2_ROOT}")
     target_compile_features(hs_backend PRIVATE cxx_std_17)
     target_compile_options(hs_backend PRIVATE -g -Wall -Wextra)
 
+    if(HS_PORT_BACKEND STREQUAL "ps2")
+        target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
+        target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
+        target_link_libraries(hs_backend PUBLIC gskit dmakit pthread)
+        target_link_options(${target} PRIVATE -Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=memalign)
+    endif()
     if(HS_PORT_BACKEND STREQUAL "sdl")
         find_package(PkgConfig REQUIRED)
         pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2)
@@ -130,6 +153,7 @@ function(hs_port_link target)
     endif()
 
     target_link_libraries(${target} PRIVATE hs_win32 hs_backend)
+    target_link_options(${target} PRIVATE -Wl,--gc-sections)
     if(REDIVIVUS_PORT_SANITIZE)
         foreach(t ${target} hs_win32 hs_backend)
             target_compile_options(${t} PRIVATE -fsanitize=alignment,undefined -fno-sanitize-recover=alignment)
@@ -140,11 +164,20 @@ function(hs_port_link target)
     target_link_options(${target} PRIVATE -Wl,--unresolved-symbols=report-all)
     # Nothing in the executable is for shared libraries to bind to.
     target_compile_options(hs_backend PRIVATE -fvisibility=hidden)
-    # The link-name trap: refuse a binary that binds a game call to an unreviewed host symbol.
-    add_custom_command(TARGET ${target} POST_BUILD
-        COMMAND "${D2_ROOT}/tools/port/check-imports.sh" "$<TARGET_FILE:${target}>"
-        WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
-    # Fixed addresses, like the PS2's ELF: crash reports map straight to file:line.
-    set_target_properties(${target} PROPERTIES POSITION_INDEPENDENT_CODE OFF)
-    target_link_options(${target} PRIVATE -no-pie)
+    if(HS_PORT_BACKEND STREQUAL "sdl")
+        # The link-name trap: refuse a binary that binds a game call to an unreviewed host symbol.
+        add_custom_command(TARGET ${target} POST_BUILD
+            COMMAND "${D2_ROOT}/tools/port/check-imports.sh" "$<TARGET_FILE:${target}>"
+            WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
+        # Fixed addresses, like the PS2's ELF: crash reports map straight to file:line.
+        set_target_properties(${target} PROPERTIES POSITION_INDEPENDENT_CODE OFF)
+        target_link_options(${target} PRIVATE -no-pie)
+    else()
+        set_target_properties(${target} PROPERTIES SUFFIX ".elf")
+        # The EE link-name trap: fail if the port defines a symbol the toolchain's
+        # libraries also define (Redivivus/port/include/hs_ps2_renames.h).
+        add_custom_command(TARGET ${target} POST_BUILD
+            COMMAND sh -c "c=$(tools/port/ps2-collisions.sh '${CMAKE_BINARY_DIR}'); if [ -n \"$c\" ]; then echo \"symbol collisions with ps2sdk (add to hs_ps2_renames.h): $c\" >&2; exit 1; fi"
+            WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
+    endif()
 endfunction()

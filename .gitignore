@@ -25,3 +25,6 @@ d2crash-*.txt
 tools/port/ps2-smoke/*.elf
 /build-probe/
 /build-linux*/
+/build-ps2*/
+tools/port/ps2-cxx-probe/*.elf
+*.o
