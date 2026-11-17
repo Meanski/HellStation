@@ -1,0 +1,18 @@
+# HellStation imports Redivivus as a snapshot; tools/sync-redivivus.sh reads and updates this.
+repository https://github.com/jaenster/redivivus
+revision dd289669c82a03e993a928b2b0f2c724a1cc731d
+# Upstream paths HellStation doesn't carry; their upstream changes are not brought in.
+removed .github
+removed .claude-plugin
+removed .recomp.json
+removed agent
+removed asm_matching
+removed progress
+removed BYTE-MATCHING.md
+removed CITATION.cff
+removed CONTRIBUTING.md
+removed README.md
+removed docs/building.md
+removed docs/crash-reports.md
+removed docs/layout.md
+removed docs/original-compilers.md

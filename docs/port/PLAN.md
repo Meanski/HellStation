@@ -15,7 +15,7 @@ marker with what was checked and how.
 | Sound | Fake DirectSound COM under D2Sound | Keeps D2Sound's mixing intact. |
 | Net | Winsock stubbed | Single player only. |
 | Cinematics | Skipped | Bink/Smacker are closed; FFmpeg later, maybe. |
-| Main branch | Merge `upstream/main`, never rebase | `main` is public. |
+| Upstream | Snapshot import + `tools/sync-redivivus.sh` | HellStation's history is its own; credit stays in the import commit, README and LICENSE. |
 
 ## Phases and exit criteria
 
@@ -65,7 +65,7 @@ Levers, in the order to try them, each one measured before and after:
 1. Memory (above).
 2. Unaligned loads: DS1/DCC/`.d2s`/packets/MPQ tables cast from byte buffers. Find on Linux with UBSan.
 3. Non-IEEE single-precision FPU, software `double`: NaN tests, div-by-zero, precision-dependent RNG.
-4. Upstream regeneration churn: stay out of generated code; merge upstream often.
+4. Upstream regeneration churn: stay out of generated code; sync upstream often.
 5. Non-time-sliced EE threads: busy waits starve; the shim yields.
 6. EE performance: 294 MHz in-order, 8 KB D-cache.
 

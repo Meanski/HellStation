@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Refuses commits that add game data or binaries, or edit generated code
-# outside an upstream merge. Install: git config core.hooksPath tools/hooks
+# outside an upstream sync (tools/sync-redivivus.sh). Install: git config core.hooksPath tools/hooks
 set -euo pipefail
 fail=0
 staged=$(git diff --cached --name-only --diff-filter=ACMR)
 [ -z "$staged" ] && exit 0
+# Generated code changes only through tools/sync-redivivus.sh (HS_UPSTREAM_SYNC=1) or a merge.
 in_merge=0; [ -f "$(git rev-parse --git-dir)/MERGE_HEAD" ] && in_merge=1
+[ "${HS_UPSTREAM_SYNC:-0}" = 1 ] && in_merge=1
 
 while IFS= read -r f; do
   lc=$(printf '%s' "$f" | tr '[:upper:]' '[:lower:]')
@@ -21,7 +23,7 @@ while IFS= read -r f; do
         echo "pre-commit: $f is generated code (edits are lost at regen); route it through Redivivus/port/ or report upstream" >&2; fail=1 ;;
     esac
   fi
-  if [ -f "$f" ]; then
+  if [ -f "$f" ] && ! { [ "$in_merge" -eq 1 ] && case "$f" in Source/*|3rdparty/*) true ;; *) false ;; esac; }; then
     size=$(wc -c < "$f")
     if [ "$size" -gt 2097152 ]; then echo "pre-commit: $f is $((size/1024)) KB (> 2 MB)" >&2; fail=1; fi
   fi

@@ -112,11 +112,14 @@ keep the TSV current in the same commit as the shim change.
 
 ## Upstream
 
-- `upstream` is fetch-only. Sync: `git fetch upstream && git switch -c sync/upstream-YYYYMMDD main && git merge upstream/main`,
-  build, then fast-forward `main`. Merge, don't rebase, `main`: it's public.
+- Redivivus is imported as a snapshot (the first commit); `UPSTREAM` records the revision and the
+  upstream paths we don't carry. `upstream` is fetch-only. Sync on a branch with
+  `tools/sync-redivivus.sh`, build and smoke-test, commit with `HS_UPSTREAM_SYNC=1`, then
+  fast-forward `main`. Never rewrite `main`: it's public.
 - Fixes that belong to Redivivus (a toolchain fix, a generic Linux/SDL target, a generator bug,
   a Ghidra name/type) are written so they can go upstream: one claim, addressed by function address,
-  with evidence. Follow `CONTRIBUTING.md` and `agent/skills/redivivus/SKILL.md` for which door.
+  with evidence. Follow upstream's `CONTRIBUTING.md` and `agent/skills/redivivus/SKILL.md` (in
+  jaenster/redivivus, not carried here) for which door.
   Draft upstream issues and PRs for the owner to send; never file or comment upstream yourself.
 - The Ghidra databases (Windows and Mac 1.14d) are readable through the redivivus MCP plugin.
   Blizzard's Mac build is the best map of how Blizzard itself abstracted Win32; check its paired

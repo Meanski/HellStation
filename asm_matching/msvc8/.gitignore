@@ -1,4 +1,0 @@
-# Build products: objects, the translated tree, the decoded reference model.
-/build/
-# runs/build-vc8.sh: the Visual C++ 2005 build of the whole exe.
-/build-exe/

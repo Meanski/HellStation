@@ -291,3 +291,16 @@ unoptimised code: Phase 3.
   instrumentation, a pre-empted D2PathPointStrc that turned out not to matter) are removed. The LWR
   probe stays as a one-line start-up `CPU check:`.
 - `-DHS_EE_LWR_FIXUP=OFF` rebuilds without the fix-up, to reproduce the bug.
+- Correction to the layer-0 bindings above: □ sends T (the skill tree in 1.14d); S is the skill speed
+  bar. Fixed in `input/virtual_mouse.cpp`.
+
+## 2026-11-17: Redivivus as a snapshot import
+
+- History restarted from one commit importing jaenster/redivivus at dd289669c82a (credited there,
+  in the README and in LICENSE); HellStation's commits replay on top, tree unchanged.
+- Dropped upstream's project scaffolding (CI, issue templates, plugin config, byte-match oracle,
+  progress tracking, citation, contributing guide, its README and build docs); `UPSTREAM` lists
+  them so syncs skip them. The build needs none of them.
+- Upstream changes now arrive through `tools/sync-redivivus.sh` (three-way apply of the upstream
+  diff since `UPSTREAM`'s revision); the pre-commit hook accepts generated-code changes only with
+  `HS_UPSTREAM_SYNC=1`.
