@@ -62,7 +62,7 @@ CoTaskMemFree	other	real	win32/misc.cpp
 CreateIoCompletionPort	other	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 CreateProcessA	other	real	win32/misc.cpp	
 CreateProcessW	other	real	win32/misc.cpp	
-CRT_Floor	other	real		
+CRT_Floor	crt	real	win32/misc.cpp	asm-labelled definition of the variadic declaration
 D2CRASH_ReportHalt	other	real	win32/misc.cpp	
 FlushInstructionCache	other	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 FreeSid	other	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
