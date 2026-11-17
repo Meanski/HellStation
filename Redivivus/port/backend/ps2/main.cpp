@@ -41,7 +41,13 @@ void emit(const char* prefix, const char* fmt, va_list ap) {
     if (fd < 0) fd = open("host:hs.log", O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd >= 0) {
         unsigned end = hs_log_ring_pos, start = end - flushed > sizeof hs_log_ring ? end - sizeof hs_log_ring : flushed;
-        for (unsigned i = start; i < end; i++) (void)!write(fd, &hs_log_ring[i % sizeof hs_log_ring], 1);
+        // One host round trip per contiguous run of the ring, not one per byte.
+        while (start < end) {
+            unsigned off = start % sizeof hs_log_ring, run = end - start;
+            if (run > sizeof hs_log_ring - off) run = sizeof hs_log_ring - off;
+            (void)!write(fd, &hs_log_ring[off], run);
+            start += run;
+        }
         flushed = end;
     }
     sio_puts(buf);
@@ -81,8 +87,11 @@ __attribute__((constructor(101))) static void hs_early_marker(void) {
 
 void hs_install_terminate_handler();
 
+extern "C" void hs_lwlr_probe();  // lwlr_probe.cpp (temporary)
+
 int main(int argc, char** argv) {
     hs_install_terminate_handler();
+    hs_lwlr_probe();
     hs_log("HellStation (ps2) starting, data dir: %s", hs_data_dir());
     // The software (GDI) renderer is the one the port presents; it's the game's
     // windowed mode, -w. A loader may pass its own arguments instead.

@@ -84,10 +84,14 @@ void hs_vm_release(void* p, size_t size) { munmap(p, size); }
 #else
 // No virtual memory: a reservation is real, zeroed memory up front.
 void* hs_vm_reserve(size_t size, size_t align) {
-    static size_t total;
+    static size_t total, logged;
     void* p = memalign(align < 16 ? 16 : align, size);
     total += p ? size : 0;
-    hs_log("hs_vm_reserve(%u KiB) -> %p, total %u KiB", (unsigned)(size >> 10), p, (unsigned)(total >> 10));
+    // In game Storm reserves 64 KiB blocks every frame: log each 4 MiB of growth, not each call.
+    if (size >= (1u << 20) || total - logged >= (4u << 20)) {
+        logged = total;
+        hs_log("hs_vm_reserve(%u KiB) -> %p, total reserved %u KiB", (unsigned)(size >> 10), p, (unsigned)(total >> 10));
+    }
     if (p) std::memset(p, 0, size);
     else hs_log("hs_vm_reserve: out of memory for %u bytes", (unsigned)size);
     return p;

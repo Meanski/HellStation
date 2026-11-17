@@ -302,6 +302,8 @@ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES, SIZE_T stack, LPTHREAD_START_R
     t->id = g_nextThreadId += 4;
     t->refs = 2;  // the caller's handle and the running thread
     if (id) *id = t->id;
+    hs_log("CreateThread: id %lu entry %p param %p%s", (unsigned long)t->id, (void*)start, param,
+           (flags & CREATE_SUSPENDED) ? " (suspended)" : "");
     if (flags & CREATE_SUSPENDED) {
         t->suspended = true;
         return hs_handle_new(t);
