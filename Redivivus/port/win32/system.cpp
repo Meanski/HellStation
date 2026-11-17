@@ -198,6 +198,9 @@ FARPROC WINAPI GetProcAddress(HMODULE, LPCSTR name) {
 }
 BOOL WINAPI DisableThreadLibraryCalls(HMODULE) { return TRUE; }
 
+// RDTSC substitute on non-x86 targets (Redivivus/port/include/x86intrin.h).
+extern "C" unsigned long long hs_rdtsc(void) { return hs_perf_counter(); }
+
 // ---- Process ------------------------------------------------------------------------
 
 void WINAPI ExitProcess(UINT code) {

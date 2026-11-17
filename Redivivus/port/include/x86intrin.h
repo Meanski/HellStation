@@ -9,7 +9,13 @@
 // headers above keep their architecture, and everything after takes the
 // generic paths, which are the ones the PS2 build takes. The calling-convention
 // attributes were fixed by the prelude, so the i386 ABI is unchanged.
-#include_next <x86intrin.h>
+#if !defined(HS_FAKE_I386)
+#  include_next <x86intrin.h>
+#else
+// Not x86: RDTSC for the decompiler's pseudo-op is a monotonic counter.
+extern "C" unsigned long long hs_rdtsc(void);
+#  define __rdtsc() hs_rdtsc()
+#endif
 
 #if defined(HELLSTATION_PORT)
 #  undef __i386__

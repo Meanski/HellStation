@@ -70,6 +70,7 @@
 #include <ctime>
 #include <cerrno>
 #include <sys/time.h>
+#include <strings.h>
 
 // stdio: the C library owns FILE. d2_platform.h would otherwise declare
 // FILE as MSVC's struct _iobuf, which glibc and newlib can't honour; code
@@ -77,8 +78,21 @@
 #define _FILE_DEFINED
 struct _iobuf;
 
+// time_t: the C library's (64-bit on newlib); the game spells out __time32_t /
+// __time64_t where the width matters.
+#define _TIME_T_DEFINED
+
 // timeval: identical layout on every ILP32 target; let the C library's stand.
 #define _TIMEVAL_DEFINED
+
+// Non-x86 targets (the PS2's EE): the Windows SDK headers only work for a known
+// architecture, and the layouts the game was decompiled against are x86's. Show
+// them __i386__; Redivivus/port/include/x86intrin.h retires it again right
+// after the SDK headers, so game code takes the generic paths.
+#if !defined(__i386__) && !defined(__x86_64__)
+#  define __i386__ 1
+#  define HS_FAKE_I386 1
+#endif
 
 // --- MSVC CRT semantics ----------------------------------------------------
 

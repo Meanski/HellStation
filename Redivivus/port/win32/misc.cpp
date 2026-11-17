@@ -138,11 +138,18 @@ BOOL WINAPI FileTimeToSystemTime(const FILETIME* ft, LPSYSTEMTIME st) {
     st->wSecond = (WORD)tmv.tm_sec; st->wMilliseconds = (WORD)((t / 10000) % 1000);
     return TRUE;
 }
+// Days since 1970-01-01 for a proleptic Gregorian date (no timegm on newlib).
+static int64_t days_from_civil(int y, unsigned m, unsigned d) {
+    y -= m <= 2;
+    const int64_t era = (y >= 0 ? y : y - 399) / 400;
+    const unsigned yoe = (unsigned)(y - era * 400);
+    const unsigned doy = (153 * (m + (m > 2 ? -3 : 9)) + 2) / 5 + d - 1;
+    const unsigned doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    return era * 146097 + (int64_t)doe - 719468;
+}
 BOOL WINAPI SystemTimeToFileTime(const SYSTEMTIME* st, LPFILETIME ft) {
-    struct tm tmv{};
-    tmv.tm_year = st->wYear - 1900; tmv.tm_mon = st->wMonth - 1; tmv.tm_mday = st->wDay;
-    tmv.tm_hour = st->wHour; tmv.tm_min = st->wMinute; tmv.tm_sec = st->wSecond;
-    uint64_t t = ((uint64_t)timegm(&tmv) + 11644473600ULL) * 10000000ULL + st->wMilliseconds * 10000ULL;
+    int64_t secs = days_from_civil(st->wYear, st->wMonth, st->wDay) * 86400 + st->wHour * 3600 + st->wMinute * 60 + st->wSecond;
+    uint64_t t = ((uint64_t)secs + 11644473600ULL) * 10000000ULL + st->wMilliseconds * 10000ULL;
     ft->dwLowDateTime = (DWORD)t;
     ft->dwHighDateTime = (DWORD)(t >> 32);
     return TRUE;

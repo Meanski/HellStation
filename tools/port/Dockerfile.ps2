@@ -1,5 +1,11 @@
-# Phase 2 build environment: the pinned ps2dev toolchain plus build tools it doesn't ship.
+# Phase 2 build environment: the pinned ps2dev toolchain, plus build tools it
+# doesn't ship and the mingw-w64 Win32 API headers (taken from Debian's package,
+# the same headers the Phase 1 image uses).
+FROM debian:trixie AS mingw
+RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends mingw-w64-i686-dev && rm -rf /var/lib/apt/lists/*
+
 FROM ps2dev/ps2dev:v2.0.0
-RUN apk add --no-cache make cmake ninja ccache python3 git bash
-ENV CCACHE_DIR=/ccache
+RUN apk add --no-cache make cmake ninja ccache python3 git bash findutils
+COPY --from=mingw /usr/share/mingw-w64/include /opt/mingw-w64/include
+ENV CCACHE_DIR=/ccache HS_MINGW_INCLUDE=/opt/mingw-w64/include
 WORKDIR /src
