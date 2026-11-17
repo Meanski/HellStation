@@ -25,7 +25,7 @@ struct Binding { uint32_t button; int vk; };
 constexpr Binding kKeys[] = {
     {kPadStart, 0x1B},     // Esc: game menu / back
     {kPadTriangle, 'I'},   // inventory
-    {kPadSquare, 'S'},     // skill tree
+    {kPadSquare, 'T'},     // skill tree
     {kPadSelect, 0x09},    // Tab: automap
     {kPadL1, 0x10},        // Shift: stand still
     {kPadR1, 'C'},         // character sheet
