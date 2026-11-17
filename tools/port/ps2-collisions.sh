@@ -12,4 +12,4 @@ ours=$(mips64r5900el-ps2-elf-nm --defined-only $B/lib*.a $B/CMakeFiles/hs_overri
 theirs=$(for l in $LIBS; do mips64r5900el-ps2-elf-nm --defined-only "$l" 2>/dev/null; done |
   awk '$2 ~ /^[TDBRW]$/ {print $3}' | grep -v '^_Z' | sort -u)
 # Our own backend is meant to define libc-level hooks (__wrap_*, atomics).
-comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$)' || true
+comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$|_sbrk$)' || true

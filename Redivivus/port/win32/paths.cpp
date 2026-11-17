@@ -1,13 +1,15 @@
 #include "Redivivus/port/win32/paths.h"
 #include "Redivivus/port/platform.h"
+#include "Redivivus/port/win32/handles.h"
 #include <windows.h>
 #include <cctype>
 #include <cstring>
 #include <mutex>
 
 namespace {
-std::mutex g_cwdLock;
-std::string g_cwd = "C:\\Diablo II";
+HsLock g_cwdLock;
+// Function-local: the game's static initialisers can reach the shim first.
+std::string& cwd() { static std::string s = "C:\\Diablo II"; return s; }
 
 // Collapse a Windows path to an absolute, backslash-separated, drive-qualified form.
 std::string absolute_win(const char* in) {
@@ -20,8 +22,8 @@ std::string absolute_win(const char* in) {
     } else if (!p.empty() && p[0] == '\\') {
         abs = "C:" + p;
     } else {
-        std::lock_guard<std::mutex> l(g_cwdLock);
-        abs = g_cwd + "\\" + p;
+        HsLockGuard l(g_cwdLock);
+        abs = cwd() + "\\" + p;
     }
     // Normalise . and .. and repeated separators.
     std::string out = "C:";
@@ -71,10 +73,10 @@ std::string hs_win_to_target(const char* winPath, bool forWrite) {
 }
 
 DWORD WINAPI GetCurrentDirectoryA(DWORD n, LPSTR buf) {
-    std::lock_guard<std::mutex> l(g_cwdLock);
-    if (!buf || n <= g_cwd.size()) return (DWORD)g_cwd.size() + 1;
-    std::memcpy(buf, g_cwd.c_str(), g_cwd.size() + 1);
-    return (DWORD)g_cwd.size();
+    HsLockGuard l(g_cwdLock);
+    if (!buf || n <= cwd().size()) return (DWORD)cwd().size() + 1;
+    std::memcpy(buf, cwd().c_str(), cwd().size() + 1);
+    return (DWORD)cwd().size();
 }
 
 BOOL WINAPI SetCurrentDirectoryA(LPCSTR path) {
@@ -84,7 +86,7 @@ BOOL WINAPI SetCurrentDirectoryA(LPCSTR path) {
         SetLastError(ERROR_PATH_NOT_FOUND);
         return FALSE;
     }
-    std::lock_guard<std::mutex> l(g_cwdLock);
-    g_cwd = abs;
+    HsLockGuard l(g_cwdLock);
+    cwd() = abs;
     return TRUE;
 }

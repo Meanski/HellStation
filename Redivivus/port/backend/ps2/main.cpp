@@ -79,8 +79,16 @@ __attribute__((constructor(101))) static void hs_early_marker(void) {
     hs_log("HellStation (ps2): static constructors starting");
 }
 
+void hs_install_terminate_handler();
+
 int main(int argc, char** argv) {
+    hs_install_terminate_handler();
     hs_log("HellStation (ps2) starting, data dir: %s", hs_data_dir());
+    // The software (GDI) renderer is the one the port presents; it's the game's
+    // windowed mode, -w. A loader may pass its own arguments instead.
+    static char arg0[] = "d2.elf", argW[] = "-w";
+    static char* defaultArgs[] = {arg0, argW, nullptr};
+    if (argc < 2) { argc = 2; argv = defaultArgs; }
     return hs_game_main(argc, argv);
 }
 
@@ -112,6 +120,8 @@ void on_terminate() {
     }
     hs_fatal("terminate");
 }
-struct InstallTerminate { InstallTerminate() { std::set_terminate(on_terminate); } };
-__attribute__((init_priority(101))) InstallTerminate g_installTerminate;
 }  // namespace
+// Installed from main(): std::set_terminate takes a libstdc++ mutex, and on
+// Sony's kernel pthread mutexes aren't usable during static construction
+// (EINVAL, pthread_self() == 0), which turned into an endless throw loop.
+void hs_install_terminate_handler() { std::set_terminate(on_terminate); }

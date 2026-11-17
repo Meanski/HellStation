@@ -13,8 +13,57 @@
 #endif
 #include <csignal>
 
+#if !defined(__linux__)
+// EE: no kernel semaphores for locks. The kernel has a hard limit of 256
+// semaphores and ps2sdk's pthread mutexes each take one; the game creates
+// hundreds of critical sections at start-up (Storm alone keeps 256), which
+// exhausted the pool and broke libkernel's own helper thread. These locks are
+// an owner id plus compare-and-swap; a waiter sleeps a little (usleep),
+// which also lets lower-priority threads run, since the EE never time-slices.
+#include <kernel.h>
+#include <unistd.h>
+struct hs_mutex { volatile int owner; int depth; };
+struct hs_cond { int unused; };
+
+static int self_id() { return GetThreadId() + 1; }  // 0 means "free"
+
+extern "C" {
+hs_mutex* hs_mutex_create(void) { return new hs_mutex{0, 0}; }
+void hs_mutex_destroy(hs_mutex* m) { delete m; }
+int hs_mutex_trylock(hs_mutex* m) {
+    int me = self_id();
+    if (m->owner == me) { m->depth++; return 1; }
+    if (__sync_bool_compare_and_swap(&m->owner, 0, me)) { m->depth = 1; return 1; }
+    return 0;
+}
+void hs_mutex_lock(hs_mutex* m) {
+    while (!hs_mutex_trylock(m)) usleep(100);
+}
+void hs_mutex_unlock(hs_mutex* m) {
+    if (m->owner != self_id()) return;
+    if (--m->depth == 0) __sync_lock_test_and_set(&m->owner, 0);
+}
+
+hs_cond* hs_cond_create(void) { return new hs_cond{0}; }
+void hs_cond_destroy(hs_cond* c) { delete c; }
+// Callers re-check their condition after every return (spurious wake-ups are
+// part of the contract), so a wait is: release, sleep a slice, re-acquire.
+int hs_cond_wait(hs_cond*, hs_mutex* m, uint32_t timeoutMs) {
+    int depth = m->depth;
+    m->depth = 1;
+    hs_mutex_unlock(m);
+    uint32_t slice = timeoutMs < 2 ? timeoutMs : 2;
+    if (slice) usleep(slice * 1000); else RotateThreadReadyQueue(0);
+    hs_mutex_lock(m);
+    m->depth = depth;
+    return timeoutMs != 0xFFFFFFFFu && timeoutMs <= 2;
+}
+void hs_cond_broadcast(hs_cond*) {}
+}  // extern "C"
+#else
 struct hs_mutex { pthread_mutex_t m; };
 struct hs_cond { pthread_cond_t c; };
+#endif
 struct hs_thread { pthread_t t; void (*fn)(void*); void* arg; };
 
 extern "C" {
@@ -47,13 +96,17 @@ void hs_vm_decommit(void* p, size_t size) { std::memset(p, 0, size); }
 void hs_vm_release(void* p, size_t) { free(p); }
 #endif
 
+#if defined(__linux__)
 hs_mutex* hs_mutex_create(void) {
     hs_mutex* m = new hs_mutex;
     pthread_mutexattr_t a;
     pthread_mutexattr_init(&a);
     pthread_mutexattr_settype(&a, PTHREAD_MUTEX_RECURSIVE);
-    pthread_mutex_init(&m->m, &a);
+    int rc = pthread_mutex_init(&m->m, &a);
     pthread_mutexattr_destroy(&a);
+    static unsigned count;
+    ++count;
+    if (rc != 0 || count % 64 == 0) hs_log("hs_mutex_create #%u rc=%d", count, rc);
     return m;
 }
 void hs_mutex_destroy(hs_mutex* m) { pthread_mutex_destroy(&m->m); delete m; }
@@ -66,8 +119,10 @@ hs_cond* hs_cond_create(void) {
     pthread_condattr_t a;
     pthread_condattr_init(&a);
     pthread_condattr_setclock(&a, CLOCK_MONOTONIC);
-    pthread_cond_init(&c->c, &a);
+    int rc = pthread_cond_init(&c->c, &a);
     pthread_condattr_destroy(&a);
+    static unsigned count;
+    if (++count, rc != 0) hs_log("hs_cond_create #%u rc=%d", count, rc);
     return c;
 }
 void hs_cond_destroy(hs_cond* c) { pthread_cond_destroy(&c->c); delete c; }
@@ -81,6 +136,7 @@ int hs_cond_wait(hs_cond* c, hs_mutex* m, uint32_t timeoutMs) {
     return pthread_cond_timedwait(&c->c, &m->m, &ts) == ETIMEDOUT ? 1 : 0;
 }
 void hs_cond_broadcast(hs_cond* c) { pthread_cond_broadcast(&c->c); }
+#endif  // __linux__
 
 // Every thread registers itself so a stall can be sampled (hs_dump_all_threads).
 static pthread_mutex_t g_regLock = PTHREAD_MUTEX_INITIALIZER;

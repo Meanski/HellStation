@@ -21,15 +21,15 @@ namespace {
 struct WndClass { WNDPROC proc; UINT style; int cbWndExtra; HINSTANCE inst; HCURSOR cursor; };
 std::map<std::string, WndClass>& classes() { static std::map<std::string, WndClass> c; return c; }
 
-std::mutex g_queueLock;
-std::deque<MSG> g_queue;
-std::vector<HsWindow*> g_windows;
+HsLock g_queueLock;
+std::deque<MSG>& queue() { static std::deque<MSG> q; return q; }
+std::vector<HsWindow*>& windows() { static std::vector<HsWindow*> w; return w; }
 HsWindow* g_focus;
 HsWindow* g_capture;
 int g_cursorShow = 0;  // ShowCursor counter (>= 0 shows)
 
 struct Timer { HWND hwnd; UINT_PTR id; UINT ms; DWORD next; TIMERPROC proc; };
-std::vector<Timer> g_timers;
+std::vector<Timer>& timers() { static std::vector<Timer> t; return t; }
 
 std::string lower(const char* s) {
     std::string r = s ? s : "";
@@ -58,14 +58,14 @@ void post(HWND h, UINT m, WPARAM w, LPARAM l) {
     hs_input_mouse_pos(&x, &y);
     msg.pt.x = x;
     msg.pt.y = y;
-    std::lock_guard<std::mutex> lock(g_queueLock);
-    g_queue.push_back(msg);
+    HsLockGuard lock(g_queueLock);
+    queue().push_back(msg);
 }
 
 HWND input_target() {
     if (g_capture) return (HWND)g_capture;
     if (g_focus) return (HWND)g_focus;
-    return g_windows.empty() ? nullptr : (HWND)g_windows.front();
+    return windows().empty() ? nullptr : (HWND)windows().front();
 }
 
 // Backend events -> window messages.
@@ -113,7 +113,7 @@ void pump() {
         }
     }
     DWORD now = GetTickCount();
-    for (Timer& t : g_timers) {
+    for (Timer& t : timers()) {
         if ((int)(now - t.next) >= 0) {
             t.next = now + t.ms;
             post(t.hwnd, WM_TIMER, t.id, (LPARAM)t.proc);
@@ -132,11 +132,11 @@ bool matches(const MSG& m, HWND h, UINT lo, UINT hi) {
 // Validated by membership, never by dereferencing: the game passes handles
 // such as GetDesktopWindow() that aren't window records.
 HsWindow* hs_window_from(HWND h) {
-    for (HsWindow* w : g_windows) if ((HWND)w == h) return w;
+    for (HsWindow* w : windows()) if ((HWND)w == h) return w;
     return nullptr;
 }
 
-HsWindow* hs_main_window() { return g_windows.empty() ? nullptr : g_windows.front(); }
+HsWindow* hs_main_window() { return windows().empty() ? nullptr : windows().front(); }
 
 // ---- Classes and windows ---------------------------------------------------------
 
@@ -168,7 +168,7 @@ HWND WINAPI CreateWindowExA(DWORD exStyle, LPCSTR cls, LPCSTR title, DWORD style
     win->rect = {x == (int)CW_USEDEFAULT ? 0 : x, y == (int)CW_USEDEFAULT ? 0 : y, 0, 0};
     win->rect.right = win->rect.left + (w == (int)CW_USEDEFAULT ? 640 : w);
     win->rect.bottom = win->rect.top + (h == (int)CW_USEDEFAULT ? 480 : h);
-    g_windows.push_back(win);
+    windows().push_back(win);
     if (!g_focus && !parent) g_focus = win;
     hs_log("CreateWindowExA(\"%s\", \"%s\", %dx%d)", cls, win->title.c_str(), w, h);
 
@@ -193,8 +193,8 @@ BOOL WINAPI DestroyWindow(HWND h) {
     if (!w) return FALSE;
     w->proc(h, WM_DESTROY, 0, 0);
     w->proc(h, WM_NCDESTROY, 0, 0);
-    for (size_t i = 0; i < g_windows.size(); i++) if (g_windows[i] == w) g_windows.erase(g_windows.begin() + i);
-    if (g_focus == w) g_focus = g_windows.empty() ? nullptr : g_windows.front();
+    for (size_t i = 0; i < windows().size(); i++) if (windows()[i] == w) windows().erase(windows().begin() + i);
+    if (g_focus == w) g_focus = windows().empty() ? nullptr : windows().front();
     if (g_capture == w) g_capture = nullptr;
     w->magic = 0;  // leaked deliberately: late messages for it are dropped, not use-after-free
     return TRUE;
@@ -324,11 +324,11 @@ UINT WINAPI GetDoubleClickTime(void) { return 500; }
 
 BOOL WINAPI PeekMessageA(LPMSG msg, HWND h, UINT lo, UINT hi, UINT remove) {
     pump();
-    std::lock_guard<std::mutex> lock(g_queueLock);
-    for (auto it = g_queue.begin(); it != g_queue.end(); ++it) {
+    HsLockGuard lock(g_queueLock);
+    for (auto it = queue().begin(); it != queue().end(); ++it) {
         if (it->message == WM_QUIT || matches(*it, h, lo, hi)) {
             *msg = *it;
-            if (remove & PM_REMOVE) g_queue.erase(it);
+            if (remove & PM_REMOVE) queue().erase(it);
             return TRUE;
         }
     }
@@ -343,7 +343,7 @@ BOOL WINAPI GetMessageA(LPMSG msg, HWND h, UINT lo, UINT hi) {
 BOOL WINAPI WaitMessage(void) {
     for (;;) {
         pump();
-        { std::lock_guard<std::mutex> lock(g_queueLock); if (!g_queue.empty()) return TRUE; }
+        { HsLockGuard lock(g_queueLock); if (!queue().empty()) return TRUE; }
         hs_sleep_ms(1);
     }
 }
@@ -400,14 +400,14 @@ LRESULT WINAPI DefWindowProcA(HWND h, UINT m, WPARAM w, LPARAM l) {
 }
 
 UINT_PTR WINAPI SetTimer(HWND h, UINT_PTR id, UINT ms, TIMERPROC proc) {
-    for (Timer& t : g_timers) if (t.hwnd == h && t.id == id) { t.ms = ms; t.next = GetTickCount() + ms; t.proc = proc; return id; }
-    if (!h && !id) id = 0x1000 + g_timers.size();
-    g_timers.push_back({h, id, ms, GetTickCount() + ms, proc});
+    for (Timer& t : timers()) if (t.hwnd == h && t.id == id) { t.ms = ms; t.next = GetTickCount() + ms; t.proc = proc; return id; }
+    if (!h && !id) id = 0x1000 + timers().size();
+    timers().push_back({h, id, ms, GetTickCount() + ms, proc});
     return id;
 }
 BOOL WINAPI KillTimer(HWND h, UINT_PTR id) {
-    for (size_t i = 0; i < g_timers.size(); i++)
-        if (g_timers[i].hwnd == h && g_timers[i].id == id) { g_timers.erase(g_timers.begin() + i); return TRUE; }
+    for (size_t i = 0; i < timers().size(); i++)
+        if (timers()[i].hwnd == h && timers()[i].id == id) { timers().erase(timers().begin() + i); return TRUE; }
     return FALSE;
 }
 

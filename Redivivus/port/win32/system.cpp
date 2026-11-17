@@ -68,7 +68,7 @@ HLOCAL WINAPI LocalFree(HLOCAL p) { heap_free(p); return nullptr; }
 // (lazily backed on Phase 1); committing inside it is free; decommit returns
 // pages to zero, as Windows guarantees for a later recommit.
 namespace {
-std::mutex g_vmLock;
+HsLock g_vmLock;
 std::map<uintptr_t, size_t>& vm_regions() { static std::map<uintptr_t, size_t> m; return m; }
 size_t page_round(size_t n) { return (n + 4095) & ~(size_t)4095; }
 }  // namespace
@@ -79,7 +79,7 @@ LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
     size_t size = page_round(n ? n : 1);
     void* p = hs_vm_reserve(size, 0x10000);  // Windows allocation granularity
     if (!p) { SetLastError(ERROR_NOT_ENOUGH_MEMORY); return nullptr; }
-    std::lock_guard<std::mutex> l(g_vmLock);
+    HsLockGuard l(g_vmLock);
     vm_regions()[(uintptr_t)p] = size;
     return p;
 }
@@ -87,7 +87,7 @@ BOOL WINAPI VirtualFree(LPVOID p, SIZE_T n, DWORD type) {
     if (type & MEM_RELEASE) {
         size_t size = 0;
         {
-            std::lock_guard<std::mutex> l(g_vmLock);
+            HsLockGuard l(g_vmLock);
             auto it = vm_regions().find((uintptr_t)p);
             if (it == vm_regions().end()) { SetLastError(ERROR_INVALID_ADDRESS); return FALSE; }
             size = it->second;
@@ -294,7 +294,7 @@ int WINAPI WideCharToMultiByte(UINT, DWORD, LPCWCH src, int srcLen, LPSTR dst, i
 
 namespace {
 struct RegKey { std::string path; };
-std::mutex g_regLock;
+HsLock g_regLock;
 struct RegValue { DWORD type; std::string data; };  // REG_SZ data excludes the terminator
 std::map<std::string, RegValue>& reg_values() {
     static std::map<std::string, RegValue> v = {
@@ -326,7 +326,7 @@ LONG WINAPI RegCloseKey(HKEY k) {
     return ERROR_SUCCESS;
 }
 LONG WINAPI RegQueryValueExA(HKEY k, LPCSTR name, LPDWORD, LPDWORD type, LPBYTE data, LPDWORD size) {
-    std::lock_guard<std::mutex> l(g_regLock);
+    HsLockGuard l(g_regLock);
     auto it = reg_values().find(key_base(k) + "\\" + lower(name ? name : ""));
     if (it == reg_values().end()) return ERROR_FILE_NOT_FOUND;
     const std::string& v = it->second.data;
@@ -342,14 +342,14 @@ LONG WINAPI RegQueryValueExA(HKEY k, LPCSTR name, LPDWORD, LPDWORD type, LPBYTE 
     return ERROR_SUCCESS;
 }
 LONG WINAPI RegSetValueExA(HKEY k, LPCSTR name, DWORD, DWORD type, const BYTE* data, DWORD size) {
-    std::lock_guard<std::mutex> l(g_regLock);
+    HsLockGuard l(g_regLock);
     std::string v((const char*)data, size);
     if ((type == REG_SZ || type == REG_EXPAND_SZ) && !v.empty() && v.back() == '\0') v.pop_back();
     reg_values()[key_base(k) + "\\" + lower(name ? name : "")] = RegValue{type, v};
     return ERROR_SUCCESS;
 }
 LONG WINAPI RegDeleteValueA(HKEY k, LPCSTR name) {
-    std::lock_guard<std::mutex> l(g_regLock);
+    HsLockGuard l(g_regLock);
     reg_values().erase(key_base(k) + "\\" + lower(name ? name : ""));
     return ERROR_SUCCESS;
 }

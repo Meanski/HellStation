@@ -186,3 +186,37 @@ full HUD. It stayed stable in town for thousands of frames (14,600 presented fra
   (or a reschedule from one) returning without restoring `v1`. This is a BIOS-level fault, reportable
   to TamaribaEmu/OpenPS2BIOS. Play! 0.72 loads the ELF but shows nothing and doesn't map `host:` to the
   ELF's folder.
+
+## 2026-11-17: Phase 2: the PS2 build reaches the game's init, opens every MPQ, loads its first string table
+
+With the owner-selected Sony BIOS (SCPH-70004 v2.00) in PCSX2. Found and fixed, in order:
+
+- **Static-initialisation order:** ps2sdk's `PTHREAD_MUTEX_INITIALIZER` is `(ptr)-1`, not a constant
+  expression, so every `std::mutex` in the shim is initialised at run time by its file's static
+  constructor, *after* upstream's game initialisers (which run first) have already called
+  `VirtualAlloc`. Zero-mutex → `EINVAL` → `std::system_error` → libstdc++'s exception pool looped
+  until the heap was gone. Glibc's initializer is all-zero, which hid this on Linux. Shim locks are
+  now `HsLock` (constant-initialised, creates its mutex atomically on first use); file-scope shim
+  objects the game can reach early are function-local.
+- **Kernel semaphore exhaustion:** the EE kernel has 256 semaphores; ps2sdk's pthread mutexes take one
+  each, and the game creates hundreds of critical sections at start-up (356 semaphores requested).
+  Failed creations and double deletes left libkernel's priority-0 helper thread spinning, which
+  starved `main` (the EE never time-slices). EE locks are now semaphore-free: owner id +
+  compare-and-swap, with waiters sleeping briefly; condition waits sleep in slices and re-check.
+- **Critical sections the shim didn't create** (zeroed or copied by the game) are no longer destroyed
+  on `DeleteCriticalSection` (tagged in `SpinCount`).
+- **`-w` by default** on the EE: without it the game looks for a Direct3D device and exits.
+- **`_sbrk`:** replaced (fixed heap end read once on the main thread); `HS_PS2_EXTENDED_RAM`
+  continues the heap at 0x02000000-0x08000000 for PCSX2 Extended RAM bring-up.
+- **Diagnostics:** wrappers for `__cxa_throw` (type + thrower), pthread mutex failures, and a
+  call-free recorder for kernel `CreateSema`/`DeleteSema` (runs before libc exists), read over PINE.
+
+**Where it stands:** `WinMain("-w")` runs; every LoD MPQ opens through `host:`; the 800×600 window and
+DIB section are created; `string.tbl` (from `d2data.mpq`) loads and passes its CRC. Then loading the
+next table (`patch_d2.mpq` / `d2exp.mpq`) returns NULL before any allocation, while Linux loads all
+three. Next: why Storm can't find or decompress files in those archives on the EE. Suspect: an
+unaligned read in a decompressor or the hash/block table code (PCSX2 doesn't fault on these).
+
+**Memory at this point:** image 10.3 MB + ~19.7 MB of Storm/Fog heap reservations before the main
+menu. On the EE every reservation is real RAM; fitting 32 MB means tuning those pools (Phase 3).
+`docs/port/overrides.md` notes the temporary `STRTABLE_CalculateCRC` diagnostic override.

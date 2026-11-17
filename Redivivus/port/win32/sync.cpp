@@ -203,18 +203,31 @@ DWORD WINAPI WaitForMultipleObjects(DWORD n, const HANDLE* hs, BOOL all, DWORD t
 // ---- Critical sections -----------------------------------------------------------
 // The game's CRITICAL_SECTION storage holds our recursive mutex in LockSemaphore.
 
+// Sections the shim initialised carry this tag in SpinCount, so Delete never
+// destroys a pointer it didn't create (the game deletes sections it zeroed or
+// copied; on the EE that freed an unrelated kernel semaphore and stalled the
+// libkernel helper thread).
+constexpr ULONG_PTR kHsCsTag = 0x48534353;  // 'HSCS'
+
 void WINAPI InitializeCriticalSection(LPCRITICAL_SECTION cs) {
     std::memset(cs, 0, sizeof *cs);
     cs->LockCount = -1;
     cs->LockSemaphore = (HANDLE)hs_mutex_create();
+    cs->SpinCount = kHsCsTag;
 }
 BOOL WINAPI InitializeCriticalSectionAndSpinCount(LPCRITICAL_SECTION cs, DWORD) {
     InitializeCriticalSection(cs);
     return TRUE;
 }
 void WINAPI DeleteCriticalSection(LPCRITICAL_SECTION cs) {
+    if (cs->SpinCount != kHsCsTag) {
+        static int n;
+        if (cs->LockSemaphore && ++n <= 8) hs_log("DeleteCriticalSection(%p): not one of ours, left alone", (void*)cs);
+        return;
+    }
     if (cs->LockSemaphore) hs_mutex_destroy((hs_mutex*)cs->LockSemaphore);
     cs->LockSemaphore = nullptr;
+    cs->SpinCount = 0;
 }
 static hs_mutex* cs_mutex(LPCRITICAL_SECTION cs) {
     // A zero-filled section that was never initialised (static storage the
@@ -222,7 +235,7 @@ static hs_mutex* cs_mutex(LPCRITICAL_SECTION cs) {
     if (!cs->LockSemaphore) {
         static hs_mutex* guard = hs_mutex_create();
         hs_mutex_lock(guard);
-        if (!cs->LockSemaphore) cs->LockSemaphore = (HANDLE)hs_mutex_create();
+        if (!cs->LockSemaphore) { cs->LockSemaphore = (HANDLE)hs_mutex_create(); cs->SpinCount = kHsCsTag; }
         hs_mutex_unlock(guard);
     }
     return (hs_mutex*)cs->LockSemaphore;
