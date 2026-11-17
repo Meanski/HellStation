@@ -1,94 +1,109 @@
-# Redivivus
+# HellStation
 
-[![Discord](https://img.shields.io/badge/Discord-join%20the%20chat-5865F2?logo=discord&logoColor=white)](https://discord.gg/MHK2Dg9)
-[![redivivus.app](https://img.shields.io/badge/redivivus.app-site-8f2b2b)](https://redivivus.app)
+Diablo II: Lord of Destruction 1.14d running natively on the PlayStation 2. It isn't emulated,
+streamed or a remake: it's the game's own code, compiled for the PS2's Emotion Engine.
 
-Diablo II: Lord of Destruction 1.14d, reverse-engineered into C++ that builds and runs.
+HellStation is built on [Redivivus](https://github.com/jaenster/redivivus), jaenster's
+reverse-engineering of 1.14d into C++ that builds and runs. Redivivus supplies the game. HellStation
+supplies everything a PS2 needs underneath it: a fake Windows, a GS renderer, pad input, and a
+build that fits the EE.
 
-|At this commit|Ghidra database v2109|
+## Status
+
+|Milestone|State|
 |-|-|
-|Build|every translation unit compiles with a strict `-std=c++17`, no `-fpermissive`; the executable links with no undefined symbol|
-|Play|single player works; a full playthrough has been completed on the Visual C++ 2005 build|
-|Modules|22 libraries, one per original module; 4 strict, with no include the original DLL imports did not allow|
-|64-bit|all 464 files compile for x64 with Visual C++ 2005; 890 pointer-width casts left (from 7,955), [counted](asm_matching/msvc8/x64/README.md) by that compiler|
+|Main menu on an emulated PS2 (PCSX2)|done|
+|In game: new LoD character, Rogue Encampment, walking, inventory|done, 25 FPS (the game's own cap)|
+|DualShock 2 as a virtual mouse plus D2 hotkeys (controller layer 0)|done|
+|Fits a retail PS2's 32 MB of RAM|**not yet**: needs PCSX2's Extended RAM for now|
+|Sound|not yet|
+|Real hardware|not yet tried|
+|Typing a character name with the pad|not yet (new characters need the input script for now)|
 
-Machine code identical to 1.14d, compiled with Visual C++ 2005 SP1, the compiler of the original:
+The dated engineering log, with every measurement and decision, is [PORTING_LOG.md](PORTING_LOG.md).
+The plan and its exit criteria are in [docs/port/PLAN.md](docs/port/PLAN.md).
 
-|Measure|Identical machine code|
-|-|-|
-|Functions|8,892 of 14,644 (60.7%)|
-|Code|799,653 of 2,600,766 bytes (30.75%)|
-|Instructions|1,886,909 of 2,600,766 bytes (72.6%), counting identical instructions in functions that still differ|
+## You bring the game
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="asm_matching/msvc8/evidence/byte-match-dark.svg">
-  <img alt="The original's code split by how closely the rebuild matches it" src="asm_matching/msvc8/evidence/byte-match-light.svg">
-</picture>
+This repository holds no game data and never will. You need your own Diablo II and Lord of
+Destruction, patched to 1.14d. Put these files in a folder (default `~/d2data`, or set `$D2DATA`):
 
-What is compared, what is left out (the C runtime, compiler-made exception code, PKWARE) and
-the figures over the whole binary: [BYTE-MATCHING.md](BYTE-MATCHING.md).
+```
+d2char.mpq  d2data.mpq  d2exp.mpq  d2music.mpq  d2sfx.mpq  d2speech.mpq
+d2video.mpq  d2xmusic.mpq  d2xtalk.mpq  d2xvideo.mpq  patch_d2.mpq
+```
 
-*Redivivus* is Latin for a thing restored to life. Next to the game mechanics it carries the
-parts that make the game run at all: the program host and its main loop, the renderers, sound,
-input, files and archives, the network layer, and Blizzard's Storm and Fog libraries. The tree is
-generated from reverse-engineered Ghidra databases and corrected where needed, so the names,
-types and structure are reconstructions, and some functions still read like a decompiler wrote
-them. How it is laid out: [docs/layout.md](docs/layout.md). How it came about:
-[redivivus.app/about](https://redivivus.app/about).
-
-Redivivus is a single-player project, made to study and preserve the game. Online play on
-Battle.net is outside its scope.
+PCSX2 also needs a BIOS dumped from your own console.
 
 ## Build and run
 
-You need your own Diablo II: Lord of Destruction 1.14 installation; this repository holds no
-game data. With a mingw-w64 cross compiler for 32-bit Windows, CMake and Ninja:
+The host is macOS on Apple Silicon with Docker. The PS2 toolchain runs in the `ps2dev/ps2dev`
+container, which `tools/port/ps2.sh` wraps.
 
 ```sh
-cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/mingw-i686.cmake
-cmake --build build
+git config core.hooksPath tools/hooks          # once: no game data, no stray binaries
+
+tools/port/ps2.sh cmake -S . -B build-ps2 -G Ninja -DREDIVIVUS_PORT=ON \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/ps2-ee.cmake -DHS_PS2_EXTENDED_RAM=ON
+tools/port/ps2.sh cmake --build build-ps2
+
+tools/port/run-pcsx2.sh --extra-ram --seconds 5
 ```
 
-Copy `build/d2.exe` next to `Game.exe` in your Diablo II folder and run `d2.exe -w`.
-Per platform, and with the original compilers: [docs/building.md](docs/building.md),
-[docs/original-compilers.md](docs/original-compilers.md).
+`run-pcsx2.sh` stages the ELF next to your game folder, turns on the PCSX2 settings the port
+needs (host file access, Extended RAM), and starts it. Add
+`--script tools/port/scripts/town-walk.txt` to play back a scripted run that makes a Barbarian and
+walks around the Rogue Encampment.
 
-## Known issues
+The port also builds for 32-bit Linux with SDL2 (Phase 1, the debugging target), and the stock
+Windows build is kept working. Both are covered in [AGENTS.md](AGENTS.md).
 
-- When an NPC has quest news, the scrolling text box does not appear; the quest itself advances.
-- It can still crash, rarely. A crash writes a report with a stack trace next to the executable;
-  please attach it to an [issue](https://github.com/jaenster/redivivus/issues).
-  Where the reports land: [docs/crash-reports.md](docs/crash-reports.md).
+## Controls (DualShock 2)
 
-## Contributing
+|Pad|Does|
+|-|-|
+|Left stick / right stick|Cursor, fast / precise|
+|✕ or R2|Left click|
+|○ or L2|Right click|
+|Start|Esc (game menu)|
+|△ / □ / R1|Inventory / skill tree / character sheet|
+|Select|Automap|
+|L1 (hold)|Shift: stand still|
+|L3 / R3|Toggle run / show items|
+|D-pad|Belt slots 1–4|
 
-Most of the tree is regenerated, so a fix in the reverse-engineering (a wrong type, a missing
-parameter) is best sent as a proposal against the Ghidra databases: it is checked, reviewed,
-and applied with you as the git author. With Claude Code:
+This is layer 0, the pad as a mouse. Walking with the stick, auto-targeting and pad-driven
+inventory are designed in [docs/port/controller.md](docs/port/controller.md).
 
-```
-claude plugin marketplace add jaenster/redivivus
-claude plugin install redivivus@redivivus
-```
+## How it works
 
-Other agents, pull requests and which paths are generated: [CONTRIBUTING.md](CONTRIBUTING.md)
-and [redivivus.app/about#contributing](https://redivivus.app/about#contributing).
+- **No game code is edited.** The decompiled tree is regenerated upstream, so everything PS2-specific
+  sits beside it: a forced-include prelude, a Win32 shim (`Redivivus/port/win32/`), link-time
+  overrides, and backends (`Redivivus/port/backend/`).
+- **Rendering** uses the game's own software renderer. Each 8-bit frame goes to the GS as a
+  paletted texture with its colour table.
+- **Files** are read straight from your MPQs through the `host:` device (PCSX2's host file system
+  for now).
+- **Interesting bugs** are written up in [PORTING_LOG.md](PORTING_LOG.md). For example, units
+  teleported along walks because PCSX2's EE recompiler mishandles one unaligned-load instruction
+  (`LWR`). The build now compensates, and a report for PCSX2 is drafted in
+  [docs/port/upstream/](docs/port/upstream/).
 
 ## Credits
 
-- Much of the 1.14d reverse-engineering comes from [blizzhackers](https://blizzhackers.dev),
-  dzik in particular.
-- The byte-match oracle in `asm_matching/` is Niehztog's, and Nugwa628 found many of the
-  difference classes it measures.
-- [D2MOO](https://github.com/ThePhrozenKeep/D2MOO) supplied many of the structure layouts
-  this work started from in 2021, though it went another direction since.
+- [Redivivus](https://github.com/jaenster/redivivus) by jaenster and the Redivivus contributors:
+  the reverse-engineered game this runs, imported as a snapshot (the first commit here, with the
+  upstream revision in `UPSTREAM`). Fixes that belong to Redivivus go back there.
+- [ps2dev](https://github.com/ps2dev): the PS2 toolchain, ps2sdk and gsKit.
+- [PCSX2](https://pcsx2.net): the emulator used for bring-up.
+- Controller design was informed by d2decomped, D2Vita, DevilutionX and D2R. None of their code is
+  used; see [docs/port/controller.md](docs/port/controller.md).
 
 ## License
 
-MIT, see [LICENSE](LICENSE). Code under `3rdparty/libbacktrace/` keeps its own license.
+MIT, see [LICENSE](LICENSE). The imported Redivivus code keeps its own copyright notice there, and
+its `.cpp.map` files are used under its terms: credit to Redivivus, linked above.
 
-The `.cpp.map` files map every function and line back to its address in 1.14d `Game.exe`. They
-are part of this work under the same license: if you use them, credit Redivivus and link here.
-
-Diablo and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. This
-project is not affiliated with or endorsed by Blizzard.
+Diablo and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. PlayStation is a
+trademark of Sony Interactive Entertainment. This project is not affiliated with or endorsed by
+either.
