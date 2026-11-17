@@ -21,7 +21,16 @@
 cmake_minimum_required(VERSION 3.24)
 project(Redivivus LANGUAGES C CXX ASM)
 
-if(NOT WIN32 OR NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
+# HellStation: port targets (Linux/SDL, PS2) build the same tree over a Win32
+# shim. All port logic is in cmake/port.cmake; the hooks below are marked.
+option(REDIVIVUS_PORT "Build for a non-Windows port target over the Win32 shim in Redivivus/port/" OFF)
+option(REDIVIVUS_PORT_SANITIZE "Port build with -fsanitize=alignment,undefined" OFF)
+
+if(REDIVIVUS_PORT)
+    if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
+        message(FATAL_ERROR "Port targets must have 32-bit pointers (the tree assumes ILP32).")
+    endif()
+elseif(NOT WIN32 OR NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     message(FATAL_ERROR "Redivivus targets 32-bit Windows. Configure with "
         "-DCMAKE_TOOLCHAIN_FILE=cmake/mingw-i686.cmake (or a native i686 mingw-w64 g++).")
 endif()
@@ -80,6 +89,15 @@ foreach(list D2_SOURCES D2_HEADERS)
 endforeach()
 list(SORT D2_SOURCES)
 
+# HellStation hook: the port layer is never part of the Windows build, and a port
+# build swaps out the Windows-only support files.
+list(FILTER D2_SOURCES EXCLUDE REGEX "^${D2_ROOT}/Redivivus/port/")
+list(FILTER D2_HEADERS EXCLUDE REGEX "^${D2_ROOT}/Redivivus/port/")
+if(REDIVIVUS_PORT)
+    include("${D2_ROOT}/cmake/port.cmake")
+    hs_port_sources(D2_SOURCES)
+endif()
+
 if(NOT REDIVIVUS_DEV)
     list(REMOVE_ITEM D2_SOURCES "${D2_SUPPORT}/d2_control.cpp")
 endif()
@@ -126,6 +144,9 @@ if(EXISTS "${D2_SUPPORT}/d2_hand.h")
 endif()
 if(REDIVIVUS_PERMISSIVE)
     target_compile_options(d2_flags INTERFACE "$<${CXX_ONLY}:-fpermissive>")
+endif()
+if(REDIVIVUS_PORT)  # HellStation hook
+    hs_port_flags(d2_flags)
 endif()
 if(REDIVIVUS_DEV)
     target_compile_definitions(d2_flags INTERFACE REDIVIVUS_DEV)
@@ -285,6 +306,13 @@ add_custom_target(module_gates ALL DEPENDS "${CMAKE_BINARY_DIR}/module-gates.tsv
 # describe of the tree is baked in at configure time; only d2_crash.cpp sees it,
 # so a new commit recompiles that one file.
 # ---------------------------------------------------------------------------
+# HellStation hook: a port links its shim and backend instead of Win32, the PE
+# crash reporter and the licensed-DLL import libraries.
+if(REDIVIVUS_PORT)
+    hs_port_link(d2)
+    return()
+endif()
+
 set(D2_BACKTRACE "${D2_ROOT}/${D2_MODULE_libbacktrace_DIR}")
 add_library(libbacktrace STATIC
     ${D2_BACKTRACE}/alloc.c

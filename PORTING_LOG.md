@@ -77,6 +77,17 @@ measurement, a decision and its evidence.
 - **Result:** `tools/port/probe-compile.sh`: 462/462 TUs (Source/, Storm, crashy) pass `-fsyntax-only`.
   The first probe on the non-`_WIN32` path failed every TU.
 - **Watch on PS2:** `_X86_` gives the x86 `CONTEXT`/`NT_TIB` layouts on MIPS, which is what the code
-  reads. The i386-only inline asm in mingw's `winnt.h` (`NtCurrentTeb` via `%fs`) is reachable through
-  `D2SehScope` on i386 Linux; Phase 1 gives each thread a fake TEB under `%fs`, and on MIPS the scope
-  compiles to the unprotected path.
+  reads.
+
+## 2026-11-17: Phase 1: one code path for every port target
+
+- The first full compile failed in two TUs on `d2_platform.h`'s x86 SEH dispatcher: inline asm that
+  calls `_RtlUnwind@16`, a PE-only spelling the ELF assembler rejects. It's enabled by `__i386__`.
+- A global `#undef __i386__` in the prelude doesn't work: mingw's `winnt.h` `#error`s without an
+  architecture and its `Interlocked*` intrinsics disappear.
+- Decision: `Redivivus/port/include/x86intrin.h` interposes the one header `d2_platform.h` includes
+  between the SDK headers and its x86-only blocks. It forwards to the real header, then retires
+  `__i386__`. SDK headers keep their architecture; everything after (the SEH block, the tree's
+  `__i386__` paths) takes the generic paths the PS2 build takes, so Phase 1 tests PS2 code paths on
+  an easy-to-debug host. Calling-convention attributes are fixed earlier by the prelude, so the i386
+  ABI is unchanged. A per-thread `%fs` TIB is no longer needed and was removed.

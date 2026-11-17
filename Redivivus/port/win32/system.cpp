@@ -1,0 +1,314 @@
+// Win32 memory, module, registry and system-information calls.
+#include <windows.h>
+#include <cstdlib>
+#include <cstring>
+#include <malloc.h>
+#include <map>
+#include <mutex>
+#include <string>
+
+#include "Redivivus/port/platform.h"
+#include "Redivivus/port/win32/handles.h"
+
+// ---- Memory -------------------------------------------------------------------------
+// Heaps are the C allocator. Blocks carry their size in front so HeapSize and
+// HeapReAlloc work, and are 16-byte aligned like Windows heap blocks (MIPS
+// needs 8 for doubles; the game's own pools assume at least that).
+
+namespace {
+constexpr size_t kHdr = 16;
+void* heap_alloc(size_t n, bool zero) {
+    void* p = memalign(16, n + kHdr);
+    if (!p) return nullptr;
+    *(size_t*)p = n;
+    if (zero) std::memset((char*)p + kHdr, 0, n);
+    return (char*)p + kHdr;
+}
+void heap_free(void* p) { if (p) std::free((char*)p - kHdr); }
+size_t heap_size(const void* p) { return *(const size_t*)((const char*)p - kHdr); }
+const HANDLE kProcessHeap = (HANDLE)(uintptr_t)0x00150000;
+}  // namespace
+
+HANDLE WINAPI GetProcessHeap(void) { return kProcessHeap; }
+HANDLE WINAPI HeapCreate(DWORD, SIZE_T, SIZE_T) { return kProcessHeap; }
+BOOL WINAPI HeapDestroy(HANDLE) { return TRUE; }
+LPVOID WINAPI HeapAlloc(HANDLE, DWORD flags, SIZE_T n) { return heap_alloc(n, flags & HEAP_ZERO_MEMORY); }
+BOOL WINAPI HeapFree(HANDLE, DWORD, LPVOID p) { heap_free(p); return TRUE; }
+SIZE_T WINAPI HeapSize(HANDLE, DWORD, LPCVOID p) { return p ? heap_size(p) : (SIZE_T)-1; }
+LPVOID WINAPI HeapReAlloc(HANDLE, DWORD flags, LPVOID p, SIZE_T n) {
+    if (!p) return heap_alloc(n, flags & HEAP_ZERO_MEMORY);
+    size_t old = heap_size(p);
+    if (flags & HEAP_REALLOC_IN_PLACE_ONLY) {
+        if (n > old) return nullptr;
+        *(size_t*)((char*)p - kHdr) = n;
+        return p;
+    }
+    void* q = heap_alloc(n, false);
+    if (!q) return nullptr;
+    std::memcpy(q, p, old < n ? old : n);
+    if ((flags & HEAP_ZERO_MEMORY) && n > old) std::memset((char*)q + old, 0, n - old);
+    heap_free(p);
+    return q;
+}
+BOOL WINAPI HeapValidate(HANDLE, DWORD, LPCVOID) { return TRUE; }
+SIZE_T WINAPI HeapCompact(HANDLE, DWORD) { return 0x100000; }
+
+HGLOBAL WINAPI GlobalAlloc(UINT flags, SIZE_T n) { return heap_alloc(n, flags & GMEM_ZEROINIT); }
+HGLOBAL WINAPI GlobalFree(HGLOBAL p) { heap_free(p); return nullptr; }
+LPVOID WINAPI GlobalLock(HGLOBAL p) { return p; }
+BOOL WINAPI GlobalUnlock(HGLOBAL) { return TRUE; }
+SIZE_T WINAPI GlobalSize(HGLOBAL p) { return p ? heap_size(p) : 0; }
+HLOCAL WINAPI LocalAlloc(UINT flags, SIZE_T n) { return heap_alloc(n, flags & LMEM_ZEROINIT); }
+HLOCAL WINAPI LocalFree(HLOCAL p) { heap_free(p); return nullptr; }
+
+// VirtualAlloc: reserve and commit are the same thing here; memory is zeroed,
+// page-aligned, and freed only by a MEM_RELEASE of the base address.
+LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
+    if (addr && (type & MEM_COMMIT) && !(type & MEM_RESERVE)) return addr;  // commit inside a reservation
+    void* p = memalign(4096, n ? n : 1);
+    if (p) std::memset(p, 0, n);
+    return p;
+}
+BOOL WINAPI VirtualFree(LPVOID p, SIZE_T, DWORD type) {
+    if (type & MEM_RELEASE) std::free(p);
+    return TRUE;
+}
+BOOL WINAPI VirtualProtect(LPVOID, SIZE_T, DWORD newProt, PDWORD oldProt) {
+    if (oldProt) *oldProt = PAGE_READWRITE;
+    (void)newProt;
+    return TRUE;
+}
+SIZE_T WINAPI VirtualQuery(LPCVOID p, PMEMORY_BASIC_INFORMATION mbi, SIZE_T n) {
+    HS_STUB("reports every address as committed read-write");
+    if (n < sizeof *mbi) return 0;
+    std::memset(mbi, 0, sizeof *mbi);
+    mbi->BaseAddress = (PVOID)((uintptr_t)p & ~(uintptr_t)4095);
+    mbi->AllocationBase = mbi->BaseAddress;
+    mbi->RegionSize = 4096;
+    mbi->State = MEM_COMMIT;
+    mbi->Protect = PAGE_READWRITE;
+    mbi->Type = MEM_PRIVATE;
+    return sizeof *mbi;
+}
+
+BOOL WINAPI IsBadReadPtr(const void* p, UINT_PTR) { return p == nullptr; }
+BOOL WINAPI IsBadWritePtr(LPVOID p, UINT_PTR) { return p == nullptr; }
+BOOL WINAPI IsBadCodePtr(FARPROC p) { return p == nullptr; }
+BOOL WINAPI IsBadStringPtrA(LPCSTR p, UINT_PTR) { return p == nullptr; }
+
+void WINAPI GlobalMemoryStatus(LPMEMORYSTATUS ms) {
+    std::memset(ms, 0, sizeof *ms);
+    ms->dwLength = sizeof *ms;
+    ms->dwTotalPhys = 256u << 20;
+    ms->dwAvailPhys = 192u << 20;
+    ms->dwTotalPageFile = 512u << 20;
+    ms->dwAvailPageFile = 384u << 20;
+    ms->dwTotalVirtual = 2047u << 20;
+    ms->dwAvailVirtual = 1536u << 20;
+}
+BOOL WINAPI GlobalMemoryStatusEx(LPMEMORYSTATUSEX ms) {
+    MEMORYSTATUS s;
+    GlobalMemoryStatus(&s);
+    ms->dwMemoryLoad = 25;
+    ms->ullTotalPhys = s.dwTotalPhys;
+    ms->ullAvailPhys = s.dwAvailPhys;
+    ms->ullTotalPageFile = s.dwTotalPageFile;
+    ms->ullAvailPageFile = s.dwAvailPageFile;
+    ms->ullTotalVirtual = s.dwTotalVirtual;
+    ms->ullAvailVirtual = s.dwAvailVirtual;
+    return TRUE;
+}
+
+void WINAPI GetSystemInfo(LPSYSTEM_INFO si) {
+    std::memset(si, 0, sizeof *si);
+    si->wProcessorArchitecture = PROCESSOR_ARCHITECTURE_INTEL;
+    si->dwPageSize = 4096;
+    si->lpMinimumApplicationAddress = (LPVOID)0x10000;
+    si->lpMaximumApplicationAddress = (LPVOID)0x7FFEFFFF;
+    si->dwActiveProcessorMask = 1;
+    si->dwNumberOfProcessors = 1;
+    si->dwProcessorType = PROCESSOR_INTEL_PENTIUM;
+    si->dwAllocationGranularity = 65536;
+    si->wProcessorLevel = 6;
+}
+
+// ---- Modules ------------------------------------------------------------------------
+// One module: the game. Every other library the game loads (renderer DLLs,
+// Bink, Smacker, the sound backends) is reported absent, and the game falls
+// back the way it does on a machine without them.
+
+namespace { const HMODULE kGameModule = (HMODULE)(uintptr_t)0x00400000; }
+
+HMODULE WINAPI GetModuleHandleA(LPCSTR name) {
+    if (!name) return kGameModule;
+    SetLastError(ERROR_MOD_NOT_FOUND);
+    return nullptr;
+}
+HMODULE WINAPI GetModuleHandleW(LPCWSTR name) { return name ? nullptr : kGameModule; }
+HMODULE WINAPI LoadLibraryA(LPCSTR name) {
+    hs_log("LoadLibraryA(\"%s\"): not available on this target", name ? name : "");
+    SetLastError(ERROR_MOD_NOT_FOUND);
+    return nullptr;
+}
+HMODULE WINAPI LoadLibraryExA(LPCSTR name, HANDLE, DWORD) { return LoadLibraryA(name); }
+BOOL WINAPI FreeLibrary(HMODULE) { return TRUE; }
+FARPROC WINAPI GetProcAddress(HMODULE, LPCSTR name) {
+    hs_log("GetProcAddress(\"%s\"): not available on this target",
+           ((uintptr_t)name >> 16) ? name : "<ordinal>");
+    SetLastError(ERROR_PROC_NOT_FOUND);
+    return nullptr;
+}
+BOOL WINAPI DisableThreadLibraryCalls(HMODULE) { return TRUE; }
+
+// ---- Process ------------------------------------------------------------------------
+
+void WINAPI ExitProcess(UINT code) {
+    hs_log("ExitProcess(%u)", code);
+    std::exit((int)code);
+}
+BOOL WINAPI TerminateProcess(HANDLE, UINT code) { ExitProcess(code); return TRUE; }
+void WINAPI OutputDebugStringA(LPCSTR s) { if (s) hs_log("[debug] %s", s); }
+BOOL WINAPI IsDebuggerPresent(void) { return FALSE; }
+void WINAPI GetStartupInfoA(LPSTARTUPINFOA si) {
+    std::memset(si, 0, sizeof *si);
+    si->cb = sizeof *si;
+}
+DWORD WINAPI GetEnvironmentVariableA(LPCSTR name, LPSTR buf, DWORD n) {
+    (void)name;
+    if (buf && n) buf[0] = 0;
+    SetLastError(ERROR_ENVVAR_NOT_FOUND);
+    return 0;
+}
+LPTOP_LEVEL_EXCEPTION_FILTER WINAPI SetUnhandledExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER f) {
+    (void)f;
+    HS_STUB("no structured exceptions on this target; crashes go to the signal handler");
+    return nullptr;
+}
+UINT WINAPI SetErrorMode(UINT) { return 0; }
+
+// ---- Versions and locale ---------------------------------------------------------------
+
+DWORD WINAPI GetVersion(void) { return 0x0A280105; }  // Windows XP SP2 shape: 5.1, build 2600
+BOOL WINAPI GetVersionExA(LPOSVERSIONINFOA v) {
+    v->dwMajorVersion = 5;
+    v->dwMinorVersion = 1;
+    v->dwBuildNumber = 2600;
+    v->dwPlatformId = VER_PLATFORM_WIN32_NT;
+    std::strcpy(v->szCSDVersion, "Service Pack 2");
+    if (v->dwOSVersionInfoSize >= sizeof(OSVERSIONINFOEXA)) {
+        OSVERSIONINFOEXA* x = (OSVERSIONINFOEXA*)v;
+        x->wServicePackMajor = 2;
+        x->wProductType = VER_NT_WORKSTATION;
+    }
+    return TRUE;
+}
+UINT WINAPI GetACP(void) { return 1252; }
+UINT WINAPI GetOEMCP(void) { return 437; }
+LCID WINAPI GetUserDefaultLCID(void) { return 0x0409; }
+LCID WINAPI GetSystemDefaultLCID(void) { return 0x0409; }
+LANGID WINAPI GetUserDefaultLangID(void) { return 0x0409; }
+LANGID WINAPI GetSystemDefaultLangID(void) { return 0x0409; }
+LCID WINAPI GetThreadLocale(void) { return 0x0409; }
+BOOL WINAPI GetComputerNameA(LPSTR buf, LPDWORD n) {
+    static const char kName[] = "HELLSTATION";
+    if (*n < sizeof kName) { *n = sizeof kName; return FALSE; }
+    std::memcpy(buf, kName, sizeof kName);
+    *n = sizeof kName - 1;
+    return TRUE;
+}
+BOOL WINAPI GetUserNameA(LPSTR buf, LPDWORD n) {
+    static const char kName[] = "player";
+    if (*n < sizeof kName) { *n = sizeof kName; return FALSE; }
+    std::memcpy(buf, kName, sizeof kName);
+    *n = sizeof kName;
+    return TRUE;
+}
+
+// Code page 1252 <-> UTF-16, which covers the game's Latin-1 text.
+int WINAPI MultiByteToWideChar(UINT, DWORD, LPCCH src, int srcLen, LPWSTR dst, int dstLen) {
+    if (srcLen < 0) srcLen = (int)std::strlen(src) + 1;
+    if (!dstLen) return srcLen;
+    int n = srcLen < dstLen ? srcLen : dstLen;
+    for (int i = 0; i < n; i++) dst[i] = (WCHAR)(unsigned char)src[i];
+    return n;
+}
+int WINAPI WideCharToMultiByte(UINT, DWORD, LPCWCH src, int srcLen, LPSTR dst, int dstLen, LPCCH, LPBOOL used) {
+    if (srcLen < 0) { srcLen = 0; while (src[srcLen]) srcLen++; srcLen++; }
+    if (!dstLen) return srcLen;
+    int n = srcLen < dstLen ? srcLen : dstLen;
+    bool lossy = false;
+    for (int i = 0; i < n; i++) {
+        WCHAR c = src[i];
+        if (c > 0xFF) { lossy = true; c = '?'; }
+        dst[i] = (char)c;
+    }
+    if (used) *used = lossy;
+    return n;
+}
+
+// ---- Registry -------------------------------------------------------------------------
+// An in-memory registry, seeded with what Diablo II reads at startup. Values the
+// game writes live for the session. (A persistent .ini can come later.)
+
+namespace {
+struct RegKey { std::string path; };
+std::mutex g_regLock;
+struct RegValue { DWORD type; std::string data; };  // REG_SZ data excludes the terminator
+std::map<std::string, RegValue>& reg_values() {
+    static std::map<std::string, RegValue> v = {
+        {"software\\blizzard entertainment\\diablo ii\\installpath", {REG_SZ, "C:\\Diablo II"}},
+        {"software\\blizzard entertainment\\diablo ii\\save path", {REG_SZ, "C:\\Diablo II\\Save\\"}},
+    };
+    return v;
+}
+std::string lower(std::string s) { for (char& c : s) c = (char)std::tolower((unsigned char)c); return s; }
+std::string key_base(HKEY k) {
+    if (k == HKEY_LOCAL_MACHINE || k == HKEY_CURRENT_USER || k == HKEY_CLASSES_ROOT || k == HKEY_USERS) return "";
+    return ((RegKey*)k)->path;
+}
+}  // namespace
+
+LONG WINAPI RegOpenKeyExA(HKEY k, LPCSTR sub, DWORD, REGSAM, PHKEY out) {
+    std::string base = key_base(k);
+    *out = (HKEY) new RegKey{lower(base.empty() ? std::string(sub ? sub : "") : base + "\\" + (sub ? sub : ""))};
+    return ERROR_SUCCESS;
+}
+LONG WINAPI RegOpenKeyA(HKEY k, LPCSTR sub, PHKEY out) { return RegOpenKeyExA(k, sub, 0, 0, out); }
+LONG WINAPI RegCreateKeyExA(HKEY k, LPCSTR sub, DWORD, LPSTR, DWORD, REGSAM, LPSECURITY_ATTRIBUTES, PHKEY out, LPDWORD disp) {
+    if (disp) *disp = REG_OPENED_EXISTING_KEY;
+    return RegOpenKeyExA(k, sub, 0, 0, out);
+}
+LONG WINAPI RegCreateKeyA(HKEY k, LPCSTR sub, PHKEY out) { return RegOpenKeyExA(k, sub, 0, 0, out); }
+LONG WINAPI RegCloseKey(HKEY k) {
+    if (!key_base(k).empty()) delete (RegKey*)k;
+    return ERROR_SUCCESS;
+}
+LONG WINAPI RegQueryValueExA(HKEY k, LPCSTR name, LPDWORD, LPDWORD type, LPBYTE data, LPDWORD size) {
+    std::lock_guard<std::mutex> l(g_regLock);
+    auto it = reg_values().find(key_base(k) + "\\" + lower(name ? name : ""));
+    if (it == reg_values().end()) return ERROR_FILE_NOT_FOUND;
+    const std::string& v = it->second.data;
+    bool isString = it->second.type == REG_SZ || it->second.type == REG_EXPAND_SZ;
+    DWORD need = (DWORD)v.size() + (isString ? 1 : 0);
+    if (type) *type = it->second.type;
+    if (data) {
+        if (!size || *size < need) { if (size) *size = need; return ERROR_MORE_DATA; }
+        std::memcpy(data, v.data(), v.size());
+        if (isString) data[v.size()] = 0;
+    }
+    if (size) *size = need;
+    return ERROR_SUCCESS;
+}
+LONG WINAPI RegSetValueExA(HKEY k, LPCSTR name, DWORD, DWORD type, const BYTE* data, DWORD size) {
+    std::lock_guard<std::mutex> l(g_regLock);
+    std::string v((const char*)data, size);
+    if ((type == REG_SZ || type == REG_EXPAND_SZ) && !v.empty() && v.back() == '\0') v.pop_back();
+    reg_values()[key_base(k) + "\\" + lower(name ? name : "")] = RegValue{type, v};
+    return ERROR_SUCCESS;
+}
+LONG WINAPI RegDeleteValueA(HKEY k, LPCSTR name) {
+    std::lock_guard<std::mutex> l(g_regLock);
+    reg_values().erase(key_base(k) + "\\" + lower(name ? name : ""));
+    return ERROR_SUCCESS;
+}
+LONG WINAPI RegFlushKey(HKEY) { return ERROR_SUCCESS; }
