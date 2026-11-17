@@ -1,8 +1,12 @@
-# Phase 1 build/run environment: native i386 Debian userland (emulated on arm64 hosts).
-FROM debian:bookworm
-RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends \
-      build-essential cmake ninja-build ccache gdb git python3 pkg-config \
-      libsdl2-dev xvfb x11-apps imagemagick \
+# Phase 1 environment. Native-arch host tools with an i686-linux-gnu cross
+# compiler, so compiling runs at full speed; i386 runtime libraries (SDL2)
+# installed multiarch, so the 32-bit binary runs in the same container
+# (through qemu-i386 binfmt on arm64 hosts, natively on x86_64 hosts).
+FROM debian:trixie
+RUN dpkg --add-architecture i386 && apt-get update -qq && apt-get install -y -qq --no-install-recommends \
+      g++-i686-linux-gnu mingw-w64-i686-dev cmake ninja-build ccache git python3 pkgconf file \
+      libsdl2-dev:i386 libc6:i386 libstdc++6:i386 \
+      xvfb xauth x11-apps imagemagick gdb-multiarch \
     && rm -rf /var/lib/apt/lists/*
 ENV CCACHE_DIR=/ccache
 WORKDIR /src

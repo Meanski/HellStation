@@ -58,3 +58,25 @@ measurement, a decision and its evidence.
 - Not yet exercised: single player, character creation, in game.
 - `tools/port/winshot.sh` captures one app's window by CoreGraphics window id. Full-screen captures
   are not used: they pick up whatever else is on the owner's screen.
+
+## 2026-11-17: Phase 1: the whole generated tree compiles for i686 Linux
+
+- **Toolchain:** the Phase 1 image is now Debian trixie on the host's own arch, with `g++-i686-linux-gnu`
+  14.2 (compiling runs at native speed) and the i386 runtime multiarch (`libsdl2-dev:i386`), so the
+  32-bit binary runs in the same container through qemu-i386.
+- **Header strategy, decided by measurement:** the non-`_WIN32` half of `d2_platform.h` is a stale
+  skeleton. The generated code uses SDK spellings it doesn't provide or provides differently
+  (`tagPALETTEENTRY`, `LARGE_INTEGER::u`, `_RTL_CRITICAL_SECTION`, `BITMAPINFO`), and it's generated,
+  so it can't be fixed here. The `_WIN32` half is proven against mingw-w64's headers by the shipping
+  build. So port builds define `_WIN32` + `_X86_` and compile against **mingw-w64's Win32 API headers**
+  (`-idirafter`, public domain, build dependency only), with the host C library underneath.
+  `Redivivus/port/prelude.h` reconciles the two: calling conventions (real attributes on i386),
+  `__declspec`, the C library owning `FILE`/`timeval`, Winsock owning `fd_set`, 16-bit `wchar_t`
+  (`-fshort-wchar`, game wide-CRT calls routed to `wcrt16`), and the MSVC CRT names glibc lacks
+  (`win32/msvcrt.h`).
+- **Result:** `tools/port/probe-compile.sh`: 462/462 TUs (Source/, Storm, crashy) pass `-fsyntax-only`.
+  The first probe on the non-`_WIN32` path failed every TU.
+- **Watch on PS2:** `_X86_` gives the x86 `CONTEXT`/`NT_TIB` layouts on MIPS, which is what the code
+  reads. The i386-only inline asm in mingw's `winnt.h` (`NtCurrentTeb` via `%fs`) is reachable through
+  `D2SehScope` on i386 Linux; Phase 1 gives each thread a fake TEB under `%fs`, and on MIPS the scope
+  compiles to the unprotected path.
