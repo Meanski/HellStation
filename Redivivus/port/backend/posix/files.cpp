@@ -176,7 +176,16 @@ int hs_file_stat(const char* path, int* isDir, int64_t* size, int64_t* mtime) {
     return 0;
 }
 
-int hs_file_delete(const char* path) { return unlink(resolve(path).c_str()) == 0 ? 0 : fail(); }
+// A missing file is reported without calling unlink: on the PS2 under PCSX2's host device,
+// unlinking a path that doesn't exist left a directory of that name, which then blocked the
+// file (the automap's "<char>.ma0".."ma3", deleted before they're first written).
+int hs_file_delete(const char* path) {
+    std::string p = resolve(path);
+    struct stat st;
+    if (stat(p.c_str(), &st) != 0) return fail();
+    if (S_ISDIR(st.st_mode)) { t_err = HS_ERR_ACCESS; return -1; }  // DeleteFile on a directory fails
+    return unlink(p.c_str()) == 0 ? 0 : fail();
+}
 int hs_file_mkdir(const char* path) { return mkdir(resolve(path).c_str(), 0755) == 0 ? 0 : fail(); }
 int hs_file_rename(const char* from, const char* to) {
     return rename(resolve(from).c_str(), resolve(to).c_str()) == 0 ? 0 : fail();

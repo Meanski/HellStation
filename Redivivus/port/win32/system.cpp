@@ -402,6 +402,11 @@ std::map<std::string, RegValue>& reg_values() {
         std::map<std::string, RegValue> m = {
             {"software\\blizzard entertainment\\diablo ii\\installpath", {REG_SZ, "C:\\Diablo II"}},
             {"software\\blizzard entertainment\\diablo ii\\save path", {REG_SZ, "C:\\Diablo II\\Save\\"}},
+            // 1.14d's save folder. Without it, Fog's GetAndCreateSavePath migrates "Save Path" to
+            // SFILE_GetSaveGamePath's folder on every boot, and on our path (no SHGetKnownFolderPath)
+            // that function appends to a buffer it never filled: a directory move to a junk-named
+            // folder ("<junk>\Diablo II" kept appearing in the game folder; PORTING_LOG, 2026-11-19).
+            {"software\\blizzard entertainment\\diablo ii\\newsavepath", {REG_SZ, "C:\\Diablo II\\Save\\"}},
         };
         // Small-RAM targets (the PS2) play at 640x480, the game's other in-game mode
         // (D2Client UI/EscMenu.cpp: 0 = 640x480, 1 = 800x600, the default): fewer
