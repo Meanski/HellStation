@@ -600,3 +600,33 @@ class under the cursor or selected.
 At the retail cap: the class-select screen is at 21.1 MB (was 31.7, and failed). The Barbarian
 walks forward when picked and back when the Sorceress is picked instead. A new character is
 created, enters the Rogue Encampment and walks around; peak 22.7 MB.
+
+## 2026-11-19: walking Harrogath at the retail cap; the tile LRU
+
+A scripted walk from Harrogath's waypoint terrace down the stairs into the lower town, at the
+retail cap:
+
+- **First run: out of memory** at 24,151 KiB. The cause was Fog's realloc of a **null** pointer, an
+  allocation that `ReAllocServerMemory` passed through to Fog's pools; it made a 512 KiB pool
+  block. The wrapper now serves it exact-size. A temporary log of every request over 256 bytes
+  still reaching Fog then showed only data-table loads, under a pool id, which already go to
+  malloc at their exact size.
+- **Next run: out of memory again**, on a 65,535-byte sprite decode. The game's tile LRU (a flat
+  6 MB, D2Client `UI/Draw.cpp`) fills as the player explores: 1.2-1.3 MB standing in town, 2.4 MB
+  at the failure.
+- **Three changes:**
+  - `GFX_InitLRUCache` is wrapped, beside the sprite-cache cap, to cap the LRU at 2 MB on a
+    small-RAM target.
+  - The region allocator places blocks best-fit instead of first-fit.
+  - Game thread stacks are 64 KiB (the deepest use is still the 16 KiB painting margin).
+
+  The walk then completes. Peak 23.7 MB (with a 1.5 MB LRU and first fit it had been 23.9).
+- **But it runs at 15 FPS** in the lower town (every frame over 50 ms), with the LRU and sprite
+  cache both 99% full. The upper town stays at 25.
+- **An uncapped LRU hangs there.** With Extended RAM and the cap lifted to compare speed, the game
+  stopped presenting frames in the same spot (PCSX2 FPS N/A, last frame 3150), with the LRU at 37%
+  of 6 MB. The capped runs walked on past frame 6,000. Two sessions ago an Act 5 walk also stopped
+  moving near there (then put down to the path). Not investigated.
+
+At the retail cap now: new character 22.5 MB peak at full speed, Rogue Encampment 23.3 MB,
+Harrogath upper town 23.4 MB at full speed, lower town 23.7 MB at 15 FPS.

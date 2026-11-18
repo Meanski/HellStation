@@ -5,7 +5,7 @@
 <p align="center">
   <img alt="Platform: PlayStation 2" src="https://img.shields.io/badge/platform-PlayStation%202-1f4ea0?style=for-the-badge">
   <img alt="Game: Diablo II LoD 1.14d" src="https://img.shields.io/badge/Diablo%20II-LoD%201.14d-8b1a1a?style=for-the-badge">
-  <img alt="Status: in game on PCSX2; 32 MB is the fight" src="https://img.shields.io/badge/status-in%20game%20on%20PCSX2%2C%2032%20MB%20is%20the%20fight-e36209?style=for-the-badge">
+  <img alt="Status: in game in 32 MB on PCSX2" src="https://img.shields.io/badge/status-in%20game%20in%2032%20MB%20on%20PCSX2-e36209?style=for-the-badge">
   <br>
   <a href="https://github.com/Meanski/HellStation/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/Meanski/HellStation?style=for-the-badge&color=6e7681"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f?style=for-the-badge"></a>
@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="#status">Status</a> ·
-  <a href="#the-32-mb-problem">The 32 MB problem</a> ·
+  <a href="#fitting-in-32-mb">Fitting in 32 MB</a> ·
   <a href="#build-and-run">Build</a> ·
   <a href="#controls">Controls</a> ·
   <a href="#how-it-works">How it works</a> ·
@@ -29,10 +29,11 @@ Emotion Engine, with everything a PS2 needs underneath it. That means a fake Win
 renderer, DualShock 2 input, and a build tuned for the EE.
 
 > [!NOTE]
-> **It doesn't fit a retail PS2 yet, and it may never.** It plays in PCSX2, but only with PCSX2's
-> Extended RAM (128 MB). A retail PS2 has 32 MB. In November 2026 the project nearly stopped over
-> that; it carries on as a long shot, because a disc in a stock PS2 is the whole point. The numbers
-> are below and in the [dev log](PORTING_LOG.md).
+> **It now fits in a retail PS2's 32 MB, as PCSX2 emulates one.** Creating a character, the Rogue
+> Encampment and Harrogath (Act 5, Hell) all run with PCSX2's Extended RAM off, with under 1 MB to
+> spare. In November 2026 the project nearly stopped over memory. It isn't on a disc or real
+> hardware yet, there's no sound, and fights outside town haven't been tried. The numbers are below
+> and in the [dev log](PORTING_LOG.md).
 
 ## Status
 
@@ -40,12 +41,14 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 |:-:|-|
 | ✅ | Boots to the LoD main menu on an emulated PS2 (PCSX2) |
 | ✅ | In game: new character, Rogue Encampment, walking, inventory, at **25 FPS** (the game's own cap) |
-| ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at about **25 FPS** in 640×480, in 28 MB |
+| ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at about **25 FPS** in 640×480 |
+| ✅ | Fits a retail PS2's **32 MB** (PCSX2, Extended RAM off): character creation, both towns ([#5](https://github.com/Meanski/HellStation/issues/5)) |
 | ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys |
-| ❌ | A retail PS2's **32 MB**: it needs PCSX2's Extended RAM ([#5](https://github.com/Meanski/HellStation/issues/5)) |
-| ⏳ | Not started: sound, naming a character with the pad, real hardware |
+| ⚠️ | Harrogath's lower town drops to 15 FPS: the graphics caches are too small for it |
+| ❓ | Not tried yet: fights outside town, long sessions |
+| ⏳ | Not started: sound, naming a character with the pad, a disc image, real hardware |
 
-## The 32 MB problem
+## Fitting in 32 MB
 
 A retail PS2 has 32 MB of RAM. After the kernel, the 7.4 MB program and the stack, the game gets
 **24.2 MB**. Peak memory on PCSX2, measured with a report built into the port:
@@ -54,10 +57,12 @@ A retail PS2 has 32 MB of RAM. After the kernel, the 7.4 MB program and the stac
 |-|-|-|
 | As first measured | 61.1 MB | |
 | After the cheap fixes | 36.8 MB | 37.0 MB |
-| After replacing Fog's allocator | **27.5 MB** | **28.2 MB** |
+| After replacing Fog's allocator | 27.5 MB | 28.2 MB |
+| After every fix below | **23.3 MB** | **23.4 MB** |
 | What a retail PS2 has | 24.2 MB | 24.2 MB |
 
-The fixes that got it from 61 to 28 MB:
+The bottom row is measured with the heap stopped at a retail 32 MB and PCSX2's Extended RAM off.
+Creating a character peaks at 22.7 MB. The fixes that got it from 61 to 23 MB:
 
 - **Telling the game it has 32 MB, not 256 MB.** It sizes its caches from what Windows reports.
 - **Keeping large and small allocations apart.** The town had been failing to load with 11 MB
@@ -69,18 +74,18 @@ The fixes that got it from 61 to 28 MB:
 - **Exact-size allocations instead of the game's pool allocator.** The game rounds every block up
   to a power of two and keeps half-empty 512 KiB chunks around. Above 256 bytes, the port now hands
   out exactly what's asked for. That saved 9 MB, at no cost in speed.
+- **The same for Storm, the game's other allocator.** It reserved a 64 KiB window for every line of
+  code that allocates: 2.2 MB held for 0.3 MB used.
+- **Compact MPQ indexes.** The archives' hash tables are mostly empty slots: `d2data.mpq` uses
+  10,815 of 65,536. Keeping only the used ones frees 2.5 MB.
+- **Big temporary buffers kept away from small objects,** so freeing them leaves gaps that close up
+  again instead of holes nothing fits in.
+- **Loading class animations one class at a time** on the character-creation screen, which had all
+  seven loaded at once (12.3 MB).
 
-Still 3-4 MB short in town, and more to find:
-
-- 3.9 MB of MPQ archive tables (a disc needs its own archive format anyway);
-- the new-character screen peaks at 34 MB: it loads every class's animations at once;
-- 7 MB of data tables.
-
-Sound would add another 3-5 MB, and fights haven't been measured. The full measurements and each
-step are in the [dev log](PORTING_LOG.md) (2026-11-18 entries).
-
-**What would change the answer:** a PS2 with more RAM. Sony's development units had 128 MB,
-which is the configuration PCSX2's Extended RAM imitates.
+What's left is thin: under 1 MB of headroom. Sound usually takes 3-5 MB, so it has to live in the
+sound chip's own 2 MB. Fights outside town, long sessions and real hardware are still to be
+tried. The full measurements and each step are in the [dev log](PORTING_LOG.md).
 
 ## You bring the game
 
@@ -104,17 +109,17 @@ You'll need macOS on Apple Silicon, with Docker and PCSX2. The PS2 toolchain run
 git config core.hooksPath tools/hooks          # once: keeps game data and binaries out of git
 
 tools/port/ps2.sh cmake -S . -B build-ps2 -G Ninja -DREDIVIVUS_PORT=ON \
-  -DCMAKE_TOOLCHAIN_FILE=cmake/ps2-ee.cmake -DHS_PS2_EXTENDED_RAM=ON
+  -DCMAKE_TOOLCHAIN_FILE=cmake/ps2-ee.cmake
 tools/port/ps2.sh cmake --build build-ps2
 
-tools/port/run-pcsx2.sh --extra-ram --seconds 5
+tools/port/run-pcsx2.sh --seconds 5
 ```
 
-Without `-DHS_PS2_EXTENDED_RAM=ON` the heap stops at a retail 32 MB, and the game runs out of memory
-loading the town.
+This build stops its heap at a retail 32 MB. For debugging with headroom, configure with
+`-DHS_PS2_EXTENDED_RAM=ON` and add `--extra-ram` to the run: the heap can then use PCSX2's 128 MB.
 
 `run-pcsx2.sh` stages the ELF next to your game folder, turns on the PCSX2 settings the port needs
-(host file access, Extended RAM), and starts it. Add `--script tools/port/scripts/town-walk.txt` to
+(host file access, and Extended RAM with `--extra-ram`), and starts it. Add `--script tools/port/scripts/town-walk.txt` to
 watch a scripted run make a Barbarian and walk around the Rogue Encampment.
 
 <details>

@@ -4,30 +4,42 @@ Written 2026-11-18 for whoever picks the work up next. Read [AGENTS.md](../../AG
 contract), then this. The full history is in [PORTING_LOG.md](../../PORTING_LOG.md); the task list
 is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
-## Status: a long shot (2026-11-18)
+## Status: fits in 32 MB (2026-11-19)
 
-The memory check (#5) nearly ended the project: LoD runs on PCSX2 only with Extended RAM. The owner
-carries on anyway: a disc in a stock PS2 is the goal, and an honest failure is acceptable. With the
-low-risk cuts and Fog's allocator made exact-size above 256 bytes, the Rogue Encampment peaks at
-27.5 MB and Harrogath (Act 5, Hell) at 28.2 MB, at full speed in 640x480, against the 24.2 MB a
-retail PS2 leaves the game. The new-character screen peaks at 34 MB (every class's animations
-loaded at once). Next, measured one at a time: a disc archive format with a compact index built
-from the user's own files (~3.9 MB of MPQ tables), the character-creation spike, sound in the
-SPU2's own RAM, and the IOP's 2 MB. See PORTING_LOG's 2026-11-18 entries.
+The memory check (#5) nearly ended the project on 2026-11-18. A day later, with the heap stopped at
+a retail 32 MB and PCSX2's Extended RAM off, character creation peaks at 22.7 MB, the Rogue
+Encampment at 23.3 MB and Harrogath (Act 5, Hell) at 23.4 MB, against 24.2 MB available. All are
+at full speed in 640x480. The owner's goal is a disc in a stock PS2. The margin is under 1 MB, so
+every new feature has to be measured at the retail cap.
+
+Next, roughly in order:
+- **Harrogath's lower town runs at 15 FPS at the retail cap**: the tile LRU (capped at 2 MB, and
+  full) and the sprite cache (2 MB, full) thrash. And with the LRU uncapped (Extended RAM) the game
+  hangs in the same spot. Both are in PORTING_LOG's last 2026-11-19 entry; the hang first.
+- **Fights and leaving town**, at the retail cap: the first real test of the margin. Watch the
+  `mem` lines and the first-failure dump (it names the caller).
+- **Sound** in the SPU2's own 2 MB (the game's sound cache would be 3-5 MB in main RAM).
+- **A disc**: an ISO with the ELF and the user's own data (an archive format with a compact index
+  would replace the MPQs and the patched lookup), and loading over CDVD instead of `host:`.
+- **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
 
 ## State
 
-- `main` is pushed to `origin`. The tree builds for the PS2 (with and without
-  `-DHS_PS2_EXTENDED_RAM`), for i686 Linux, and the Linux town smoke test passes.
-- **PS2:** boots, makes a character, walks the Rogue Encampment at 25 FPS, reaches Act 5. No sound;
-  the pad can't type a name. The memory report (`mem` lines in `hs.log`, every 250 frames) is the
-  tool to start from.
+- `main` builds for the PS2 (retail heap by default; `-DHS_PS2_EXTENDED_RAM=ON` for headroom) and
+  for i686 Linux, and the Linux town smoke test passes.
+- **PS2:** boots, makes a character, walks the Rogue Encampment, reaches Act 5, at 25 FPS, in a
+  retail memory map. No sound; the pad can't type a name. The memory report (`mem` lines in
+  `hs.log`, every 250 frames, and a full dump at the first failed allocation) is the tool to start
+  from.
+- **Memory policies for small-RAM targets** are in `Redivivus/port/overrides/` and listed in
+  `docs/port/overrides.md`: exact-size Fog and Storm allocations, compact MPQ indexes, the sprite
+  cache cap, per-class character-creation art, 640x480 in game.
 
 ## How to run it
 
 ```sh
-tools/port/ps2.sh cmake --build build-ps2                       # configured with -DHS_PS2_EXTENDED_RAM=ON
-tools/port/run-pcsx2.sh --extra-ram --seconds 3 \
+tools/port/ps2.sh cmake --build build-ps2                       # retail heap unless -DHS_PS2_EXTENDED_RAM=ON
+tools/port/run-pcsx2.sh --seconds 3 \
   --script tools/port/scripts/town-walk.txt                     # scripted: new Barbarian, walk, inventory
 ```
 

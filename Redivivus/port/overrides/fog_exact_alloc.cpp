@@ -195,11 +195,15 @@ HS_FOG_CC void* AllocServerMemory(D2PoolManagerStrc* m, size_t n, char* file, in
     return hs_orig_AllocServer(m, n, file, line, z);
 }
 HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, char* file, int line, int z) {
+    if (!p) {  // as Fog: a null block is an allocation
+        if (void* q = take(server_manager(m), n)) return q;
+        return hs_orig_ReAllocServer(m, p, n, file, line, z);
+    }
     Hdr* h = ours(p);
     if (!h) {
         // A pooled block outgrowing its slot: Fog would move it to a bigger size
         // class, whose blocks are 512 KiB from 1 KiB up. Move it to an exact one.
-        if (p && g_on == 1 && n > kExactAbove) {
+        if (g_on == 1 && n > kExactAbove) {
             D2PoolManagerStrc* pm = server_manager(m);
             size_t slot = pool_slot_size(pm, p);
             if (slot && n > slot) {

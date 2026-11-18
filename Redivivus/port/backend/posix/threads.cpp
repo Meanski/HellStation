@@ -178,7 +178,7 @@ void hs_dump_all_threads(int sig) {
 // paints the unused part of its own stack below where it starts, and the memory
 // report scans for how deep it has gone. Entries outlive their threads (the
 // game's three threads live as long as the process).
-constexpr size_t kEeThreadStack = 128 * 1024;  // town walk: deepest use 16 KiB (PORTING_LOG)
+constexpr size_t kEeThreadStack = 64 * 1024;  // both towns: deepest use 16 KiB, the painting margin (PORTING_LOG)
 constexpr uint8_t kStackFill = 0xA5;
 constexpr int kMaxStacks = 16;
 constexpr size_t kPaintMargin = 16 * 1024;  // unpainted: below the start, the glue's own frames

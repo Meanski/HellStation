@@ -4,7 +4,7 @@
 // library start-up) is used from both ends:
 //   - malloc's program break (_sbrk, replacing libcglue's) grows up from _end;
 //   - VirtualAlloc regions (hs_vm_reserve) are carved down from the top, and
-//     freed regions go on a free list of their own (coalesced, first fit).
+//     freed regions go on a free list of their own (coalesced, best fit).
 // The game's long-lived 64-512 KiB regions (Fog pool blocks, Storm heaps) and its
 // many small short-lived mallocs then never cut up each other's space. In one
 // heap they did: the town failed to load with 11 MB free in pieces too small
@@ -105,11 +105,17 @@ extern "C" void* hs_vm_reserve(size_t size, size_t align) {
     if (align < 16) align = 16;
     size = (size + 15) & ~(size_t)15;
     char* p = nullptr;
-    for (int i = 0; i < g_nFree && !p; i++) {  // first fit in a freed gap
+    int best = -1;  // best fit among the freed gaps: the smallest that holds it
+    for (int i = 0; i < g_nFree; i++) {
         Run r = g_free[i];
         char* a = (char*)(((uintptr_t)r.p + align - 1) & ~(uintptr_t)(align - 1));
         if (a + size > r.p + r.n) continue;
-        remove_run(i);
+        if (best < 0 || r.n < g_free[best].n) best = i;
+    }
+    if (best >= 0) {
+        Run r = g_free[best];
+        char* a = (char*)(((uintptr_t)r.p + align - 1) & ~(uintptr_t)(align - 1));
+        remove_run(best);
         add_run(r.p, (size_t)(a - r.p));
         add_run(a + size, (size_t)(r.p + r.n - (a + size)));
         p = a;
