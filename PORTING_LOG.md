@@ -510,3 +510,36 @@ are unchanged.
 **Where it stands:** Act 1 and Act 5 towns peak at 27.5 and 28.2 MB against a 24.2 MB heap: 3-4 MB
 short, before sound and fights. The new-character screen needs about 10 MB more than that. Next:
 the MPQ tables (3.9 MB), and the character-creation spike.
+
+## 2026-11-19: MPQ hash tables compacted (#5)
+
+Storm keeps each archive's whole hash table: 16 bytes a slot, and `d2data.mpq` and `d2exp.mpq` have
+65,536 slots for about 10,000 files each. On the EE, `overrides/mpq_compact_index.cpp` patches
+Storm's `SFILE_SearchHashTable` (a file-static, so its first instruction jumps to the
+replacement, as `storm_align.cpp` does). The first lookup in an archive replaces its table with
+only the non-empty slots, in slot order, with each one's slot number. The probe is the original's:
+along the run of non-empty slots from the name's start slot, wrapping, with the same locale and
+platform preference. `SFILE_GetBlockTableEntry` reads `pHashTable[index]` unchanged. 2,512 KiB freed
+over the 11 archives.
+
+| Peak taken (MB) | Before | After |
+|-|-|-|
+| Harrogath, Act 5 Hell | 28.2 | **25.9** |
+| Rogue Encampment, new character's walk | 27.5 | **24.3** |
+| Rogue Encampment, existing character | | 25.1 |
+| New-character screen | 34.1 | 31.7 |
+
+Full speed in both towns (0-2 frames over 50 ms per 250).
+
+- **One unexplained item loss.** The first Act 5 run of the compact index came up without the
+  character's weapon, and the game saved the character 104 bytes shorter. It didn't happen again
+  in 7 more runs from the same save, including a run with the original order of operations, so
+  the cause is unknown. Two precautions went in:
+  - compaction now re-checks after allocating, and points the archive at the new table before
+    freeing the old one. Storm's heap lock yields on the EE, so another thread could otherwise see
+    a freed table.
+  - Fog exact-size allocations under 64 KiB are zeroed. Fog served objects from fresh, zeroed
+    blocks; malloc reuses memory.
+
+  A check mode that ran both searches side by side found no disagreement over a full Act 5 load.
+- The save used for Act 5 is copied fresh before each run (local only).

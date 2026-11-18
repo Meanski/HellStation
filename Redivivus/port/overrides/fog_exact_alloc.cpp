@@ -54,6 +54,7 @@ void hs_orig_FreeMemoryPool(D2PoolManagerStrc*) HS_FOG_ORIG(_ZN3Fog6Memory14Free
 
 namespace {
 constexpr size_t kExactAbove = 256;  // Fog's 512-byte class and up
+constexpr size_t kZeroBelow = 64u << 10;
 constexpr uint32_t kCheck = 0x46E6A11Cu;
 constexpr int kManagers = 8;
 
@@ -118,6 +119,10 @@ void* take(D2PoolManagerStrc* m, size_t n) {
     Hdr* h = (Hdr*)malloc(sizeof(Hdr) + n);
     if (!h) return nullptr;  // let Fog try (and report) instead
     h->size = (uint32_t)n;
+    // Fog served most objects from fresh, zeroed blocks; malloc reuses freed
+    // memory. Objects are zeroed as a precaution; big buffers (file reads,
+    // sprite decodes) are written whole by their users and skipped for speed.
+    if (n < kZeroBelow) memset(h + 1, 0, n);
     link(h, list);
     g_live += n;
     g_count++;
