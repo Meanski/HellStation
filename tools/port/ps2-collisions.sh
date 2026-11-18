@@ -11,5 +11,6 @@ ours=$(mips64r5900el-ps2-elf-nm --defined-only $B/lib*.a $B/CMakeFiles/hs_overri
   awk '$2 ~ /^[TDBRW]$/ {print $3}' | grep -v '^_Z' | sort -u)
 theirs=$(for l in $LIBS; do mips64r5900el-ps2-elf-nm --defined-only "$l" 2>/dev/null; done |
   awk '$2 ~ /^[TDBRW]$/ {print $3}' | grep -v '^_Z' | sort -u)
-# Our own backend is meant to define libc-level hooks (__wrap_*, atomics).
-comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$|_sbrk$)' || true
+# Our own backend is meant to define libc-level hooks (__wrap_*, atomics) and
+# replaces _sbrk and memcpy (backend/ps2/memory.cpp, memcpy.cpp).
+comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$|_sbrk$|memcpy$)' || true

@@ -88,10 +88,12 @@ __attribute__((constructor(101))) static void hs_early_marker(void) {
 void hs_install_terminate_handler();
 
 extern "C" void hs_lwlr_probe();  // lwlr_probe.cpp (temporary)
+void hs_memcpy_selftest(void);    // memcpy.cpp
 
 int main(int argc, char** argv) {
     hs_install_terminate_handler();
     hs_lwlr_probe();
+    hs_memcpy_selftest();
     hs_log("HellStation (ps2) starting, data dir: %s", hs_data_dir());
     // The software (GDI) renderer is the one the port presents; it's the game's
     // windowed mode, -w. A loader may pass its own arguments instead.
