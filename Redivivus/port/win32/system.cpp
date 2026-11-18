@@ -141,7 +141,7 @@ LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
     if (!p) {
         // The first failure is the peak: log what was alive (frame 0 = all sections).
         static bool s_reported;
-        if (!s_reported) { s_reported = true; hs_log("VirtualAlloc(%u KiB) failed; memory at that point:", (unsigned)(size >> 10)); hs_mem_report(0); }
+        if (!s_reported) { s_reported = true; hs_log("VirtualAlloc(%u KiB) failed (called from %p); memory at that point:", (unsigned)(size >> 10), __builtin_return_address(0)); hs_mem_report(0); }
         SetLastError(ERROR_NOT_ENOUGH_MEMORY);
         return nullptr;
     }

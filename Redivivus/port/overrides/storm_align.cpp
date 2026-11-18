@@ -12,6 +12,7 @@
 #  define HS_STORM_CC __attribute__((__stdcall__))
 #endif
 
+extern "C" void* hs_storm_exact_alloc(uint32_t nSize, uint32_t nFlags);  // storm_exact_alloc.cpp
 extern "C" HS_STORM_CC void* hs_orig_SMemAlloc(uint32_t nSize, char* szFile, uint32_t nLine, uint32_t nFlags)
     __asm__("hs_orig__ZN5Storm6Source4SMem9SMemAllocEjPcjj");
 
@@ -57,6 +58,7 @@ void* __stdcall SMemAlloc(uint32_t nSize, char* szFile, uint32_t nLine, uint32_t
     static bool s_patched;
     if (!s_patched) { s_patched = true; storm_patch_layout(); }
 #endif
+    if (void* p = hs_storm_exact_alloc(nSize, nFlags)) return p;  // small-RAM targets
     return hs_orig_SMemAlloc((nSize + 7u) & ~7u, szFile, nLine, nFlags);
 }
 }  // namespace Storm::Source::SMem

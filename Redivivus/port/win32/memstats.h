@@ -11,3 +11,4 @@ void hs_mem_report(unsigned frame);
 // (port/fog_pools.cpp). hs_mem_report adds it every 500 frames.
 void hs_mem_report_fog(void);
 void hs_mem_report_fog_exact(void);  // overrides/fog_exact_alloc.cpp
+void hs_mem_report_storm_exact(void);  // overrides/storm_exact_alloc.cpp

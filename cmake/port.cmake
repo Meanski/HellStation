@@ -86,6 +86,8 @@ set(HS_PORT_OVERRIDES
 # Format: module|source file (tree-relative)|symbol
 set(HS_PORT_WRAPS
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem9SMemAllocEjPcjj"
+    "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem8SMemFreeEPvPcim"
+    "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem11SMemReAllocEPjjPcij"
     "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory5AllocEP17D2PoolManagerStrcjPci"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocClientMemoryEjPcii"

@@ -5,8 +5,8 @@
 // Encampment that was 3.5 MB of the Client pool's committed blocks unused, plus
 // the rounding (PORTING_LOG, 2026-11-18). On the PS2 (the game is told 32 MB),
 // requests over kExactAbove bytes skip the pools and get exactly their size
-// from malloc behind a 16-byte header; smaller ones, which pack densely, stay
-// in Fog's pools.
+// behind a 16-byte header: from malloc, or from 64 KiB the region allocator.
+// Smaller ones, which pack densely, stay in Fog's pools.
 //
 // Each header sits on its manager's list, so the manager's teardown
 // (FreeMemoryPool, e.g. at the end of a game) frees them as Fog frees its own.
@@ -54,7 +54,7 @@ void hs_orig_FreeMemoryPool(D2PoolManagerStrc*) HS_FOG_ORIG(_ZN3Fog6Memory14Free
 
 namespace {
 constexpr size_t kExactAbove = 256;  // Fog's 512-byte class and up
-constexpr size_t kZeroBelow = 64u << 10;
+constexpr size_t kRegionFrom = 64u << 10;  // and up: the region allocator (see raw_alloc)
 constexpr uint32_t kCheck = 0x46E6A11Cu;
 constexpr int kManagers = 8;
 
@@ -111,30 +111,66 @@ Hdr* ours(void* p) {
     return h->check == check_of(h) && h->next->prev == h && h->prev->next == h ? h : nullptr;
 }
 
-// Takes a request when it's ours to serve; null means "Fog's".
-void* take(D2PoolManagerStrc* m, size_t n) {
-    if (!on() || n <= kExactAbove || !sys().bInit) return nullptr;
-    int list = manager_index(m);
-    if (list < 0 || (m && m->nPoolId) || (!m && sys().pManagers[0].nPoolId)) return nullptr;
+// Big blocks (whole-file reads, sprite decodes: up to 575 KiB, mostly short-
+// lived) come from the region allocator at the top of RAM, which coalesces its
+// gaps; left in malloc's heap they cut it into holes the small objects
+// couldn't use (1 MB at the first retail-cap run). Zeroed there by the backend.
+bool in_region(size_t n) { return n >= kRegionFrom; }
+
+Hdr* raw_alloc(size_t n) {
+    if (in_region(n)) return (Hdr*)hs_vm_reserve(sizeof(Hdr) + n, 16);
     Hdr* h = (Hdr*)malloc(sizeof(Hdr) + n);
-    if (!h) return nullptr;  // let Fog try (and report) instead
-    h->size = (uint32_t)n;
     // Fog served most objects from fresh, zeroed blocks; malloc reuses freed
-    // memory. Objects are zeroed as a precaution; big buffers (file reads,
-    // sprite decodes) are written whole by their users and skipped for speed.
-    if (n < kZeroBelow) memset(h + 1, 0, n);
-    link(h, list);
+    // memory, so objects are zeroed as a precaution.
+    if (h) memset(h + 1, 0, n);
+    return h;
+}
+void raw_free(Hdr* h) {
+    if (in_region(h->size)) hs_vm_release(h, sizeof(Hdr) + h->size);
+    else free(h);
+}
+void counted(Hdr* h, size_t n) {
+    h->size = (uint32_t)n;
     g_live += n;
     g_count++;
     if ((uintptr_t)(h + 1) & 15) g_under16++;
     if (g_live > g_peak) g_peak = g_live;
+}
+
+// Takes a request when it's ours to serve; null means "Fog's".
+void* take(D2PoolManagerStrc* m, size_t n) {
+    if (!on() || n <= kExactAbove || !sys().bInit) return nullptr;
+    int list = manager_index(m);
+    if (list < 0) return nullptr;
+    // A manager with a pool id (the global one while a game loads) sends
+    // everything to malloc itself, exact-size already; only its big blocks are
+    // taken, to keep them out of malloc's heap.
+    if (((m && m->nPoolId) || (!m && sys().pManagers[0].nPoolId)) && !in_region(n)) return nullptr;
+    Hdr* h = raw_alloc(n);
+    if (!h) return nullptr;  // let Fog try (and report) instead
+    counted(h, n);
+    link(h, list);
     return h + 1;
 }
 void give_back(Hdr* h) {
     g_live -= h->size;
     g_count--;
     unlink(h);
-    free(h);
+    raw_free(h);
+}
+// The slot size of a block in one of manager m's pools (Fog's
+// FindBlockContainingAddress over its sorted block table), or 0.
+size_t pool_slot_size(D2PoolManagerStrc* m, void* p) {
+    if (!m) m = sys().pManagers;
+    int lo = 0, hi = (int)m->nBlocks;
+    while (lo < hi) {
+        int mid = (lo + hi) / 2;
+        if ((char*)p >= (char*)m->pBlocks[mid].pCommit) lo = mid + 1; else hi = mid;
+    }
+    if (lo == 0) return 0;
+    D2PoolBlockStrc* block = m->pBlocks[lo - 1].pBlock;
+    if (!block || !block->pPool || (char*)p >= (char*)block->pCommit + block->pPool->nSize) return 0;
+    return block->pPool->nBlockSize;
 }
 D2PoolManagerStrc* server_manager(D2PoolManagerStrc* m) { return Fog::Memory::gpServerMemHeap ? m : nullptr; }
 }  // namespace
@@ -160,21 +196,37 @@ HS_FOG_CC void* AllocServerMemory(D2PoolManagerStrc* m, size_t n, char* file, in
 }
 HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, char* file, int line, int z) {
     Hdr* h = ours(p);
-    if (!h) return hs_orig_ReAllocServer(m, p, n, file, line, z);
-    Hdr* next = h->next;  // the list node moves with the block
-    unlink(h);
-    Hdr* r = (Hdr*)realloc(h, sizeof(Hdr) + n);
-    bool ok = r != nullptr;
-    if (!ok) r = h;  // the old block is untouched: relink it and fail as Fog would
-    r->next = next;
-    r->prev = next->prev;
-    next->prev->next = r;
-    next->prev = r;
+    if (!h) {
+        // A pooled block outgrowing its slot: Fog would move it to a bigger size
+        // class, whose blocks are 512 KiB from 1 KiB up. Move it to an exact one.
+        if (p && g_on == 1 && n > kExactAbove) {
+            D2PoolManagerStrc* pm = server_manager(m);
+            size_t slot = pool_slot_size(pm, p);
+            if (slot && n > slot) {
+                if (void* q = take(pm, n)) {
+                    memcpy(q, p, slot);
+                    hs_orig_FreeServer(m, p, file, line, z);
+                    return q;
+                }
+            }
+        }
+        return hs_orig_ReAllocServer(m, p, n, file, line, z);
+    }
+    if (n <= h->size && !in_region(h->size)) {  // a malloc block shrinks in place (a region's size must stay whole)
+        g_live -= h->size - n;
+        h->size = (uint32_t)n;
+        return p;
+    }
+    Hdr* r = raw_alloc(n);
+    if (!r) return nullptr;  // the old block is untouched, as Fog would leave it
+    counted(r, n);
+    r->next = h->next;  // into the old block's list, just after it
+    r->prev = h;
+    h->next->prev = r;
+    h->next = r;
     r->check = check_of(r);
-    if (!ok) return nullptr;
-    g_live = g_live - r->size + n;
-    r->size = (uint32_t)n;
-    if (g_live > g_peak) g_peak = g_live;
+    memcpy(r + 1, h + 1, h->size < n ? h->size : n);
+    give_back(h);
     return r + 1;
 }
 HS_FOG_CC int FreeClientMemory(void* p, char* file, int32_t line, int32_t z) {

@@ -543,3 +543,40 @@ Full speed in both towns (0-2 frames over 50 ms per 250).
 
   A check mode that ran both searches side by side found no disagreement over a full Act 5 load.
 - The save used for Act 5 is copied fresh before each run (local only).
+
+## 2026-11-19: both towns run in a retail 32 MB memory map (#5)
+
+Three more changes, and then the gate test (a build with the heap stopped at a retail 32 MB, on
+PCSX2 with Extended RAM off) passes in both towns.
+
+- **Storm's small allocations exact-size** (`overrides/storm_exact_alloc.cpp`, wraps of `SMemFree`
+  and `SMemReAlloc`; `storm_align.cpp`'s `SMemAlloc` asks it first). Storm keeps a heap per
+  allocating source line, each a 64 KiB window: 2.2 MB reserved for 0.3 MB used. Requests below
+  Storm's large-block size (0xfe88) now come from malloc behind an 8-byte header. Storm's flags are
+  kept: 8 zero-fills, and 0x10 ("realloc in place only") fails for growth, which every caller
+  follows with alloc-copy-free. Reserved windows 2,240 -> 192 KiB.
+- **Big Fog blocks go to the region allocator.** The first capped run failed 70 KiB short with
+  about 1 MB in holes: whole-file reads (up to 575 KiB) and sprite decodes in malloc's heap had cut
+  it up. Exact-size Fog blocks of 64 KiB and more now come from the top-of-RAM regions, which
+  coalesce. That includes those of a manager with a pool id (the global manager while a game
+  loads), whose small blocks stay with Fog.
+- **Pooled blocks that outgrow their slot move to exact-size.** The next capped run failed asking
+  for a 512 KiB Fog pool block (the failure log now names the caller: `AllocatePoolBlock`). The
+  game's `ReAllocServerMemory` grew a small pooled block past 1 KiB, and Fog's own realloc moved it
+  to a size class whose blocks are 512 KiB. The wrapper reads the slot size from Fog's sorted block
+  table and moves such blocks to exact-size.
+
+**Gate test: retail cap (24,161 KiB heap), PCSX2 `ExtraMemory = false`**
+
+| | Peak taken | Speed |
+|-|-|-|
+| Harrogath, Act 5 Hell, level 96 Sorceress | **23.4 MB** | 26 FPS, 1 frame over 50 ms per 250 |
+| Rogue Encampment, existing level 1 Barbarian | **23.3 MB** | 25 FPS, 0 frames over 50 ms |
+| New-character screen | fails: `hs_vm_reserve(727 KiB)` with 5.3 MB break and 18.5 MB regions | |
+
+The character's items and stats came through intact; the Act 5 save came out of each run the
+same size it went in.
+
+**Not yet:** creating a character (the class-select screen loads all 7 classes' animations, about
+22 MB), sound, fights and leaving town, the main thread's 128 KiB stack under load, disc loading,
+real hardware. Margins are thin: 0.7-0.9 MB.
