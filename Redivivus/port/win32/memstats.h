@@ -10,3 +10,4 @@ void hs_mem_report(unsigned frame);
 // One line per Fog pool manager: committed vs in use, and its malloc overflow
 // (port/fog_pools.cpp). hs_mem_report adds it every 500 frames.
 void hs_mem_report_fog(void);
+void hs_mem_report_fog_exact(void);  // overrides/fog_exact_alloc.cpp

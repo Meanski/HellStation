@@ -40,7 +40,7 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 |:-:|-|
 | ✅ | Boots to the LoD main menu on an emulated PS2 (PCSX2) |
 | ✅ | In game: new character, Rogue Encampment, walking, inventory, at **25 FPS** (the game's own cap) |
-| ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at about **25 FPS** in 640×480 |
+| ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at about **25 FPS** in 640×480, in 28 MB |
 | ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys |
 | ❌ | A retail PS2's **32 MB**: it needs PCSX2's Extended RAM ([#5](https://github.com/Meanski/HellStation/issues/5)) |
 | ⏳ | Not started: sound, naming a character with the pad, real hardware |
@@ -53,10 +53,11 @@ A retail PS2 has 32 MB of RAM. After the kernel, the 7.4 MB program and the stac
 | | Rogue Encampment (Act 1) | Harrogath (Act 5, Hell) |
 |-|-|-|
 | As first measured | 61.1 MB | |
-| After every cheap fix | 36.8 MB | 37.0 MB |
+| After the cheap fixes | 36.8 MB | 37.0 MB |
+| After replacing Fog's allocator | **27.5 MB** | **28.2 MB** |
 | What a retail PS2 has | 24.2 MB | 24.2 MB |
 
-The fixes that got it from 61 to 37 MB:
+The fixes that got it from 61 to 28 MB:
 
 - **Telling the game it has 32 MB, not 256 MB.** It sizes its caches from what Windows reports.
 - **Keeping large and small allocations apart.** The town had been failing to load with 11 MB
@@ -65,12 +66,15 @@ The fixes that got it from 61 to 37 MB:
 - **Capping the sprite cache at 2 MB.** That costs frame rate: sprites get decoded again more
   often.
 - **Playing at 640×480 instead of 800×600.** Little memory, but Act 5 went from 15 FPS to about 25.
+- **Exact-size allocations instead of the game's pool allocator.** The game rounds every block up
+  to a power of two and keeps half-empty 512 KiB chunks around. Above 256 bytes, the port now hands
+  out exactly what's asked for. That saved 9 MB, at no cost in speed.
 
-What's left is the hard part, and it adds up to roughly the gap with nothing to spare:
+Still 3-4 MB short in town, and more to find:
 
-- the game's pool allocator wastes 3-5 MB in partly empty blocks;
-- 7 MB of data tables;
-- 3.9 MB of MPQ archive tables.
+- 3.9 MB of MPQ archive tables (a disc needs its own archive format anyway);
+- the new-character screen peaks at 34 MB: it loads every class's animations at once;
+- 7 MB of data tables.
 
 Sound would add another 3-5 MB, and fights haven't been measured. The full measurements and each
 step are in the [dev log](PORTING_LOG.md) (2026-11-18 entries).

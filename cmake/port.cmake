@@ -86,6 +86,13 @@ set(HS_PORT_OVERRIDES
 set(HS_PORT_WRAPS
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem9SMemAllocEjPcjj"
     "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory5AllocEP17D2PoolManagerStrcjPci"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocClientMemoryEjPcii"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocServerMemoryEP17D2PoolManagerStrcjPcii"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory19ReAllocServerMemoryEP17D2PoolManagerStrcPvjPcii"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory16FreeClientMemoryEPvPcii"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory16FreeServerMemoryEP17D2PoolManagerStrcPvPcii"
+    "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory14FreeMemoryPoolEP17D2PoolManagerStrc"
 )
 
 function(hs_port_apply_wraps)

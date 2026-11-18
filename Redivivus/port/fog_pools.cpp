@@ -72,4 +72,5 @@ void hs_mem_report_fog(void) {
         }
         if (len) hs_log("    classes (slot:committed/used KiB):%s", line);
     }
+    hs_mem_report_fog_exact();
 }

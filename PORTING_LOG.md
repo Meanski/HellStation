@@ -478,3 +478,35 @@ low-risk levers first.
 
 **Where it stands:** Act 1 and Act 5 towns peak at about 37 MB against a 24.2 MB heap, at full
 speed in both. The levers left are the medium and high ones in the entries above.
+
+## 2026-11-18: Fog's pools exact-size above 256 bytes (#5, first medium lever)
+
+`overrides/fog_exact_alloc.cpp` wraps the seven Fog memory entry points the game imports
+(`Alloc`, `AllocClientMemory`, `AllocServerMemory`, `ReAllocServerMemory`, `FreeClientMemory`,
+`FreeServerMemory`, `FreeMemoryPool`). On a target reporting 32 MB or less, requests over 256 bytes
+get exactly their size from malloc behind a 16-byte header. Each header sits on its pool manager's
+list, so `FreeMemoryPool` frees them along with Fog's blocks. Smaller requests, which pack densely,
+stay in Fog's pools. Frees and reallocs recognise a header by a check word tied to its address.
+Managers with a pool id (data tables during loading) keep Fog's own malloc path. Linux and Windows
+are unchanged.
+
+| Peak taken (MB) | Before | After |
+|-|-|-|
+| Rogue Encampment, existing character | 36.8 | **27.5** |
+| New-character screen (every class's animations) | not separated | 34.1 |
+| Harrogath, Act 5 Hell, level 96 character | 37.0 | **28.2** |
+
+- **Fog's Client pool held 13.2 MB of blocks in town; now 0.2 MB, plus 8 MB exact-size.** The
+  pools' cost was rounding up to a power of two and half-empty 64/512 KiB blocks, as measured.
+- **Speed unchanged:** Rogue Encampment and Harrogath at 25-26 FPS, 1-2 frames over 50 ms per 250.
+- **Alignment:** every block malloc gave was 16-byte aligned (the report counts any that aren't).
+- **Load-time allocations, by source line** (a temporary log, removed): whole-file reads
+  (`.\SRC\Archive.cpp:207`, 14.5 MB over 64 calls, up to 575 KiB each, the menus' DC6 backgrounds
+  among them) and sprite decoding (`.\SRC\Codec.cpp:1377`, 4 MB over 65). The new-character screen
+  has 22 MB of them live at once; it's now the highest point of a session.
+- Not checked: whether the game relies on fresh pool slots being zero (malloc doesn't zero; Fog's
+  first use of a block did). Nothing misbehaved in either town.
+
+**Where it stands:** Act 1 and Act 5 towns peak at 27.5 and 28.2 MB against a 24.2 MB heap: 3-4 MB
+short, before sound and fights. The new-character screen needs about 10 MB more than that. Next:
+the MPQ tables (3.9 MB), and the character-creation spike.

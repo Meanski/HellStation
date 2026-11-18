@@ -6,13 +6,14 @@ is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
 ## Status: a long shot (2026-11-18)
 
-The memory check (#5) nearly ended the project: LoD runs on PCSX2 only with Extended RAM. With
-every low-risk cut made, the Rogue Encampment and Harrogath (Act 5, Hell) both peak at about 37 MB,
-at full speed in 640x480, against the 24.2 MB a retail PS2 leaves the game. The owner carries on
-anyway: a disc in a stock PS2 is the goal, and an honest failure is acceptable. Next are the
-medium-risk levers in PORTING_LOG's 2026-11-18 entries: an exact-size replacement for Fog's pool
-allocator (4-6 MB), a disc archive format with a compact index built from the user's own files
-(~3 MB of MPQ tables), sound in the SPU2's own RAM, and the IOP's 2 MB. Measure each one.
+The memory check (#5) nearly ended the project: LoD runs on PCSX2 only with Extended RAM. The owner
+carries on anyway: a disc in a stock PS2 is the goal, and an honest failure is acceptable. With the
+low-risk cuts and Fog's allocator made exact-size above 256 bytes, the Rogue Encampment peaks at
+27.5 MB and Harrogath (Act 5, Hell) at 28.2 MB, at full speed in 640x480, against the 24.2 MB a
+retail PS2 leaves the game. The new-character screen peaks at 34 MB (every class's animations
+loaded at once). Next, measured one at a time: a disc archive format with a compact index built
+from the user's own files (~3.9 MB of MPQ tables), the character-creation spike, sound in the
+SPU2's own RAM, and the IOP's 2 MB. See PORTING_LOG's 2026-11-18 entries.
 
 ## State
 
