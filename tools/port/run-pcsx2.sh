@@ -25,6 +25,11 @@ ln -sfn "${D2DATA:-$HOME/d2data}" "$RUN/data"
 if [ -n "$SCRIPT" ]; then cp "$SCRIPT" "$RUN/input.txt"; else rm -f "$RUN/input.txt"; fi
 "$ROOT/tools/port/ps2.sh" mips64r5900el-ps2-elf-strip -o "$BUILD/run/d2.elf" "$BUILD/d2.elf"
 
+# Close any running PCSX2 first and wait for it: on quit it writes its settings
+# back, which would undo the edits below.
+pkill -f 'MacOS/PCSX2' 2>/dev/null || true
+for _ in $(seq 50); do pgrep -f 'MacOS/PCSX2' >/dev/null || break; sleep 0.2; done
+
 INI="$HOME/Library/Application Support/PCSX2/inis/PCSX2.ini"
 if grep -q "^\[EmuCore/CPU\]" "$INI"; then
   sed -i '' "/^\[EmuCore\/CPU\]/,/^\[/ s/^ExtraMemory = .*/ExtraMemory = $EXTRA/" "$INI"
@@ -42,8 +47,14 @@ for key in ("HostFs", "EnablePINE"):
     if re.search(r"^" + key + r" = ", s, re.M): s = re.sub(r"^" + key + r" = .*$", key + " = true", s, flags=re.M)
     elif "[EmuCore]\n" in s: s = s.replace("[EmuCore]\n", "[EmuCore]\n" + key + " = true\n", 1)
     else: s += "\n[EmuCore]\n" + key + " = true\n"
-if False: s = re.sub(r"^HostFs = .*$", "HostFs = true", s, flags=re.M)
-else: s = s.replace("[EmuCore]\n", "[EmuCore]\nHostFs = true\n", 1) if "[EmuCore]\n" in s else s + "\n[EmuCore]\nHostFs = true\n"
+# Earlier versions of this script added a HostFs line per run: keep only the first.
+lines, seen = [], False
+for line in s.split("\n"):
+    if line == "HostFs = true":
+        if seen: continue
+        seen = True
+    lines.append(line)
+s = "\n".join(lines)
 want = {"EnableSystemConsole": "true", "EnableFileLogging": "true", "EnableEEConsole": "true", "EnableIOPConsole": "true"}
 if "[Logging]" not in s: s += "\n[Logging]\n"
 for k, v in want.items():
@@ -52,7 +63,6 @@ for k, v in want.items():
 open(p, "w").write(s)
 PY
 
-pkill -f 'MacOS/PCSX2' 2>/dev/null || true
 /Applications/PCSX2.app/Contents/MacOS/PCSX2 -fastboot -earlyconsolelog -logfile "$RUN/pcsx2.log" -elf "$RUN/d2.elf" >/dev/null 2>&1 &
 sleep "$SECS"
 osascript -e 'tell application "PCSX2" to activate' >/dev/null 2>&1 || true

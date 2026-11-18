@@ -22,6 +22,13 @@ extern "C" void* _sbrk(ptrdiff_t incr) {
     static bool s_extended;
     if (!s_end) s_end = (char*)EndOfHeap();
     if (incr == 0) return s_ptr;
+#if defined(HS_PS2_HEAP_LIMIT_KB)
+    if (incr > 0 && s_taken + (size_t)incr > (size_t)HS_PS2_HEAP_LIMIT_KB << 10) {
+        static bool s_logged;
+        if (!s_logged) { s_logged = true; hs_log("heap: cap of %u KiB reached (HS_PS2_HEAP_LIMIT_KB)", (unsigned)HS_PS2_HEAP_LIMIT_KB); }
+        return (void*)-1;
+    }
+#endif
     char* next = s_ptr + incr;
     if (next > s_end) {
 #if defined(HS_PS2_EXTENDED_RAM)
@@ -53,5 +60,12 @@ extern "C" void hs_mem_query(hs_mem_info* out) {
     out->heap_taken = s_taken;
     out->heap_peak = s_peak;
     out->heap_in_use = (size_t)mi.uordblks;
+#if defined(HS_PS2_HEAP_LIMIT_KB)
+    out->heap_limit = (size_t)HS_PS2_HEAP_LIMIT_KB << 10;
+#else
     out->heap_limit = (size_t)((char*)EndOfHeap() - _end);
+#endif
+    // A retail PS2, even when PCSX2's Extended RAM is lending more: the game sizes
+    // its sprite, tile and sound caches from this (D2Client UI/Draw.cpp).
+    out->phys_total = 32u << 20;
 }

@@ -96,6 +96,7 @@ void hs_mem_query(hs_mem_info* out) {
     out->heap_peak = peak;
     out->heap_in_use = (size_t)mi.uordblks + (size_t)mi.hblkhd;
     out->heap_limit = 0;
+    out->phys_total = 0;  // the shim's PC default
 }
 #else
 // No virtual memory: a reservation is real, zeroed memory up front.

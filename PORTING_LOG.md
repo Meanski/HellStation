@@ -371,3 +371,33 @@ Peak taken in town: 64,201 -> 60,293 KiB. Town walk and inventory still run, 25 
 (Client pool) and data tables, which a classic town also needs; classic itself is not measured.
 Either target needs real memory work (cache caps, table trimming, streaming) to fit 24 MB. Still to
 measure: Act 5 town and a busy fight.
+
+## 2026-11-18: does it fit in 32 MB? Feasibility check (#5, part 2)
+
+- **Stock RAM today:** PCSX2 without Extended RAM runs out of heap during start-up (break at
+  0x1F7B000), before the first menu frame; the game exits cleanly with Fog error 8.
+- **The game sizes its caches from `GlobalMemoryStatus`** (D2Client `UI/Draw.cpp`): avail = total
+  - 11 MB; sound cache 10% (3-5 MB); a 6 MB tile LRU; the sprite cache gets a third of the rest,
+  clamped to 24-64 MB; below 64 MB avail it also turns on "sprite cache conversion" (D2CMP
+  `GFX_InitCelDataCache`). It refuses to start under 22.5 MB. The shim said 256 MB (sprite limit
+  64 MB). The EE now reports 32 MB (`hs_mem_info.phys_total`), a retail PS2 even under Extended
+  RAM. Town: in use 46.9 -> **41.8 MB**, peak taken 61.1 -> **54.0 MB**, Client pool committed
+  18.3 -> 13.2 MB; sprite cache 5.2 MB used of its 24 MB limit. Town walk and pacing unchanged.
+- **Client pool by slot size (before the change):** 8.3 MB in 64-256 KiB slots, 5.4 MB in
+  8-32 KiB slots: decoded sprites and tiles. Fog rounds every request up to a power of two.
+- **Heap cap (`-DHS_PS2_HEAP_LIMIT_KB`) at 46 MB:** the menu is fine, the town load fails
+  (a 512 KiB Fog block). The 54 MB town-load peak is needed as the game loads today, not idle
+  fragmentation.
+- Also fixed: `run-pcsx2.sh` edited PCSX2's settings before closing the old instance, which then
+  wrote its own settings back (Extended RAM stuck off); and it appended a `HostFs` line per run.
+
+**Where that leaves it:** town peak 54 MB (41.8 MB live) against a 24.2 MB heap: 2.2x. The
+levers found, with rough sizes: sprite and tile cache caps (~3 + ~3 MB in town, more in fights),
+thread stacks (~2 MB), Fog pool slack and power-of-two rounding (~4-7 MB, needs replacing Fog's
+allocator), the town-load spike (up to ~12 MB, cause not yet found), data tables in Fog overflow
+(7.3 MB, partly trimmable), a smaller image (-Os, ~1 MB), 4.8 MB unattributed. Closing the gap
+needs nearly all of them, several invasive, and smaller caches cost EE time re-decoding sprites.
+Act 5 and fights (not measured) will need more than the town.
+- **Classic not measured:** with only the classic archives (no `d2exp.mpq`/`d2x*.mpq`, links in a
+  scratch folder) the EE halts before the menu in `Bnclient::GetBattlenetRealmsList`
+  (`BNGatewayAccess.cpp:221`, Fog halt line 392), a path the LoD set-up doesn't take. Unfixed.

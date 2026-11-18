@@ -37,6 +37,7 @@ typedef struct hs_mem_info {
     size_t heap_peak;   // most it ever held
     size_t heap_in_use; // bytes in live malloc blocks
     size_t heap_limit;  // what a retail machine leaves the heap (PS2: _end to EndOfHeap)
+    size_t phys_total;  // RAM to report to the game (GlobalMemoryStatus); it sizes caches from it
 } hs_mem_info;
 void hs_mem_query(hs_mem_info* out);
 

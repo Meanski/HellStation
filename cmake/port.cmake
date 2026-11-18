@@ -182,6 +182,12 @@ function(hs_port_link target)
         if(HS_PS2_EXTENDED_RAM)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_EXTENDED_RAM)
         endif()
+        # Memory work: cap the C heap (KiB) to find what a scene really needs,
+        # fragmentation included, without leaving Extended RAM. 0 = no cap.
+        set(HS_PS2_HEAP_LIMIT_KB 0 CACHE STRING "PS2: cap the C heap at this many KiB (0 = off)")
+        if(HS_PS2_HEAP_LIMIT_KB)
+            target_compile_definitions(hs_backend PRIVATE HS_PS2_HEAP_LIMIT_KB=${HS_PS2_HEAP_LIMIT_KB})
+        endif()
         # backend/ps2/sbrk.cpp replaces libcglue's _sbrk; pull it before libc asks.
         target_link_options(${target} PRIVATE -Wl,-u,_sbrk)
     endif()

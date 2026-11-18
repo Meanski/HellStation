@@ -218,8 +218,12 @@ BOOL WINAPI IsBadStringPtrA(LPCSTR p, UINT_PTR) { return p == nullptr; }
 void WINAPI GlobalMemoryStatus(LPMEMORYSTATUS ms) {
     std::memset(ms, 0, sizeof *ms);
     ms->dwLength = sizeof *ms;
-    ms->dwTotalPhys = 256u << 20;
-    ms->dwAvailPhys = 192u << 20;
+    // The game sizes its caches from dwTotalPhys (D2Client UI/Draw.cpp: the sprite
+    // cache gets a third of what's left, 24-64 MB; the sound cache 10%, 3-5 MB).
+    hs_mem_info mi = {};
+    hs_mem_query(&mi);
+    ms->dwTotalPhys = mi.phys_total ? (DWORD)mi.phys_total : 256u << 20;
+    ms->dwAvailPhys = ms->dwTotalPhys / 4 * 3;
     ms->dwTotalPageFile = 512u << 20;
     ms->dwAvailPageFile = 384u << 20;
     ms->dwTotalVirtual = 2047u << 20;
