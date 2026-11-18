@@ -13,9 +13,11 @@ at full speed in 640x480. The owner's goal is a disc in a stock PS2. The margin 
 every new feature has to be measured at the retail cap.
 
 Next, roughly in order:
-- **Harrogath's lower town runs at 15 FPS at the retail cap**: the tile LRU (capped at 2 MB, and
-  full) and the sprite cache (2 MB, full) thrash. And with the LRU uncapped (Extended RAM) the game
-  hangs in the same spot. Both are in PORTING_LOG's last 2026-11-19 entry; the hang first.
+- **The stairs into Harrogath's lower town are a 50-80 second slideshow at the retail cap** (2-5
+  FPS; the lower town itself then runs at 25). The 2 MB sprite cache holds less than the
+  animations in view, so DCC decoding (D2CMP `Codec.cpp`) runs every frame. Profile it with
+  `-DHS_PS2_PROFILE=ON`; compare with `HS_GAME_CACHES_UNCAPPED` (no stall). PORTING_LOG's last
+  2026-11-19 entry has the numbers.
 - **Fights and leaving town**, at the retail cap: the first real test of the margin. Watch the
   `mem` lines and the first-failure dump (it names the caller).
 - **Sound** in the SPU2's own 2 MB (the game's sound cache would be 3-5 MB in main RAM).

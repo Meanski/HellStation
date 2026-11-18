@@ -44,7 +44,8 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 | ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at about **25 FPS** in 640×480 |
 | ✅ | Fits a retail PS2's **32 MB** (PCSX2, Extended RAM off): character creation, both towns ([#5](https://github.com/Meanski/HellStation/issues/5)) |
 | ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys |
-| ⚠️ | Harrogath's lower town drops to 15 FPS: the graphics caches are too small for it |
+| ✅ | Harrogath's lower town at **25 FPS** in 32 MB (it was 15: a byte-at-a-time `memcpy` and a blocking vsync wait) |
+| ⚠️ | Walking down the stairs into lower Harrogath stalls for about a minute at 2-5 FPS: the 2 MB sprite cache thrashes |
 | ❓ | Not tried yet: fights outside town, long sessions |
 | ⏳ | Not started: sound, naming a character with the pad, a disc image, real hardware |
 

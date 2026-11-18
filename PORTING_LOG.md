@@ -630,3 +630,57 @@ retail cap:
 
 At the retail cap now: new character 22.5 MB peak at full speed, Rogue Encampment 23.3 MB,
 Harrogath upper town 23.4 MB at full speed, lower town 23.7 MB at 15 FPS.
+
+## 2026-11-19: Harrogath's lower town at 25 FPS; a profiler; two file-system bugs
+
+The lower town's 15 FPS turned out not to be the capped caches: with Extended RAM and both caches
+uncapped (the sprite cache grew to 6 MB) it ran just as slowly. Measured instead:
+
+- **A profiler** (`-DHS_PS2_PROFILE=ON`, `backend/ps2/profiler.cpp`): EE timer 1 interrupts at
+  about 998 Hz and records the interrupted address; every 250 frames the busiest 16-byte buckets
+  are logged, with memcpy's callers (memcpy is wrapped). The first version sampled at vertical
+  blank. Frames are locked to vertical blank, so it kept landing at the same points of a frame
+  and blamed whatever ran there: `D2GFX_FindNearestPaletteIndex` looked like the hottest function,
+  and a call count showed about 16 cheap calls a frame (`PANEL_InitBeltColors`).
+- **memcpy:** about 8,000 calls a frame in the lower town, from the run-length blitters
+  (`fpDrawVisTile` for floor tiles, `FASTCMP_DecompressRLE` for sprites), mostly under 16 bytes
+  at unaligned addresses. newlib's memcpy copies a byte at a time unless both pointers are
+  word-aligned. `backend/ps2/memcpy.cpp` replaces it: unaligned doublewords (LDL/LDR, SDL/SDR),
+  one overlapping doubleword for the tail, and a self-test at startup (`memcpy check: ok`, 5,184
+  sizes and alignments). memcpy's share fell about fourfold.
+- **The flip:** `gsKit_sync_flip` spins until the next vertical blank, and the timer profile put
+  27% of the lower town's time there. The display is PAL (640x512, 50 Hz), so every frame rounded
+  up to whole 20 ms fields: about 48 ms of work became 60-80 ms frames. Buffers now flip from a
+  vertical-blank interrupt handler. A present draws into the back buffer and marks it ready; the
+  handler shows it at the next blank; the next present waits (on a semaphore) only if that blank
+  hasn't come. No tearing in captures.
+
+Result, the same walk at the retail cap (`HS_PS2_EXTENDED_RAM=OFF`): **lower town 40-42 ms a frame
+(24-25 FPS, the game's own 25)**, from 66; PCSX2's counter shows 25. Peak 22.5 MB in use, 23.7 MB
+taken. The pacing line now gives the average frame time.
+
+**Still open: a 50-80 second slideshow on the stairs into the lower town** (frames 3000-3250 of
+`act5-walk`: 203-327 ms a frame, worst gap 0.9-1.2 s; last night's retail run had it too, but
+nothing logged the average). The profile of that window is DCC decoding (D2CMP `Codec.cpp`:
+`CODEC_ReadBits`, `CODEC_DecodeFramePixels`, `CODEC_EncodeRLE`, `GFX_RemoveCacheEntry`): the 2 MB
+sprite cache holds less than the animations in view, so it evicts and decodes the same ones every
+frame until the view changes. The uncapped run has no stall.
+
+Two file-system bugs, found by logging `CreateDirectoryA` (the line is gone again):
+
+- **Junk-named folders in the game folder** (`hsroot/Diablo II/<junk>/Diablo II`, one per boot).
+  Fog's `GetAndCreateSavePath` migrates the registry's "Save Path" to `SFILE_GetSaveGamePath`'s
+  folder whenever "NewSavePath" is missing, which was every boot. On our path
+  (`SHGetKnownFolderPath` isn't available) that function appends "Diablo II\Save" to a buffer it
+  never filled, and the migration then moves the save folder there (`SFILE_MoveDirectoryRecursive`).
+  The shim's registry now seeds NewSavePath with the save folder, so no migration runs. Whether
+  this had a hand in the one lost item is unknown.
+- **The automap files were directories** (`mang.ma0`..`ma3`). Under PCSX2's host device, unlinking a
+  file that doesn't exist left a directory of that name, and the automap deletes its slots before
+  writing them. `hs_file_delete` now checks first. `mang.ma0` is a file again.
+
+Debugging switches kept: `HS_GAME_CACHES_UNCAPPED` (compile definition: the game's own sprite and
+tile cache sizes, needs Extended RAM) and `HS_PS2_PROFILE`.
+
+The hang with an uncapped tile LRU (previous entry) didn't come back: six Extended RAM runs of the
+same walk, with the LRU and then both caches uncapped, all walked past frame 6,000.
