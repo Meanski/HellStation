@@ -202,6 +202,13 @@ function(hs_port_link target)
         if(HS_PS2_HEAP_LIMIT_KB)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_HEAP_LIMIT_KB=${HS_PS2_HEAP_LIMIT_KB})
         endif()
+        # Debugging: a vertical-blank sampling profiler and memcpy caller counts
+        # (backend/ps2/profiler.cpp), logged every 250 frames.
+        option(HS_PS2_PROFILE "PS2 debugging: sample the EE at vertical blank, count memcpy callers" OFF)
+        if(HS_PS2_PROFILE)
+            target_compile_definitions(hs_backend PRIVATE HS_PROFILE)
+            target_link_options(${target} PRIVATE -Wl,--wrap=memcpy)
+        endif()
         # backend/ps2/memory.cpp replaces libcglue's _sbrk; pull it before libc asks.
         target_link_options(${target} PRIVATE -Wl,-u,_sbrk)
     endif()

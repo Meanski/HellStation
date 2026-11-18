@@ -20,12 +20,18 @@ extern "C" HS_D2CMP_CC void hs_orig_GFX_InitLRUCache(D2PoolManagerStrc* pMemory,
     __asm__("hs_orig__ZN5D2CMP3SRC11SpriteCache16GFX_InitLRUCacheEP17D2PoolManagerStrcj");
 
 namespace {
-constexpr uint32_t kSmallRamSpriteCache = 2u << 20;
+#ifndef HS_SPRITE_CACHE_KIB  // overridable for measuring (compile definition)
+#  define HS_SPRITE_CACHE_KIB 2048
+#endif
+constexpr uint32_t kSmallRamSpriteCache = HS_SPRITE_CACHE_KIB << 10;
 // The game gives the LRU a flat 6 MB (D2Client UI/Draw.cpp). It fills as the
 // player explores: 1.2-1.3 MB standing in a town, and walking Harrogath's lower
 // town took it past the retail heap. Capped, that walk drops to 15 FPS: the cap
 // costs speed (PORTING_LOG, 2026-11-19).
-constexpr uint32_t kSmallRamTileLru = 2048u << 10;
+#ifndef HS_TILE_LRU_KIB
+#  define HS_TILE_LRU_KIB 2048
+#endif
+constexpr uint32_t kSmallRamTileLru = HS_TILE_LRU_KIB << 10;
 bool small_ram() {
     hs_mem_info mi = {};
     hs_mem_query(&mi);
@@ -36,14 +42,22 @@ bool small_ram() {
 namespace D2CMP::SRC::SpriteCache {
 void __stdcall GFX_InitCelDataCache(D2PoolManagerStrc* pMemory, uint32_t dwCacheBytes, uint32_t dwUnitCacheBytes,
                                     uint32_t dwAvailMemOverride) {
+#if defined(HS_GAME_CACHES_UNCAPPED)
+    if (false) {
+#else
     if (small_ram() && dwCacheBytes > kSmallRamSpriteCache) {
+#endif
         hs_log("sprite cache: %u KiB asked, capped at %u KiB", (unsigned)(dwCacheBytes >> 10), (unsigned)(kSmallRamSpriteCache >> 10));
         dwCacheBytes = kSmallRamSpriteCache;
     }
     hs_orig_GFX_InitCelDataCache(pMemory, dwCacheBytes, dwUnitCacheBytes, dwAvailMemOverride);
 }
 void __stdcall GFX_InitLRUCache(D2PoolManagerStrc* pMemory, uint32_t dwBytes) {
+#if defined(HS_GAME_CACHES_UNCAPPED)  // debugging only: the game's own sizes (needs Extended RAM)
+    if (false) {
+#else
     if (small_ram() && dwBytes > kSmallRamTileLru) {
+#endif
         hs_log("tile LRU: %u KiB asked, capped at %u KiB", (unsigned)(dwBytes >> 10), (unsigned)(kSmallRamTileLru >> 10));
         dwBytes = kSmallRamTileLru;
     }
