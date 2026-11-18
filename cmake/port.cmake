@@ -88,6 +88,8 @@ set(HS_PORT_WRAPS
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem9SMemAllocEjPcjj"
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem8SMemFreeEPvPcim"
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem11SMemReAllocEPjjPcij"
+    "D2Win|Source/D2Win/Src/D2WinArchive.cpp|_ZN5D2Win3Src12D2WinArchive13IMAGE_LoadDC6EPci"
+    "D2Win|Source/D2Win/D2WinAnimImage.cpp|_ZN5D2Win14D2WinAnimImageEiiiiP3DC6iPFiP12D2ControlMsgEP19FORMS_AnimFrameStrcjPFvPvE"
     "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory5AllocEP17D2PoolManagerStrcjPci"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocClientMemoryEjPcii"

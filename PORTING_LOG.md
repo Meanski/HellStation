@@ -580,3 +580,23 @@ same size it went in.
 **Not yet:** creating a character (the class-select screen loads all 7 classes' animations, about
 22 MB), sound, fights and leaving town, the main thread's 128 KiB stack under load, disc loading,
 real hardware. Margins are thin: 0.7-0.9 MB.
+
+## 2026-11-19: creating a character fits too
+
+The class-select screen loaded all seven classes' animations at once: 12.3 MB of DC6 (from the
+archives' block tables: Sorceress 1.2 MB up to Druid 2.5 MB). Idle and mouse-over (rows 0 and 1 of
+each class's `FORMS_AnimFrameStrc` table) are needed for every class, 2.5 MB together. Walking
+forward, standing selected and walking back (rows 2-4, with their overlays) are needed only for the
+class under the cursor or selected.
+
+`overrides/charcreate_lazy.cpp`, on a target reporting 32 MB or less:
+- **A wrap of D2Win `IMAGE_LoadDC6`** skips the row 2-4 files, leaving their slots null.
+- **A wrap of the `D2WinAnimImage` constructor** gives the class controls a draw function. It loads
+  a class's row 2-4 images as soon as its control leaves row 0 (checked before and after the
+  original draw, which is where the mouse-over is detected), and frees them once it's back in row
+  0. A press only reaches row 2 from row 1, so nothing reads a slot before it's loaded. The menu's
+  teardown frees every slot, and `IMAGE_FreeImage` ignores null.
+
+At the retail cap: the class-select screen is at 21.1 MB (was 31.7, and failed). The Barbarian
+walks forward when picked and back when the Sorceress is picked instead. A new character is
+created, enters the Rogue Encampment and walks around; peak 22.7 MB.
