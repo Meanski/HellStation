@@ -398,10 +398,20 @@ struct RegKey { std::string path; };
 HsLock g_regLock;
 struct RegValue { DWORD type; std::string data; };  // REG_SZ data excludes the terminator
 std::map<std::string, RegValue>& reg_values() {
-    static std::map<std::string, RegValue> v = {
-        {"software\\blizzard entertainment\\diablo ii\\installpath", {REG_SZ, "C:\\Diablo II"}},
-        {"software\\blizzard entertainment\\diablo ii\\save path", {REG_SZ, "C:\\Diablo II\\Save\\"}},
-    };
+    static std::map<std::string, RegValue> v = [] {
+        std::map<std::string, RegValue> m = {
+            {"software\\blizzard entertainment\\diablo ii\\installpath", {REG_SZ, "C:\\Diablo II"}},
+            {"software\\blizzard entertainment\\diablo ii\\save path", {REG_SZ, "C:\\Diablo II\\Save\\"}},
+        };
+        // Small-RAM targets (the PS2) play at 640x480, the game's other in-game mode
+        // (D2Client UI/EscMenu.cpp: 0 = 640x480, 1 = 800x600, the default): fewer
+        // tiles and sprites on screen, a smaller frame, and a better fit for a TV.
+        hs_mem_info mi = {};
+        hs_mem_query(&mi);
+        if (mi.phys_total && mi.phys_total <= (32u << 20))
+            m["software\\blizzard entertainment\\diablo ii\\resolution"] = {REG_DWORD, std::string(4, '\0')};
+        return m;
+    }();
     return v;
 }
 std::string lower(std::string s) { for (char& c : s) c = (char)std::tolower((unsigned char)c); return s; }

@@ -456,3 +456,25 @@ fights, which are not measured.
   in Act 5, and memory cuts so far have cost speed. **LoD vs classic** was not decided by
   measurement (the classic-only data set halts before the menu); the memory is in area graphics
   and tables, which classic also needs.
+
+## 2026-11-18: picked up again as a long shot; 640x480 in game
+
+The owner decided to keep going after all, aiming at the original goal (a disc in a retail PS2),
+low-risk levers first.
+
+- **640x480 in game** on small-RAM targets: the shim's registry seeds `Resolution = 0` (D2Client
+  `UI/EscMenu.cpp`: 0 = 640x480, 1 = 800x600, the default) when the backend reports <= 32 MB. The
+  menus stay 800x600 (LoD). Rogue Encampment: peak 37.4 -> 36.8 MB, standing back to 0 frames over
+  50 ms per 250 (was 22-28 with the sprite cap), walking 6-16 (was 22-137). **Harrogath (Act 5,
+  Hell): 1 frame over 50 ms per 250, about 23-25 FPS, against every frame over 50 ms at 800x600**;
+  peak 37.0 MB. (The 800x600 run had a panel open and had walked; the comparison is close, not
+  exact.) Mostly a speed win; memory barely moves.
+- **-Os, tried and dropped:** text 4,877 -> 4,315 KB (-562 KiB; the build already doesn't
+  inline). The -Os build behaves differently: opening character select takes 14.5 MB more than
+  the -O2 build (39.7 vs 28.5 MB in use) and its OK button does nothing. Likely undefined behaviour
+  in decompiled code that -Os exposes; not worth half a megabyte.
+- bss is 2.5 MB of the game's static state, spread over many tables of 256 KiB or less: no cheap
+  target.
+
+**Where it stands:** Act 1 and Act 5 towns peak at about 37 MB against a 24.2 MB heap, at full
+speed in both. The levers left are the medium and high ones in the entries above.

@@ -1,18 +1,20 @@
 # Handoff: where HellStation stands and what's next
 
-Written 2026-11-18, when the project stopped, for anyone who looks at it again. Read [AGENTS.md](../../AGENTS.md) first (the
+Written 2026-11-18 for whoever picks the work up next. Read [AGENTS.md](../../AGENTS.md) first (the
 contract), then this. The full history is in [PORTING_LOG.md](../../PORTING_LOG.md); the task list
 is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
-## Outcome: stopped (2026-11-18)
+## Status: a long shot (2026-11-18)
 
-The owner stopped the project after the memory feasibility check (#5). LoD runs on PCSX2 only with
-Extended RAM. With every cheap cut made, the Rogue Encampment peaks at 37.4 MB and Harrogath (Act 5,
-Hell) at 40.3 MB and 15 FPS, against the 24.2 MB a retail PS2 leaves the game. The numbers, each
-change and the reasoning are in PORTING_LOG (the 2026-11-18 entries) and the README's "Why it
-stopped". If it's ever picked up again, start from the "levers left" list in those entries.
+The memory check (#5) nearly ended the project: LoD runs on PCSX2 only with Extended RAM. With
+every low-risk cut made, the Rogue Encampment and Harrogath (Act 5, Hell) both peak at about 37 MB,
+at full speed in 640x480, against the 24.2 MB a retail PS2 leaves the game. The owner carries on
+anyway: a disc in a stock PS2 is the goal, and an honest failure is acceptable. Next are the
+medium-risk levers in PORTING_LOG's 2026-11-18 entries: an exact-size replacement for Fog's pool
+allocator (4-6 MB), a disc archive format with a compact index built from the user's own files
+(~3 MB of MPQ tables), sound in the SPU2's own RAM, and the IOP's 2 MB. Measure each one.
 
-## State at the stop
+## State
 
 - `main` is pushed to `origin`. The tree builds for the PS2 (with and without
   `-DHS_PS2_EXTENDED_RAM`), for i686 Linux, and the Linux town smoke test passes.
