@@ -304,3 +304,21 @@ unoptimised code: Phase 3.
 - Upstream changes now arrive through `tools/sync-redivivus.sh` (three-way apply of the upstream
   diff since `UPSTREAM`'s revision); the pre-commit hook accepts generated-code changes only with
   `HS_UPSTREAM_SYNC=1`.
+
+## 2026-11-18: first-boot diagnostics removed (#12)
+
+- Linux town smoke re-verified first (`run-linux.sh --script tools/port/scripts/rogue-encampment.txt`,
+  tree at `dea0a2cb`): new LoD Barbarian in the Rogue Encampment next to Warriv, rain, campfire and
+  HUD, 17,040 presented frames in 900 s under qemu with no halt or crash.
+- Removed: `overrides/diag_d2lang.cpp` (`STRTABLE_CalculateCRC` logging), `overrides/diag_d2hell.cpp`
+  (`D2FILE_AllocAndLoadD2File` logging, same body as the generated one; plus the
+  `SFileOpenArchive` wrap), and `backend/ps2/alloc_trace.cpp` (the malloc/calloc/realloc/memalign,
+  `__cxa_throw`, pthread mutex and `CreateSema`/`DeleteSema` link wraps), with their entries in
+  `cmake/port.cmake` and `docs/port/overrides.md`. Logging of large allocations goes with them; #5
+  measures the heap on its own terms.
+- After removal: the generated `STRTABLE_CalculateCRC` and `D2FILE_AllocAndLoadD2File` are strong
+  definitions again in both port builds, and `d2.elf` has no `__wrap_` symbols. Linux smoke: same
+  result (town, 14,400 presented frames in 900 s, no halt). PCSX2 `town-walk.txt`: all 13 steps
+  (town, walks, inventory open/close), `CPU check` line present, 40 ms frames standing in town
+  (0 frames over 50 ms per 250); hitches of up to 180 ms while walking and opening the inventory
+  (125 frames over 50 ms in frames 3500-3750).

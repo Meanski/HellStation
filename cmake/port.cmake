@@ -74,9 +74,7 @@ endfunction()
 # renamed and globalized. Format: module|symbol to weaken|old=new static, ...
 set(HS_PORT_OVERRIDES
     "D2CMP|_ZN5D2CMP7Pallete20PALETTE_LoadFromFileEPci|_ZL17gaItemPaletteData=hs_D2CMP_gaItemPaletteData"
-    "D2Lang|_ZN6D2Lang8StrTable8strtable21STRTABLE_CalculateCRCEPtPhjj|"
     "Storm|-|_ZN5Storm6Source4SMemL29SMemCalculateAllocationLayoutEjPiS2_S2_S2_=hs_Storm_SMemCalculateAllocationLayout,_ZL11DebugMemory=hs_Storm_DebugMemory,_ZL13ProtectMemory=hs_Storm_ProtectMemory"
-    "D2Hell|_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i|"
     "D2CMP|_ZN5D2CMP3SRC8LRUCache15LRUCACHE_UnlinkEP18D2LRUCacheNodeStrcP14D2LRUCacheStrc|_ZN5D2CMP3SRC8LRUCacheL18LRUCACHE_PopOldestEP14D2LRUCacheStrc=hs_D2CMP_LRUCACHE_PopOldest"
 )
 
@@ -180,7 +178,6 @@ function(hs_port_link target)
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
         target_link_libraries(hs_backend PUBLIC gskit dmakit pad pthread)
-        target_link_options(${target} PRIVATE -Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=memalign,--wrap=__cxa_throw,--wrap=pthread_mutex_lock,--wrap=pthread_mutex_unlock,--wrap=CreateSema,--wrap=DeleteSema,--wrap=_ZN5Storm6Source5SFile16SFileOpenArchiveEPcPijPP13D2ArchiveStrc)
         option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (not retail hardware)" OFF)
         if(HS_PS2_EXTENDED_RAM)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_EXTENDED_RAM)
