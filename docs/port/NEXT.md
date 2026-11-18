@@ -1,18 +1,24 @@
 # Handoff: where HellStation stands and what's next
 
-Written 2026-11-18 for whoever picks the work up next. Read [AGENTS.md](../../AGENTS.md) first (the
+Written 2026-11-18, when the project stopped, for anyone who looks at it again. Read [AGENTS.md](../../AGENTS.md) first (the
 contract), then this. The full history is in [PORTING_LOG.md](../../PORTING_LOG.md); the task list
 is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
-## State at hand-off
+## Outcome: stopped (2026-11-18)
 
-- `main` at `0b267704`, pushed to `origin` (github.com/Meanski/HellStation). History is HellStation's
-  own: one commit imports Redivivus at `dd289669c82a` (see `UPSTREAM`), then 20 of ours.
-- **PS2 (Phase 2):** LoD 1.14d boots in PCSX2, reaches the Rogue Encampment, walks, opens the
-  inventory: steady 25 FPS (40 ms frames), units move correctly. It needs PCSX2's Extended RAM.
-  There's no sound, and the pad can't type a character name.
-- **Linux (Phase 1):** town smoke re-verified 2026-11-18, before and after the #12 cleanup.
-- **Stock Windows build:** not rebuilt this round; nothing it compiles was touched.
+The owner stopped the project after the memory feasibility check (#5). LoD runs on PCSX2 only with
+Extended RAM. With every cheap cut made, the Rogue Encampment peaks at 37.4 MB and Harrogath (Act 5,
+Hell) at 40.3 MB and 15 FPS, against the 24.2 MB a retail PS2 leaves the game. The numbers, each
+change and the reasoning are in PORTING_LOG (the 2026-11-18 entries) and the README's "Why it
+stopped". If it's ever picked up again, start from the "levers left" list in those entries.
+
+## State at the stop
+
+- `main` is pushed to `origin`. The tree builds for the PS2 (with and without
+  `-DHS_PS2_EXTENDED_RAM`), for i686 Linux, and the Linux town smoke test passes.
+- **PS2:** boots, makes a character, walks the Rogue Encampment at 25 FPS, reaches Act 5. No sound;
+  the pad can't type a name. The memory report (`mem` lines in `hs.log`, every 250 frames) is the
+  tool to start from.
 
 ## How to run it
 
@@ -26,8 +32,8 @@ tools/port/run-pcsx2.sh --extra-ram --seconds 3 \
   `build-ps2/run/ring.log` when the runner's sleep ends. A `frame N` pacing line appears every 250
   presented frames. Scripts are keyed to presented frames: town loads by about frame 2550; menus are
   at 25 FPS.
-- `run-pcsx2.sh` kills any running PCSX2 first, so the owner's open session goes with it. It
-  rewrites `~/Library/Application Support/PCSX2/inis/PCSX2.ini` keys (HostFs, PINE, ExtraMemory,
+- `run-pcsx2.sh` closes any running PCSX2 first (and waits for it), so the owner's open session
+  goes with it. It rewrites `~/Library/Application Support/PCSX2/inis/PCSX2.ini` keys (HostFs, PINE, ExtraMemory,
   logging). The BIOS is chosen by the owner in PCSX2's settings; never install or pick one.
 - Game data is `$D2DATA` (default `~/d2data`: the 11 MPQs listed in the README), symlinked into the
   run folder, never copied. Saves land in `build-ps2/run/hsroot`.
@@ -54,20 +60,6 @@ tools/port/run-pcsx2.sh --extra-ram --seconds 3 \
 7. **Generated code (`Source/`, `3rdparty/Storm`, `3rdparty/crashy`) is never edited.** The
    pre-commit hook enforces it; route around it with `Redivivus/port/` (prelude, shim, overrides,
    wraps). Generator defects are drafted in `docs/port/upstream/` for the owner to file.
-
-## Suggested order of work
-
-1. ~~**#12, cleanup**~~: done 2026-11-18 (see PORTING_LOG); the issue is ready to close.
-2. **#5, measure memory before cutting anything:** peak heap and Storm/Fog pool stats at the menu,
-   in town, in Act 5 and in a busy fight, logged in PORTING_LOG. About 20 MB of pool reservations
-   plus a 10 MB ELF were seen at the menu. That measurement decides LoD vs classic.
-3. **#2, name entry with the pad.** It unblocks creating characters without a script.
-4. **#1, sound** (fake DirectSound on audsrv).
-5. **#3, controller layer 1** (design in `docs/port/controller.md`).
-6. Then the Retail PS2 milestone: #6 USB data, #7 saves, #9 TV modes, #8 hardware, #4 panels.
-
-#10 (PCSX2 bug) and #11 (two Redivivus generator defects) are reports **the owner files**. Drafts
-are in `docs/port/upstream/`. Never file or comment upstream yourself.
 
 ## Owner preferences
 

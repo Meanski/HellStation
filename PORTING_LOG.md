@@ -438,3 +438,21 @@ pool slack, 3.5 MB in the Client pool alone with the cache cap (allocator replac
 of data tables in Fog overflow (unknown how much is trimmable); a smaller image (~1 MB). From
 37.4 MB to the 24.2 MB budget is 13.2 MB, before sound (its cache is 3-5 MB) and before Act 5 and
 fights, which are not measured.
+
+## 2026-11-18: Act 5 measured; the project stops
+
+- **Harrogath, Hell**, with a level 96 Sorceress (a save downloaded from a community armory, kept
+  out of the repo; its start byte set to Hell Act 5 and the header checksum recomputed). With all of
+  the day's cuts: **peak taken 40.3 MB, 38.1 MB live** after walking around town. The same build
+  peaks at 37.4 MB in the Rogue Encampment. **15 FPS, every frame over 50 ms**, at 100% emulated
+  speed. A walk out of town to a fight didn't arrive (the scripted walk stuck on a building), so
+  fights are not measured.
+- The two "cheap" cuts proposed weren't: Storm's 64 KiB heap windows are fixed (`SMEM_AllocateHeap`
+  reserves 0x10000, its block sizes are 16-bit) and a failed commit inside one returns NULL to its
+  callers. Shrinking an MPQ's hash table needs every file name, which the archives may not carry.
+- **Decision (owner):** stop. Act 5 needs ~16 MB more than a retail PS2's 24.2 MB heap after every
+  cheap cut, before sound (3-5 MB) and fights. The remaining levers (Fog's allocator, the data
+  tables, the MPQ tables) roughly match the gap with no margin. The frame rate is already 15 FPS
+  in Act 5, and memory cuts so far have cost speed. **LoD vs classic** was not decided by
+  measurement (the classic-only data set halts before the menu); the memory is in area graphics
+  and tables, which classic also needs.

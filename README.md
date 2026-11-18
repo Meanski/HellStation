@@ -5,7 +5,7 @@
 <p align="center">
   <img alt="Platform: PlayStation 2" src="https://img.shields.io/badge/platform-PlayStation%202-1f4ea0?style=for-the-badge">
   <img alt="Game: Diablo II LoD 1.14d" src="https://img.shields.io/badge/Diablo%20II-LoD%201.14d-8b1a1a?style=for-the-badge">
-  <img alt="Status: in game on PCSX2" src="https://img.shields.io/badge/status-in%20game%20on%20PCSX2-e36209?style=for-the-badge">
+  <img alt="Status: stopped, emulator only" src="https://img.shields.io/badge/status-stopped%2C%20emulator%20only-6e7681?style=for-the-badge">
   <br>
   <a href="https://github.com/Meanski/HellStation/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/Meanski/HellStation?style=for-the-badge&color=6e7681"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f?style=for-the-badge"></a>
@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="#status">Status</a> ·
-  <a href="#roadmap">Roadmap</a> ·
+  <a href="#why-it-stopped">Why it stopped</a> ·
   <a href="#build-and-run">Build</a> ·
   <a href="#controls">Controls</a> ·
   <a href="#how-it-works">How it works</a> ·
@@ -23,42 +23,60 @@
 
 ---
 
-**Diablo II: Lord of Destruction 1.14d, running natively on the PlayStation 2.** It isn't emulated,
-streamed or remade: it's the game's own code, compiled for the PS2's Emotion Engine, with
-everything a PS2 needs underneath it. That means a fake Windows, a GS renderer, DualShock 2 input,
-and a build tuned for the EE.
+**Diablo II: Lord of Destruction 1.14d, running natively on PlayStation 2 hardware, as emulated by
+PCSX2.** It isn't emulated, streamed or remade: it's the game's own code, compiled for the PS2's
+Emotion Engine, with everything a PS2 needs underneath it. That means a fake Windows, a GS
+renderer, DualShock 2 input, and a build tuned for the EE.
+
+> [!NOTE]
+> **The project has stopped (November 2026).** It plays in PCSX2, but only with PCSX2's Extended
+> RAM (128 MB). A retail PS2 has 32 MB, and measuring showed the game can't be made to fit
+> without rebuilding large parts of it, while already running below full speed in Act 5. The
+> details are below and in the [dev log](PORTING_LOG.md).
 
 ## Status
 
-| | Where it stands |
+| | Where it ended |
 |:-:|-|
 | ✅ | Boots to the LoD main menu on an emulated PS2 (PCSX2) |
-| ✅ | In game: new character, Rogue Encampment, walking, inventory, at a steady **25 FPS** (the game's own cap) |
-| ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys (controller layer 0) |
-| 🚧 | Fit a retail PS2's **32 MB**: for now it needs PCSX2's Extended RAM ([#5](https://github.com/Meanski/HellStation/issues/5)) |
-| 🚧 | Sound ([#1](https://github.com/Meanski/HellStation/issues/1)) |
-| 🚧 | Naming a character with the pad ([#2](https://github.com/Meanski/HellStation/issues/2)) |
-| ⏳ | Real hardware ([#8](https://github.com/Meanski/HellStation/issues/8)) |
+| ✅ | In game: new character, Rogue Encampment, walking, inventory, at **25 FPS** (the game's own cap) |
+| ✅ | Reaches Act 5 (Harrogath, Hell difficulty) with a level 96 character, at **15 FPS** |
+| ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys |
+| ❌ | A retail PS2's **32 MB**: it needs PCSX2's Extended RAM ([#5](https://github.com/Meanski/HellStation/issues/5)) |
+| ⏹️ | Not started: sound, naming a character with the pad, real hardware |
 
-## Roadmap
+## Why it stopped
 
-**[Playable on PCSX2](https://github.com/Meanski/HellStation/milestone/1)**: from start to Act 1
-with sound and the pad alone.
+A retail PS2 has 32 MB of RAM. After the kernel, the 7.4 MB program and the stack, the game gets
+**24.2 MB**. Peak memory on PCSX2, measured with a report built into the port:
 
-- [ ] Sound on audsrv ([#1](https://github.com/Meanski/HellStation/issues/1))
-- [ ] Name entry with the pad ([#2](https://github.com/Meanski/HellStation/issues/2))
-- [ ] Walk with the stick, soft targeting, skill slots ([#3](https://github.com/Meanski/HellStation/issues/3))
+| | Rogue Encampment (Act 1) | Harrogath (Act 5, Hell) |
+|-|-|-|
+| As first measured | 61.1 MB | |
+| After every cheap fix | 37.4 MB | 40.3 MB |
+| What a retail PS2 has | 24.2 MB | 24.2 MB |
 
-**[Retail PS2](https://github.com/Meanski/HellStation/milestone/2)**: stock 32 MB, data from USB,
-on real hardware.
+The fixes that got it from 61 to 37 MB:
 
-- [ ] Fit in 32 MB ([#5](https://github.com/Meanski/HellStation/issues/5))
-- [ ] Data from USB storage ([#6](https://github.com/Meanski/HellStation/issues/6)) and saves ([#7](https://github.com/Meanski/HellStation/issues/7))
-- [ ] Real hardware ([#8](https://github.com/Meanski/HellStation/issues/8))
-- [ ] NTSC, 480p and letterboxing ([#9](https://github.com/Meanski/HellStation/issues/9))
-- [ ] Panels by d-pad ([#4](https://github.com/Meanski/HellStation/issues/4))
+- **Telling the game it has 32 MB, not 256 MB.** It sizes its caches from what Windows reports.
+- **Keeping large and small allocations apart.** The town had been failing to load with 11 MB
+  free but cut into pieces too small to use.
+- **Thread stacks of 128 KiB, not 1 MiB.** Measured: they never used more than 16 KiB.
+- **Capping the sprite cache at 2 MB.** That costs frame rate: sprites get decoded again more
+  often.
 
-Everything else is on the [issue list](https://github.com/Meanski/HellStation/issues).
+What's left is the hard part, and it adds up to roughly the gap with nothing to spare:
+
+- the game's pool allocator wastes 3-5 MB in partly empty blocks;
+- 7 MB of data tables;
+- 3.9 MB of MPQ archive tables.
+
+Sound would add another 3-5 MB, and fights haven't been measured. Meanwhile Act 5 already runs at
+15 FPS at full emulated speed, and every memory cut so far has cost speed rather than saved it. The
+full measurements and each step are in the [dev log](PORTING_LOG.md) (2026-11-18 entries).
+
+**What would change the answer:** a PS2 with more RAM. Sony's development units had 128 MB,
+which is the configuration PCSX2's Extended RAM imitates.
 
 ## You bring the game
 
@@ -88,6 +106,9 @@ tools/port/ps2.sh cmake --build build-ps2
 tools/port/run-pcsx2.sh --extra-ram --seconds 5
 ```
 
+Without `-DHS_PS2_EXTENDED_RAM=ON` the heap stops at a retail 32 MB, and the game runs out of memory
+loading the town.
+
 `run-pcsx2.sh` stages the ELF next to your game folder, turns on the PCSX2 settings the port needs
 (host file access, Extended RAM), and starts it. Add `--script tools/port/scripts/town-walk.txt` to
 watch a scripted run make a Barbarian and walk around the Rogue Encampment.
@@ -115,7 +136,7 @@ is kept working. Both are covered in [AGENTS.md](AGENTS.md).
 | D-pad | Belt slots 1–4 |
 
 This is layer 0: the pad acts as a mouse. Walking with the stick, auto-targeting and pad-driven
-panels are designed in [docs/port/controller.md](docs/port/controller.md).
+panels were designed in [docs/port/controller.md](docs/port/controller.md) but not built.
 
 ## How it works
 
