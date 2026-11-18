@@ -24,9 +24,15 @@ void hs_mem_report_fog(void) {
     auto kib = [](size_t n) { return (unsigned)((n + 512) >> 10); };
     {
         namespace SC = D2CMP::SRC::SpriteCache;
-        hs_log("  game caches: sprite %u/%u KiB, celdata %u/%u KiB (in use/limit)",
+        size_t lruSize = 0;
+        int misses = 0;
+        ULONG_PTR hits = 0;
+        uint32_t lruPercent = 0;
+        SC::SPRITECACHE_GetStats(&lruSize, &misses, &hits, &lruPercent);
+        hs_log("  game caches: sprite %u/%u KiB, celdata %u/%u KiB, lru %u KiB at %d%% (in use/limit)",
                kib(SC::SPRITECACHE_GetMemUsage()), kib(SC::SPRITECACHE_GetCacheSize()),
-               kib((size_t)SC::CELDATACACHE_GetMemUsage()), kib(SC::CELDATACACHE_GetMemLimit()));
+               kib((size_t)SC::CELDATACACHE_GetMemUsage()), kib(SC::CELDATACACHE_GetMemLimit()),
+               kib(lruSize), (int)lruPercent);
     }
     size_t managers = sys.nManagers < 8 ? sys.nManagers : 8;
     for (size_t i = 0; i < managers; i++) {

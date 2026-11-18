@@ -9,6 +9,7 @@
 #  include <sys/mman.h>
 #  include <malloc.h>
 #else
+#  include <cstdint>
 #  include <malloc.h>
 #  include <cstring>
 #endif
@@ -98,19 +99,7 @@ void hs_mem_query(hs_mem_info* out) {
     out->heap_limit = 0;
     out->phys_total = 0;  // the shim's PC default
 }
-#else
-// No virtual memory: a reservation is real, zeroed memory up front.
-void* hs_vm_reserve(size_t size, size_t align) {
-    void* p = memalign(align < 16 ? 16 : align, size);
-    // Live totals are in the memory report (win32/system.cpp); log only the big ones.
-    if (size >= (1u << 20)) hs_log("hs_vm_reserve(%u KiB) -> %p", (unsigned)(size >> 10), p);
-    if (p) std::memset(p, 0, size);
-    else hs_log("hs_vm_reserve: out of memory for %u bytes", (unsigned)size);
-    return p;
-}
-void hs_vm_decommit(void* p, size_t size) { std::memset(p, 0, size); }
-void hs_vm_release(void* p, size_t) { free(p); }
-#endif
+#endif  // the EE's hs_vm_* and hs_mem_query are in backend/ps2/memory.cpp
 
 #if defined(__linux__)
 hs_mutex* hs_mutex_create(void) {
@@ -183,12 +172,55 @@ void hs_dump_all_threads(int sig) {
 #endif
 }
 
+#if !defined(__linux__)
+// Game thread stacks on the EE: real RAM, one fixed size. ps2sdk's pthread glue
+// allocates the stack itself (it ignores pthread_attr_setstack), so each thread
+// paints the unused part of its own stack below where it starts, and the memory
+// report scans for how deep it has gone. Entries outlive their threads (the
+// game's three threads live as long as the process).
+constexpr size_t kEeThreadStack = 128 * 1024;  // town walk: deepest use 16 KiB (PORTING_LOG)
+constexpr uint8_t kStackFill = 0xA5;
+constexpr int kMaxStacks = 16;
+constexpr size_t kPaintMargin = 16 * 1024;  // unpainted: below the start, the glue's own frames
+struct EeStack { uint8_t* base; size_t size, painted; };
+EeStack g_stacks[kMaxStacks];
+int g_nStacks;
+
+// Total bytes in game thread stacks, and the deepest any of them has been used.
+void hs_ee_stack_usage(size_t* total, size_t* deepest) {
+    *total = *deepest = 0;
+    for (int i = 0; i < g_nStacks; i++) {
+        size_t untouched = 0;  // stacks grow down: count the pattern from the bottom
+        while (untouched < g_stacks[i].painted && g_stacks[i].base[untouched] == kStackFill) untouched++;
+        *total += g_stacks[i].size;
+        size_t used = g_stacks[i].size - untouched;  // includes the unpainted margin: a slight overestimate
+        if (used > *deepest) *deepest = used;
+    }
+}
+
+// Runs first on the new thread: the kernel knows its stack's bounds; everything
+// from the bottom up to a margin below here is unused, so paint it.
+static void paint_own_stack() {
+    ee_thread_status_t st;
+    if (ReferThreadStatus(GetThreadId(), &st) < 0 || !st.stack || st.stack_size <= 0) return;
+    volatile uint8_t here;
+    uint8_t* base = (uint8_t*)st.stack;
+    uint8_t* top = (uint8_t*)&here - kPaintMargin;
+    if (top <= base || top > base + st.stack_size || g_nStacks >= kMaxStacks) return;
+    memset(base, kStackFill, (size_t)(top - base));
+    g_stacks[g_nStacks++] = {base, (size_t)st.stack_size, (size_t)(top - base)};
+}
+#endif
 static void* trampoline(void* p) {
+#if !defined(__linux__)
+    paint_own_stack();
+#endif
     hs_register_current_thread();
     hs_thread* t = (hs_thread*)p;
     t->fn(t->arg);
     return nullptr;
 }
+
 hs_thread* hs_thread_start(void (*fn)(void*), void* arg, uint32_t stackSize) {
     hs_thread* t = new hs_thread{{}, fn, arg};
     pthread_attr_t a;
@@ -197,9 +229,10 @@ hs_thread* hs_thread_start(void (*fn)(void*), void* arg, uint32_t stackSize) {
     if (stackSize) pthread_attr_setstacksize(&a, stackSize < 65536 ? 65536 : stackSize);
 #else
     // Windows stack sizes are virtual reservations the game asks for freely
-    // (megabytes); on the EE a stack is real RAM, so every thread gets 1 MiB.
+    // (megabytes); on the EE a stack is real RAM, so every thread gets the same
+    // fixed size (kEeThreadStack; its use is measured by paint_own_stack).
     (void)stackSize;
-    pthread_attr_setstacksize(&a, 1024 * 1024);
+    pthread_attr_setstacksize(&a, kEeThreadStack);
 #endif
     int rc = pthread_create(&t->t, &a, trampoline, t);
     pthread_attr_destroy(&a);

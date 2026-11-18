@@ -138,7 +138,13 @@ LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
     // Without virtual memory (the EE), each 64 KiB alignment can leave up to 64 KiB
     // of the C heap unusable in front of the region, so the rest get page alignment.
     void* p = hs_vm_reserve(size, kind == kVmReserved ? 0x10000 : 0x1000);
-    if (!p) { SetLastError(ERROR_NOT_ENOUGH_MEMORY); return nullptr; }
+    if (!p) {
+        // The first failure is the peak: log what was alive (frame 0 = all sections).
+        static bool s_reported;
+        if (!s_reported) { s_reported = true; hs_log("VirtualAlloc(%u KiB) failed; memory at that point:", (unsigned)(size >> 10)); hs_mem_report(0); }
+        SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+        return nullptr;
+    }
     size_t committed = (type & MEM_COMMIT) ? size : 0;
     HsLockGuard l(g_vmLock);
     vm_regions()[(uintptr_t)p] = VmRegion{size, committed, kind};
@@ -190,6 +196,7 @@ void hs_mem_report(unsigned frame) {
            kVmNames[kVmCommitted], kib(v[kVmCommitted].live), kib(v[kVmCommitted].peak),
            kVmNames[kVmBoth], kib(v[kVmBoth].live), kib(v[kVmBoth].peak),
            kib(g_heapLive.load()), kib(g_heapPeak.load()));
+    if (c.stacks) hs_log("  thread stacks %u KiB, deepest use %u KiB", kib(c.stacks), kib(c.stack_deepest));
     if (frame % 500 == 0) hs_mem_report_fog();
 }
 BOOL WINAPI VirtualProtect(LPVOID, SIZE_T, DWORD newProt, PDWORD oldProt) {

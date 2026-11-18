@@ -401,3 +401,40 @@ Act 5 and fights (not measured) will need more than the town.
 - **Classic not measured:** with only the classic archives (no `d2exp.mpq`/`d2x*.mpq`, links in a
   scratch folder) the EE halts before the menu in `Bnclient::GetBattlenetRealmsList`
   (`BNGatewayAccess.cpp:221`, Fog halt line 392), a path the LoD set-up doesn't take. Unfixed.
+
+## 2026-11-18: the bounded attempt at 32 MB (#5, part 3)
+
+Gate set beforehand: the town walk loads with the C heap capped at 35 MB. Result: **missed by
+about 2.4 MB** (fails mid-load at 33.2 MB live; uncapped peak 37.4 MB). Town peak over the day:
+61.1 -> 37.4 MB taken.
+
+| Change | Town in use | Peak taken |
+|-|-|-|
+| Start (game told 256 MB) | 46.9 MB | 61.1 MB |
+| Tell the game 32 MB | 41.8 | 54.0 |
+| Two-ended heap (regions from the top, malloc from the bottom) | 41.8 | 44.4 |
+| Thread stacks 1 MiB -> 128 KiB | 39.1 | 41.5 |
+| Sprite cache capped at 2 MB (was 5.2 MB used of 24) | 35.1 | 37.4 |
+
+- **Fragmentation was the "load spike":** at a 46 MB cap the town failed with only 34.7 MB live; free
+  space was in pieces smaller than Fog's 512 KiB block. `backend/ps2/memory.cpp` now carves
+  VirtualAlloc regions down from the top of RAM with their own coalescing free list, and malloc's
+  break grows up from `_end`. Without `HS_PS2_EXTENDED_RAM` the top stops at a retail 32 MB.
+- **Thread stacks:** ps2sdk's pthread glue ignores `pthread_attr_setstack` (it mallocs its own);
+  each thread now paints its stack (bounds from `ReferThreadStatus`) and the report shows the
+  deepest use: 16 KiB (the unpainted margin) over the town walk. 128 KiB each.
+- **Sprite cache cap** (`overrides/sprite_cache_cap.cpp`, a wrap of D2CMP `GFX_InitCelDataCache`,
+  only when the backend reports <= 32 MB). Cost: standing in town went from 0 to 22-28 frames over
+  50 ms per 250; walking peaks at 220 ms.
+- **The 4.8 MB "unattributed" regions are Storm's large blocks** (`SMEM_AllocateHeapBlock`): mostly
+  the MPQ hash and block tables, 3,886 KiB for the 11 archives (read from their headers);
+  `d2data.mpq` and `d2exp.mpq` each have 65,536 hash slots for about 10,000 files.
+- The tile LRU (6 MB limit) is 18% used in town and allocates as it fills: capping it saves nothing
+  there.
+
+**Levers left, rough sizes:** Storm heaps reserve 2.2 MB and commit 0.3 MB (~1.9 MB); MPQs repacked
+with right-sized hash tables (~1.5 MB) and music/video archives opened on demand (~0.4 MB); Fog
+pool slack, 3.5 MB in the Client pool alone with the cache cap (allocator replacement); the 7.3 MB
+of data tables in Fog overflow (unknown how much is trimmable); a smaller image (~1 MB). From
+37.4 MB to the 24.2 MB budget is 13.2 MB, before sound (its cache is 3-5 MB) and before Act 5 and
+fights, which are not measured.

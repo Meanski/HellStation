@@ -85,6 +85,7 @@ set(HS_PORT_OVERRIDES
 # Format: module|source file (tree-relative)|symbol
 set(HS_PORT_WRAPS
     "Storm|3rdparty/Storm/Source/SMem.cpp|_ZN5Storm6Source4SMem9SMemAllocEjPcjj"
+    "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj"
 )
 
 function(hs_port_apply_wraps)
@@ -178,7 +179,7 @@ function(hs_port_link target)
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
         target_link_libraries(hs_backend PUBLIC gskit dmakit pad pthread)
-        option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (not retail hardware)" OFF)
+        option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (off: stop at a retail 32 MB)" OFF)
         if(HS_PS2_EXTENDED_RAM)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_EXTENDED_RAM)
         endif()
@@ -188,7 +189,7 @@ function(hs_port_link target)
         if(HS_PS2_HEAP_LIMIT_KB)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_HEAP_LIMIT_KB=${HS_PS2_HEAP_LIMIT_KB})
         endif()
-        # backend/ps2/sbrk.cpp replaces libcglue's _sbrk; pull it before libc asks.
+        # backend/ps2/memory.cpp replaces libcglue's _sbrk; pull it before libc asks.
         target_link_options(${target} PRIVATE -Wl,-u,_sbrk)
     endif()
     if(HS_PORT_BACKEND STREQUAL "sdl")
