@@ -6,10 +6,15 @@
 // past the main thread's stack at the top of the first 32 MB; newlib's malloc
 // copes with the discontiguous break. Retail hardware has 32 MB: build without it.
 #include <kernel.h>
+#include <malloc.h>
 #include <stddef.h>
 #include "Redivivus/port/platform.h"
 
-extern "C" char _end[];
+extern "C" char _ftext[], _end[];
+
+// Bytes malloc holds from the break (both regions with Extended RAM), and the most it held.
+static size_t s_taken, s_peak;
+static void note_taken(ptrdiff_t incr) { s_taken += incr; if (s_taken > s_peak) s_peak = s_taken; }
 
 extern "C" void* _sbrk(ptrdiff_t incr) {
     static char* s_ptr = _end;
@@ -29,6 +34,7 @@ extern "C" void* _sbrk(ptrdiff_t incr) {
             if (next > s_end) return (void*)-1;
             char* ret = s_ptr;
             s_ptr = next;
+            note_taken(incr);
             return ret;
         }
 #endif
@@ -37,5 +43,15 @@ extern "C" void* _sbrk(ptrdiff_t incr) {
     if (next < _end) return (void*)-1;
     char* ret = s_ptr;
     s_ptr = next;
+    note_taken(incr);
     return ret;
+}
+
+extern "C" void hs_mem_query(hs_mem_info* out) {
+    struct mallinfo mi = mallinfo();
+    out->image = (size_t)(_end - _ftext);
+    out->heap_taken = s_taken;
+    out->heap_peak = s_peak;
+    out->heap_in_use = (size_t)mi.uordblks;
+    out->heap_limit = (size_t)((char*)EndOfHeap() - _end);
 }

@@ -322,3 +322,52 @@ unoptimised code: Phase 3.
   (town, walks, inventory open/close), `CPU check` line present, 40 ms frames standing in town
   (0 frames over 50 ms per 250); hitches of up to 180 ms while walking and opening the inventory
   (125 frames over 50 ms in frames 3500-3750).
+
+## 2026-11-18: memory measured at the menu and in town (#5, part 1)
+
+**Tooling.** A `mem` line every 250 presented frames (`win32/system.cpp`, via `win32/memstats.h`),
+and one line per Fog pool manager every 500 (`port/fog_pools.cpp`, which reads Fog's
+`pGlobalPoolSystem` block table and overflow buckets). Fields, in KiB, `now/peak`:
+`crt` is the C heap (taken from the program break, live malloc bytes, and the retail limit);
+`vm` is VirtualAlloc regions, reserved and committed (high-water per region), split by how they
+were asked for: `reserve` (MEM_RESERVE alone: Storm's heaps), `commit` (MEM_COMMIT alone: Fog's
+pool blocks), `both` (lookup tables); `w32` is HeapAlloc & co. On the EE every VirtualAlloc region
+is real RAM inside the C heap. Backend side: `hs_mem_query` (`platform.h`). The old cumulative
+"total reserved" log only counted up (300 MB by the town) and is gone.
+
+**Retail budget.** `_end` is 0x842080 with the `-O2` build: image 7,432 KiB (text+data+bss from
+0x100000; it was 10.3 MB at -O0). 32 MiB less the 1 MiB kernel area, the image and the 128 KiB main
+stack leaves the heap **24,184 KiB**.
+
+**Measured** (PCSX2, Extended RAM, `town-walk.txt`; KiB):
+
+| | Main menu (f2500) | Rogue Encampment (f4500) |
+|-|-|-|
+| C heap in use | 28,168 | 46,889 |
+| C heap taken (peak) | 32,917 | 64,201 (60,293 with the alignment change below) |
+| Fog "Client Pool System": committed / slots in use | n/a | 18,304 / 14,473 (79%) |
+| Fog "Global Pool System": committed / slots in use | 8,128 / 4,343 (53%) | 7,424 / 5,564 (74%) |
+| Fog overflow (straight to malloc) | 6,847 in 16 allocs | 7,301 in 2,940 allocs |
+| Storm heaps: reserved / committed | 1,856 / 232 | 2,240 / 284 |
+| Other commit regions (not in a live Fog block table) | 4,804 | 4,804 (same at boot: unattributed) |
+| Other C heap (3 game threads x 1 MiB stack, DIB, gsKit texture, Fog block headers, libc) | ~6,900 | ~6,900 |
+
+- **The town needs about twice the retail heap.** Live allocations alone are 46.9 MB against
+  24.2 MB; Fog's slots in use plus its overflow are 27.3 MB, over the budget with zero waste.
+- **The Client pool is the working set** (sprite and tile caches for the area): 14.5 MB of
+  power-of-two slots. The menu's big overflow allocs are its full-screen DC6 backgrounds
+  (477 KiB each). The town's 2,940 overflow allocs are mostly data tables.
+- **The game doesn't size anything from RAM:** `GlobalMemoryStatus` feeds only the FPS overlay and
+  the out-of-memory log (D2Client `DRAW_UI_FPSStats`, Fog `OutOfMemoryHandler`).
+- **Taken vs in use:** about 14 MB in town is free space malloc holds, either fragmentation or
+  the town-load spike; the current counters can't tell which (peak in-use isn't tracked).
+
+**Change (an experiment that's kept):** VirtualAlloc gives 64 KiB alignment only to MEM_RESERVE-alone
+regions (Storm, which finds a heap's descriptor from an address's top 16 bits); the rest get page
+alignment (Fog finds blocks by binary search over start addresses, `FindBlockContainingAddress`).
+Peak taken in town: 64,201 -> 60,293 KiB. Town walk and inventory still run, 25 FPS.
+
+**Verdict so far: LoD vs classic isn't decided by this.** The memory is in the area working set
+(Client pool) and data tables, which a classic town also needs; classic itself is not measured.
+Either target needs real memory work (cache caps, table trimming, streaming) to fit 24 MB. Still to
+measure: Act 5 town and a busy fight.

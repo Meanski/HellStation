@@ -1,5 +1,6 @@
 // Win32 memory, module, registry and system-information calls.
 #include <windows.h>
+#include <atomic>
 #include <cstdlib>
 #include <cstring>
 #include <malloc.h>
@@ -9,6 +10,7 @@
 
 #include "Redivivus/port/platform.h"
 #include "Redivivus/port/win32/handles.h"
+#include "Redivivus/port/win32/memstats.h"
 
 // ---- Memory -------------------------------------------------------------------------
 // Heaps are the C allocator. Blocks carry their size in front so HeapSize and
@@ -17,15 +19,27 @@
 
 namespace {
 constexpr size_t kHdr = 16;
+// Live bytes in Win32 heap blocks and the most there ever were.
+std::atomic<size_t> g_heapLive, g_heapPeak;
+void heap_count(ptrdiff_t delta) {
+    size_t now = g_heapLive.fetch_add((size_t)delta, std::memory_order_relaxed) + (size_t)delta;
+    size_t peak = g_heapPeak.load(std::memory_order_relaxed);
+    while (now > peak && !g_heapPeak.compare_exchange_weak(peak, now, std::memory_order_relaxed)) {}
+}
 void* heap_alloc(size_t n, bool zero) {
     void* p = memalign(16, n + kHdr);
     if (n >= (256u << 10)) hs_log("HeapAlloc(%u KiB) -> %p", (unsigned)(n >> 10), p);
     if (!p) return nullptr;
+    heap_count((ptrdiff_t)n);
     *(size_t*)p = n;
     if (zero) std::memset((char*)p + kHdr, 0, n);
     return (char*)p + kHdr;
 }
-void heap_free(void* p) { if (p) std::free((char*)p - kHdr); }
+void heap_free(void* p) {
+    if (!p) return;
+    heap_count(-(ptrdiff_t)*(size_t*)((char*)p - kHdr));
+    std::free((char*)p - kHdr);
+}
 size_t heap_size(const void* p) { return *(const size_t*)((const char*)p - kHdr); }
 const HANDLE kProcessHeap = (HANDLE)(uintptr_t)0x00150000;
 }  // namespace
@@ -41,6 +55,7 @@ LPVOID WINAPI HeapReAlloc(HANDLE, DWORD flags, LPVOID p, SIZE_T n) {
     size_t old = heap_size(p);
     if (flags & HEAP_REALLOC_IN_PLACE_ONLY) {
         if (n > old) return nullptr;
+        heap_count((ptrdiff_t)n - (ptrdiff_t)old);
         *(size_t*)((char*)p - kHdr) = n;
         return p;
     }
@@ -62,25 +77,72 @@ SIZE_T WINAPI GlobalSize(HGLOBAL p) { return p ? heap_size(p) : 0; }
 HLOCAL WINAPI LocalAlloc(UINT flags, SIZE_T n) { return heap_alloc(n, flags & LMEM_ZEROINIT); }
 HLOCAL WINAPI LocalFree(HLOCAL p) { heap_free(p); return nullptr; }
 
-// VirtualAlloc: a reservation is zero-filled, 64 KiB-aligned address space
-// (Storm derives a heap's descriptor from the top 16 bits of its blocks'
-// addresses, so the Windows allocation granularity is load-bearing) from the platform
+// VirtualAlloc: a reservation is zero-filled address space (64 KiB-aligned
+// where Storm needs it: see below) from the platform
 // (lazily backed on Phase 1); committing inside it is free; decommit returns
 // pages to zero, as Windows guarantees for a later recommit.
 namespace {
 HsLock g_vmLock;
-std::map<uintptr_t, size_t>& vm_regions() { static std::map<uintptr_t, size_t> m; return m; }
+// Regions by how they were asked for, which separates the game's allocators:
+// Storm reserves a heap and commits into it as it grows; Fog asks for whole
+// committed pool blocks; MEM_RESERVE|MEM_COMMIT is everything else (mapped
+// files, the odd one-off). Without virtual memory (the EE) a reservation is
+// real RAM from the start, so reserved minus committed is RAM the game never used.
+enum VmKind { kVmReserved, kVmCommitted, kVmBoth, kVmKinds };
+const char* const kVmNames[kVmKinds] = {"reserve", "commit", "both"};
+struct VmRegion { size_t size, committed; VmKind kind; };
+struct VmTotals { size_t live, peak, committedLive, committedPeak; };
+VmTotals g_vm[kVmKinds], g_vmAll;
+std::map<uintptr_t, VmRegion>& vm_regions() { static std::map<uintptr_t, VmRegion> m; return m; }
 size_t page_round(size_t n) { return (n + 4095) & ~(size_t)4095; }
+void vm_count(VmTotals& t, ptrdiff_t reserved, ptrdiff_t committed) {
+    t.live += reserved;
+    t.committedLive += committed;
+    if (t.live > t.peak) t.peak = t.live;
+    if (t.committedLive > t.committedPeak) t.committedPeak = t.committedLive;
+}
+void vm_account(VmKind kind, ptrdiff_t reserved, ptrdiff_t committed) {
+    vm_count(g_vm[kind], reserved, committed);
+    vm_count(g_vmAll, reserved, committed);
+}
+// A commit inside a reservation raises that region's high-water mark; a later
+// decommit doesn't lower it (the RAM is held either way on the EE).
+void vm_commit_inside(uintptr_t addr, size_t n) {
+    HsLockGuard l(g_vmLock);
+    auto& m = vm_regions();
+    auto it = m.upper_bound(addr);
+    if (it == m.begin()) return;
+    --it;
+    VmRegion& r = it->second;
+    if (addr >= it->first + r.size) return;
+    size_t end = addr - it->first + n;
+    if (end > r.size) end = r.size;
+    if (end > r.committed) {
+        vm_account(r.kind, 0, (ptrdiff_t)(end - r.committed));
+        r.committed = end;
+    }
+}
 }  // namespace
 
 LPVOID WINAPI VirtualAlloc(LPVOID addr, SIZE_T n, DWORD type, DWORD) {
-    if (addr && !(type & MEM_RESERVE)) return addr;  // commit inside an existing reservation
+    if (addr && !(type & MEM_RESERVE)) {  // commit inside an existing reservation
+        if (type & MEM_COMMIT) vm_commit_inside((uintptr_t)addr, n);
+        return addr;
+    }
     if (addr) HS_STUB("VirtualAlloc at a fixed address is not honoured; returning a new region");
     size_t size = page_round(n ? n : 1);
-    void* p = hs_vm_reserve(size, 0x10000);  // Windows allocation granularity
+    VmKind kind = !(type & MEM_COMMIT) ? kVmReserved : (type & MEM_RESERVE) ? kVmBoth : kVmCommitted;
+    // Windows' 64 KiB allocation granularity matters only to Storm, which reserves
+    // first (MEM_RESERVE alone) and finds a heap's descriptor from an address's top
+    // 16 bits. Fog finds pool blocks by binary search over their start addresses.
+    // Without virtual memory (the EE), each 64 KiB alignment can leave up to 64 KiB
+    // of the C heap unusable in front of the region, so the rest get page alignment.
+    void* p = hs_vm_reserve(size, kind == kVmReserved ? 0x10000 : 0x1000);
     if (!p) { SetLastError(ERROR_NOT_ENOUGH_MEMORY); return nullptr; }
+    size_t committed = (type & MEM_COMMIT) ? size : 0;
     HsLockGuard l(g_vmLock);
-    vm_regions()[(uintptr_t)p] = size;
+    vm_regions()[(uintptr_t)p] = VmRegion{size, committed, kind};
+    vm_account(kind, (ptrdiff_t)size, (ptrdiff_t)committed);
     return p;
 }
 BOOL WINAPI VirtualFree(LPVOID p, SIZE_T n, DWORD type) {
@@ -90,7 +152,9 @@ BOOL WINAPI VirtualFree(LPVOID p, SIZE_T n, DWORD type) {
             HsLockGuard l(g_vmLock);
             auto it = vm_regions().find((uintptr_t)p);
             if (it == vm_regions().end()) { SetLastError(ERROR_INVALID_ADDRESS); return FALSE; }
-            size = it->second;
+            const VmRegion& r = it->second;
+            size = r.size;
+            vm_account(r.kind, -(ptrdiff_t)r.size, -(ptrdiff_t)r.committed);
             vm_regions().erase(it);
         }
         hs_vm_release(p, size);
@@ -101,6 +165,32 @@ BOOL WINAPI VirtualFree(LPVOID p, SIZE_T n, DWORD type) {
         hs_vm_decommit((void*)start, page_round(n + ((uintptr_t)p - start)));
     }
     return TRUE;
+}
+
+void hs_mem_report(unsigned frame) {
+    auto kib = [](size_t n) { return (unsigned)((n + 512) >> 10); };
+    hs_mem_info c = {};
+    hs_mem_query(&c);
+    VmTotals v[kVmKinds], all;
+    size_t regions;
+    {
+        HsLockGuard l(g_vmLock);
+        for (int k = 0; k < kVmKinds; k++) v[k] = g_vm[k];
+        all = g_vmAll;
+        regions = vm_regions().size();
+    }
+    // KiB, "now/peak". crt = the C heap (on the EE it holds the VM regions too);
+    // vm = VirtualAlloc regions, reserved and committed; w32 = HeapAlloc & co.
+    hs_log("mem f%u: image %u | crt taken %u/%u in-use %u limit %u | vm %u regions res %u/%u com %u/%u"
+           " | %s %u/%u com %u/%u | %s %u/%u | %s %u/%u | w32 %u/%u",
+           frame, kib(c.image), kib(c.heap_taken), kib(c.heap_peak), kib(c.heap_in_use), kib(c.heap_limit),
+           (unsigned)regions, kib(all.live), kib(all.peak), kib(all.committedLive), kib(all.committedPeak),
+           kVmNames[kVmReserved], kib(v[kVmReserved].live), kib(v[kVmReserved].peak),
+           kib(v[kVmReserved].committedLive), kib(v[kVmReserved].committedPeak),
+           kVmNames[kVmCommitted], kib(v[kVmCommitted].live), kib(v[kVmCommitted].peak),
+           kVmNames[kVmBoth], kib(v[kVmBoth].live), kib(v[kVmBoth].peak),
+           kib(g_heapLive.load()), kib(g_heapPeak.load()));
+    if (frame % 500 == 0) hs_mem_report_fog();
 }
 BOOL WINAPI VirtualProtect(LPVOID, SIZE_T, DWORD newProt, PDWORD oldProt) {
     if (oldProt) *oldProt = PAGE_READWRITE;

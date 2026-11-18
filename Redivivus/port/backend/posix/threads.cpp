@@ -7,6 +7,7 @@
 #include <pthread.h>
 #if defined(__linux__)
 #  include <sys/mman.h>
+#  include <malloc.h>
 #else
 #  include <malloc.h>
 #  include <cstring>
@@ -81,17 +82,27 @@ void* hs_vm_reserve(size_t size, size_t align) {
 }
 void hs_vm_decommit(void* p, size_t size) { madvise(p, size, MADV_DONTNEED); }
 void hs_vm_release(void* p, size_t size) { munmap(p, size); }
+// Linux: reservations are mmap'd, outside malloc's arena; the image isn't the EE's.
+void hs_mem_query(hs_mem_info* out) {
+#if __GLIBC_PREREQ(2, 33)
+    struct mallinfo2 mi = mallinfo2();
+#else
+    struct mallinfo mi = mallinfo();
+#endif
+    static size_t peak;
+    out->image = 0;
+    out->heap_taken = (size_t)mi.arena + (size_t)mi.hblkhd;
+    if (out->heap_taken > peak) peak = out->heap_taken;
+    out->heap_peak = peak;
+    out->heap_in_use = (size_t)mi.uordblks + (size_t)mi.hblkhd;
+    out->heap_limit = 0;
+}
 #else
 // No virtual memory: a reservation is real, zeroed memory up front.
 void* hs_vm_reserve(size_t size, size_t align) {
-    static size_t total, logged;
     void* p = memalign(align < 16 ? 16 : align, size);
-    total += p ? size : 0;
-    // In game Storm reserves 64 KiB blocks every frame: log each 4 MiB of growth, not each call.
-    if (size >= (1u << 20) || total - logged >= (4u << 20)) {
-        logged = total;
-        hs_log("hs_vm_reserve(%u KiB) -> %p, total reserved %u KiB", (unsigned)(size >> 10), p, (unsigned)(total >> 10));
-    }
+    // Live totals are in the memory report (win32/system.cpp); log only the big ones.
+    if (size >= (1u << 20)) hs_log("hs_vm_reserve(%u KiB) -> %p", (unsigned)(size >> 10), p);
     if (p) std::memset(p, 0, size);
     else hs_log("hs_vm_reserve: out of memory for %u bytes", (unsigned)size);
     return p;

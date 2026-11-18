@@ -11,6 +11,7 @@
 
 #include "Redivivus/port/platform.h"
 #include "Redivivus/port/win32/handles.h"
+#include "Redivivus/port/win32/memstats.h"
 #include "Redivivus/port/win32/window.h"
 
 namespace {
@@ -53,6 +54,8 @@ void present(HsBitmap* b) {
     }
     const uint8_t* first = b->topDown ? b->bits : b->bits + (size_t)(b->height - 1) * b->pitch;
     hs_video_present(first, b->width, b->height, b->topDown ? b->pitch : -b->pitch, b->palette);
+    static unsigned s_frames;
+    if (++s_frames % 250 == 0) hs_mem_report(s_frames);
 }
 
 void set_colors(HsBitmap* b, UINT start, UINT n, const RGBQUAD* c) {

@@ -28,6 +28,18 @@ void* hs_vm_reserve(size_t size, size_t align);
 void  hs_vm_decommit(void* p, size_t size);
 void  hs_vm_release(void* p, size_t size);
 
+// ---- Memory footprint ---------------------------------------------------------
+// What the target's C heap holds, for the memory report (win32/system.cpp).
+// Zero means "not known on this target".
+typedef struct hs_mem_info {
+    size_t image;       // loaded program: text, data and bss
+    size_t heap_taken;  // bytes the C heap has taken from the system (program break)
+    size_t heap_peak;   // most it ever held
+    size_t heap_in_use; // bytes in live malloc blocks
+    size_t heap_limit;  // what a retail machine leaves the heap (PS2: _end to EndOfHeap)
+} hs_mem_info;
+void hs_mem_query(hs_mem_info* out);
+
 // ---- Files ------------------------------------------------------------------
 // Paths given to the backend are already translated to target spelling
 // (see win32/paths.cpp). Lookup is case-insensitive per component, as on

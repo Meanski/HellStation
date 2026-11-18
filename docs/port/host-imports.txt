@@ -16,4 +16,4 @@ cos cosl floor log log10 log10l logl pow powl sin sinl sqrt
 # Backend only (POSIX, SDL, threads, crash handling):
 backtrace backtrace_symbols_fd clock_gettime close closedir fopen fstat fstat64 lseek64 mkdir
 nanosleep open opendir raise read readdir rename sched_yield sigaction signal stat stat64 unlink
-write getenv usleep pthread_kill mmap munmap madvise pthread_getattr_np pthread_attr_getstack pthread_attr_destroy
+write getenv usleep pthread_kill mmap munmap madvise pthread_getattr_np pthread_attr_getstack pthread_attr_destroy mallinfo2 malloc_usable_size
