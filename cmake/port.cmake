@@ -79,6 +79,7 @@ set(HS_PORT_OVERRIDES
     "Storm|-|_ZN5Storm6Source4SMemL29SMemCalculateAllocationLayoutEjPiS2_S2_S2_=hs_Storm_SMemCalculateAllocationLayout,_ZL11DebugMemory=hs_Storm_DebugMemory,_ZL13ProtectMemory=hs_Storm_ProtectMemory"
     "D2CMP|_ZN5D2CMP3SRC8LRUCache15LRUCACHE_UnlinkEP18D2LRUCacheNodeStrcP14D2LRUCacheStrc|_ZN5D2CMP3SRC8LRUCacheL18LRUCACHE_PopOldestEP14D2LRUCacheStrc=hs_D2CMP_LRUCACHE_PopOldest"
     "Storm|-|_ZN5Storm6Source5SFileL21SFILE_SearchHashTableEP13D2ArchiveStrcscPc=hs_Storm_SFILE_SearchHashTable,_ZN5Storm6Source5SFileL10SFILE_HashEiPc=hs_Storm_SFILE_Hash"
+    "D2Client|-|_ZL21pSpellsClassSkilltree=hs_D2Client_pSpellsClassSkilltree,_ZL18gpInvMercBodyImage=hs_D2Client_gpInvMercBodyImage,_ZL25WaypointWayGateBackGround=hs_D2Client_WaypointWayGateBackGround"
 )
 
 # Wraps: generated functions the port interposes on rather than replaces. Before
@@ -102,6 +103,8 @@ set(HS_PORT_WRAPS
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory16FreeClientMemoryEPvPcii"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory16FreeServerMemoryEP17D2PoolManagerStrcPvPcii"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory14FreeMemoryPoolEP17D2PoolManagerStrc"
+    "D2Hell|Source/D2Hell/D2HellRoot.cpp|_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i"
+    "D2Client|Source/D2Client/UI/Draw.cpp|_ZN8D2Client2UI4Draw7DRAW_UIEP14D2GameViewStrc"
 )
 
 function(hs_port_apply_wraps)

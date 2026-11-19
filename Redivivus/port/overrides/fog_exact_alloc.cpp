@@ -20,6 +20,7 @@
 // The EE never pre-empts a thread, so the lists need no lock there.
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 
@@ -50,6 +51,8 @@ HS_FOG_CC int hs_orig_FreeClient(void*, char*, int32_t, int32_t)
 HS_FOG_CC int hs_orig_FreeServer(D2PoolManagerStrc*, void*, char*, int32_t, int32_t)
     HS_FOG_ORIG(_ZN3Fog6Memory16FreeServerMemoryEP17D2PoolManagerStrcPvPcii);
 void hs_orig_FreeMemoryPool(D2PoolManagerStrc*) HS_FOG_ORIG(_ZN3Fog6Memory14FreeMemoryPoolEP17D2PoolManagerStrc);
+HS_FOG_CC void* hs_orig_AllocAndLoad(D2PoolManagerStrc*, char*, uint32_t*, char*, int32_t)
+    HS_FOG_ORIG(_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i);
 }
 
 namespace {
@@ -62,12 +65,62 @@ struct Hdr {  // 16 bytes, so the user block keeps malloc's alignment
     Hdr* next;
     Hdr* prev;
     uint32_t check;  // (uintptr_t)this ^ kCheck
-    uint32_t size;
+    uint32_t size : 24;  // requests of 16 MB and up stay Fog's
+    uint32_t site : 8;   // index into g_sites: who asked
 };
 static_assert(sizeof(Hdr) == 16 || sizeof(void*) == 8, "header must be 16 bytes on 32-bit targets");
 
 Hdr g_lists[kManagers];  // circular, one sentinel per pool manager
 size_t g_live, g_peak, g_count, g_under16;  // g_under16: blocks malloc placed below 16-byte alignment
+
+// Live bytes per call site (the file and line the game passes Fog), for the
+// memory report: which tables and caches own the exact-size heap. Slot 0
+// collects sites past the table's 255.
+struct Site {
+    const char* file;
+    int32_t line;
+    uint32_t count;
+    size_t live, peak;
+};
+Site g_sites[256];
+unsigned g_reports;
+
+uint8_t site_of(const char* file, int32_t line) {
+    unsigned h = ((unsigned)(uintptr_t)file ^ (unsigned)line * 2654435761u) >> 24;
+    for (unsigned i = 0; i < 255; i++) {
+        unsigned k = 1 + (h + i) % 255;
+        Site& s = g_sites[k];
+        if (s.file == file && s.line == line) return (uint8_t)k;
+        if (!s.file && !s.line) {
+            s.file = file ? file : "?";
+            s.line = line;
+            return (uint8_t)k;
+        }
+    }
+    return 0;
+}
+// Whole-file buffers of 32 KiB and up still live, by name (D2FILE_AllocAndLoadD2File below).
+struct BigFile {
+    Hdr* h;
+    char name[40];
+};
+BigFile g_files[96];
+void file_forget(Hdr* h) {
+    for (BigFile& f : g_files)
+        if (f.h == h) f.h = nullptr;
+}
+
+void site_add(Hdr* h, size_t n) {
+    Site& s = g_sites[h->site];
+    s.live += n;
+    s.count++;
+    if (s.live > s.peak) s.peak = s.live;
+}
+void site_sub(Hdr* h, size_t n) {
+    Site& s = g_sites[h->site];
+    s.live -= n;
+    s.count--;
+}
 
 int g_on = -1;  // decided at the first call: a small-RAM target
 bool on() {
@@ -129,8 +182,10 @@ void raw_free(Hdr* h) {
     if (in_region(h->size)) hs_vm_release(h, sizeof(Hdr) + h->size);
     else free(h);
 }
-void counted(Hdr* h, size_t n) {
+void counted(Hdr* h, size_t n, uint8_t site) {
     h->size = (uint32_t)n;
+    h->site = site;
+    site_add(h, n);
     g_live += n;
     g_count++;
     if ((uintptr_t)(h + 1) & 15) g_under16++;
@@ -138,8 +193,8 @@ void counted(Hdr* h, size_t n) {
 }
 
 // Takes a request when it's ours to serve; null means "Fog's".
-void* take(D2PoolManagerStrc* m, size_t n) {
-    if (!on() || n <= kExactAbove || !sys().bInit) return nullptr;
+void* take(D2PoolManagerStrc* m, size_t n, const char* file, int32_t line) {
+    if (!on() || n <= kExactAbove || n >= (16u << 20) || !sys().bInit) return nullptr;
     int list = manager_index(m);
     if (list < 0) return nullptr;
     // A manager with a pool id (the global one while a game loads) sends
@@ -148,13 +203,15 @@ void* take(D2PoolManagerStrc* m, size_t n) {
     if (((m && m->nPoolId) || (!m && sys().pManagers[0].nPoolId)) && !in_region(n)) return nullptr;
     Hdr* h = raw_alloc(n);
     if (!h) return nullptr;  // let Fog try (and report) instead
-    counted(h, n);
+    counted(h, n, site_of(file, line));
     link(h, list);
     return h + 1;
 }
 void give_back(Hdr* h) {
     g_live -= h->size;
     g_count--;
+    site_sub(h, h->size);
+    if (h->size >= (32u << 10)) file_forget(h);
     unlink(h);
     raw_free(h);
 }
@@ -179,24 +236,53 @@ void hs_mem_report_fog_exact(void) {
     if (g_on == 1)
         hs_log("  fog exact-size: %u allocs, %u KiB live, %u KiB peak, %u ever under 16-byte aligned", (unsigned)g_count,
                (unsigned)(g_live >> 10), (unsigned)(g_peak >> 10), (unsigned)g_under16);
+    // The biggest owners, every fourth report: live KiB, blocks, peak KiB.
+    if (g_on != 1 || g_reports++ % 4) return;
+    int top[12];
+    int ntop = 0;
+    for (int k = 0; k < 256; k++) {
+        if (!g_sites[k].live) continue;
+        int i = ntop;
+        if (ntop < 12) ntop++;
+        else if (g_sites[top[11]].live >= g_sites[k].live) continue;
+        else i = 11;
+        while (i > 0 && g_sites[top[i - 1]].live < g_sites[k].live) { top[i] = top[i - 1]; i--; }
+        top[i] = k;
+    }
+    for (int i = 0; i < ntop; i++) {
+        const Site& s = g_sites[top[i]];
+        const char* f = s.file ? s.file : "(sites past 255)";
+        for (const char* c = f; *c; c++)
+            if (*c == '/' || *c == '\\') f = c + 1;
+        hs_log("    %6u KiB in %4u from %s:%d (peak %u KiB)", (unsigned)(s.live >> 10), (unsigned)s.count, f, (int)s.line,
+               (unsigned)(s.peak >> 10));
+    }
+    char line[200];
+    int len = 0;
+    for (const BigFile& b : g_files) {
+        if (!b.h) continue;
+        len += snprintf(line + len, sizeof line - len, " %s %u", b.name, (unsigned)(b.h->size >> 10));
+        if (len > 150) { hs_log("    files:%s", line); len = 0; }
+    }
+    if (len) hs_log("    files:%s", line);
 }
 
 namespace Fog::Memory {
 HS_FOG_CC void* Alloc(D2PoolManagerStrc* m, size_t n, char* file, int32_t line) {
-    if (void* p = take(m, n)) return p;
+    if (void* p = take(m, n, file, line)) return p;
     return hs_orig_Alloc(m, n, file, line);
 }
 HS_FOG_CC void* AllocClientMemory(size_t n, char* file, int32_t line, int32_t z) {
-    if (void* p = take(nullptr, n)) return p;
+    if (void* p = take(nullptr, n, file, line)) return p;
     return hs_orig_AllocClient(n, file, line, z);
 }
 HS_FOG_CC void* AllocServerMemory(D2PoolManagerStrc* m, size_t n, char* file, int32_t line, int32_t z) {
-    if (void* p = take(server_manager(m), n)) return p;
+    if (void* p = take(server_manager(m), n, file, line)) return p;
     return hs_orig_AllocServer(m, n, file, line, z);
 }
 HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, char* file, int line, int z) {
     if (!p) {  // as Fog: a null block is an allocation
-        if (void* q = take(server_manager(m), n)) return q;
+        if (void* q = take(server_manager(m), n, file, line)) return q;
         return hs_orig_ReAllocServer(m, p, n, file, line, z);
     }
     Hdr* h = ours(p);
@@ -207,7 +293,7 @@ HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, cha
             D2PoolManagerStrc* pm = server_manager(m);
             size_t slot = pool_slot_size(pm, p);
             if (slot && n > slot) {
-                if (void* q = take(pm, n)) {
+                if (void* q = take(pm, n, file, line)) {
                     memcpy(q, p, slot);
                     hs_orig_FreeServer(m, p, file, line, z);
                     return q;
@@ -218,12 +304,15 @@ HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, cha
     }
     if (n <= h->size && !in_region(h->size)) {  // a malloc block shrinks in place (a region's size must stay whole)
         g_live -= h->size - n;
+        site_sub(h, h->size);
         h->size = (uint32_t)n;
+        site_add(h, n);
         return p;
     }
+    if (n >= (16u << 20)) return nullptr;
     Hdr* r = raw_alloc(n);
     if (!r) return nullptr;  // the old block is untouched, as Fog would leave it
-    counted(r, n);
+    counted(r, n, site_of(file, line));
     r->next = h->next;  // into the old block's list, just after it
     r->prev = h;
     h->next->prev = r;
@@ -250,3 +339,35 @@ void FreeMemoryPool(D2PoolManagerStrc* m) {
     hs_orig_FreeMemoryPool(m);
 }
 }  // namespace Fog::Memory
+
+// D2Hell's whole-file loader allocates every buffer from one line of its own
+// (Archive.cpp:207) and drops its caller's file and line; the wrapper puts the
+// caller's on the block, and logs the first big loads by name.
+namespace D2Hell {
+HS_FOG_CC void* D2FILE_AllocAndLoadD2File(D2PoolManagerStrc* m, char* name, uint32_t* size, char* file, int32_t line) {
+    uint32_t n = 0;
+    void* p = hs_orig_AllocAndLoad(m, name, &n, file, line);
+    if (size) *size = n;
+    if (Hdr* h = ours(p)) {
+        site_sub(h, h->size);
+        h->site = site_of(file, line);
+        site_add(h, h->size);
+        if (h->size >= (32u << 10))
+            for (BigFile& f : g_files)
+                if (!f.h) {
+                    const char* b = name ? name : "?";
+                    for (const char* c = b; *c; c++)
+                        if (*c == '\\' || *c == '/') b = c + 1;
+                    f.h = h;
+                    snprintf(f.name, sizeof f.name, "%s", b);
+                    break;
+                }
+    }
+    static unsigned logged;
+    if (p && n >= (32u << 10) && logged < 400) {
+        logged++;
+        hs_log("file: %u KiB %s for %s:%d", (unsigned)(n >> 10), name ? name : "?", file ? file : "?", (int)line);
+    }
+    return p;
+}
+}  // namespace D2Hell

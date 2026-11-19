@@ -20,8 +20,10 @@ extern "C" HS_D2CMP_CC void hs_orig_GFX_InitLRUCache(D2PoolManagerStrc* pMemory,
     __asm__("hs_orig__ZN5D2CMP3SRC11SpriteCache16GFX_InitLRUCacheEP17D2PoolManagerStrcj");
 
 namespace {
+// 3 MB since panel art stopped being resident (overrides/panel_art_lazy.cpp):
+// Black Marsh fights then peaked at 23.3 of 25.2 MB (PORTING_LOG, 2026-11-19).
 #ifndef HS_SPRITE_CACHE_KIB  // overridable for measuring (compile definition)
-#  define HS_SPRITE_CACHE_KIB 2048
+#  define HS_SPRITE_CACHE_KIB 3072
 #endif
 constexpr uint32_t kSmallRamSpriteCache = HS_SPRITE_CACHE_KIB << 10;
 // The game gives the LRU a flat 6 MB (D2Client UI/Draw.cpp). It fills as the
