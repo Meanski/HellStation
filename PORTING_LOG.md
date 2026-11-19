@@ -1061,3 +1061,11 @@ miss. The EE heap pays nothing (peak 23,775 of 25,024 KiB).**
 - Measured the other split: a 512 KiB disc cache (to leave the sprite copies more) entered town
   from the disc in 17.2 s with 1,432 reads, against 11.7 s and 1,231 with 1 MB. The disc keeps
   1 MB.
+- Correctness: one run logged 63 of 64 checked hits identical (one `CRLHsbbDDbow` direction
+  differed; the game got the fresh decode). A run checking 2,000 hits found all 2,000 identical
+  (11,264 hits, 8,887 misses). So one mismatch in about 2,100 checks, cause unknown: a key
+  collision, or a decode that depends on leftover state. A mismatch now decodes a third time
+  with the game's whole-table clear and logs which copy that matches (`dcc cache differs:`).
+- Fetches ask for the stored size (the EE remembers it per key) and skip the IOP for keys never
+  stored. The hit cost didn't move (2.5-3.9 ms across runs, emulator load included), so the
+  reply size isn't what makes a hit slow.

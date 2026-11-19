@@ -15,6 +15,16 @@ hs_mutex* g_lock;
 int g_state = -1;
 constexpr uint32_t kChunk = HSL_RPC_BUFFER - HSL_HEADER;
 constexpr uint32_t kMaxEntry = 256u << 10;
+// Each stored entry's size, so a fetch asks for no more than it will get (a
+// reply's size is part of what the SIF transfer costs). Direct-mapped by key
+// hash; a wrong guess only costs a bigger or a second transfer.
+struct SizeHint { uint32_t tag, size; };
+SizeHint g_hints[1024];
+uint32_t key_hash(const uint32_t key[8]) {
+    uint32_t h = 0;
+    for (int i = 0; i < 8; i++) h = (h ^ key[i]) * 16777619u;
+    return h | 1;
+}
 
 bool ready() {
     if (g_state >= 0) return g_state == 1;
@@ -66,6 +76,8 @@ bool put(const uint32_t key[8], uint32_t total, uint32_t off, const void* a, uin
 int hs_l2_store(const uint32_t key[8], const void* a, uint32_t na, const void* b, uint32_t nb) {
     uint32_t total = na + nb;
     if (!total || total > kMaxEntry || !ready()) return 0;
+    uint32_t h = key_hash(key);
+    g_hints[h % 1024] = {h, total};
     hs_mutex_lock(g_lock);
     bool ok = true;
     for (uint32_t off = 0; ok && off < total; off += kChunk) {
@@ -81,12 +93,20 @@ int hs_l2_fetch(const uint32_t key[8], void* (*alloc)(void* ctx, uint32_t size),
     hs_mutex_lock(g_lock);
     uint8_t* dst = nullptr;
     uint32_t total = 0, off = 0;
+    uint32_t h = key_hash(key);
+    if (g_hints[h % 1024].tag != h) {  // never stored (or its hint was replaced): most likely a miss
+        hs_mutex_unlock(g_lock);
+        return 0;
+    }
+    uint32_t hint = g_hints[h % 1024].size;
     for (;;) {
         wait_idle();
         memcpy(g_rpc, key, HSL_KEY_WORDS * 4);
         g_rpc[9] = off;
-        g_rpc[10] = kChunk;
-        SifCallRpc(&g_client, HSL_GET, 0, g_rpc, HSL_HEADER, g_rpc, HSL_RPC_BUFFER, nullptr, nullptr);
+        uint32_t want = total ? total - off : hint - off;
+        if (want > kChunk || want == 0) want = kChunk;
+        g_rpc[10] = want;
+        SifCallRpc(&g_client, HSL_GET, 0, g_rpc, HSL_HEADER, g_rpc, HSL_HEADER + ((want + 63) & ~63u), nullptr, nullptr);
         uint32_t t = g_rpc[0], n = g_rpc[1];
         if (!t || (total && t != total) || !n) break;  // a miss, or overwritten while we read
         if (!dst) {

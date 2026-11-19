@@ -115,6 +115,7 @@ HS_CODEC_CC void* CODEC_DecompressAllFrames(uint32_t* pdwCompressedData, D2PoolM
     uint32_t key[8];
     bool keyed = pnSize && pDecodeState && make_key(key, pdwCompressedData, nReadSize, nStartFrame, nFrameCount, szFileName);
     uint32_t* dirs = keyed ? (uint32_t*)((char*)pDecodeState + 0xc + nStartFrame * 4) : nullptr;
+    static unsigned checkLimit = 64;
     if (keyed) {
         HitCtx hit = {pMemory, nullptr, 0};
         uint32_t th = now();
@@ -136,7 +137,7 @@ HS_CODEC_CC void* CODEC_DecompressAllFrames(uint32_t* pdwCompressedData, D2PoolM
                            (unsigned)(g_l2HitTicks * 1000 / kTicksPerMs / g_l2Hits),
                            (unsigned)((g_l2HitBytes >> 10) / g_l2Hits),
                            (unsigned)(g_l2Misses ? g_l2StoreTicks * 1000 / kTicksPerMs / g_l2Misses : 0));
-                if (g_l2Checked < 64) {  // decode it anyway and compare
+                if (g_l2Checked < checkLimit) {  // decode it anyway and compare
                     size_t n2 = 0;
                     uint32_t dirsHit[64];
                     memcpy(dirsHit, dirs, dirBytes);
@@ -144,8 +145,33 @@ HS_CODEC_CC void* CODEC_DecompressAllFrames(uint32_t* pdwCompressedData, D2PoolM
                                                                  pDecodeState, nStartFrame, nFrameCount, &n2, szFileName);
                     g_l2Checked++;
                     bool same = r2 && n2 == outBytes && !memcmp(r2, out, outBytes) && !memcmp(dirsHit, dirs, dirBytes);
-                    if (!same) g_l2Differ++;
-                    if (g_l2Checked == 64 || (!same && g_l2Differ <= 4))
+                    if (!same) {
+                        g_l2Differ++;
+                        // Which is wrong? Decode a third time with the game's own whole-table
+                        // clear (dcc_clear.cpp) and see which it matches; and where they differ.
+                        size_t n3 = 0;
+                        uint32_t dirsFresh[64];
+                        memcpy(dirsFresh, dirs, dirBytes);
+                        hs_dcc_whole_clear = true;
+                        void* r3 = hs_orig_CODEC_DecompressAllFrames(pdwCompressedData, pMemory, nReadSize, pCelHeader,
+                                                                     pDecodeState, nStartFrame, nFrameCount, &n3, szFileName);
+                        hs_dcc_whole_clear = false;
+                        uint32_t nDiff = 0, first = 0xffffffff;
+                        uint32_t n = r2 && n2 < outBytes ? (uint32_t)n2 : outBytes;
+                        for (uint32_t i = 0; r2 && i < n; i++)
+                            if (((uint8_t*)r2)[i] != out[i]) { if (!nDiff) first = i; nDiff++; }
+                        bool wholeIsFresh = r3 && r2 && n3 == n2 && !memcmp(r3, r2, n2);
+                        bool wholeIsCached = r3 && n3 == outBytes && !memcmp(r3, out, outBytes);
+                        hs_log("dcc cache differs: %s frames %d+%d, sizes %u/%u, %u bytes differ from %u, dirs %s; the "
+                               "whole-clear decode matches %s",
+                               szFileName ? szFileName : "?", (int)nStartFrame, (int)nFrameCount, outBytes, (unsigned)n2,
+                               nDiff, first, memcmp(dirsHit, dirsFresh, dirBytes) ? "differ" : "same",
+                               wholeIsFresh && wholeIsCached ? "both" : wholeIsFresh ? "the fresh decode"
+                               : wholeIsCached ? "the cached copy" : "neither");
+                        if (r3) hs_FreeServerMemory(pMemory, r3, (char*)"dcc_timing.cpp", __LINE__, 0);
+                        memcpy(dirs, dirsFresh, dirBytes);
+                    }
+                    if (g_l2Checked == checkLimit || (!same && g_l2Differ <= 4))
                         hs_log("dcc cache check: %u of %u hits identical to a fresh decode%s%s", g_l2Checked - g_l2Differ,
                                g_l2Checked, same ? "" : "; differs: ", same ? "" : (szFileName ? szFileName : "?"));
                     if (!same && r2) {  // trust the decoder: keep its output
