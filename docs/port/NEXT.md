@@ -60,9 +60,8 @@ AnimData.d2 0.56 MB.
    every sound it starts, on the main thread). Ideas: encode only a short head at once and the
    rest on a low-priority thread; compress the sample cache (it's PCM) to fit more sounds in
    448 KiB.
-2. **Pick the default optimisation level.** `-O2` is the default, but every fight result since the
-   heap and renderer changes is from `-Os` (`-DHS_EE_OPT_LEVEL=-Os`: ~550 KiB more heap, ~2 FPS
-   slower in lower Harrogath). Run `drive.py wp` + `hunt` on an `-O2` build and compare peaks.
+2. **Default optimisation level: decided, -Os** (2026-11-20): an -O2 build runs out of memory
+   in the fight test with sound in.
 3. **Fights: fewer decodes.** The slow stretches are sprite-cache churn, not a bug: the player's and
    mercenary's ten-odd components per direction and mode, plus overlays like the Act 2 mercenary's
    Might aura (18 KiB a decode), don't fit 3 MB together (a decoded direction averages 22 KiB, so
@@ -85,7 +84,7 @@ the game's next sprite allocation wait forever. Fixed sizes only.
 
 ## How to run it
 
-The current PS2 build dir is **`build-ps2-os`** (`-Os`, retail heap; has the owner's save).
+The current PS2 build dir is **`build-ps2-os`** (`-Os`, now the default; retail heap; has the owner's save). `build-ps2` is now -Os too after a reconfigure.
 `build-ps2-osprof` is the same with the profiler (`-DHS_PS2_PROFILE=ON`). `build-ps2` is stale.
 
 ```sh

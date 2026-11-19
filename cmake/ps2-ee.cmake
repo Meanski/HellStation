@@ -12,12 +12,15 @@
 #  - no strict aliasing, wrapping signed overflow, kept null checks: the
 #    decompiled code may rely on all three.
 include("$ENV{PS2DEV}/share/ps2dev.cmake")
-# Code size against speed: -DHS_EE_OPT_LEVEL=-Os frees about 550 KiB at about
-# 2 FPS. Function and data sections (on unless -DHS_EE_FUNCTION_SECTIONS=OFF)
+# Code size against speed: -Os (the default since sound) is about 540 KiB
+# smaller than -O2 and about 2 FPS slower. With sound in, an -O2 build runs out
+# of memory in the Black Marsh fight test (PORTING_LOG, 2026-11-20); pass
+# -DHS_EE_OPT_LEVEL=-O2 to measure speed where memory isn't the question.
+# Function and data sections (on unless -DHS_EE_FUNCTION_SECTIONS=OFF)
 # let --gc-sections drop what nothing refers to: the overrides depend on it to
 # lose the tables and renderers they replace (renderers_dropped.cpp, d2cmp.cpp).
 if(NOT DEFINED HS_EE_OPT_LEVEL)
-  set(HS_EE_OPT_LEVEL "-O2")
+  set(HS_EE_OPT_LEVEL "-Os")
 endif()
 if(NOT DEFINED HS_EE_FUNCTION_SECTIONS)
   set(HS_EE_FUNCTION_SECTIONS ON)

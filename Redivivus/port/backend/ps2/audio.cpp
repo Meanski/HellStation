@@ -290,6 +290,19 @@ void poll(bool force) {
     if (!force && g_polled && now - g_lastPoll < kPollTicksMs) return;
     call(HSA_STATUS, 64, 48 * 8);
     memcpy(g_nax, g_rpc, sizeof g_nax);
+    // Every 30 s: how many voices play, and how many of them the SPU2 is
+    // sounding (envelope above zero). The only check short of listening.
+    static uint32_t s_lastReport;
+    if (now - s_lastReport > 30000) {
+        s_lastReport = now;
+        int playing = 0, sounding = 0;
+        for (Voice& v : g_voices) {
+            if (!v.used || !v.playing) continue;
+            playing++;
+            if (g_rpc[48 + v.hw[0]]) sounding++;
+        }
+        hs_log("audio: %d voices playing, %d with an envelope above zero", playing, sounding);
+    }
     g_lastPoll = now;
     g_polled = true;
     for (Voice& v : g_voices) {

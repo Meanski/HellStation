@@ -925,3 +925,12 @@ peak at 24.0 of 25.1 MB. Town runs at about 22 FPS with sound (25 without).**
   test, 20 rounds: no failure, peak 24,054 KiB taken of 25,113.
 
 Not yet checked: what it sounds like on the PS2 (needs ears: PCSX2 plays it), and real hardware.
+
+## 2026-11-20: -Os is the default EE build
+
+**In short: with sound in, an -O2 build runs out of memory in the fight test; -Os doesn't.**
+
+Same save, same `drive.py wp` + `hunt 20`: the -O2 program image is 7,037 KiB (-Os: 6,500),
+leaving a 24,575 KiB heap; a 187 KiB request failed with 24,215 KiB in use and the largest
+free block 93 KiB. The -Os build peaks at 24,054 of 25,113 KiB in the same test. -O2 stays
+available (`-DHS_EE_OPT_LEVEL=-O2`) for speed comparisons.
