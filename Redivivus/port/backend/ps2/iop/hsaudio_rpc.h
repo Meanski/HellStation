@@ -23,3 +23,14 @@ enum {
     HSD_FIND = 1,
     HSD_READ = 2,
 };
+
+// The sprite decode cache (l2.c): its own server too.
+#define HSL_SID 0x48534c31  // "HSL1"
+#define HSL_HEADER 64
+#define HSL_KEY_WORDS 8
+#define HSL_RPC_BUFFER (HSL_HEADER + 32 * 1024)
+enum {
+    HSL_PUT = 1,
+    HSL_GET = 2,
+    HSL_INFO = 3,
+};

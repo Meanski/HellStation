@@ -1032,3 +1032,29 @@ most (20 s), and the EE gets its 128 KiB back.**
 - Same new-character script from the disc image: CD reads 4,420 -> 1,231 (now 64 KiB each), the
   worst gap entering town 44.1 s -> 11.7 s. IOP memory free before the cache: 1,527 KiB.
 - Linux town smoke re-run on the current tree: 20,750 frames in 900 s, no halt.
+
+## 2026-11-20: a second sprite cache in the IOP's memory
+
+**In short: copies of decoded sprites now live in up to 1.25 MB of the IOP's spare RAM. In a
+Black Marsh fight 73% of decodes became copies (6,656 of 9,132): 2.8 ms a hit instead of a
+13.5 ms decode, about a minute of decoding saved over a 12-hunt run, for 1.8 ms a store on a
+miss. The EE heap pays nothing (peak 23,775 of 25,024 KiB).**
+
+- The game's 2 MB sprite cache can't hold a fight's player, mercenary and overlay directions, so
+  it decodes the same ones over and over. `backend/ps2/iop/l2.c` (a third RPC server in our IOP
+  module) keeps decodes in a FIFO ring sized at the first store from what the IOP has free, less
+  192 KiB; `backend/ps2/l2.cpp` is the EE client (`hs_l2_store`/`hs_l2_fetch` in `platform.h`;
+  SDL answers "no").
+- `overrides/dcc_timing.cpp` looks each decode up first, keyed by file name, frame range, size and
+  hashes of the compressed bytes. A hit is put back as the decoder would leave it: the output in a
+  block from the same pool with the decoder's tag, the per-direction offsets it writes into the
+  decode state, and the size. The first 64 hits are decoded anyway and compared byte for byte
+  (`dcc cache check:`: 64 of 64 identical in each run); a hit that differs is thrown away in
+  favour of the decode.
+- Bug found on the way: after the ring wraps, the entries a new one overlaps aren't always the
+  oldest, so they weren't all dropped and a hit could return overwritten bytes (a sprite cache
+  halt at SpriteCache.cpp 0x58c). Every overlapped entry is dropped now; a host stress test
+  (20,000 random puts/gets against a shadow copy) is clean.
+- Stores of one call (<= 32 KiB, most sprites) are sent without waiting: 3.5 ms -> 1.8 ms.
+- On a disc boot the disc cache takes 1 MB of the IOP first, leaving this cache about 300 KiB.
+  Not yet measured from the disc (the test save lives on the host).

@@ -159,6 +159,14 @@ uint64_t hs_audio_voice_played(int v);
 // Linear volumes 0..32768 per side; rate in Hz.
 void     hs_audio_voice_params(int v, int volLeft, int volRight, uint32_t rate);
 
+// ---- A second-level cache for decoded sprites (optional) ---------------------
+// Memory outside the game's heap (the PS2's IOP) holding copies of decodes,
+// keyed by 8 words the caller makes. Store is best effort. Fetch on a hit calls
+// alloc(ctx, size) for the destination, fills it and returns 1; a miss returns
+// 0 without calling alloc. Backends without such memory answer 0 to both.
+int hs_l2_store(const uint32_t key[8], const void* a, uint32_t na, const void* b, uint32_t nb);
+int hs_l2_fetch(const uint32_t key[8], void* (*alloc)(void* ctx, uint32_t size), void* ctx);
+
 #ifdef __cplusplus
 }
 #endif

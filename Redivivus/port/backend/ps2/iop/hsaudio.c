@@ -131,6 +131,7 @@ static void server(void* arg) {
 }
 
 int hs_disc_start(void);  // disc.c
+int hs_l2_start(void);    // l2.c
 
 int _start(int argc, char* argv[]) {
     iop_thread_t t;
@@ -147,5 +148,6 @@ int _start(int argc, char* argv[]) {
     if (id <= 0) return MODULE_NO_RESIDENT_END;
     StartThread(id, NULL);
     hs_disc_start();
+    hs_l2_start();
     return MODULE_RESIDENT_END;
 }

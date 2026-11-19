@@ -171,3 +171,7 @@ void hs_audio_voice_params(int id, int volLeft, int volRight, uint32_t rate) {
         v->rate = rate;
     }
 }
+
+// No memory outside the heap worth a second sprite cache here.
+int hs_l2_store(const uint32_t[8], const void*, uint32_t, const void*, uint32_t) { return 0; }
+int hs_l2_fetch(const uint32_t[8], void* (*)(void*, uint32_t), void*) { return 0; }
