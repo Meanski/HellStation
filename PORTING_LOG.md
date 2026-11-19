@@ -1008,9 +1008,10 @@ minutes idle in the Black Marsh plus 40 rounds of fighting (about 15 minutes) ra
   now jumps to a guard that takes the lock, returns if the stream is gone and otherwise runs the
   original through a trampoline holding it. Streaming every long sound had made it happen in
   minutes; music always streamed this way.
-- Also seen, not fixed: `GFXHASH_CalcDirectionIndex` (GfxHash.cpp:157) reads through a null
-  sprite-cache entry when entering a game; PCSX2 lets the read through, real hardware would
-  fault. To investigate before hardware.
+- `GFXHASH_CalcDirectionIndex` (GfxHash.cpp:157) read through a null sprite-cache entry four
+  times on entering a game (a sprite `SPRITECACHE_LoadDCC` couldn't load: player, class 0,
+  mode 0); PCSX2 lets the read through, real hardware would fault. It now reads a null entry as
+  one with no data (`overrides/gfxhash_null.cpp`): no null reads left entering town.
 - The class-select voice lines now load when played instead of being skipped, but in the
   scripted new-character run the menu never asked for one (only `button.wav`), so that path is
   unexercised.
