@@ -12,6 +12,7 @@
 // the addresses offline:
 //   tools/port/ps2.sh mips64r5900el-ps2-elf-addr2line -f -C -e build-ps2/d2.elf ADDR...
 #if defined(HS_PROFILE)
+#include <unistd.h>
 #include <kernel.h>
 #include <timer.h>
 
@@ -92,7 +93,41 @@ extern "C" void* __wrap_memset(void* d, int c, size_t n) {
     return __real_memset(d, c, n);
 }
 
+// A stall watchdog: when no frame has been presented for 4 s, report the
+// samples anyway (the per-250-frames report never comes in a hang). It runs
+// above every game thread, so a thread that never yields can't hide it.
+uint32_t hs_ps2_frame_no(void);  // video.cpp
+void hs_prof_report(unsigned frame);
+namespace {
+uint8_t g_watchStack[16 * 1024] __attribute__((aligned(16)));
+void watchdog(void*) {
+    uint32_t last = hs_ps2_frame_no();
+    for (;;) {
+        for (int i = 0; i < 40; i++) usleep(100000);
+        if (hs_ps2_frame_no() == last) {
+            hs_log("prof: no frame for 4 s (frame %u): samples since the last report", (unsigned)last);
+            hs_prof_report(last);
+        }
+        last = hs_ps2_frame_no();
+    }
+}
+}  // namespace
+
 void hs_prof_start(void) {
+    {
+        ee_thread_status_t st;
+        ReferThreadStatus(GetThreadId(), &st);
+        ee_thread_t t = {};
+        t.func = (void*)watchdog;
+        t.stack = g_watchStack;
+        t.stack_size = sizeof g_watchStack;
+        t.gp_reg = &_gp;
+        t.initial_priority = st.current_priority > 0 ? st.current_priority - 1 : 0;
+        int id = CreateThread(&t);
+        if (id >= 0) StartThread(id, nullptr);
+        hs_log("profiler: stall watchdog thread %d at priority %d (main thread %d)", id, t.initial_priority,
+               st.current_priority);
+    }
     *T1_MODE = 0;  // stop while setting up
     *T1_COUNT = 0;
     *T1_COMP = 577;

@@ -54,6 +54,7 @@ unsigned clut_slot(unsigned i) { return (i & ~0x18u) | ((i & 0x08u) << 1) | ((i 
 
 void hs_prof_start(void);            // profiler.cpp: no-ops without -DHS_PROFILE
 void hs_prof_report(unsigned frame);
+uint32_t hs_ps2_frame_no(void);
 
 extern "C" {
 
@@ -169,3 +170,5 @@ void hs_input_warp_mouse(int x, int y) { g_mouseX = x; g_mouseY = y; }
 void hs_input_show_cursor(int) {}  // D2 draws its own cursor into the frame
 
 }  // extern "C"
+
+uint32_t hs_ps2_frame_no(void) { return g_frameNo; }  // for the profiler's stall watchdog

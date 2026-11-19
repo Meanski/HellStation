@@ -168,6 +168,7 @@ size_t taken() { return pool_size() - largest_free(); }  // all but the biggest 
 
 void* g_caller;  // who called the allocator last (for the failure log)
 
+extern "C" void hs_mem_report_owners(void) __attribute__((weak));  // overrides/fog_exact_alloc.cpp
 void out_of_memory(const char* who, size_t n) {
     // Every failure up to 20, then every 100th: a caller that retries shows up.
     static unsigned s_count;
@@ -181,6 +182,7 @@ void out_of_memory(const char* who, size_t n) {
     hs_log("heap: failure %u: %s(%u KiB) from %p failed: %u KiB in use, %u KiB free, largest free block %u KiB, %u KiB in all",
            s_count, who, (unsigned)(n >> 10), g_caller, (unsigned)(used >> 10), (unsigned)((pool_size() - used) >> 10),
            (unsigned)(largest >> 10), (unsigned)(pool_size() >> 10));
+    if (s_count == 1 && hs_mem_report_owners) hs_mem_report_owners();  // who holds the heap
 }
 
 // Give the tail of used block b past bs bytes back, merging it with a free
