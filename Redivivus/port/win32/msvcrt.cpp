@@ -133,7 +133,23 @@ void hs_msvc_srand(unsigned seed) { t_randSeed = seed; }
 #undef fopen
 FILE* hs_fopen(const char* path, const char* mode) {
     bool write = mode && (std::strchr(mode, 'w') || std::strchr(mode, 'a') || std::strchr(mode, '+'));
-    return std::fopen(hs_win_to_target(path, write).c_str(), mode);
+    std::string target = hs_win_to_target(path, write);
+    FILE* f = std::fopen(target.c_str(), mode);
+    if (f || !write) return f;
+    // Writing where folders are missing (the game's logs go under the user's
+    // Documents, which Windows always has and a fresh memory card doesn't):
+    // make them. And the memory card refuses to truncate, which "w" asks for:
+    // replace the file and append to the new one instead.
+    for (size_t i = target.find('/'); i != std::string::npos; i = target.find('/', i + 1))
+        if (i > 0 && target[i - 1] != ':') hs_file_mkdir(target.substr(0, i).c_str());
+    f = std::fopen(target.c_str(), mode);
+    if (!f && std::strchr(mode, 'w')) {
+        std::string append = mode;
+        append[append.find('w')] = 'a';
+        hs_file_delete(target.c_str());
+        f = std::fopen(target.c_str(), append.c_str());
+    }
+    return f;
 }
 
 }  // extern "C"

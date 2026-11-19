@@ -2,6 +2,7 @@
 // the game folder as an overlay of a writable root over the read-only data dir.
 #include "Redivivus/port/platform.h"
 
+#include <cctype>
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
@@ -35,11 +36,121 @@ int map_errno(int e) {
 }
 int fail() { t_err = map_errno(errno); return -1; }
 
+// The PS2 disc (tools/port/make-iso.py): every file sits in the root under its
+// 8.3 name in upper case, with ISO9660's ";1". A path below cdrom0: is a file
+// name, maybe with separators in front; anything in a subdirectory isn't there.
+bool on_disc(const std::string& path) { return path.compare(0, 7, "cdrom0:") == 0; }
+std::string disc_name(const std::string& path) {
+    std::string name = path.substr(7);
+    while (!name.empty() && (name[0] == '/' || name[0] == '\\')) name.erase(0, 1);
+    if (name.empty()) return "cdrom0:\\";
+    if (name.find_first_of("/\\") != std::string::npos) return "cdrom0:\\NOT-ON-THE-DISC;1";
+    for (char& c : name) c = (char)toupper((unsigned char)c);
+    return "cdrom0:\\" + name + ";1";
+}
+// The CD driver's getstat is unreliable: a file's size comes from seeking to its end.
+int disc_stat(const std::string& path, int64_t* size) {
+    if (path == "cdrom0:\\") { if (size) *size = 0; return 1; }  // the root: a directory
+    int fd = open(path.c_str(), O_RDONLY);
+    if (fd < 0) { errno = ENOENT; return -1; }
+    off64_t end = lseek64(fd, 0, SEEK_END);
+    close(fd);
+    if (size) *size = end < 0 ? 0 : end;
+    return 0;
+}
+
+// Reading from the disc. A drive spends its time seeking, and the game reads
+// archives a 4 KiB sector at a time: loading town was 33,500 reads (PCSX2,
+// emulating DVD seeks: still loading after ten minutes). Disc files read
+// through four 32 KiB windows, least recently used out: in the same load that
+// would have been 3,200 reads. Positions are kept here, so a seek costs nothing
+// until data is needed.
+constexpr uint32_t kWindow = 32u << 10;
+constexpr int kWindows = 4;
+struct DiscFile { bool on; int64_t pos, size; };
+DiscFile g_discFiles[64];
+struct Window { int fd; int64_t block; uint32_t bytes; uint32_t used; uint8_t* data; };
+Window g_windows[kWindows];
+uint32_t g_windowClock;
+// Several threads read archives (the main thread, Storm's I/O thread), and a
+// read blocks in an IOP call, which lets the others run: one lock for all of it.
+hs_mutex* disc_lock() {
+    static hs_mutex* m = hs_mutex_create();
+    return m;
+}
+struct DiscGuard {
+    DiscGuard() { hs_mutex_lock(disc_lock()); }
+    ~DiscGuard() { hs_mutex_unlock(disc_lock()); }
+};
+DiscFile* disc_file(int fd) { return fd >= 0 && fd < 64 && g_discFiles[fd].on ? &g_discFiles[fd] : nullptr; }
+Window* window_for(int fd, int64_t block) {
+    Window* lru = &g_windows[0];
+    for (Window& w : g_windows) {
+        if (w.data && w.fd == fd && w.block == block) { w.used = ++g_windowClock; return &w; }
+        if (!w.data || w.used < lru->used) lru = &w;
+    }
+    if (!lru->data && !(lru->data = (uint8_t*)malloc(kWindow))) return nullptr;
+    lru->fd = -1;
+    if (lseek64(fd, (off64_t)(block * kWindow), SEEK_SET) < 0) return nullptr;
+    uint32_t got = 0;
+    while (got < kWindow) {
+        ssize_t r = read(fd, lru->data + got, kWindow - got);
+        if (r <= 0) break;
+        got += (uint32_t)r;
+    }
+    lru->fd = fd;
+    lru->block = block;
+    lru->bytes = got;
+    lru->used = ++g_windowClock;
+    return lru;
+}
+int64_t disc_read(DiscFile& f, int fd, void* buf, uint32_t n) {
+    uint32_t done = 0;
+    while (done < n && f.pos < f.size) {
+        Window* w = window_for(fd, f.pos / kWindow);
+        if (!w) return done ? (int64_t)done : -1;
+        uint32_t off = (uint32_t)(f.pos % kWindow);
+        if (off >= w->bytes) break;
+        uint32_t take = w->bytes - off;
+        if (take > n - done) take = n - done;
+        memcpy((char*)buf + done, w->data + off, take);
+        done += take;
+        f.pos += take;
+    }
+    return done;
+}
+
+// The memory card's getstat answers for paths that don't exist: whether a file
+// or a folder is there comes from opening it.
+bool on_card(const std::string& path) { return path.compare(0, 4, "mc0:") == 0; }
+int card_stat(const std::string& path, int* isDir, int64_t* size) {
+    int fd = open(path.c_str(), O_RDONLY);
+    if (fd >= 0) {
+        off64_t end = lseek64(fd, 0, SEEK_END);
+        close(fd);
+        if (isDir) *isDir = 0;
+        if (size) *size = end < 0 ? 0 : end;
+        return 0;
+    }
+    if (DIR* d = opendir(path.c_str())) {
+        closedir(d);
+        if (isDir) *isDir = 1;
+        if (size) *size = 0;
+        return 0;
+    }
+    errno = ENOENT;
+    return -1;
+}
+
 // Walk `path` component by component, matching each case-insensitively when
 // the exact spelling doesn't exist. Components that don't exist at all are
 // kept as given (so creating a new file works).
 std::string resolve(const std::string& path) {
+    if (on_disc(path)) return disc_name(path);
     struct stat st;
+    if (on_card(path)) {  // case-insensitive lookups need a working stat: take the path as given
+        return path;
+    }
     if (path.empty() || stat(path.c_str(), &st) == 0) return path;
     std::string out = path[0] == '/' ? "/" : "";
     size_t i = path[0] == '/' ? 1 : 0;
@@ -127,16 +238,54 @@ int hs_file_open(const char* path, int access, int disposition) {
 #  define O_CLOEXEC 0
 #endif
     int fd = open(p.c_str(), flags | O_CLOEXEC, 0644);
+#if defined(_EE)
+    // Creating a file in a folder that isn't there: make the folders. Windows
+    // always has the user's Documents tree the game logs and saves under; a
+    // fresh memory card has nothing.
+    if (fd < 0 && (flags & O_CREAT)) {
+        for (size_t i = p.find('/'); i != std::string::npos; i = p.find('/', i + 1))
+            if (i > 0 && p[i - 1] != ':') mkdir(p.substr(0, i).c_str(), 0755);
+        fd = open(p.c_str(), flags | O_CLOEXEC, 0644);
+    }
+    // The memory card (mc0:) refuses O_TRUNC, even with O_CREAT on a new file:
+    // replace the file instead.
+    if (fd < 0 && (flags & O_TRUNC) && p.compare(0, 3, "mc0") == 0) {
+        unlink(p.c_str());
+        fd = open(p.c_str(), (flags & ~O_TRUNC) | O_CREAT | O_CLOEXEC, 0644);
+    }
+#endif
     if (fd < 0) return fail();
     struct stat st;
-    if (fstat(fd, &st) == 0 && S_ISDIR(st.st_mode)) { close(fd); t_err = HS_ERR_ACCESS; return -1; }
+    if (!on_card(p) && !on_disc(p) && fstat(fd, &st) == 0 && S_ISDIR(st.st_mode)) { close(fd); t_err = HS_ERR_ACCESS; return -1; }
+    if (on_disc(p) && fd < 64) {  // read through the windows (above)
+        DiscGuard g;
+        off64_t end = lseek64(fd, 0, SEEK_END);
+        lseek64(fd, 0, SEEK_SET);
+        g_discFiles[fd] = {true, 0, end < 0 ? 0 : (int64_t)end};
+        for (Window& w : g_windows)
+            if (w.fd == fd) w.fd = -1;
+    }
     t_err = 0;
     return fd;
 }
 
-int hs_file_close(int fd) { return close(fd) == 0 ? 0 : fail(); }
+int hs_file_close(int fd) {
+    if (DiscFile* f = disc_file(fd)) {
+        DiscGuard g;
+        f->on = false;
+        for (Window& w : g_windows)
+            if (w.fd == fd) w.fd = -1;
+    }
+    return close(fd) == 0 ? 0 : fail();
+}
 
 int64_t hs_file_read(int fd, void* buf, uint32_t n) {
+    if (DiscFile* f = disc_file(fd)) {
+        DiscGuard g;
+        int64_t r = disc_read(*f, fd, buf, n);
+        if (r < 0) { errno = EIO; return fail(); }
+        return r;
+    }
     uint32_t done = 0;
     while (done < n) {
         ssize_t r = read(fd, (char*)buf + done, n - done);
@@ -158,16 +307,48 @@ int64_t hs_file_write(int fd, const void* buf, uint32_t n) {
 }
 
 int64_t hs_file_seek(int fd, int64_t offset, int whence) {
+    if (DiscFile* f = disc_file(fd)) {
+        DiscGuard g;
+        int64_t to = whence == 0 ? offset : whence == 1 ? f->pos + offset : f->size + offset;
+        if (to < 0) { errno = EINVAL; return fail(); }
+        f->pos = to;
+        return to;
+    }
     off64_t r = lseek64(fd, offset, whence == 0 ? SEEK_SET : whence == 1 ? SEEK_CUR : SEEK_END);
     return r < 0 ? fail() : r;
 }
 
 int64_t hs_file_size(int fd) {
+    if (DiscFile* f = disc_file(fd)) return f->size;
+#if defined(_EE)
+    // fstat on a file open on the disc (cdrom0:) reports nothing useful: Storm
+    // read every archive there as empty. Seeking to the end works everywhere.
+    off64_t cur = lseek64(fd, 0, SEEK_CUR);
+    off64_t end = cur < 0 ? -1 : lseek64(fd, 0, SEEK_END);
+    if (end < 0) return fail();
+    lseek64(fd, cur, SEEK_SET);
+    return (int64_t)end;
+#else
     struct stat64 st;
     return fstat64(fd, &st) == 0 ? (int64_t)st.st_size : fail();
+#endif
 }
 
 int hs_file_stat(const char* path, int* isDir, int64_t* size, int64_t* mtime) {
+    if (on_disc(path)) {
+        int r = disc_stat(disc_name(path), size);
+        if (r < 0) return fail();
+        if (isDir) *isDir = r == 1;
+        if (mtime) *mtime = 0;
+        return 0;
+    }
+    if (on_card(path)) {
+        int dir = 0;
+        if (card_stat(path, &dir, size) < 0) return fail();
+        if (isDir) *isDir = dir;
+        if (mtime) *mtime = 0;
+        return 0;
+    }
     struct stat64 st;
     if (stat64(resolve(path).c_str(), &st) != 0) return fail();
     if (isDir) *isDir = S_ISDIR(st.st_mode);
@@ -181,6 +362,12 @@ int hs_file_stat(const char* path, int* isDir, int64_t* size, int64_t* mtime) {
 // file (the automap's "<char>.ma0".."ma3", deleted before they're first written).
 int hs_file_delete(const char* path) {
     std::string p = resolve(path);
+    if (on_card(p)) {
+        int dir = 0;
+        if (card_stat(p, &dir, nullptr) < 0) return fail();
+        if (dir) { t_err = HS_ERR_ACCESS; return -1; }
+        return unlink(p.c_str()) == 0 ? 0 : fail();
+    }
     struct stat st;
     if (stat(p.c_str(), &st) != 0) return fail();
     if (S_ISDIR(st.st_mode)) { t_err = HS_ERR_ACCESS; return -1; }  // DeleteFile on a directory fails

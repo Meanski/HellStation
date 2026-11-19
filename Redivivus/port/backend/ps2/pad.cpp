@@ -16,9 +16,19 @@ unsigned g_retry;     // reads until the next analogue request
 int stick(unsigned char v) { return (int)v - 128; }
 }  // namespace
 
+// SIO2MAN serves both the pads and the memory cards; it loads once.
+int hs_ps2_load_sio2man() {
+    static int r = 1;
+    if (r == 1) {
+        SifInitRpc(0);
+        r = SifLoadModule("rom0:SIO2MAN", 0, nullptr);
+    }
+    return r;
+}
+
 void hs_ps2_pad_init() {
     SifInitRpc(0);
-    int a = SifLoadModule("rom0:SIO2MAN", 0, nullptr);
+    int a = hs_ps2_load_sio2man();
     int b = SifLoadModule("rom0:PADMAN", 0, nullptr);
     if (a < 0 || b < 0) { hs_log("pad: loading SIO2MAN/PADMAN failed (%d, %d)", a, b); return; }
     if (padInit(0) != 1 || padPortOpen(0, 0, g_padArea) == 0) { hs_log("pad: padman init failed"); return; }

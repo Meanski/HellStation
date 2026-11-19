@@ -212,7 +212,7 @@ function(hs_port_link target)
     if(HS_PORT_BACKEND STREQUAL "ps2")
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
-        target_link_libraries(hs_backend PUBLIC gskit dmakit pad patches pthread)
+        target_link_libraries(hs_backend PUBLIC gskit dmakit pad patches mc pthread)
         # The SPU2 side of audio (backend/ps2/iop/): an IOP module built with
         # ps2sdk's IRX rules and embedded in the ELF, loaded from memory.
         set(HS_IRX_DIR "${HS_PORT_DIR}/backend/ps2/iop")

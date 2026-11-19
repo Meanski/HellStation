@@ -3,13 +3,18 @@
 // Logs go to host:hs.log (next to the ELF; OpenPS2BIOS doesn't route EE console
 // output to PCSX2's log), the EE serial port and stdout.
 // Game data is read through the host: device (PCSX2's host file system, or
-// ps2client over Ethernet on hardware) from a data/ folder beside the ELF.
+// ps2client over Ethernet on hardware) from a data/ folder beside the ELF; booted
+// from a disc (tools/port/make-iso.py), from the disc, with saves and settings
+// on the memory card in slot 1.
 #include "Redivivus/port/platform.h"
 
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
 #include <kernel.h>
+#include <libmc.h>
+#include <loadfile.h>
+#include <sifrpc.h>
 #include <sio.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -74,8 +79,9 @@ void hs_fatal(const char* fmt, ...) {
 
 void hs_backtrace(const char* why) { hs_log("HellStation backtrace (%s): not available on the EE", why ? why : ""); }
 
-const char* hs_data_dir(void) { return "host:data"; }
-const char* hs_default_root_dir(void) { return "host:hsroot"; }
+bool g_fromDisc;  // set by main() from where the ELF was loaded
+const char* hs_data_dir(void) { return g_fromDisc ? "cdrom0:" : "host:data"; }
+const char* hs_default_root_dir(void) { return g_fromDisc ? "mc0:/HELLSTAT" : "host:hsroot"; }
 
 }  // extern "C"
 
@@ -90,7 +96,35 @@ void hs_install_terminate_handler();
 extern "C" void hs_lwlr_probe();  // lwlr_probe.cpp (temporary)
 void hs_memcpy_selftest(void);    // memcpy.cpp
 
+int hs_ps2_load_sio2man();  // pad.cpp
+
+// Saves and settings live on the memory card in slot 1. A card that has never
+// been formatted holds nothing, and nothing can be written to it, so it is
+// formatted, as the PS2's browser would; a formatted card is never touched.
+static void prepare_memory_card() {
+    if (mcInit(MC_TYPE_MC) < 0) { hs_log("memory card: mcInit failed"); return; }
+    int type = 0, free = 0, format = 0, ret = 0;
+    mcGetInfo(0, 0, &type, &free, &format);
+    mcSync(0, nullptr, &ret);
+    hs_log("memory card: slot 1 type %d, %s, %d KiB free (result %d)", type, format ? "formatted" : "unformatted", free, ret);
+    if (type == MC_TYPE_PS2 && !format) {
+        mcFormat(0, 0);
+        mcSync(0, nullptr, &ret);
+        hs_log("memory card: formatted slot 1 (result %d)", ret);
+    }
+}
+
 int main(int argc, char** argv) {
+    // Booted from a disc, argv[0] is cdrom0:\HS.ELF;1 (SYSTEM.CNF's BOOT2).
+    g_fromDisc = argc > 0 && argv[0] && !__builtin_strncmp(argv[0], "cdrom0:", 7);
+    if (g_fromDisc) {
+        SifInitRpc(0);
+        int sio = hs_ps2_load_sio2man();
+        int mc = SifLoadModule("rom0:MCMAN", 0, nullptr);
+        int mcs = SifLoadModule("rom0:MCSERV", 0, nullptr);
+        hs_log("HellStation (ps2): booted from the disc; memory card modules %d %d %d", sio, mc, mcs);
+        prepare_memory_card();
+    }
     hs_install_terminate_handler();
     hs_lwlr_probe();
     hs_memcpy_selftest();
