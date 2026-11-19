@@ -45,8 +45,8 @@ pad text entry, and their docs.
 priority (`hs_yield` sleeps 100 us now); Sony's CD driver reads a DVD's path table from sector
 257; PCSX2 calls an image a CD if its root directory is 2048 bytes; `fstat` on `cdrom0:` reports
 nothing; the memory card's getstat answers for missing paths and it refuses O_TRUNC; PCSX2's
-memory cards start unformatted; `pkill -f 'MacOS/PCSX2'` (in `run-pcsx2.sh`) kills any shell
-whose command line contains that text.
+memory cards start unformatted; `pkill -f` on PCSX2's path kills any shell whose command line
+contains that text (use `tools/port/stop-pcsx2.sh`, which matches the process name).
 
 ### What 2026-11-19 did (numbers in PORTING_LOG)
 
@@ -127,8 +127,10 @@ HSB=build-ps2-os tools/port/drive.py hunt 14                     # 14 rounds of 
   measurements (the `dcc clear check:` pattern: same decode both ways), not frame times.
 - `run-pcsx2.sh` closes any running PCSX2 first, so the owner's open session goes with it. It
   rewrites PCSX2.ini keys (HostFs, PINE, ExtraMemory, logging). The BIOS is the owner's choice in
-  PCSX2's settings; never install or pick one. Runs lag the owner's Mac: keep them short and quit
-  PCSX2 afterwards (`osascript -e 'quit app "PCSX2"'`).
+  PCSX2's settings; never install or pick one. Runs lag the owner's Mac: keep them short.
+  The runner closes PCSX2 when the run ends (`--keep` leaves it open); a script that finishes
+  early stops it with `tools/port/stop-pcsx2.sh`. Don't use `osascript ... quit`: PCSX2 asks
+  for confirmation and the window stays open on the owner's screen.
 - Scripts are keyed to presented frames: main menu by ~500, character list ~50 after Single
   Player, town ~60 after the difficulty. **Loading the owner's save** (local only, never
   committed): Single Player (400,308) at 550, OK (700,555) at 760, Normal (400,281) / Hell

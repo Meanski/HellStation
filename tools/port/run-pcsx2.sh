@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Boot the PS2 build in PCSX2 (macOS host) and capture its window.
 #   tools/port/run-pcsx2.sh [--seconds N] [--extra-ram] [--shot out.png] [--script steps.txt] [--build build-ps2]
-#                           [--iso]
+#                           [--iso] [--keep]
 # Stages build-ps2/run/: the stripped ELF plus data/ -> $D2DATA (the owner's
 # game files, never copied), which the ELF reads through PCSX2's host: device.
 # --script stages an input replay (format: Redivivus/port/input/input.h) as
@@ -10,9 +10,12 @@
 # folder as hs.iso from the user's own data): data from the disc, saves on the
 # memory card; logs and scripts still go through host: (PCSX2 roots it at the
 # image's folder).
+# PCSX2 is stopped when the run ends (after the screenshot and the in-memory
+# log), or as soon as it exits by itself; --keep leaves it open. Stop it from
+# another script with tools/port/stop-pcsx2.sh.
 set -euo pipefail
 ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
-SECS=60; EXTRA=false; SHOT=""; SCRIPT=""; BUILD=build-ps2; ISO=false
+SECS=60; EXTRA=false; SHOT=""; SCRIPT=""; BUILD=build-ps2; ISO=false; KEEP=false
 while [ $# -gt 0 ]; do
   case "$1" in
     --seconds) SECS=$2; shift 2 ;;
@@ -21,6 +24,7 @@ while [ $# -gt 0 ]; do
     --script) SCRIPT=$2; shift 2 ;;
     --build) BUILD=$2; shift 2 ;;
     --iso) ISO=true; shift ;;
+    --keep) KEEP=true; shift ;;
     *) echo "unknown option $1" >&2; exit 2 ;;
   esac
 done
@@ -34,8 +38,7 @@ if [ -n "$SCRIPT" ]; then cp "$SCRIPT" "$RUN/input.txt"; else rm -f "$RUN/input.
 
 # Close any running PCSX2 first and wait for it: on quit it writes its settings
 # back, which would undo the edits below.
-pkill -f 'MacOS/PCSX2' 2>/dev/null || true
-for _ in $(seq 50); do pgrep -f 'MacOS/PCSX2' >/dev/null || break; sleep 0.2; done
+"$ROOT/tools/port/stop-pcsx2.sh"
 
 INI="$HOME/Library/Application Support/PCSX2/inis/PCSX2.ini"
 if grep -q "^\[EmuCore/CPU\]" "$INI"; then
@@ -76,7 +79,9 @@ if $ISO; then
 else
   /Applications/PCSX2.app/Contents/MacOS/PCSX2 -fastboot -earlyconsolelog -logfile "$RUN/pcsx2.log" -elf "$RUN/d2.elf" >/dev/null 2>&1 &
 fi
-sleep "$SECS"
+# Wait out the run, or until PCSX2 is gone (closed by hand or by stop-pcsx2.sh).
+for _ in $(seq "$SECS"); do pgrep -x PCSX2 >/dev/null || break; sleep 1; done
+if ! pgrep -x PCSX2 >/dev/null; then echo "PCSX2 closed before the run's end"; exit 0; fi
 osascript -e 'tell application "PCSX2" to activate' >/dev/null 2>&1 || true
 sleep 2
 "$ROOT/tools/port/winshot.sh" PCSX2 "$SHOT" && echo "screenshot: $SHOT"
@@ -85,3 +90,4 @@ syms=$("$ROOT/tools/port/ps2.sh" mips64r5900el-ps2-elf-nm "$BUILD/d2.elf" | grep
 ring=$(echo "$syms" | awk '$3=="hs_log_ring"{print $1}'); pos=$(echo "$syms" | awk '$3=="hs_log_ring_pos"{print $1}')
 python3 "$ROOT/tools/port/pine-log.py" "$ring" "$pos" > "$RUN/ring.log" 2>&1 || true
 echo "in-memory log: $RUN/ring.log ($(wc -l < "$RUN/ring.log") lines)"
+$KEEP || "$ROOT/tools/port/stop-pcsx2.sh"
