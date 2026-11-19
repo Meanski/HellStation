@@ -70,31 +70,25 @@ AnimData.d2 0.56 MB.
 
 ## Next, in the order I'd take them
 
-1. **Sound polish**: listen to it in PCSX2 (it can't be judged from logs); the encoder is
-   still ~10% of the EE in town (3,070 cycles a 28-sample block: the game pre-fills 3 s for
-   every sound it starts, on the main thread). Ideas: encode only a short head at once and the
-   rest on a low-priority thread; compress the sample cache (it's PCM) to fit more sounds in
-   448 KiB.
-2. **Default optimisation level: decided, -Os** (2026-11-20): an -O2 build runs out of memory
-   in the fight test with sound in.
-3. **Fights: fewer decodes.** The slow stretches are sprite-cache churn, not a bug: the player's and
-   mercenary's ten-odd components per direction and mode, plus overlays like the Act 2 mercenary's
-   Might aura (18 KiB a decode), don't fit 3 MB together (a decoded direction averages 22 KiB, so
-   3 MB holds ~140). Levers: move memory from the tile LRU (not full in Black Marsh) to the sprite
-   cache, or free more resident memory (raw data tables 2.1 MB, string tables 1.2 MB) and grow the
-   cache. Measure with `dcc: most decoded:` lines and `drive.py hunt`.
-4. **Fights: a cheaper decoder** is possible but hard to judge here: PCSX2's cycle counter follows
-   an instruction-count model, so small speed-ups don't show (a word-at-a-time RLE re-encode
-   measured no faster; PORTING_LOG). Profile of a slow stretch: `CODEC_ReadBits` 19%, the decode
-   loop 19%, `CODEC_EncodeRLE` 16%, `memset` 12% (now mostly gone). A smooth fight is floor tiles
-   (53%, `D2GFX_DrawTileAdvanced`/`Simple`) and `GetStatListByState` 8%.
-5. **The disc: load times.** It boots and plays (above). Loads are seek-bound: 38 s into town,
-   stalls walking. Ideas: a bigger read cache when memory allows (256 KiB halves the reads again,
-   measured on the read log), read-ahead for sequential archive reads, laying the MPQs out so
-   what loads together sits together, or a repacked archive format. Real hardware can't boot a
-   burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD loading (OPL) is the practical way
-   to run it on a console, and may be worth supporting next to the disc.
-6. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
+1. **Listen to it.** Sound has only been checked by readback, voice envelopes and (on Linux) an
+   analysed WAV. Run PCSX2 with audio on and listen: effects, ambience, music, the mix balance.
+   If a core is silent, look at the MMIX settings in `backend/ps2/iop/hsaudio.c`.
+2. **Memory for speed.** With sound in, the sprite cache is back at 2 MB (2.5 MB ran out of
+   contiguous memory after minutes in a fight), so big packs are slow again. Room to win back:
+   the 651 KiB sound table (sounds.txt rows, fixed 142-byte stride), the 448 KiB sample cache
+   (compress it), the 256 KiB DirectSound scratch, raw data tables (2.1 MB). Fragmentation is
+   the real enemy: decoded sprites are 20-600 KiB blocks churning through one heap.
+3. **Fights: fewer or cheaper decodes** (unchanged from before): see "Fights" notes below.
+4. **The disc: load times.** It boots and plays from a PCSX2 DVD image. Loads are seek-bound:
+   38 s into town, stalls walking. A bigger read cache halves reads again (256 KiB, measured on
+   the read log) when memory allows; otherwise lay files out so what loads together sits
+   together. Real hardware can't boot a burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD
+   loading (OPL) is the practical way onto a console and may be worth supporting.
+5. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly; null
+   reads too (PCSX2 logs them as "TLB Miss" and carries on: grep `pcsx2.log` after a run; one in
+   GfxHash was fixed, a fight session shows none).
+6. **The class-select voice lines** load on demand now, but the scripted run never requested
+   one; check by clicking classes by hand.
 
 **Don't retry a self-resizing sprite cache.** Evicting sprites from outside the game's own paths
 (at `InitLevel`, from a per-frame governor, or inside a failing allocation, with the cache's pick or
