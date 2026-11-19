@@ -18,8 +18,12 @@ Next, roughly in order:
   animations in view, so DCC decoding (D2CMP `Codec.cpp`) runs every frame. Profile it with
   `-DHS_PS2_PROFILE=ON`; compare with `HS_GAME_CACHES_UNCAPPED` (no stall). PORTING_LOG's last
   2026-11-19 entry has the numbers.
-- **Fights and leaving town**, at the retail cap: the first real test of the margin. Watch the
-  `mem` lines and the first-failure dump (it names the caller).
+- **Fights in big packs are 4-10 FPS** at the retail cap (Act 1 Black Marsh, `-Os` build; they no
+  longer run out of memory since the one-heap allocator and the dropped renderers). A 3 MB sprite
+  cache (1 MB tile LRU) makes most fights 25 FPS but left only 220 KiB at one peak. Options: more
+  memory (the `-Os` build is 550 KiB ahead of `-O2`), shrinking the cache at level loads, or a
+  governor (a draft is in PORTING_LOG, 2026-11-19). Drive a fight from the host with
+  `tools/port/live.sh` and `where`.
 - **Sound** in the SPU2's own 2 MB (the game's sound cache would be 3-5 MB in main RAM).
 - **A disc**: an ISO with the ELF and the user's own data (an archive format with a compact index
   would replace the MPQs and the patched lookup), and loading over CDVD instead of `host:`.

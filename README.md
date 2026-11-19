@@ -32,7 +32,7 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 > **It now fits in a retail PS2's 32 MB, as PCSX2 emulates one.** Creating a character, the Rogue
 > Encampment and Harrogath (Act 5, Hell) all run with PCSX2's Extended RAM off, with under 1 MB to
 > spare. In November 2026 the project nearly stopped over memory. It isn't on a disc or real
-> hardware yet, there's no sound, and fights outside town haven't been tried. The numbers are below
+> hardware yet, there's no sound, and fights outside town survive but slow down in big packs. The numbers are below
 > and in the [dev log](PORTING_LOG.md).
 
 ## Status
@@ -46,7 +46,8 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 | ✅ | DualShock 2 as a virtual mouse plus D2's hotkeys |
 | ✅ | Harrogath's lower town at **25 FPS** in 32 MB (it was 15: a byte-at-a-time `memcpy` and a blocking vsync wait) |
 | ⚠️ | Walking down the stairs into lower Harrogath stalls for about a minute at 2-5 FPS: the 2 MB sprite cache thrashes |
-| ❓ | Not tried yet: fights outside town, long sessions |
+| ⚠️ | Fights outside town (Act 1, Black Marsh) run in 32 MB without running out, but big mixed packs drop to 4-10 FPS: the sprite cache is too small to hold them |
+| ❓ | Not tried yet: long sessions |
 | ⏳ | Not started: sound, naming a character with the pad, a disc image, real hardware |
 
 ## Fitting in 32 MB
@@ -85,8 +86,8 @@ Creating a character peaks at 22.7 MB. The fixes that got it from 61 to 23 MB:
   seven loaded at once (12.3 MB).
 
 What's left is thin: under 1 MB of headroom. Sound usually takes 3-5 MB, so it has to live in the
-sound chip's own 2 MB. Fights outside town, long sessions and real hardware are still to be
-tried. The full measurements and each step are in the [dev log](PORTING_LOG.md).
+sound chip's own 2 MB. Fights run without running out of memory, but big packs are slow. Long
+sessions and real hardware are still to be tried. The full measurements and each step are in the [dev log](PORTING_LOG.md).
 
 ## You bring the game
 
