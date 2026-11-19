@@ -880,3 +880,48 @@ churn, not a bug.**
 - An overlay decoded over and over (`AuraMightBack`, the Act 2 mercenary's Might aura on him and
   the player) is one direction of 18 KiB per decode, decoded again after the cache evicted it.
   In the slow stretches the scene's sprites simply don't fit 3 MB.
+
+## 2026-11-20: sound
+
+**In short: the game has sound on both ports. On the PS2 it plays on the SPU2's own voices
+from its own memory: an IOP module of ours, with the EE encoding the game's PCM to ADPCM. The
+game's 4.3 MB of DirectSound buffers never touch main RAM; its sample cache (now 448 KiB, long
+sounds streamed) and sound table cost 1.6 MB, paid for by a 2.5 MB sprite cache (was 3). Fights
+peak at 24.0 of 25.1 MB. Town runs at about 22 FPS with sound (25 without).**
+
+- **DirectSound** (`win32/dsound.cpp`): D2Sound and Storm fill their rings strictly in order,
+  so a buffer keeps no ring: each Unlock appends to a backend voice (`platform.h`: append-only
+  PCM streams, a played-frame count, volume/pan/rate), and the play cursor is where the played
+  count lands in the ring. A write out of order (a reused buffer) or SetCurrentPosition restarts
+  the stream. One Lock scratch for all buffers (per-buffer scratch had kept up to 1.6 MB). No 3D
+  or EAX: the game only asks with 3D sound on, and shuts sound down cleanly without it.
+- **SDL** (`backend/sdl/audio.cpp`): a software mixer. Checked headless with SDL's disk driver:
+  382 of 383 s carry sound, and the high-frequency share (0.001-0.1) is natural audio, not noise.
+  A WAV of the first two minutes is in the owner's footage folder.
+- **PS2** (`backend/ps2/audio.cpp`, `backend/ps2/iop/hsaudio.c`): each voice channel is a ring of
+  ADPCM blocks in SPU2 memory that a hardware voice loops over; appended PCM is encoded on the
+  EE, 112 frames (one 64-byte DMA) at a time, and written at the ring position of its frame
+  number. The played count comes from each voice's read address (NAX). Stereo is a pair of
+  voices on one core, keyed together. The IRX (2.5 KB, built with ps2sdk's rules, embedded and
+  loaded with `SifExecModuleBuffer`) only writes SPU2 memory, sets voice registers, keys voices
+  and reads addresses back, over SIF RPC. Start-up check, every boot: a tone read back from SPU2
+  memory decodes at about 40 dB signal-to-error, and a voice plays 2,212 frames in 101 ms
+  (2,227 expected).
+- **Encoder cost**: the first encoder (try all five filters, divide to quantise) was 37% of the
+  EE in town. Quantising by shift, a fast path for silence (the game pads every short sound to
+  its whole buffer) and choosing the filter from three correlation sums instead of trying all
+  five: 6,436 -> 3,070 cycles a block (the tone: 50 -> 40 dB).
+- **A hang, fixed**: leaving the menu, D2Launch waits `while (menu sound playing) Sleep(0)`.
+  On the EE a yield only rotates the caller's priority, and the sound thread that clears the
+  flag runs below the main thread, so it spun forever (found with a stall watchdog in the
+  profiler build that reports samples when no frame comes for 4 s). `hs_yield` now sleeps
+  100 us on the EE. Menus got smoother too: 40 ms frames, none over 50 ms (was 48 ms).
+- **Memory**: entering a game with sound ran out (24.5 MB in use). Panel art is now freed right
+  after the game loads it (wraps on `InitializeUI` and `UI_LoadAllPanelAssets`), not 50 frames
+  later. The sound cache (`SOUNDHDR_SetGlobal4`, 3 MB on a 32 MB machine) is capped at 448 KiB,
+  in an arena of its own (its churn had left 1.3 MB free in pieces of 73 KiB). Sounds over
+  128 KiB (166 of 4,698, 40 MB of files: ambience, speech) stream from the archive instead; that
+  also routes around a Blizzard bug that let any file bigger than the budget load anyway. Fight
+  test, 20 rounds: no failure, peak 24,054 KiB taken of 25,113.
+
+Not yet checked: what it sounds like on the PS2 (needs ears: PCSX2 plays it), and real hardware.

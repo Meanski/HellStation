@@ -1,144 +1,180 @@
 # Handoff: where HellStation stands and what's next
 
-Written 2026-11-18, updated 2026-11-19, for whoever picks the work up next. Read [AGENTS.md](../../AGENTS.md) first (the
-contract), then this. The full history is in [PORTING_LOG.md](../../PORTING_LOG.md); the task list
+Written 2026-11-18, rewritten at the end of 2026-11-19, for whoever picks the work up next (the
+owner is changing Claude accounts, so assume no memory of earlier sessions: everything needed is in
+the repo). Read [AGENTS.md](../../AGENTS.md) first (the contract), then this. The full history is
+in [PORTING_LOG.md](../../PORTING_LOG.md); each entry opens with an "In short:" line. The task list
 is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
-## Status: fits in 32 MB; fights survive but big packs are slow (end of 2026-11-19)
+## Status: sound works; fits in a retail 32 MB; towns ~22 FPS, fights vary
+
+**2026-11-20 (overnight session): sound.** Both ports play the game's sound. On the PS2 it runs
+on SPU2 hardware voices from SPU2 memory (`backend/ps2/audio.cpp` + the IOP module
+`backend/ps2/iop/hsaudio.c`, embedded in the ELF). Costs: 1.6 MB of main RAM (sample cache
+448 KiB in its own arena, the 651 KiB sound table, a 256 KiB lock scratch), paid for by
+dropping the sprite cache from 3 to 2.5 MB; town ~22 FPS (was 25). Fights peak at 24.0 of
+25.1 MB. Sounds over 128 KiB stream from the archive. Not yet listened to on the PS2. Details
+and numbers: PORTING_LOG, "2026-11-20: sound".
 
 With the heap stopped at a retail 32 MB (PCSX2's Extended RAM off), the game boots, loads saves,
-walks every town tested and fights in Act 1's Black Marsh without running out of memory. The
-owner's goal is a disc in a stock PS2. Every change is measured at the retail cap.
+walks every town tested (Act 1 to Act 5) and fights in Act 1's Black Marsh without running out of
+memory. Towns run at 25 FPS. Fights are 25 FPS most of the time, but some stretches drop to
+4-8 FPS while sprites are decoded over and over (see "Fights" below). No sound yet. The owner's
+goal is **a disc in a stock retail PS2**; don't pitch emulator-only or "extended RAM" setups.
+Every change is measured at the retail cap.
 
-What changed on 2026-11-19 (details and numbers in PORTING_LOG, each entry starts "In short:"):
-- One TLSF-style heap for malloc and the VirtualAlloc regions (`backend/ps2/memory.cpp`, replaces
-  newlib's whole allocator; changes the pool with interrupts off). Fragmentation at failure went
-  from 1.25 to 0.84 MB.
-- 485 KiB of program image back: D2Direct3D/Glide/DDraw dropped (`overrides/renderers_dropped.cpp`),
-  D2CMP's duplicate item palette table shared with D2Win's (`overrides/d2cmp.cpp`). Function and
-  data sections are on by default for the EE.
-- Faster `memset`; `Source/D2CMP/SRC/Codec.cpp` built at `-O2` with inlining (`cmake/port.cmake`):
-  a sprite decode costs ~20% less. `overrides/dcc_timing.cpp` logs `dcc:` lines (decode cost per
-  KiB) every 256 decodes: use those, not frame times, to compare decoder changes (identical stairs
-  runs gave 45 and 205 ms frames).
-- Live input and `where` (below). Every heap failure is logged with its caller.
+`main` is 1 commit ahead of `origin/main` (the docs one; push only when asked). Latest:
 
-Later on 2026-11-19: panel art is resident only while its panel is open (1.6 MB back in fights,
-`overrides/panel_art_lazy.cpp`), which pays for a **3 MB sprite cache**; the memory report lists
-heap owners by file and line and big files by name; the decoder's second 110 KiB clear per
-direction is gone (8% off a decode, `overrides/dcc_clear.cpp`); the profiler counts memset callers.
+- `ce99c6a3 port(ps2): load panel art only while its panel is open`
+- `88c2f3bb port(ps2): clear only the blocks the DCC decoder uses`
+- `89963135 docs: a word-at-a-time RLE re-encode measured no faster`
 
-Next, roughly in order:
-- **Busy scenes are decode-bound** even with 3 MB: some Black Marsh stretches run 4-8 FPS while
-  the player's and mercenary's own components and state overlays are decoded over and over
-  (`dcc: most decoded:` lines). The stairs into lower Harrogath stall in some runs.
-  A faster `CODEC_EncodeRLE` (8 pixels at a time) measured no faster; small decoder tweaks are
-  hard to judge on PCSX2, whose cycle counter follows instruction counts. The levers left are
-  fewer decodes (a bigger effective cache) or a decoder written for the EE, judged on hardware. Profile again on the current build
-  (`-DHS_PS2_PROFILE=ON -DHS_EE_OPT_LEVEL=-Os`, `prof` lines in `hs.log`, resolve with
-  `mips64r5900el-ps2-elf-addr2line -f -C -e <build>/d2.elf`). Last profile: `CODEC_ReadBits`
-  11%, `CODEC_DecodeFramePixels` 9%, `CODEC_EncodeRLE` 5.5%, `GFX_RemoveCacheEntry`
-  (CelDataHash.cpp) 5%, outside the program 14%.
-- **Don't retry a self-resizing sprite cache.** (The fixed 3 MB below now fits: fights peak at
-  23.3 of 25.2 MB.) Evicting sprites from outside the game's own
-  paths (at `InitLevel`, from a per-frame governor, or inside a failing allocation, with the
-  cache's pick or hand-picked idle sprites) froze the game every time, and a limit below what the
-  cache holds makes the game's next sprite allocation wait forever. A fixed 3 MB cache (1 MB tile
-  LRU) makes most fights 25 FPS but peaked within 220 KiB of the limit: it needs ~1 MB more
-  memory first.
-- **Which build is the default**: `-O2` (default) vs `-Os` (`-DHS_EE_OPT_LEVEL=-Os`, 550 KiB more
-  heap, ~2 FPS slower in lower Harrogath). All fight results are from `-Os`; `-O2` fights are
-  untested since the heap and renderer changes.
-- **Sound** in the SPU2's own 2 MB (the game's sound cache would be 3-5 MB in main RAM).
-- **A disc**: an ISO with the ELF and the user's own data (an archive format with a compact index
-  would replace the MPQs and the patched lookup), and loading over CDVD instead of `host:`.
-- **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
+### What 2026-11-19 did (numbers in PORTING_LOG)
 
-## State
+- One TLSF-style heap for malloc and the VirtualAlloc regions (`backend/ps2/memory.cpp`).
+- 485 KiB of program image back: unused renderers dropped, a duplicate palette table shared.
+- Faster `memset`; the DCC decoder (`Source/D2CMP/SRC/Codec.cpp`) built at `-O2` with inlining.
+- **Memory report names owners**: Fog's exact-size blocks are tallied by the file and line that
+  asked, and big whole-file loads are listed by name (`overrides/fog_exact_alloc.cpp`, printed
+  every 4th `mem` report as `KiB in ... from File.cpp:line` and `files:` lines).
+- **Panel art only while its panel is open** (`overrides/panel_art_lazy.cpp`, a wrap on
+  `DRAW_UI`): skill tree, character panel, trade, mercenary, party, waypoint list, other acts'
+  automap tiles. 1.6 MB back in fights. That paid for a **3 MB sprite cache** (was 2 MB).
+- **Decoder clear**: the second 110 KiB block-table clear per direction now clears only what pass 1
+  cleared (`overrides/dcc_clear.cpp`, via a redirect of Codec.cpp's `memset` calls). 8% off a
+  decode; the first 200 decodes of every run are checked byte-for-byte against the full clear
+  (`dcc clear check:` line in `hs.log`).
+- Profiler counts memset callers as well as memcpy; the `dcc:` log names the most-decoded files.
 
-- `main` builds for the PS2 (retail heap by default; `-DHS_PS2_EXTENDED_RAM=ON` for headroom) and
-  for i686 Linux, and the Linux town smoke test passes.
-- **PS2:** boots, makes a character, walks the Rogue Encampment, reaches Act 5, at 25 FPS, in a
-  retail memory map. No sound; the pad can't type a name. The memory report (`mem` lines in
-  `hs.log`, every 250 frames, and a full dump at the first failed allocation) is the tool to start
-  from.
-- **Memory policies for small-RAM targets** are in `Redivivus/port/overrides/` and listed in
-  `docs/port/overrides.md`: exact-size Fog and Storm allocations, compact MPQ indexes, the sprite
-  cache cap, per-class character-creation art, 640x480 in game.
+### Memory at a glance (Black Marsh fight, `-Os`, 3 MB sprite cache)
+
+Heap limit 25,182 KiB (32 MB minus 6.4 MB program image and kernel); fights peak at about
+23,300 KiB taken. Of Fog's 13.4 MB of exact-size blocks: data tables kept raw 2.1 MB, sprite
+cache 3 MB, tile LRU 2 MB (67-80% full in Black Marsh), string tables ~1.2 MB, UI art ~1.1 MB,
+AnimData.d2 0.56 MB.
+
+## Next, in the order I'd take them
+
+1. **Sound polish**: listen to it in PCSX2 (it can't be judged from logs); the encoder is
+   still ~10% of the EE in town (3,070 cycles a 28-sample block: the game pre-fills 3 s for
+   every sound it starts, on the main thread). Ideas: encode only a short head at once and the
+   rest on a low-priority thread; compress the sample cache (it's PCM) to fit more sounds in
+   448 KiB.
+2. **Pick the default optimisation level.** `-O2` is the default, but every fight result since the
+   heap and renderer changes is from `-Os` (`-DHS_EE_OPT_LEVEL=-Os`: ~550 KiB more heap, ~2 FPS
+   slower in lower Harrogath). Run `drive.py wp` + `hunt` on an `-O2` build and compare peaks.
+3. **Fights: fewer decodes.** The slow stretches are sprite-cache churn, not a bug: the player's and
+   mercenary's ten-odd components per direction and mode, plus overlays like the Act 2 mercenary's
+   Might aura (18 KiB a decode), don't fit 3 MB together (a decoded direction averages 22 KiB, so
+   3 MB holds ~140). Levers: move memory from the tile LRU (not full in Black Marsh) to the sprite
+   cache, or free more resident memory (raw data tables 2.1 MB, string tables 1.2 MB) and grow the
+   cache. Measure with `dcc: most decoded:` lines and `drive.py hunt`.
+4. **Fights: a cheaper decoder** is possible but hard to judge here: PCSX2's cycle counter follows
+   an instruction-count model, so small speed-ups don't show (a word-at-a-time RLE re-encode
+   measured no faster; PORTING_LOG). Profile of a slow stretch: `CODEC_ReadBits` 19%, the decode
+   loop 19%, `CODEC_EncodeRLE` 16%, `memset` 12% (now mostly gone). A smooth fight is floor tiles
+   (53%, `D2GFX_DrawTileAdvanced`/`Simple`) and `GetStatListByState` 8%.
+5. **A disc**: an ISO with the ELF and the user's own data (an archive format with a compact index
+   would replace the MPQs and the patched lookup), loading over CDVD instead of `host:`.
+6. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
+
+**Don't retry a self-resizing sprite cache.** Evicting sprites from outside the game's own paths
+(at `InitLevel`, from a per-frame governor, or inside a failing allocation, with the cache's pick or
+hand-picked idle sprites) froze the game every time, and a limit below what the cache holds makes
+the game's next sprite allocation wait forever. Fixed sizes only.
 
 ## How to run it
 
+The current PS2 build dir is **`build-ps2-os`** (`-Os`, retail heap; has the owner's save).
+`build-ps2-osprof` is the same with the profiler (`-DHS_PS2_PROFILE=ON`). `build-ps2` is stale.
+
 ```sh
-tools/port/ps2.sh cmake --build build-ps2                       # retail heap unless -DHS_PS2_EXTENDED_RAM=ON
-tools/port/run-pcsx2.sh --seconds 3 \
-  --script tools/port/scripts/town-walk.txt                     # scripted: new Barbarian, walk, inventory
+tools/port/ps2.sh cmake --build build-ps2-os
+tools/port/run-pcsx2.sh --build build-ps2-os --seconds 1200 \
+  --script tools/port/scripts/load-save-normal.txt              # loads the save, closes panels
+HSB=build-ps2-os tools/port/drive.py wp                          # town waypoint -> Black Marsh
+HSB=build-ps2-os tools/port/drive.py hunt 14                     # 14 rounds of fighting
 ```
 
-- Logs: `build-ps2/run/hs.log` (written over `host:`), and a RAM ring read over PINE into
-  `build-ps2/run/ring.log` when the runner's sleep ends. A `frame N` pacing line appears every 250
-  presented frames. Scripts are keyed to presented frames: the main menu is up by about frame 500,
-  the character list about 50 frames after Single Player, and town about 60 frames after the
-  difficulty; menus are at 25 FPS.
-- A running game takes more input from the host: `tools/port/live.sh "move 300 40" "where"` (the
-  game reads `run/live.txt` about once a second). `where` logs the monsters, objects and exits
-  around the player with the screen point to click (`where:` lines in `hs.log`).
-- `run-pcsx2.sh` closes any running PCSX2 first (and waits for it), so the owner's open session
-  goes with it. It rewrites `~/Library/Application Support/PCSX2/inis/PCSX2.ini` keys (HostFs, PINE, ExtraMemory,
-  logging). The BIOS is chosen by the owner in PCSX2's settings; never install or pick one.
-- Game data is `$D2DATA` (default `~/d2data`: the 11 MPQs listed in the README), symlinked into the
-  run folder, never copied. Saves land in `build-ps2/run/hsroot`.
-- **Driving a running game from the host:** `tools/port/live.sh --build <dir> "<step>"...` appends
-  steps to `run/live.txt` (read about once a second). Explicit `+N` offsets count from when the
-  file is read, not from the previous step, so give them cumulatively. Hover is resolved while
-  drawing: send `move x y`, then `click x y [right]` at least ~12 frames later. `where` logs nearby
-  monsters/objects/exits with the screen point to click (`where:` lines; object 119 is Act 1's town
-  waypoint). Teleport doesn't work in town. Black Marsh is at about (125, 219) in the Act I
-  waypoint list.
-- `tools/port/drive.py wp` / `hunt N` (env `HSB=<build dir>`) automates the Act 1 fight test
-  with live input and `where`. `tools/port/scripts/harrogath-stairs.txt` is the stairs benchmark
-  (Hell save; frames 3000-3500 are the stairs), `load-save-normal.txt` / `load-save-hell.txt` load
-  the save and close the panels.
-- **Loading the owner's save** (local only, never committed): Single Player (400,308) at frame
-  550, OK (700,555) at 760, Normal (400,281) / Hell (400,367) at 840; town is up ~60 frames later.
-  A new build dir has no save: copy `run/hsroot/` from another build dir.
-- `tools/port/winshot.sh PCSX2 out.png` and `tools/port/winrec.sh PCSX2 out.mov <secs>` capture
-  the PCSX2 window only. Captures stay out of the repo (game art).
+- Logs: `<build>/run/hs.log` (over `host:`): `frame N` pacing every 250 frames, `mem` lines,
+  owner tallies, `dcc:` decode lines, `panel art:` loads/frees. A RAM ring is read over PINE into
+  `run/ring.log` when the runner's sleep ends.
+- Profile: build `build-ps2-osprof`, run the same, then aggregate `prof` lines over the frames you
+  care about and resolve with `tools/port/ps2.sh mips64r5900el-ps2-elf-addr2line -f -C -e
+  build-ps2-osprof/d2.elf <addrs>`. `prof memset/memcpy from <addr>` lines give callers by bytes.
+- Fight results vary a lot run to run (which monsters, where the mercenary walks): one run is
+  25 FPS throughout, the next has 4-8 FPS stretches. Compare decoder changes with paired
+  measurements (the `dcc clear check:` pattern: same decode both ways), not frame times.
+- `run-pcsx2.sh` closes any running PCSX2 first, so the owner's open session goes with it. It
+  rewrites PCSX2.ini keys (HostFs, PINE, ExtraMemory, logging). The BIOS is the owner's choice in
+  PCSX2's settings; never install or pick one. Runs lag the owner's Mac: keep them short and quit
+  PCSX2 afterwards (`osascript -e 'quit app "PCSX2"'`).
+- Scripts are keyed to presented frames: main menu by ~500, character list ~50 after Single
+  Player, town ~60 after the difficulty. **Loading the owner's save** (local only, never
+  committed): Single Player (400,308) at 550, OK (700,555) at 760, Normal (400,281) / Hell
+  (400,367) at 840. A new build dir has no save: copy `run/hsroot/` from `build-ps2-os`.
+- **Live input:** `tools/port/live.sh --build <dir> "<step>"...` appends steps to `run/live.txt`
+  (read about once a second). `+N` offsets count from when the file is read, so give them
+  cumulatively. Send `move x y`, then `click x y [right]` ~12 frames later. `key 0x49` (I), `0x54`
+  (T, skill tree), `0x43` (C), `0x4F` (O, mercenary). `where` logs nearby monsters/objects/exits
+  with the point to click (object 119 is Act 1's town waypoint; Black Marsh is about (125, 219) in
+  the Act I waypoint list). Teleport doesn't work in town.
+- `tools/port/winshot.sh PCSX2 out.png` / `winrec.sh PCSX2 out.mov <secs>` capture the PCSX2
+  window. Captures stay out of the repo (game art): put them in a scratch folder.
+- Game data is `$D2DATA` (default `~/d2data`), symlinked into the run folder, never copied.
+
+### The other builds (definition of done)
+
+- Stock Windows: `cmake --build build` (must link).
+- Linux i686: `tools/port/linux-i386.sh cmake --build build-linux`. **The debug link needs more
+  memory than Docker currently has free** (the owner runs other containers; ld was killed three
+  times with ~3.9 GB free). `build-linux-nodbg` is configured with `-g0` and links fine. Town smoke
+  on it: run the binary as `tools/port/run-linux.sh` does (that script hard-codes `build-linux/d2`)
+  with `HS_INPUT_SCRIPT=/src/tools/port/scripts/rogue-encampment.txt`, 900 s; last pass 22,200
+  frames, no halt. Don't stop the owner's containers without asking.
 
 ## Gotchas that cost hours (don't relearn them)
 
 1. **PCSX2's EE recompiler loses the upper half of a non-aligned `LWR`.** Every EE object goes
-   through `tools/port/ee-cc-launcher.sh` -> `ee-lwr-fixup.py` (adds `sll rt,rt,0`). Symptom
-   without it: negative values from packed structs compare as huge positives, e.g. units teleporting
-   along walks. `-DHS_EE_LWR_FIXUP=OFF` reproduces the bug. The `CPU check:` line in `hs.log` says
-   whether the running CPU has it.
+   through `tools/port/ee-cc-launcher.sh` -> `ee-lwr-fixup.py`. Symptom without it: negative values
+   from packed structs compare as huge positives (units teleporting along walks).
 2. **PCSX2 doesn't fault on misaligned word loads; it reads wrong data.** A real PS2 raises an
-   address error. Treat any "works on Linux, garbage on PCSX2" as alignment first.
-3. **The EE build is `-O2` with no inlining or IPA cloning** (`cmake/ps2-ee.cmake`). The overrides
-   weaken and patch functions by symbol (`cmake/port.cmake`), so plain `-O2` breaks the link.
-4. **The EE kernel has only 256 semaphores, and no time slicing.** Locks are semaphore-free
-   (`backend/posix/threads.cpp`), and every wait or spin must yield.
-5. **Single player runs the game server inline on the main thread** (lockstep with the client).
-   Timing bugs show as frame pacing; game-logic bugs show identically on server and client.
-6. **Docker bind mounts sometimes serve a stale file** right after an edit, giving a CMake "Parse
-   error" or an old object. Rerun, or wait a few seconds.
-7. **Generated code (`Source/`, `3rdparty/Storm`, `3rdparty/crashy`) is never edited.** The
-   pre-commit hook enforces it; route around it with `Redivivus/port/` (prelude, shim, overrides,
-   wraps). Generator defects are drafted in `docs/port/upstream/` for the owner to file.
+   address error. Treat "works on Linux, garbage on PCSX2" as alignment first. Packed structs
+   (e.g. D2Client's 34-byte skill-tree entries) need `memcpy` access in hand-written code.
+3. **The EE build has no inlining or IPA cloning** (`cmake/ps2-ee.cmake`): overrides patch functions
+   by symbol. A hand-written file that needs inlining gets a per-source exemption in
+   `cmake/port.cmake` (as Codec.cpp has); otherwise even `inline` helpers become calls.
+4. **The EE kernel has only 256 semaphores and no time slicing**, but an interrupt that wakes a
+   higher-priority thread pre-empts. Shared state needs interrupts off (DIntr/EIntr) or a lock, and
+   every wait or spin must yield.
+5. **Single player runs the game server inline on the main thread.**
+6. **Docker bind mounts sometimes serve a stale file** right after an edit (CMake "Parse error" or
+   an old object). Rerun.
+7. **Generated code (`Source/`, `3rdparty/Storm`, `3rdparty/crashy`) is never edited.** Route around
+   it in `Redivivus/port/`: overrides (weaken and replace; same-file callers reach yours), wraps
+   (rename the definition in one object; only callers outside it reach yours), and statics
+   globalized by rename (all in `cmake/port.cmake`, documented in `docs/port/overrides.md`). A
+   wrap entry can also name a *reference*: `"D2CMP|Source/D2CMP/SRC/Codec.cpp|memset"` sends that
+   object's memset calls to `hs_orig_memset`.
+8. **PCSX2's cycle counter is an instruction-count model**, so cycle timings on PCSX2 only rank
+   changes that remove work; micro-optimisations need hardware.
+9. **Wall-clock decode timings include pre-emption** of the decoding thread: compare paired runs.
 
 ## Owner preferences
 
-- Commit only when asked; push only when asked. Never force-push `main` (it was rewritten once,
-  with explicit consent, to restart history).
-- The commit email is the GitHub no-reply address (set in this repo's git config). Never put the
-  owner's personal email into a commit.
-- The repo is HellStation's own. Don't re-add Redivivus's scaffolding (CI, templates, its README):
-  `UPSTREAM` lists what's excluded, and `tools/sync-redivivus.sh` brings in upstream code changes.
-- The owner cares about the end result being visible: footage, a clean README, a working demo.
-  Prioritise playable progress over infrastructure polish, and report in plain language with
-  numbers.
+- Commit only when asked; push only when asked. Never force-push `main`.
+- Commits are the owner's alone: no co-author lines, no tool or model names anywhere (commit
+  messages, comments, docs). The commit email is the GitHub no-reply address in this repo's git
+  config. The hooks enforce this (`git config core.hooksPath tools/hooks` on a fresh clone).
+- Short plain-language status updates while long work runs; report with numbers. PORTING_LOG
+  entries open with an "In short:" headline (what got N FPS by doing X).
+- The owner wants visible results (footage, a clean README, a working demo) and an honest story
+  with numbers: playable progress over infrastructure polish.
+- The repo is HellStation's own. Don't re-add Redivivus's scaffolding (CI, templates, README).
 
 ## Local-only state (not in git)
 
-- Footage is in `~/Movies/HellStation/` (`before-vs-after.mp4`). To film the teleport bug again,
-  configure a separate build dir with `-DHS_EE_LWR_FIXUP=OFF`.
+- Build dirs: `build-ps2-os` (current, has the save), `build-ps2-osprof` (profiler),
+  `build-linux-nodbg` (links), `build` (mingw), others stale.
+- Footage is in `~/Movies/HellStation/` (`before-vs-after.mp4`).
 - Build logs (`build*.log`) are ignored.
