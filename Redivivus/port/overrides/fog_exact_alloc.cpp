@@ -420,7 +420,7 @@ HS_FOG_CC void* D2FILE_AllocAndLoadD2File(D2PoolManagerStrc* m, char* name, uint
     g_nextIsSound = g_on == 1 && file && strstr(file, "SoundHdr");
     void* p = hs_orig_AllocAndLoad(m, name, &n, file, line);
     g_nextIsSound = false;
-    if (size) *size = n;
+    if (size) memcpy(size, &n, sizeof n);  // the caller's size can be misaligned (UBSan build)
     if (Hdr* h = ours(p)) {
         site_sub(h, h->size);
         h->site = site_of(file, line);

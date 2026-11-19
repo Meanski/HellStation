@@ -262,10 +262,14 @@ function(hs_port_link target)
     target_link_libraries(${target} PRIVATE hs_win32 hs_backend)
     target_link_options(${target} PRIVATE -Wl,--gc-sections)
     if(REDIVIVUS_PORT_SANITIZE)
-        foreach(t ${target} hs_win32 hs_backend)
-            target_compile_options(${t} PRIVATE -fsanitize=alignment,undefined -fno-sanitize-recover=alignment)
+        # Every misaligned load the EE would fault on, reported once per site;
+        # the run carries on so one run lists them all (UBSAN_OPTIONS=
+        # halt_on_error=1 stops at the first).
+        foreach(t ${target} hs_win32 hs_backend hs_overrides)
+            target_compile_options(${t} PRIVATE -fsanitize=alignment,undefined)
         endforeach()
-        target_link_options(${target} PRIVATE -fsanitize=alignment,undefined)
+        # Static runtime: the build containers don't ship libubsan.so.
+        target_link_options(${target} PRIVATE -fsanitize=alignment,undefined -static-libubsan)
     endif()
     # Every Win32 gap the link reports at once, not one at a time.
     target_link_options(${target} PRIVATE -Wl,--unresolved-symbols=report-all)
@@ -273,9 +277,13 @@ function(hs_port_link target)
     target_compile_options(hs_backend PRIVATE -fvisibility=hidden)
     if(HS_PORT_BACKEND STREQUAL "sdl")
         # The link-name trap: refuse a binary that binds a game call to an unreviewed host symbol.
-        add_custom_command(TARGET ${target} POST_BUILD
-            COMMAND "${D2_ROOT}/tools/port/check-imports.sh" "$<TARGET_FILE:${target}>"
-            WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
+        # Not in a sanitizer build: its static runtime imports libc (getpid, dlsym...), and the
+        # game code it checks is the same as the plain build's, which runs the check.
+        if(NOT REDIVIVUS_PORT_SANITIZE)
+            add_custom_command(TARGET ${target} POST_BUILD
+                COMMAND "${D2_ROOT}/tools/port/check-imports.sh" "$<TARGET_FILE:${target}>"
+                WORKING_DIRECTORY "${D2_ROOT}" VERBATIM)
+        endif()
         # Fixed addresses, like the PS2's ELF: crash reports map straight to file:line.
         set_target_properties(${target} PROPERTIES POSITION_INDEPENDENT_CODE OFF)
         target_link_options(${target} PRIVATE -no-pie)

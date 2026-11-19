@@ -1,4 +1,5 @@
 // POSIX backend: pthreads (glibc on Linux, ps2sdk's pthread glue on the PS2).
+#include <cstdlib>
 #include "Redivivus/port/platform.h"
 
 #include <atomic>
@@ -97,7 +98,14 @@ void hs_mem_query(hs_mem_info* out) {
     out->heap_peak = peak;
     out->heap_in_use = (size_t)mi.uordblks + (size_t)mi.hblkhd;
     out->heap_limit = 0;
-    out->phys_total = 0;  // the shim's PC default
+    // The shim's PC default, unless HS_PHYS_MB says otherwise: HS_PHYS_MB=32
+    // gives a Linux run the PS2's 640x480 and small-RAM policies (system.cpp),
+    // so tools written for the PS2 (drive.py) and sanitizer runs see its paths.
+    static const size_t phys = [] {
+        const char* e = std::getenv("HS_PHYS_MB");
+        return e && *e ? (size_t)std::strtoul(e, nullptr, 10) << 20 : (size_t)0;
+    }();
+    out->phys_total = phys;
 }
 #endif  // the EE's hs_vm_* and hs_mem_query are in backend/ps2/memory.cpp
 

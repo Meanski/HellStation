@@ -110,12 +110,20 @@ void dump_frame() {
     std::fclose(f);
 }
 
-// ---- Scripted input (HS_INPUT_SCRIPT=<file>, format in port/input/input.h) ----
+// ---- Scripted input (HS_INPUT_SCRIPT=<file>, HS_LIVE_INPUT=<file>; format in port/input/input.h) ----
 hs::input::Script g_script;
 
 bool next_scripted(hs_event* ev) {
     static bool loaded;
     if (!loaded) { loaded = true; g_script.load(std::getenv("HS_INPUT_SCRIPT")); }
+    // Live input (tools/port/live.sh, drive.py): steps appended to a file while
+    // the game runs, read about once a second, as on the PS2.
+    static const char* live = std::getenv("HS_LIVE_INPUT");
+    static uint32_t livePolled = ~0u;
+    if (live && *live && g_frameNo / 25 != livePolled) {
+        livePolled = g_frameNo / 25;
+        g_script.poll_live(live, g_frameNo);
+    }
     if (!g_script.next(g_frameNo, ev)) return false;
     if (ev->type == HS_EV_MOUSE_MOVE || ev->type == HS_EV_MOUSE_BUTTON) { g_mouseX = ev->x; g_mouseY = ev->y; }
     if (ev->type == HS_EV_MOUSE_BUTTON && ev->button == HS_BUTTON_LEFT) g_keys[0x01] = ev->down;

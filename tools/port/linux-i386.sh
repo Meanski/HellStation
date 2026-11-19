@@ -14,4 +14,4 @@ if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
 fi
 mounts=(-v "$ROOT:/src" -v hellstation-ccache-i386:/ccache)
 [ -d "$D2DATA" ] && mounts+=(-v "$D2DATA:/d2data:ro")
-exec docker run --rm "${mounts[@]}" -e D2DATA=/d2data -e HS_FRAME_DUMP_EVERY -e HS_TRACE -e HS_TRACE_WAITS "$IMAGE" "$@"
+exec docker run --rm "${mounts[@]}" -e D2DATA=/d2data -e HS_FRAME_DUMP_EVERY -e HS_TRACE -e HS_TRACE_WAITS -e HS_PHYS_MB "$IMAGE" "$@"

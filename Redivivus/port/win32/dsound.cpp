@@ -211,10 +211,15 @@ HRESULT WINAPI B_Lock(Buffer* b, DWORD at, DWORD bytes, void** p1, DWORD* n1, vo
     b->locked = true;
     b->lockedAt = at;
     b->lockedBytes = bytes;
-    *p1 = g_scratch;
-    *n1 = bytes;
-    if (p2) *p2 = nullptr;
-    if (n2) *n2 = 0;
+    // The out-parameters can sit at any address in the game's structs (UBSan
+    // build): stored with memcpy, which a MIPS word store wouldn't survive.
+    void* scratch = g_scratch;
+    void* none = nullptr;
+    DWORD zero = 0;
+    memcpy(p1, &scratch, sizeof scratch);
+    memcpy(n1, &bytes, sizeof bytes);
+    if (p2) memcpy(p2, &none, sizeof none);
+    if (n2) memcpy(n2, &zero, sizeof zero);
     return kOk;
 }
 HRESULT WINAPI B_Unlock(Buffer* b, void* p1, DWORD n1, void*, DWORD) {
@@ -335,7 +340,13 @@ HRESULT WINAPI D_CreateSoundBuffer(Device*, const BufferDesc* desc, Buffer** out
     if (b->primary) {
         b->size = 4096;  // what the game clears through Lock; nothing plays from it
     } else {
-        const WaveFormat* f = desc->lpwfxFormat;
+        // The format points into the WAV file's header, at any alignment.
+        WaveFormat fmt;
+        const WaveFormat* f = nullptr;
+        if (desc->lpwfxFormat) {
+            memcpy(&fmt, desc->lpwfxFormat, sizeof fmt);
+            f = &fmt;
+        }
         if (!f || f->wFormatTag != 1 || (f->nChannels != 1 && f->nChannels != 2) ||
             (f->wBitsPerSample != 8 && f->wBitsPerSample != 16) || !desc->dwBufferBytes) {
             free(b);

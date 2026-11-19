@@ -92,7 +92,10 @@ AnimData.d2 0.56 MB.
    on the IOP: 12 s into town, walking stalls up to 4 s. Next would be laying files out so what
    loads together sits together. Real hardware can't boot a burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD
    loading (OPL) is the practical way onto a console and may be worth supporting.
-5. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly; null
+5. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
+   `tools/port/sanitize-sweep.sh` (Linux UBSan build at the PS2's 640x480) found four in
+   town/waypoint/fight paths, now fixed, and is clean; widen it to other acts, trading, the
+   stash and other classes; null
    reads too (PCSX2 logs them as "TLB Miss" and carries on: grep `pcsx2.log` after a run; one in
    GfxHash was fixed, a fight session shows none).
 6. **The class-select voice lines** load on demand now, but the scripted run never requested

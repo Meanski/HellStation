@@ -403,18 +403,22 @@ DWORD WINAPI SleepEx(DWORD ms, BOOL) { Sleep(ms); return 0; }
 BOOL WINAPI SwitchToThread(void) { hs_yield(); return TRUE; }
 
 namespace {
-void fill_systemtime(LPSYSTEMTIME st, bool local) {
+// The game passes SYSTEMTIMEs inside packed structs (an odd address seen in the
+// UBSan build): filled locally and copied out, as a MIPS word store would fault.
+void fill_systemtime(LPSYSTEMTIME out, bool local) {
     time_t now = (time_t)hs_time_now();
     struct tm tmv;
     if (local) localtime_r(&now, &tmv); else gmtime_r(&now, &tmv);
-    st->wYear = (WORD)(tmv.tm_year + 1900);
-    st->wMonth = (WORD)(tmv.tm_mon + 1);
-    st->wDayOfWeek = (WORD)tmv.tm_wday;
-    st->wDay = (WORD)tmv.tm_mday;
-    st->wHour = (WORD)tmv.tm_hour;
-    st->wMinute = (WORD)tmv.tm_min;
-    st->wSecond = (WORD)tmv.tm_sec;
-    st->wMilliseconds = 0;
+    SYSTEMTIME st;
+    st.wYear = (WORD)(tmv.tm_year + 1900);
+    st.wMonth = (WORD)(tmv.tm_mon + 1);
+    st.wDayOfWeek = (WORD)tmv.tm_wday;
+    st.wDay = (WORD)tmv.tm_mday;
+    st.wHour = (WORD)tmv.tm_hour;
+    st.wMinute = (WORD)tmv.tm_min;
+    st.wSecond = (WORD)tmv.tm_sec;
+    st.wMilliseconds = 0;
+    memcpy(out, &st, sizeof st);
 }
 }  // namespace
 void WINAPI GetLocalTime(LPSYSTEMTIME st) { fill_systemtime(st, true); }

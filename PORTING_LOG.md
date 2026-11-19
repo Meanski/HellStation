@@ -1089,3 +1089,31 @@ done yet.**
   start-up read-back check still passes.
 - Next: encode lazily, a little ahead of each voice's play position, instead of everything at
   Unlock. Needs the PCM held somewhere until then, and EE RAM is the constraint.
+
+## 2026-11-20: alignment sweep under UBSan
+
+**In short: the first full alignment-sanitizer run (boot, menus, the owner's save, Act 1 town,
+waypoint, 17 attacks in Black Marsh, all at the PS2's 640x480) found four misaligned accesses,
+all in hand-written code, each a crash on a real PS2. Fixed; the run after the fix reports
+none.**
+
+- `win32/sync.cpp` GetLocalTime/GetSystemTime: the game passes a SYSTEMTIME at an odd address
+  (inside a packed struct). Filled locally and copied out.
+- `win32/dsound.cpp` CreateSoundBuffer: the WAVEFORMAT points into a WAV header at a 2-byte
+  offset. Copied before reading.
+- `win32/dsound.cpp` Lock: the out-parameters (pointer and size) can be misaligned. Stored
+  with memcpy.
+- `overrides/fog_exact_alloc.cpp` D2FILE_AllocAndLoadD2File wrapper: the caller's size
+  out-parameter can be misaligned. Stored with memcpy.
+- The generated code itself raised nothing on these paths.
+- Plumbing: the sanitizer option now covers the overrides, keeps running after a report
+  (`UBSAN_OPTIONS=halt_on_error=1` stops at the first), links the UBSan runtime statically
+  (the containers don't ship libubsan.so) and skips check-imports (the runtime imports libc;
+  the plain build runs the check on the same game code). The SDL backend takes live input
+  (`HS_LIVE_INPUT`, wired by `run-linux.sh --build`), and `HS_PHYS_MB=32` gives a Linux run
+  the PS2's 640x480 and small-RAM policies, so `drive.py` works on it.
+- `tools/port/sanitize-sweep.sh` repeats the run. Not covered yet: Acts 2-5, trading,
+  the stash, other classes' skills, the options menus and cinematics.
+- Also checked on the way: the owner's PS2 save folder had `mang.ma0`-`ma3` as empty
+  directories (automap files that never saved), left by an older build. The current build
+  writes them as files (4,872 bytes after save and exit).

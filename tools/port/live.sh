@@ -16,7 +16,7 @@ ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
 BUILD=build-ps2
 if [ "${1:-}" = "--build" ]; then BUILD=$2; shift 2; fi
 LIVE="$ROOT/$BUILD/run/live.txt"
-[ -e "$LIVE" ] || { echo "no $LIVE: start the game with tools/port/run-pcsx2.sh first" >&2; exit 1; }
+[ -e "$LIVE" ] || { echo "no $LIVE: start the game first (tools/port/run-pcsx2.sh, or run-linux.sh --build ...)" >&2; exit 1; }
 offset=5
 for step in "$@"; do
   case "$step" in
