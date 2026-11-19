@@ -6,7 +6,9 @@
 // draw, which DRAW_UI calls when that panel's flag in GFX_bShowUIFlag is set
 // (checked in Source/D2Client: no hit test or other code reads them). So on a
 // target reporting 32 MB or less, DRAW_UI (wrapped) first loads the art of every
-// open panel, then draws, then frees what has been closed for kIdleFrames:
+// open panel, then draws, then frees what has been closed for kIdleFrames
+// (and InitializeUI and UI_LoadAllPanelAssets, wrapped, free it as soon as the
+// game has loaded it):
 //
 //   skill tree background   pSpellsClassSkilltree[class] (SpellSel, static)  367 KiB
 //   character panel         Panel::InvChar (stats and inventory)              276 KiB
@@ -49,6 +51,8 @@ struct HsAutomapLayer {  // D2AutomapLayerStrc (D2Client/D2AutomapLayerStrc.h)
 
 extern "C" {
 HS_FC void hs_orig_DRAW_UI(D2GameViewStrc*) __asm__("hs_orig__ZN8D2Client2UI4Draw7DRAW_UIEP14D2GameViewStrc");
+HS_SC void hs_orig_InitializeUI(void) __asm__("hs_orig__ZN8D2Client2UI4Draw12InitializeUIEv");
+HS_SC void hs_orig_UI_LoadAllPanelAssets(void) __asm__("hs_orig__ZN8D2Client2UI2ui21UI_LoadAllPanelAssetsEv");
 HS_FC DC6* hs_LoadDC6Ex(char* path, int32_t dcc) __asm__("_ZN8D2Client4Core7Archive15IMAGE_LoadDC6ExEPci");
 HS_FC void hs_FreeDC6(DC6*) __asm__("_ZN8D2Client4Core7Archive17DC6_FreeAndDeleteEP3DC6");
 HS_FC DC6* hs_LoadOverlay(char* path) __asm__("_ZN8D2Client2UI2ui34ARCHIVE_LoadOverlayImageUsedInGameEPc");
@@ -160,7 +164,40 @@ bool on() {
     return g_on;
 }
 unsigned g_loads, g_frees;
+
+void release(Art& a) {
+    if (DC6* p = a.get()) {
+        a.set(nullptr);
+        hs_FreeDC6(p);
+        a.freed = true;
+        if (++g_frees <= 32) hs_log("panel art: freed the %s", a.name);
+    }
+}
+// Right after the game loads the panel art (entering a game), give back what
+// no open panel needs: entering is the heap's tightest moment, before any
+// DRAW_UI has run (PORTING_LOG, 2026-11-20).
+void release_idle() {
+    if (!on()) return;
+    for (Art& a : g_art) {
+        if (a.needed()) continue;
+        a.idle = kIdleFrames;
+        release(a);
+    }
+}
 }  // namespace
+
+namespace D2Client::UI::Draw {
+HS_SC void InitializeUI() {
+    hs_orig_InitializeUI();
+    release_idle();
+}
+}  // namespace D2Client::UI::Draw
+namespace D2Client::UI::ui {
+HS_SC void UI_LoadAllPanelAssets() {
+    hs_orig_UI_LoadAllPanelAssets();
+    release_idle();
+}
+}  // namespace D2Client::UI::ui
 
 namespace D2Client::UI::Draw {
 HS_FC void DRAW_UI(D2GameViewStrc* view) {
@@ -180,12 +217,7 @@ HS_FC void DRAW_UI(D2GameViewStrc* view) {
         if (a.needed()) continue;  // a panel the draw just opened
         if (++a.idle < kIdleFrames) continue;
         a.idle = kIdleFrames;
-        if (DC6* p = a.get()) {
-            a.set(nullptr);
-            hs_FreeDC6(p);
-            a.freed = true;
-            if (++g_frees <= 32) hs_log("panel art: freed the %s", a.name);
-        }
+        release(a);
     }
 }
 }  // namespace D2Client::UI::Draw

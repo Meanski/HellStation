@@ -18,12 +18,19 @@ extern "C" HS_D2CMP_CC void hs_orig_GFX_InitCelDataCache(D2PoolManagerStrc* pMem
     __asm__("hs_orig__ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj");
 extern "C" HS_D2CMP_CC void hs_orig_GFX_InitLRUCache(D2PoolManagerStrc* pMemory, uint32_t dwBytes)
     __asm__("hs_orig__ZN5D2CMP3SRC11SpriteCache16GFX_InitLRUCacheEP17D2PoolManagerStrcj");
+#if defined(HS_FAKE_I386)
+#  define HS_FASTCALL
+#else
+#  define HS_FASTCALL __attribute__((__fastcall__))
+#endif
+extern "C" HS_FASTCALL void hs_orig_SOUNDHDR_SetGlobal4(uint32_t nMaxBytes)
+    __asm__("hs_orig__ZN8D2Client5Sound8SoundHdr19SOUNDHDR_SetGlobal4Ej");
 
 namespace {
 // 3 MB since panel art stopped being resident (overrides/panel_art_lazy.cpp):
 // Black Marsh fights then peaked at 23.3 of 25.2 MB (PORTING_LOG, 2026-11-19).
 #ifndef HS_SPRITE_CACHE_KIB  // overridable for measuring (compile definition)
-#  define HS_SPRITE_CACHE_KIB 3072
+#  define HS_SPRITE_CACHE_KIB 2560
 #endif
 constexpr uint32_t kSmallRamSpriteCache = HS_SPRITE_CACHE_KIB << 10;
 // The game gives the LRU a flat 6 MB (D2Client UI/Draw.cpp). It fills as the
@@ -34,6 +41,13 @@ constexpr uint32_t kSmallRamSpriteCache = HS_SPRITE_CACHE_KIB << 10;
 #  define HS_TILE_LRU_KIB 2048
 #endif
 constexpr uint32_t kSmallRamTileLru = HS_TILE_LRU_KIB << 10;
+// The client's sound sample cache (whole WAVs in main RAM; D2Client
+// Sound/SoundHdr.cpp, least recently used first out): the game gives it 10% of
+// RAM above 11 MB, at least 3 MB. Full, it evicts or skips loading a sound.
+#ifndef HS_SOUND_CACHE_KIB
+#  define HS_SOUND_CACHE_KIB 448
+#endif
+constexpr uint32_t kSmallRamSoundCache = HS_SOUND_CACHE_KIB << 10;
 bool small_ram() {
     hs_mem_info mi = {};
     hs_mem_query(&mi);
@@ -66,3 +80,13 @@ void __stdcall GFX_InitLRUCache(D2PoolManagerStrc* pMemory, uint32_t dwBytes) {
     hs_orig_GFX_InitLRUCache(pMemory, dwBytes);
 }
 }  // namespace D2CMP::SRC::SpriteCache
+
+namespace D2Client::Sound::SoundHdr {
+HS_FASTCALL void SOUNDHDR_SetGlobal4(uint32_t nMaxBytes) {
+    if (small_ram() && nMaxBytes > kSmallRamSoundCache) {
+        hs_log("sound cache: %u KiB asked, capped at %u KiB", (unsigned)(nMaxBytes >> 10), (unsigned)(kSmallRamSoundCache >> 10));
+        nMaxBytes = kSmallRamSoundCache;
+    }
+    hs_orig_SOUNDHDR_SetGlobal4(nMaxBytes);
+}
+}  // namespace D2Client::Sound::SoundHdr

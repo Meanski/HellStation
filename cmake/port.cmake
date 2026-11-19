@@ -105,6 +105,10 @@ set(HS_PORT_WRAPS
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory14FreeMemoryPoolEP17D2PoolManagerStrc"
     "D2Hell|Source/D2Hell/D2HellRoot.cpp|_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i"
     "D2Client|Source/D2Client/UI/Draw.cpp|_ZN8D2Client2UI4Draw7DRAW_UIEP14D2GameViewStrc"
+    "D2Client|Source/D2Client/UI/Draw.cpp|_ZN8D2Client2UI4Draw12InitializeUIEv"
+    "D2Client|Source/D2Client/UI/ui.cpp|_ZN8D2Client2UI2ui21UI_LoadAllPanelAssetsEv"
+    "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr19SOUNDHDR_SetGlobal4Ej"
+    "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr13SOUNDHDR_InitEj"
     # Not a definition: Codec.cpp's calls to memset (overrides/dcc_clear.cpp).
     "D2CMP|Source/D2CMP/SRC/Codec.cpp|memset"
 )

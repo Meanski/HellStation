@@ -170,7 +170,71 @@ Hdr* ours(void* p) {
 // couldn't use (1 MB at the first retail-cap run). Zeroed there by the backend.
 bool in_region(size_t n) { return n >= kRegionFrom; }
 
+// The client's sound samples (whole WAVs, 30-650 KiB, loaded and evicted all
+// the time under its cache budget, overrides/sprite_cache_cap.cpp) get an
+// arena of their own: in the shared heap their churn left 1.3 MB free in
+// pieces of 73 KiB or less, and a fight's next big block failed (PORTING_LOG,
+// 2026-11-20). Reserved at the first sound, never given back; first fit with
+// coalescing; when it's full, samples go to the heap as before.
+constexpr size_t kSoundArena = 512u << 10;
+struct Span { uint32_t at, size; };
+uint8_t* g_arena;
+Span g_arenaFree[64];
+int g_arenaSpans;
+bool g_nextIsSound;  // set by the D2FILE_AllocAndLoadD2File wrapper around a sound load
+
+bool in_arena(const void* p) { return g_arena && (const uint8_t*)p >= g_arena && (const uint8_t*)p < g_arena + kSoundArena; }
+void* arena_alloc(size_t bytes) {
+    if (!g_arena) {
+        g_arena = (uint8_t*)hs_vm_reserve(kSoundArena, 64);
+        if (!g_arena) return nullptr;
+        g_arenaFree[0] = {0, (uint32_t)kSoundArena};
+        g_arenaSpans = 1;
+        hs_log("fog: %u KiB sound sample arena", (unsigned)(kSoundArena >> 10));
+    }
+    bytes = (bytes + 15) & ~(size_t)15;
+    for (int i = 0; i < g_arenaSpans; i++) {
+        if (g_arenaFree[i].size < bytes) continue;
+        uint32_t at = g_arenaFree[i].at;
+        g_arenaFree[i].at += (uint32_t)bytes;
+        g_arenaFree[i].size -= (uint32_t)bytes;
+        if (!g_arenaFree[i].size) {
+            memmove(&g_arenaFree[i], &g_arenaFree[i + 1], sizeof(Span) * (size_t)(g_arenaSpans - i - 1));
+            g_arenaSpans--;
+        }
+        return g_arena + at;
+    }
+    return nullptr;
+}
+void arena_free(void* p, size_t bytes) {
+    bytes = (bytes + 15) & ~(size_t)15;
+    uint32_t at = (uint32_t)((uint8_t*)p - g_arena);
+    int i = 0;
+    while (i < g_arenaSpans && g_arenaFree[i].at < at) i++;
+    if (g_arenaSpans == 64) return;  // leak rather than corrupt
+    memmove(&g_arenaFree[i + 1], &g_arenaFree[i], sizeof(Span) * (size_t)(g_arenaSpans - i));
+    g_arenaFree[i] = {at, (uint32_t)bytes};
+    g_arenaSpans++;
+    if (i + 1 < g_arenaSpans && g_arenaFree[i].at + g_arenaFree[i].size == g_arenaFree[i + 1].at) {
+        g_arenaFree[i].size += g_arenaFree[i + 1].size;
+        memmove(&g_arenaFree[i + 1], &g_arenaFree[i + 2], sizeof(Span) * (size_t)(g_arenaSpans - i - 2));
+        g_arenaSpans--;
+    }
+    if (i > 0 && g_arenaFree[i - 1].at + g_arenaFree[i - 1].size == g_arenaFree[i].at) {
+        g_arenaFree[i - 1].size += g_arenaFree[i].size;
+        memmove(&g_arenaFree[i], &g_arenaFree[i + 1], sizeof(Span) * (size_t)(g_arenaSpans - i - 1));
+        g_arenaSpans--;
+    }
+}
+
 Hdr* raw_alloc(size_t n) {
+    if (g_nextIsSound) {
+        g_nextIsSound = false;
+        if (Hdr* h = (Hdr*)arena_alloc(sizeof(Hdr) + n)) {
+            memset(h + 1, 0, n);
+            return h;
+        }
+    }
     if (in_region(n)) return (Hdr*)hs_vm_reserve(sizeof(Hdr) + n, 16);
     Hdr* h = (Hdr*)malloc(sizeof(Hdr) + n);
     // Fog served most objects from fresh, zeroed blocks; malloc reuses freed
@@ -179,7 +243,8 @@ Hdr* raw_alloc(size_t n) {
     return h;
 }
 void raw_free(Hdr* h) {
-    if (in_region(h->size)) hs_vm_release(h, sizeof(Hdr) + h->size);
+    if (in_arena(h)) arena_free(h, sizeof(Hdr) + h->size);
+    else if (in_region(h->size)) hs_vm_release(h, sizeof(Hdr) + h->size);
     else free(h);
 }
 void counted(Hdr* h, size_t n, uint8_t site) {
@@ -231,6 +296,12 @@ size_t pool_slot_size(D2PoolManagerStrc* m, void* p) {
 }
 D2PoolManagerStrc* server_manager(D2PoolManagerStrc* m) { return Fog::Memory::gpServerMemHeap ? m : nullptr; }
 }  // namespace
+
+// The owners, now: the first heap failure prints them (backend/ps2/memory.cpp).
+extern "C" void hs_mem_report_owners(void) {
+    g_reports = 0;
+    hs_mem_report_fog_exact();
+}
 
 void hs_mem_report_fog_exact(void) {
     if (g_on == 1)
@@ -302,7 +373,7 @@ HS_FOG_CC void* ReAllocServerMemory(D2PoolManagerStrc* m, void* p, size_t n, cha
         }
         return hs_orig_ReAllocServer(m, p, n, file, line, z);
     }
-    if (n <= h->size && !in_region(h->size)) {  // a malloc block shrinks in place (a region's size must stay whole)
+    if (n <= h->size && !in_region(h->size) && !in_arena(h)) {  // a malloc block shrinks in place (a region's size must stay whole)
         g_live -= h->size - n;
         site_sub(h, h->size);
         h->size = (uint32_t)n;
@@ -346,7 +417,9 @@ void FreeMemoryPool(D2PoolManagerStrc* m) {
 namespace D2Hell {
 HS_FOG_CC void* D2FILE_AllocAndLoadD2File(D2PoolManagerStrc* m, char* name, uint32_t* size, char* file, int32_t line) {
     uint32_t n = 0;
+    g_nextIsSound = g_on == 1 && file && strstr(file, "SoundHdr");
     void* p = hs_orig_AllocAndLoad(m, name, &n, file, line);
+    g_nextIsSound = false;
     if (size) *size = n;
     if (Hdr* h = ours(p)) {
         site_sub(h, h->size);

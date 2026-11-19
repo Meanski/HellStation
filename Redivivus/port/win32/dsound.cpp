@@ -85,11 +85,17 @@ struct Buffer {
     DWORD origin;             // ring offset of the voice's frame 0
     DWORD expect;             // ring offset where the next in-order write starts
     bool fresh;               // nothing appended since the stream restarted
-    void* locked;             // the scratch handed out by Lock
+    bool locked;              // holds the shared scratch, between Lock and Unlock
     DWORD lockedAt, lockedBytes;
 };
 
 hs_mutex* g_lock;
+// One scratch for every Lock, held from Lock to Unlock (the game's writers
+// already take turns: D2Sound under its sample lock, Storm under its stream
+// lock). Per-buffer scratch had kept up to 64 KiB for each of 25 buffers.
+hs_mutex* g_scratchLock;
+uint8_t* g_scratch;
+DWORD g_scratchSize;
 void lock() { hs_mutex_lock(g_lock); }
 void unlock() { hs_mutex_unlock(g_lock); }
 
@@ -149,7 +155,7 @@ ULONG WINAPI B_Release(Buffer* b) {
     LONG n = --b->refs;
     if (n > 0) return (ULONG)n;
     if (b->voice >= 0) hs_audio_voice_destroy(b->voice);
-    free(b->locked);
+    if (b->locked) hs_mutex_unlock(g_scratchLock);
     free(b);
     return 0;
 }
@@ -179,6 +185,7 @@ HRESULT WINAPI B_GetVolume(Buffer* b, LONG* v) { if (v) *v = b->volume; return k
 HRESULT WINAPI B_GetPan(Buffer* b, LONG* p) { if (p) *p = b->pan; return kOk; }
 HRESULT WINAPI B_GetFrequency(Buffer* b, DWORD* f) { if (f) *f = b->frequency ? b->frequency : b->rate; return kOk; }
 HRESULT WINAPI B_GetStatus(Buffer* b, DWORD* s) {
+
     if (s) *s = b->playing ? kStatusPlaying | (b->looping ? kStatusLooping : 0) : 0;
     return kOk;
 }
@@ -191,19 +198,27 @@ HRESULT WINAPI B_Lock(Buffer* b, DWORD at, DWORD bytes, void** p1, DWORD* n1, vo
     // One region: the game's writes never cross the ring's end (they pass no
     // second pointer); a request that would is cut at the end.
     if (bytes > b->size - at) bytes = b->size - at;
-    void* p = realloc(b->locked, bytes ? bytes : 1);
-    if (!p) return kOutOfMemory;
-    b->locked = p;
+    hs_mutex_lock(g_scratchLock);
+    if (bytes > g_scratchSize) {  // grows to the largest write: a whole stereo ring, 256 KiB
+        void* p = realloc(g_scratch, bytes);
+        if (!p) {
+            hs_mutex_unlock(g_scratchLock);
+            return kOutOfMemory;
+        }
+        g_scratch = (uint8_t*)p;
+        g_scratchSize = bytes;
+    }
+    b->locked = true;
     b->lockedAt = at;
     b->lockedBytes = bytes;
-    *p1 = p;
+    *p1 = g_scratch;
     *n1 = bytes;
     if (p2) *p2 = nullptr;
     if (n2) *n2 = 0;
     return kOk;
 }
 HRESULT WINAPI B_Unlock(Buffer* b, void* p1, DWORD n1, void*, DWORD) {
-    if (!b->locked || p1 != b->locked) return kInvalidParam;
+    if (!b->locked || p1 != g_scratch) return kInvalidParam;
     if (n1 > b->lockedBytes) n1 = b->lockedBytes;
     if (b->voice >= 0) {
         lock();
@@ -214,13 +229,9 @@ HRESULT WINAPI B_Unlock(Buffer* b, void* p1, DWORD n1, void*, DWORD) {
         b->expect = (b->lockedAt + n1) % b->size;
         unlock();
     }
-    // The scratch stays allocated for the next Lock: most buffers stream in
-    // equal chunks. Big one-off fills (a whole ring at load) are given back.
-    if (b->lockedBytes > (64u << 10)) {
-        free(b->locked);
-        b->locked = nullptr;
-    }
+    b->locked = false;
     b->lockedBytes = 0;
+    hs_mutex_unlock(g_scratchLock);
     return kOk;
 }
 HRESULT WINAPI B_Play(Buffer* b, DWORD, DWORD, DWORD flags) {
@@ -378,6 +389,12 @@ extern "C" int32_t WINAPI DirectSoundCreate(const GUID*, struct IDirectSound** o
         return kNoDriver;
     }
     if (!g_lock) g_lock = hs_mutex_create();
+    if (!g_scratchLock) {
+        g_scratchLock = hs_mutex_create();
+        g_scratchSize = 256u << 10;  // the largest write, a whole stereo ring: once, so it never grows in pieces
+        g_scratch = (uint8_t*)malloc(g_scratchSize);
+        if (!g_scratch) g_scratchSize = 0;
+    }
     Device* d = (Device*)calloc(1, sizeof(Device));
     if (!d) return kOutOfMemory;
     d->vtbl = &kDeviceVtbl;
