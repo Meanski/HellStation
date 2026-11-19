@@ -768,3 +768,25 @@ shortage of about 1 MB in a busy fight, before any sound. Fights also run at 9-1
 `-Os` build: program image 6,897 -> 6,412 KiB, heap limit 24,715 -> 25,199 KiB. Same Black Marsh
 test as the entry above: **16 attacks on two monster types, no failure**, peak 23,743 KiB taken
 (1.45 MB spare). The fight runs at about 4 FPS (270 ms a frame): the 2 MB sprite cache again.
+
+## 2026-11-19: a sprite cache that resizes itself doesn't work; fights stay at 2 MB
+
+**In short: 3 MB of sprite cache makes most fights 25 FPS, but there isn't room for it, and every
+way of making the cache give memory back on demand froze the game. Fights stay at 2 MB (they
+don't run out of memory, but big packs are slow); the next step is making sprite decoding cheaper.**
+
+What was tried, all with a 3 MB sprite cache and a 1 MB tile LRU on the `-Os` build:
+- **Trim at level builds** (a wrap on D2Common's `InitLevel`, which runs for waypoints, portals,
+  stairs and neighbouring areas): evicting with the cache's own pick froze the next waypoint load
+  (it can take a sprite the loader is still filling); lowering the limit below what the cache
+  held froze it too (the game's next allocation finds no room and its caller waits forever);
+  choosing victims by hand (holding data, unlocked, not drawn for 5 s) gave back 1,037 KiB at the
+  Black Marsh's build and froze a few seconds into the fight. Skipping the trim while loads are in
+  flight made it never run.
+- **A governor** (5 times a second, after drawing): on total free memory it never acted, and a
+  354 KiB request failed with 1.8 MB free (largest block 315 KiB); the largest free block is the
+  signal that matters. With eviction unsafe it has no lever anyway.
+- Fixed 3 MB / 1 MB, two runs: one peaked at 24,980 of 25,199 KiB, the other failed that 354 KiB
+  request. Too thin.
+
+The draft (`InitLevel` wrap, governor plumbing, the sprite cache made global) isn't committed.
