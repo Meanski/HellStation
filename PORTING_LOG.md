@@ -817,3 +817,7 @@ timing.**
 The game re-encodes every decoded sprite to RLE when it sees under 64 MB
 (`gbSpriteCacheConversionEnabled`), which makes cache entries smaller but costs a pass per decode
 (`CODEC_EncodeRLE`); a candidate to measure next.
+
+Correction to the entry above: `gbSpriteCacheConversionEnabled` only decides whether *player*
+sprites skip a conversion step on load (`SPRITECACHE_LoadSpriteWithConversion`); the RLE encode
+in `CODEC_DecompressAllFrames` is part of every decode and isn't optional. Not a lever.
