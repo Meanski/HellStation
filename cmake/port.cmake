@@ -189,6 +189,10 @@ function(hs_port_link target)
         # so it gets inlining and -O2 even in an -Os build.
         set_property(SOURCE "${D2_ROOT}/Source/D2CMP/SRC/Codec.cpp" APPEND PROPERTY
             COMPILE_OPTIONS -O2 -finline -finline-small-functions)
+        # The SPU2 ADPCM encoder: every sample the game plays goes through it
+        # (15% of the EE in a fight). Nothing patches it.
+        set_property(SOURCE "${HS_PORT_DIR}/backend/ps2/audio.cpp" APPEND PROPERTY
+            COMPILE_OPTIONS -O2 -finline -finline-small-functions -funroll-loops)
     endif()
     # The Win32 layer: compiled in the game's environment so every signature
     # matches the SDK declaration the game was compiled against.

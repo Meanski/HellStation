@@ -284,6 +284,8 @@ void key(Voice& v, bool on) {
     v.lastBlock = block;
 }
 
+uint64_t g_encodedBlocks, g_encodedResets, g_unplayed;  // for the 30 s report
+
 // Brings every playing voice's played count up to date.
 void poll(bool force) {
     uint32_t now = hs_ticks_ms();
@@ -301,7 +303,10 @@ void poll(bool force) {
             playing++;
             if (g_rpc[48 + v.hw[0]]) sounding++;
         }
-        hs_log("audio: %d voices playing, %d with an envelope above zero", playing, sounding);
+        hs_log("audio: %d voices playing, %d with an envelope above zero; encoded %u frames/s, %u resets/s (%u frames/s unplayed)",
+               playing, sounding, (unsigned)(g_encodedBlocks * 28 / 30), (unsigned)(g_encodedResets / 30),
+               (unsigned)(g_unplayed / 30));
+        g_encodedBlocks = g_encodedResets = g_unplayed = 0;
     }
     g_lastPoll = now;
     g_polled = true;
@@ -330,6 +335,7 @@ void write_groups(Voice& v, const int16_t* frames, uint32_t groups) {
                 encode_block(v.enc[c], frames + (size_t)i * 28 * v.channels + c, v.channels,
                              block_flags(block + i, v.blocks), out + i * 16);
             spu_write(v.ring[c] + block * 16, n * 16);
+            g_encodedBlocks += n;
         }
         frames += (size_t)n * 28 * v.channels;
         v.appended += n * 28;
@@ -515,6 +521,8 @@ void hs_audio_voice_reset(int id) {
     if (Voice* v = voice(id)) {
         if (v->playing) key(*v, false);
         v->playing = false;
+        g_encodedResets++;
+        if (v->appended > v->played) g_unplayed += (v->appended - v->played) * v->channels;
         v->appended = v->played = 0;
         v->carried = 0;
         v->skip = 0;

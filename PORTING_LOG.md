@@ -1072,3 +1072,20 @@ miss. The EE heap pays nothing (peak 23,775 of 25,024 KiB).**
 - What made a hit slow was the IOP's copy: entries started at arbitrary byte offsets in the
   ring, so the IOP copied byte by byte. Entries now start 64-byte aligned: a hit 3.2 -> 1.8 ms
   (17 KiB), a store 1.7 -> 0.6 ms (12-hunt fight: 9,728 hits, 5,126 decodes at ~13.5 ms).
+
+## 2026-11-20: the sound encoder is a fight's biggest single cost
+
+**In short: in a Black Marsh fight the EE encodes 250,000-650,000 samples a second to SPU2
+ADPCM (about 15% of the EE by the profiler), and 35-70% of them are thrown away unplayed when
+the game cuts a sound short or reuses its buffer. -O2 makes the encoder 18% faster (3,061 ->
+2,519 cycles a 28-sample block); encoding only what's about to play is the bigger win, not
+done yet.**
+
+- Profiler, frames 2,250 on of a 12-hunt fight: `encode_block` ~4,800 of ~62,000 busy samples,
+  the most of any function; Storm's MPQ sound decompression (Huffman + ADPCM) another ~2,000.
+- `audio:` lines now report encoded frames/s, voice resets/s and frames/s discarded unplayed at
+  reset. One run: 163k/59k, 314k/167k, 290k/107k, 647k/453k (encoded/unplayed per second).
+- `backend/ps2/audio.cpp` is built at -O2 with inlining and unrolling (nothing patches it); the
+  start-up read-back check still passes.
+- Next: encode lazily, a little ahead of each voice's play position, instead of everything at
+  Unlock. Needs the PCM held somewhere until then, and EE RAM is the constraint.
