@@ -141,6 +141,12 @@ int hs_input_poll(hs_event* ev) {
         hs_ps2_pad_init();
         g_script.load("host:input.txt");
     }
+    // Live input from the host, about once a second (tools/port/live.sh).
+    static uint32_t livePolled = ~0u;
+    if (g_frameNo / 25 != livePolled) {
+        livePolled = g_frameNo / 25;
+        g_script.poll_live("host:live.txt", g_frameNo);
+    }
     bool got = g_script.next(g_frameNo, ev);
     if (!got && g_frameW && g_padFrame != g_frameNo) {
         g_padFrame = g_frameNo;

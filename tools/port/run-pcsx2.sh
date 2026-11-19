@@ -23,6 +23,7 @@ RUN="$ROOT/$BUILD/run"
 mkdir -p "$RUN/hsroot"
 ln -sfn "${D2DATA:-$HOME/d2data}" "$RUN/data"
 if [ -n "$SCRIPT" ]; then cp "$SCRIPT" "$RUN/input.txt"; else rm -f "$RUN/input.txt"; fi
+: > "$RUN/live.txt"  # live input (tools/port/live.sh) starts empty
 "$ROOT/tools/port/ps2.sh" mips64r5900el-ps2-elf-strip -o "$BUILD/run/d2.elf" "$BUILD/d2.elf"
 
 # Close any running PCSX2 first and wait for it: on quit it writes its settings

@@ -68,6 +68,8 @@ HWND input_target() {
     return windows().empty() ? nullptr : (HWND)windows().front();
 }
 
+extern "C" void hs_debug_where(void);  // overrides/debug_where.cpp
+
 // Backend events -> window messages.
 void pump() {
     hs_event ev;
@@ -103,6 +105,9 @@ void pump() {
         }
         case HS_EV_CHAR:
             if (h) post(h, WM_CHAR, (WPARAM)ev.ch, 1);
+            break;
+        case HS_EV_DEBUG_WHERE:
+            hs_debug_where();
             break;
         case HS_EV_FOCUS:
             if (h) {

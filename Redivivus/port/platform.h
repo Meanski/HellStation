@@ -119,7 +119,8 @@ void hs_video_set_title(const char* title);
 // virtual-key codes, so the shim can forward them as WM_KEY* unchanged.
 enum hs_event_type {
     HS_EV_NONE = 0, HS_EV_QUIT, HS_EV_MOUSE_MOVE, HS_EV_MOUSE_BUTTON, HS_EV_MOUSE_WHEEL,
-    HS_EV_KEY, HS_EV_CHAR, HS_EV_FOCUS
+    HS_EV_KEY, HS_EV_CHAR, HS_EV_FOCUS,
+    HS_EV_DEBUG_WHERE  // scripted "where": log the objects around the player (overrides/debug_where.cpp)
 };
 enum { HS_BUTTON_LEFT = 1, HS_BUTTON_RIGHT = 2, HS_BUTTON_MIDDLE = 3 };
 typedef struct hs_event {

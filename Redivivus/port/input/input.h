@@ -21,19 +21,30 @@ int set1_from_vk(int vk);
 //   <frame> key <vk>              press and release a Windows virtual key (hex or decimal)
 //   <frame> text <characters...>  typed characters (rest of the line)
 //   <frame> quit                  close the window
+//   <frame> where                 log the objects near the player and where to click them
 // '#' starts a comment. A step's events come out one per call.
+//
+// Live input: poll_live() reads the lines appended to a file since its last
+// call, so a running game can be driven a step at a time from the host. There a
+// frame written "+N" means N frames after the line is read.
 class Script {
 public:
     // Reads the file once; a missing file means no script (logged).
     void load(const char* path);
+    // Appends the complete lines added to path since the last call.
+    void poll_live(const char* path, uint32_t frame);
     // The next due event, if any. Mouse events carry absolute coordinates; for
     // others x/y are left for the caller to fill.
     bool next(uint32_t frame, hs_event* ev);
 
 private:
     struct Step;
-    Step* steps_ = nullptr;
-    unsigned count_ = 0, nextStep_ = 0, pendingStep_ = 0, pendingEvent_ = 0;
+    bool parse(const char* line, uint32_t now, Step* out);
+    void add(Step&& step);
+    struct Steps;
+    Steps* steps_ = nullptr;
+    unsigned nextStep_ = 0, pendingStep_ = 0, pendingEvent_ = 0;
+    long liveOffset_ = 0;
     bool pending_ = false;
 };
 
