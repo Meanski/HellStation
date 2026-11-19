@@ -224,7 +224,7 @@ function(hs_port_link target)
             COMMAND make -s -C "${HS_IRX_DIR}" "IOP_OBJS_DIR=${CMAKE_BINARY_DIR}/iop/"
                     "IOP_BIN=${CMAKE_BINARY_DIR}/hsaudio.irx"
             COMMAND bin2c "${CMAKE_BINARY_DIR}/hsaudio.irx" "${CMAKE_BINARY_DIR}/hsaudio_irx.c" hsaudio_irx
-            DEPENDS "${HS_IRX_DIR}/hsaudio.c" "${HS_IRX_DIR}/hsaudio_rpc.h" "${HS_IRX_DIR}/imports.lst"
+            DEPENDS "${HS_IRX_DIR}/hsaudio.c" "${HS_IRX_DIR}/disc.c" "${HS_IRX_DIR}/hsaudio_rpc.h" "${HS_IRX_DIR}/imports.lst"
                     "${HS_IRX_DIR}/irx_imports.h" "${HS_IRX_DIR}/Makefile"
             COMMENT "IOP module: hsaudio.irx" VERBATIM)
         target_sources(hs_backend PRIVATE "${CMAKE_BINARY_DIR}/hsaudio_irx.c")

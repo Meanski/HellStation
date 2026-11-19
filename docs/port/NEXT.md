@@ -21,9 +21,9 @@ default EE build** (an -O2 build ran out of memory in the fight test with sound 
 
 **2026-11-20: a disc image boots.** `tools/port/make-iso.py` (or `run-pcsx2.sh --iso`) builds a
 DVD image from the ELF and the user's own MPQs; booted from it, the game reads data from
-`cdrom0:` through a 128 KiB read cache and keeps saves on the memory card (formats an
-unformatted card in slot 1). New character -> Rogue Encampment at 22 FPS in PCSX2. Loads are
-slow (town 38 s; some 20 s stalls walking into new ground). PORTING_LOG, "a disc image boots".
+`cdrom0:` through a 1 MB read cache on the IOP and keeps saves on the memory card (formats an
+unformatted card in slot 1). New character -> Rogue Encampment at 22-25 FPS in PCSX2. Loads:
+town 12 s, walking stalls up to 4 s. PORTING_LOG, "a disc image boots".
 
 With the heap stopped at a retail 32 MB (PCSX2's Extended RAM off), the game boots, loads saves,
 walks every town tested (Act 1 to Act 5) and fights in Act 1's Black Marsh without running out of
@@ -79,10 +79,9 @@ AnimData.d2 0.56 MB.
    (compress it), the 256 KiB DirectSound scratch, raw data tables (2.1 MB). Fragmentation is
    the real enemy: decoded sprites are 20-600 KiB blocks churning through one heap.
 3. **Fights: fewer or cheaper decodes** (unchanged from before): see "Fights" notes below.
-4. **The disc: load times.** It boots and plays from a PCSX2 DVD image. Loads are seek-bound:
-   38 s into town, stalls walking. A bigger read cache halves reads again (256 KiB, measured on
-   the read log) when memory allows; otherwise lay files out so what loads together sits
-   together. Real hardware can't boot a burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD
+4. **The disc: load times.** It boots and plays from a PCSX2 DVD image, with a 1 MB read cache
+   on the IOP: 12 s into town, walking stalls up to 4 s. Next would be laying files out so what
+   loads together sits together. Real hardware can't boot a burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD
    loading (OPL) is the practical way onto a console and may be worth supporting.
 5. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly; null
    reads too (PCSX2 logs them as "TLB Miss" and carries on: grep `pcsx2.log` after a run; one in

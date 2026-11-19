@@ -67,7 +67,16 @@ int disc_stat(const std::string& path, int64_t* size) {
 // until data is needed.
 constexpr uint32_t kWindow = 32u << 10;
 constexpr int kWindows = 4;
-struct DiscFile { bool on; int64_t pos, size; };
+struct DiscFile { bool on; int64_t pos, size; uint32_t lsn; };  // lsn: served by the IOP's cache (0: windows here)
+// The PS2's IOP-side cache (backend/ps2/disc.cpp): 1 MB of the IOP's memory
+// instead of these windows, when it's there.
+#if defined(_EE)
+extern "C" int hs_disc_cache_find(const char* isoName, uint32_t* lsn, uint32_t* size) __attribute__((weak));
+extern "C" int64_t hs_disc_cache_read(uint32_t lsn, int64_t offset, void* buf, uint32_t n) __attribute__((weak));
+#else
+constexpr int (*hs_disc_cache_find)(const char*, uint32_t*, uint32_t*) = nullptr;
+int64_t hs_disc_cache_read(uint32_t, int64_t, void*, uint32_t) { return -1; }
+#endif
 DiscFile g_discFiles[64];
 struct Window { int fd; int64_t block; uint32_t bytes; uint32_t used; uint8_t* data; };
 Window g_windows[kWindows];
@@ -105,6 +114,13 @@ Window* window_for(int fd, int64_t block) {
     return lru;
 }
 int64_t disc_read(DiscFile& f, int fd, void* buf, uint32_t n) {
+    if (f.lsn) {
+        int64_t want = f.size - f.pos < (int64_t)n ? f.size - f.pos : (int64_t)n;
+        if (want <= 0) return 0;
+        int64_t got = hs_disc_cache_read(f.lsn, f.pos, buf, (uint32_t)want);
+        if (got > 0) f.pos += got;
+        return got;
+    }
     uint32_t done = 0;
     while (done < n && f.pos < f.size) {
         Window* w = window_for(fd, f.pos / kWindow);
@@ -261,7 +277,10 @@ int hs_file_open(const char* path, int access, int disposition) {
         DiscGuard g;
         off64_t end = lseek64(fd, 0, SEEK_END);
         lseek64(fd, 0, SEEK_SET);
-        g_discFiles[fd] = {true, 0, end < 0 ? 0 : (int64_t)end};
+        g_discFiles[fd] = {true, 0, end < 0 ? 0 : (int64_t)end, 0};
+        uint32_t lsn = 0, size = 0;
+        if (hs_disc_cache_find && hs_disc_cache_find(p.c_str() + 7, &lsn, &size) && size == (uint32_t)g_discFiles[fd].size)
+            g_discFiles[fd].lsn = lsn;
         for (Window& w : g_windows)
             if (w.fd == fd) w.fd = -1;
     }

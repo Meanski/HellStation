@@ -415,19 +415,30 @@ static void self_check() {
            badFlags ? "BAD" : "ok", (unsigned)played, (unsigned)ms, (unsigned)(ms * 2205 / 100));
 }
 
-int hs_audio_open(void) {
-    if (g_state >= 0) return g_state;
-    g_state = 0;
-    g_lock = hs_mutex_create();
+// LIBSD and our IOP module (audio and the disc cache), loaded once: early on a
+// disc boot (main.cpp), or by the first audio use.
+int hs_ps2_load_iop_module(void) {
+    static int state = -1;
+    if (state >= 0) return state;
+    state = 0;
     SifInitRpc(0);
     sbv_patch_enable_lmb();
     int sd = SifLoadModule("rom0:LIBSD", 0, nullptr);
     int ret = 0;
     int id = SifExecModuleBuffer(hsaudio_irx, size_hsaudio_irx, 0, nullptr, &ret);
     if (sd < 0 || id < 0) {
-        hs_log("audio: loading LIBSD/hsaudio failed (%d, %d)", sd, id);
+        hs_log("iop: loading LIBSD/hsaudio failed (%d, %d)", sd, id);
         return 0;
     }
+    state = 1;
+    return 1;
+}
+
+int hs_audio_open(void) {
+    if (g_state >= 0) return g_state;
+    g_state = 0;
+    g_lock = hs_mutex_create();
+    if (!hs_ps2_load_iop_module()) return 0;
     for (int tries = 0; tries < 200; tries++) {
         if (SifBindRpc(&g_client, HSA_SID, 0) >= 0 && g_client.server) break;
         hs_sleep_ms(5);
@@ -437,6 +448,7 @@ int hs_audio_open(void) {
         return 0;
     }
     call(HSA_INIT, 64, 16);
+    hs_log("audio: IOP memory free %u KiB (largest block %u KiB)", (unsigned)(g_rpc[1] >> 10), (unsigned)(g_rpc[2] >> 10));
     g_free[0] = {kSpuBase, kSpuEnd - kSpuBase};
     g_freeCount = 1;
     hs_log("audio: SPU2 via hsaudio.irx, %u KiB of sound memory", (unsigned)((kSpuEnd - kSpuBase) >> 10));

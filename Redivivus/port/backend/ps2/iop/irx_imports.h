@@ -5,3 +5,5 @@
 #include <sysclib.h>
 #include <thbase.h>
 #include <libsd.h>
+#include <sysmem.h>
+#include <cdvdman.h>

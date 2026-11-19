@@ -14,6 +14,7 @@
 #include <sysclib.h>
 #include <thbase.h>
 #include <libsd.h>
+#include <sysmem.h>
 
 #include "hsaudio_rpc.h"
 
@@ -58,6 +59,8 @@ static void* rpc(int fno, void* data, int size) {
     case HSA_INIT:
         init_spu();
         a[0] = 1;
+        a[1] = QueryTotalFreeMemSize();  // IOP memory left, for the log
+        a[2] = QueryMaxFreeMemSize();
         break;
     case HSA_WRITE: {  // a[0] SPU2 byte address, a[1] bytes (multiple of 64), data from byte 64
         u32 bytes = a[1];
@@ -127,6 +130,8 @@ static void server(void* arg) {
     sceSifRpcLoop(&g_queue);
 }
 
+int hs_disc_start(void);  // disc.c
+
 int _start(int argc, char* argv[]) {
     iop_thread_t t;
     int id;
@@ -141,5 +146,6 @@ int _start(int argc, char* argv[]) {
     id = CreateThread(&t);
     if (id <= 0) return MODULE_NO_RESIDENT_END;
     StartThread(id, NULL);
+    hs_disc_start();
     return MODULE_RESIDENT_END;
 }

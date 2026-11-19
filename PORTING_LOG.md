@@ -1015,3 +1015,20 @@ minutes idle in the Black Marsh plus 40 rounds of fighting (about 15 minutes) ra
 - The class-select voice lines now load when played instead of being skipped, but in the
   scripted new-character run the menu never asked for one (only `button.wav`), so that path is
   unexercised.
+
+## 2026-11-20: the disc read cache moves to the IOP
+
+**In short: the IOP has 1.5 MB of its own RAM free; 1 MB of it now caches the disc. Entering
+town from the disc takes 12 s (44 s with the EE's 128 KiB cache), walking stalls are 4 s at
+most (20 s), and the EE gets its 128 KiB back.**
+
+- `backend/ps2/iop/disc.c`: a second RPC server in our IOP module, on its own thread so a read
+  waiting on the drive doesn't hold up audio. It finds a file's first sector
+  (`sceCdSearchFile`) and serves byte ranges from sixteen 64 KiB windows of the disc, least
+  recently used out, read with `sceCdRead`. The windows are allocated at the first disc request,
+  so a game run from the host never takes the IOP's memory.
+- `backend/ps2/disc.cpp` is the EE client; `backend/posix/files.cpp` uses it for `cdrom0:` files
+  when it answers and keeps the EE windows as the fallback (allocated only if used).
+- Same new-character script from the disc image: CD reads 4,420 -> 1,231 (now 64 KiB each), the
+  worst gap entering town 44.1 s -> 11.7 s. IOP memory free before the cache: 1,527 KiB.
+- Linux town smoke re-run on the current tree: 20,750 frames in 900 s, no halt.

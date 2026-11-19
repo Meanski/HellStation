@@ -97,6 +97,10 @@ extern "C" void hs_lwlr_probe();  // lwlr_probe.cpp (temporary)
 void hs_memcpy_selftest(void);    // memcpy.cpp
 
 int hs_ps2_load_sio2man();  // pad.cpp
+// The disc read cache (disc.cpp): files.cpp only refers to it weakly, which
+// wouldn't pull it out of the library.
+extern "C" int hs_disc_cache_find(const char* isoName, uint32_t* lsn, uint32_t* size);
+__attribute__((used)) static int (*const s_keepDiscCache)(const char*, uint32_t*, uint32_t*) = hs_disc_cache_find;
 
 // Saves and settings live on the memory card in slot 1. A card that has never
 // been formatted holds nothing, and nothing can be written to it, so it is

@@ -33,7 +33,7 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 > disc image, as PCSX2 emulates them.** Creating a character, the Rogue Encampment and Harrogath
 > (Act 5, Hell) all run with PCSX2's Extended RAM off, with about 1 MB to spare. In November 2026
 > the project nearly stopped over memory. It hasn't run on real hardware yet, loading from the
-> disc is slow (about 40 s into town), and fights outside town slow down in big packs. The
+> disc takes about 12 s into town, and fights outside town slow down in big packs. The
 > numbers are below and in the [dev log](PORTING_LOG.md).
 
 ## Status
@@ -48,7 +48,7 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 | ✅ | Harrogath's lower town at **25 FPS** in 32 MB (it was 15: a byte-at-a-time `memcpy` and a blocking vsync wait) |
 | ✅ | **Sound** on the SPU2's own voices, from its own memory (an IOP module of the port's), long sounds streamed from the archives; costs about 3 FPS in town. Checked by readback and voice envelopes; not yet listened to on the PS2 |
 | ✅ | **Boots from a disc image** ([`tools/port/make-iso.py`](tools/port/make-iso.py), built from your own game files): data from the DVD, saves on the memory card |
-| ⚠️ | Loading from the disc is seek-bound: about 40 s into town, and stalls walking into new ground |
+| ⚠️ | Loading from the disc is seek-bound: about 12 s into town, and stalls of a few seconds walking into new ground (a 1 MB read cache in the IOP's own memory) |
 | ⚠️ | Walking down the stairs into lower Harrogath stalls for about a minute at 2-5 FPS: the sprite cache thrashes |
 | ⚠️ | Fights outside town (Act 1, Black Marsh) run in 32 MB without running out, but big mixed packs drop to 4-10 FPS: the sprite cache is too small to hold them |
 | ❓ | Not tried yet: long sessions |

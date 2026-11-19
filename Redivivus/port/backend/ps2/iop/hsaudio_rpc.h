@@ -13,3 +13,13 @@ enum {
     HSA_STATUS = 5,
     HSA_READ = 6,
 };
+
+// The disc read cache (disc.c): its own server, so a read waiting on the drive
+// doesn't hold up audio.
+#define HSD_SID 0x48534431  // "HSD1"
+#define HSD_HEADER 64
+#define HSD_RPC_BUFFER (HSD_HEADER + 32 * 1024)  // up to 32 KiB a read
+enum {
+    HSD_FIND = 1,
+    HSD_READ = 2,
+};

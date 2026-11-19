@@ -7,12 +7,14 @@ sifcmd_IMPORTS_end
 
 sysclib_IMPORTS_start
 I_memset
+I_memcpy
 sysclib_IMPORTS_end
 
 thbase_IMPORTS_start
 I_CreateThread
 I_StartThread
 I_GetThreadId
+I_DelayThread
 thbase_IMPORTS_end
 
 libsd_IMPORTS_start
@@ -25,3 +27,15 @@ I_sceSdSetSwitch
 I_sceSdVoiceTrans
 I_sceSdVoiceTransStatus
 libsd_IMPORTS_end
+
+sysmem_IMPORTS_start
+I_QueryTotalFreeMemSize
+I_QueryMaxFreeMemSize
+I_AllocSysMemory
+sysmem_IMPORTS_end
+
+cdvdman_IMPORTS_start
+I_sceCdRead
+I_sceCdSearchFile
+I_sceCdSync
+cdvdman_IMPORTS_end
