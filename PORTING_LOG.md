@@ -790,3 +790,30 @@ What was tried, all with a 3 MB sprite cache and a 1 MB tile LRU on the `-Os` bu
   request. Too thin.
 
 The draft (`InitLevel` wrap, governor plumbing, the sprite cache made global) isn't committed.
+
+## 2026-11-19: sprite decoding 20% cheaper
+
+**In short: with the sprite cache stuck at 2 MB, the cost of decoding sprites is what makes busy
+scenes slow. A faster `memset` and compiling the decoder at `-O2` with inlining cut the cost of a
+decode by about 20%. The stairs stall is still there some runs: how much gets decoded depends on
+timing.**
+
+- Profile of a slow fight (`-Os`, 2 MB sprite cache, `-DHS_PS2_PROFILE=ON`): `memset` 8% of
+  samples (newlib's, a word at a time: every large allocation is zeroed), DCC decoding about 30%
+  (`CODEC_ReadBits` 11%, `CODEC_DecodeFramePixels` 9%, `CODEC_EncodeRLE` 5.5%), sprite cache
+  removal 5%, outside the program 14%.
+- `memset` now stores doublewords (`backend/ps2/memcpy.cpp`; a self-test logs
+  `memset check: ok (0 of 648 cases wrong)` at boot).
+- `Source/D2CMP/SRC/Codec.cpp` gets `-O2 -finline -finline-small-functions` on the EE, even in an
+  `-Os` build: the bit reader was a function call per field under `-fno-inline`, and nothing
+  patches a function in that file.
+- Measuring it: the `act5-walk` stairs window gave 45 ms frames in one run and 205 ms in the next
+  with the same build (116 ms before the change), so frame times can't tell. A wrap on
+  `CODEC_DecompressAllFrames` (`overrides/dcc_timing.cpp`) now logs decode time from the EE's
+  cycle counter every 256 decodes: at 1,280 decodes, **1,109 us per KiB decoded against 1,370**
+  with the decoder at `-Os` (37.9 against 52.2 ms a decode). Both include time the decoding
+  thread spends pre-empted, so they're for comparison only.
+
+The game re-encodes every decoded sprite to RLE when it sees under 64 MB
+(`gbSpriteCacheConversionEnabled`), which makes cache entries smaller but costs a pass per decode
+(`CODEC_EncodeRLE`); a candidate to measure next.

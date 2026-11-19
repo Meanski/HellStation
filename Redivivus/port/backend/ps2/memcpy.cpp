@@ -74,6 +74,27 @@ extern "C" __attribute__((optimize("no-tree-loop-distribute-patterns"))) void* m
     return d;
 }
 
+// newlib's memset stores a word at a time; in a fight decoding sprites it was
+// the hottest function (8% of samples): every large allocation is zeroed. This
+// one stores doublewords, four per loop.
+extern "C" __attribute__((optimize("no-tree-loop-distribute-patterns"))) void* memset(void* d, int c, size_t n) {
+    unsigned char* p = (unsigned char*)d;
+    unsigned char b = (unsigned char)c;
+    if (n >= 16) {
+        while ((uintptr_t)p & 7) { *p++ = b; n--; }
+        uint64_t v = b;  // the R5900 has no 64-bit multiply: spread the byte by shifts
+        v |= v << 8;
+        v |= v << 16;
+        v |= v << 32;
+        uint64_t* q = (uint64_t*)p;
+        for (; n >= 32; n -= 32, q += 4) { q[0] = v; q[1] = v; q[2] = v; q[3] = v; }
+        for (; n >= 8; n -= 8) *q++ = v;
+        p = (unsigned char*)q;
+    }
+    while (n--) *p++ = b;
+    return d;
+}
+
 void hs_memcpy_selftest(void) {
     static unsigned char src[96], dst[96], want[96];
     for (unsigned i = 0; i < sizeof src; i++) src[i] = (unsigned char)(i * 37 + 11);
@@ -89,4 +110,15 @@ void hs_memcpy_selftest(void) {
                     if (dst[i] != want[i]) { bad++; break; }
             }
     hs_log("memcpy check: %s (%u of %u cases wrong)", bad ? "FAILED" : "ok", bad, 8u * 8u * 81u);
+    bad = 0;
+    for (unsigned doff = 0; doff < 8; doff++)
+        for (unsigned n = 0; n <= 80; n++) {
+            for (unsigned i = 0; i < sizeof dst; i++) dst[i] = want[i] = 0xEE;
+            for (unsigned i = 0; i < n; i++) want[doff + i] = (unsigned char)(n + 0x5A);
+            volatile size_t vn = n;
+            memset(dst + doff, (int)(n + 0x5A) | 0x100, vn);  // high bits of c must be ignored
+            for (unsigned i = 0; i < sizeof dst; i++)
+                if (dst[i] != want[i]) { bad++; break; }
+        }
+    hs_log("memset check: %s (%u of %u cases wrong)", bad ? "FAILED" : "ok", bad, 8u * 81u);
 }

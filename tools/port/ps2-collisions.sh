@@ -14,4 +14,4 @@ theirs=$(for l in $LIBS; do mips64r5900el-ps2-elf-nm --defined-only "$l" 2>/dev/
 # Our own backend is meant to define libc-level hooks (__wrap_*, atomics) and
 # replaces _sbrk, memcpy and the whole malloc family (backend/ps2/memory.cpp,
 # memcpy.cpp).
-comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$|_sbrk$|memcpy$|_?(malloc|free|realloc|calloc|memalign|aligned_alloc|posix_memalign|valloc|pvalloc|malloc_usable_size|mallinfo|malloc_stats|mallopt|malloc_trim)(_r)?$|_(malloc|free|realloc|calloc|memalign|valloc|pvalloc|malloc_usable_size|mallinfo|malloc_stats|mallopt|malloc_trim)_r$)' || true
+comm -12 <(echo "$ours") <(echo "$theirs") | grep -vE '^(__wrap_|__sync_|__atomic_|main$|abort$|_sbrk$|memcpy$|memset$|_?(malloc|free|realloc|calloc|memalign|aligned_alloc|posix_memalign|valloc|pvalloc|malloc_usable_size|mallinfo|malloc_stats|mallopt|malloc_trim)(_r)?$|_(malloc|free|realloc|calloc|memalign|valloc|pvalloc|malloc_usable_size|mallinfo|malloc_stats|mallopt|malloc_trim)_r$)' || true

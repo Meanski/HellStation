@@ -94,6 +94,7 @@ set(HS_PORT_WRAPS
     "D2Win|Source/D2Win/D2WinAnimImage.cpp|_ZN5D2Win14D2WinAnimImageEiiiiP3DC6iPFiP12D2ControlMsgEP19FORMS_AnimFrameStrcjPFvPvE"
     "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache20GFX_InitCelDataCacheEP17D2PoolManagerStrcjjj"
     "D2CMP|Source/D2CMP/SRC/SpriteCache.cpp|_ZN5D2CMP3SRC11SpriteCache16GFX_InitLRUCacheEP17D2PoolManagerStrcj"
+    "D2CMP|Source/D2CMP/SRC/Codec.cpp|_ZN5D2CMP3SRC5Codec25CODEC_DecompressAllFramesEPjP17D2PoolManagerStrciPhP20D2CelDecodeStateStrciiS2_Pc"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory5AllocEP17D2PoolManagerStrcjPci"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocClientMemoryEjPcii"
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory17AllocServerMemoryEP17D2PoolManagerStrcjPcii"
@@ -167,6 +168,14 @@ endfunction()
 
 function(hs_port_link target)
     hs_port_apply_overrides()
+    if(HS_PORT_BACKEND STREQUAL "ps2")
+        # The DCC sprite decoder is most of a busy frame once the sprite cache is
+        # full (PORTING_LOG, 2026-11-19), and its bit reader is a call per field
+        # under the EE's -fno-inline. Nothing patches a function in this file,
+        # so it gets inlining and -O2 even in an -Os build.
+        set_property(SOURCE "${D2_ROOT}/Source/D2CMP/SRC/Codec.cpp" APPEND PROPERTY
+            COMPILE_OPTIONS -O2 -finline -finline-small-functions)
+    endif()
     # The Win32 layer: compiled in the game's environment so every signature
     # matches the SDK declaration the game was compiled against.
     file(GLOB_RECURSE HS_WIN32_SOURCES CONFIGURE_DEPENDS "${HS_PORT_DIR}/win32/*.cpp")
