@@ -708,3 +708,26 @@ profiling build) the 2 MB / 2 MB setting already ran out at the Black Marsh wayp
 So fights are fast enough with a 3 MB sprite cache, and the memory to pay for it is mostly
 fragmentation. Next: Fog pool blocks smaller than 512 KiB so the gaps are usable, then dropping
 D2Direct3D, D2Glide and D2DDraw from the PS2 link.
+
+## 2026-11-19: the sprite cache can't buy fights back; the heap is split in two
+
+Follow-up to the entry above, same build, same character, Black Marsh at the retail cap. Every
+heap failure is now logged (the first 20, then every 100th), not only the first.
+
+- **3 MB sprite cache, Fog pool blocks capped at 64 KiB** (Fog grows a size class 512 KiB at a
+  time from 1 KiB up): arrival in the marsh failed with 24,123 KiB in use of 24,705, so this time
+  memory was really full, not fragmented.
+- **Giving sprite memory back from inside a failing allocation** (evict the least recently used
+  sprites, retry): it worked twice (156 and 239 KiB given back), then the game froze during a
+  waypoint load with no further failure logged. Evicting while a level loads isn't safe; dropped.
+- **A governor** (once every 5 frames, after drawing: shrink the cache below 1.5 MB free, grow it
+  above 2.3 MB): the town kept 1.9 MB free with a full 3 MB cache, and the waypoint load (one long
+  frame, no chance to act) took 1.4 MB at once and failed.
+- **The default 2 MB / 2 MB caches**, a pack of two monster types: **out of memory** too.
+  `VirtualAlloc(128 KiB)` failed with 23,423 KiB in use and 24,669 taken: 1.25 MB free, about
+  730 KiB of it in malloc's free lists and 513 KiB in 25 gaps between regions, none 128 KiB.
+
+So the margin is lost to fragmentation, and the split heap is why: malloc grows up from the end of
+the program, the region allocator (blocks of 64 KiB and up) grows down from the top, and memory
+freed in one can't serve the other. Next: one allocator for both, with immediate coalescing and a
+good fit (TLSF-style), then the sprite cache question again.

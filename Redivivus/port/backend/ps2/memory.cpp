@@ -52,11 +52,11 @@ size_t taken() { return (size_t)(g_brk - _end) + (size_t)(g_top - g_vmLow); }
 void note_peak() { if (taken() > g_peak) g_peak = taken(); }
 
 void out_of_memory(const char* who, size_t n) {
-    static bool s_logged;
-    if (s_logged) return;
-    s_logged = true;
-    hs_log("heap: %s(%u KiB) failed: break %u KiB, regions %u KiB (%u KiB live, %d free runs), %u KiB in all",
-           who, (unsigned)(n >> 10), (unsigned)((g_brk - _end) >> 10), (unsigned)((g_top - g_vmLow) >> 10),
+    // Every failure up to 20, then every 100th: a caller that retries shows up.
+    static unsigned s_count;
+    if (++s_count > 20 && s_count % 100) return;
+    hs_log("heap: failure %u: %s(%u KiB) failed: break %u KiB, regions %u KiB (%u KiB live, %d free runs), %u KiB in all",
+           s_count, who, (unsigned)(n >> 10), (unsigned)((g_brk - _end) >> 10), (unsigned)((g_top - g_vmLow) >> 10),
            (unsigned)(g_vmLive >> 10), g_nFree, (unsigned)((g_top - _end) >> 10));
 }
 
@@ -125,7 +125,7 @@ extern "C" void* hs_vm_reserve(size_t size, size_t align) {
         if ((uintptr_t)g_vmLow < size || a < g_brk) { out_of_memory("hs_vm_reserve", size); return nullptr; }
         char* oldLow = g_vmLow;
         g_vmLow = a;
-        add_run(a + size, (size_t)(oldLow - (a + size)));  // the alignment gap, if any
+            add_run(a + size, (size_t)(oldLow - (a + size)));  // the alignment gap, if any
         p = a;
     }
     g_vmLive += size;
