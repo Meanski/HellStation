@@ -864,3 +864,19 @@ Checked: stock mingw build links; Linux port links with no undefined symbols, an
 The Linux link was built in a local `-g0` build dir: with debug info (960 MB of archives) `ld`
 was killed for memory three times in a Docker VM with 3.9 GB free, `--no-keep-memory` and
 `--strip-debug` notwithstanding. A full debug Linux link needs a VM with more free memory.
+
+## 2026-11-19: a faster RLE re-encode isn't faster; decode-bound fights are cache churn
+
+**In short: rewriting the decoder's RLE re-encode to scan 8 pixels at a time gave the same speed
+as the byte loop, so it isn't kept. The repeated decodes in slow fights are ordinary sprite-cache
+churn, not a bug.**
+
+- `CODEC_EncodeRLE` rewritten with aligned 64-bit scans (byte-identical to the generated logic on
+  25,000 random frames on the host). On the EE, timed by its own cycle counter over 3,000 frames
+  (1.78 M pixels), alternating which version ran first: 13,556 against 12,564 cycles per 1,000
+  pixels cold, 13,427 against 12,732 warm. Sprite rows are short runs of pixels and gaps, so
+  per-run overhead dominates and wide scans skip nothing. PCSX2's Count register advances by an
+  instruction-count model, so small speed-ups to the decoder need real hardware to judge.
+- An overlay decoded over and over (`AuraMightBack`, the Act 2 mercenary's Might aura on him and
+  the player) is one direction of 18 KiB per decode, decoded again after the cache evicted it.
+  In the slow stretches the scene's sprites simply don't fit 3 MB.

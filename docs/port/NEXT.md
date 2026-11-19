@@ -31,7 +31,10 @@ direction is gone (8% off a decode, `overrides/dcc_clear.cpp`); the profiler cou
 Next, roughly in order:
 - **Busy scenes are decode-bound** even with 3 MB: some Black Marsh stretches run 4-8 FPS while
   the player's and mercenary's own components and state overlays are decoded over and over
-  (`dcc: most decoded:` lines). The stairs into lower Harrogath stall in some runs. Profile again on the current build
+  (`dcc: most decoded:` lines). The stairs into lower Harrogath stall in some runs.
+  A faster `CODEC_EncodeRLE` (8 pixels at a time) measured no faster; small decoder tweaks are
+  hard to judge on PCSX2, whose cycle counter follows instruction counts. The levers left are
+  fewer decodes (a bigger effective cache) or a decoder written for the EE, judged on hardware. Profile again on the current build
   (`-DHS_PS2_PROFILE=ON -DHS_EE_OPT_LEVEL=-Os`, `prof` lines in `hs.log`, resolve with
   `mips64r5900el-ps2-elf-addr2line -f -C -e <build>/d2.elf`). Last profile: `CODEC_ReadBits`
   11%, `CODEC_DecodeFramePixels` 9%, `CODEC_EncodeRLE` 5.5%, `GFX_RemoveCacheEntry`
