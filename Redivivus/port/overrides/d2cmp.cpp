@@ -8,9 +8,13 @@
 
 #include <cstdio>
 
-// The file-static buffer behind the palette loader, globalized under this name
-// by the override step (it is `static` in Source/D2CMP/Pallete.cpp).
-extern uint8_t hs_D2CMP_gaItemPaletteData[241920];
+// D2CMP and D2Win each keep a 236 KiB item palette table (nine sets of 105
+// rows of 256 bytes) and fill it from the same eight files into the same sets,
+// 21 rows each (D2Win's D2COMP_LoadAllItemPalettes, D2CMP's
+// PALETTE_InitItemPalettes); nothing else writes either. D2CMP reads only those
+// rows, so it shares D2Win's table, and with nothing left referring to D2CMP's
+// own (file-static in Source/D2CMP/Pallete.cpp) --gc-sections drops it.
+extern uint8_t gaItemPaletteTransformData[241920];  // Source/D2Win/Src/D2Comp.cpp
 // LRUCACHE_PopOldest is `static` in Source/D2CMP/SRC/LRUCache.cpp; globalized likewise.
 extern D2LRUCacheNodeStrc* hs_D2CMP_LRUCACHE_PopOldest(D2LRUCacheStrc* pCache) __asm__("hs_D2CMP_LRUCACHE_PopOldest");
 
@@ -29,8 +33,15 @@ void __fastcall PALETTE_LoadFromFile(char* szPaletteName, int32_t nPaletteSet) {
         Fog::Src::ErrorManager::ERROR_UnrecoverableInternalError_Halt("", Fog::Src::ErrorManager::GetInstructionPointer(), 0x39);
         exit(-1);
     }
-    D2Hell::D2FILE_ReadFile(nullptr, pFile, hs_D2CMP_gaItemPaletteData + nPaletteSet * 0x6900, nPaletteDataSize);
+    D2Hell::D2FILE_ReadFile(nullptr, pFile, gaItemPaletteTransformData + nPaletteSet * 0x6900, nPaletteDataSize);
     D2Hell::D2FILE_CloseFile(nullptr, pFile);
+}
+
+// As generated, on the shared table.
+uint8_t* __stdcall PALETTE_GetItemPalette(int32_t nPaletteSet, int32_t nRow) {
+    if (nPaletteSet < 9 && nRow < 0x15 && nPaletteSet && (nPaletteSet <= 2 || nPaletteSet > 4))
+        return gaItemPaletteTransformData + (nPaletteSet * 0x69 + nRow) * 0x100;
+    return nullptr;
 }
 
 }  // namespace D2CMP::Pallete

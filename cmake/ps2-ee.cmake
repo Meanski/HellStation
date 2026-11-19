@@ -12,10 +12,15 @@
 #  - no strict aliasing, wrapping signed overflow, kept null checks: the
 #    decompiled code may rely on all three.
 include("$ENV{PS2DEV}/share/ps2dev.cmake")
-# Measuring code size against speed: -DHS_EE_OPT_LEVEL=-Os, and
-# -DHS_EE_FUNCTION_SECTIONS=ON so --gc-sections can drop unused functions.
+# Code size against speed: -DHS_EE_OPT_LEVEL=-Os frees about 550 KiB at about
+# 2 FPS. Function and data sections (on unless -DHS_EE_FUNCTION_SECTIONS=OFF)
+# let --gc-sections drop what nothing refers to: the overrides depend on it to
+# lose the tables and renderers they replace (renderers_dropped.cpp, d2cmp.cpp).
 if(NOT DEFINED HS_EE_OPT_LEVEL)
   set(HS_EE_OPT_LEVEL "-O2")
+endif()
+if(NOT DEFINED HS_EE_FUNCTION_SECTIONS)
+  set(HS_EE_FUNCTION_SECTIONS ON)
 endif()
 set(HS_EE_SECTION_FLAGS "")
 if(HS_EE_FUNCTION_SECTIONS)

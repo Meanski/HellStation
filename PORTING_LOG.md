@@ -756,3 +756,15 @@ block, so fragmentation shows as taken minus in use.
 So fragmentation went from about 1.25 MB to 0.84 MB at the failure, and what's left is a real
 shortage of about 1 MB in a busy fight, before any sound. Fights also run at 9-15 FPS with the
 2 MB sprite cache.
+
+## 2026-11-19: 485 KiB of program image back; a fight survives
+
+- D2CMP's item palette table (236 KiB) duplicated D2Win's: same files, same layout, and D2CMP
+  reads only the rows both load. D2CMP now uses D2Win's (`overrides/d2cmp.cpp`).
+- D2gfx's renderer selector table was the only reference keeping DirectDraw, Glide and Direct3D
+  in the link; its references now name empty tables (`overrides/renderers_dropped.cpp`).
+- Function and data sections are now on by default for the EE, so `--gc-sections` drops both.
+
+`-Os` build: program image 6,897 -> 6,412 KiB, heap limit 24,715 -> 25,199 KiB. Same Black Marsh
+test as the entry above: **16 attacks on two monster types, no failure**, peak 23,743 KiB taken
+(1.45 MB spare). The fight runs at about 4 FPS (270 ms a frame): the 2 MB sprite cache again.

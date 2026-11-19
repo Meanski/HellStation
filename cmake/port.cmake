@@ -73,7 +73,9 @@ endfunction()
 # Redivivus/port/overrides/ wins at link; file-statics the override needs are
 # renamed and globalized. Format: module|symbol to weaken|old=new static, ...
 set(HS_PORT_OVERRIDES
-    "D2CMP|_ZN5D2CMP7Pallete20PALETTE_LoadFromFileEPci|_ZL17gaItemPaletteData=hs_D2CMP_gaItemPaletteData"
+    "D2gfx|-|_ZN7D2DDraw8Renderer10DirectDraw23DirectDrawFunctionTableE=hs_dropped_ddraw,_ZN7D2Glide8Renderer5Glide18GlideFunctionTableE=hs_dropped_glide,_ZN10D2Direct3D8Renderer21Direct3DFunctionTableE=hs_dropped_d3d"
+    "D2CMP|_ZN5D2CMP7Pallete20PALETTE_LoadFromFileEPci"
+    "D2CMP|_ZN5D2CMP7Pallete22PALETTE_GetItemPaletteEii"
     "Storm|-|_ZN5Storm6Source4SMemL29SMemCalculateAllocationLayoutEjPiS2_S2_S2_=hs_Storm_SMemCalculateAllocationLayout,_ZL11DebugMemory=hs_Storm_DebugMemory,_ZL13ProtectMemory=hs_Storm_ProtectMemory"
     "D2CMP|_ZN5D2CMP3SRC8LRUCache15LRUCACHE_UnlinkEP18D2LRUCacheNodeStrcP14D2LRUCacheStrc|_ZN5D2CMP3SRC8LRUCacheL18LRUCACHE_PopOldestEP14D2LRUCacheStrc=hs_D2CMP_LRUCACHE_PopOldest"
     "Storm|-|_ZN5Storm6Source5SFileL21SFILE_SearchHashTableEP13D2ArchiveStrcscPc=hs_Storm_SFILE_SearchHashTable,_ZN5Storm6Source5SFileL10SFILE_HashEiPc=hs_Storm_SFILE_Hash"
