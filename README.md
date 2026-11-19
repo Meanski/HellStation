@@ -52,7 +52,8 @@ renderer, DualShock 2 input, and a build tuned for the EE.
 | ⚠️ | Walking down the stairs into lower Harrogath stalls for about a minute at 2-5 FPS: the sprite cache thrashes |
 | ⚠️ | Fights outside town (Act 1, Black Marsh) run in 32 MB without running out, but big mixed packs drop to 4-10 FPS: the sprite cache is too small to hold them |
 | ❓ | Not tried yet: long sessions |
-| ⏳ | Not started: naming a character with the pad, real hardware |
+| ✅ | Naming a character with the pad (L3+R3, then the D-pad) |
+| ⏳ | Not started: real hardware |
 
 ## Fitting in 32 MB
 
@@ -156,6 +157,7 @@ is kept working. Both are covered in [AGENTS.md](AGENTS.md).
 | L1 (hold) | Stand still (Shift) |
 | L3 / R3 | Toggle run / show items |
 | D-pad | Belt slots 1–4 |
+| L3 + R3 (click both sticks) | Text entry on/off: the D-pad types (up/down picks a letter, right moves on, left deletes), for naming a character |
 
 This is layer 0: the pad acts as a mouse. Walking with the stick, auto-targeting and pad-driven
 panels were designed in [docs/port/controller.md](docs/port/controller.md) but not built.

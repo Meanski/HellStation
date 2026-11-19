@@ -77,6 +77,12 @@ private:
     hs_event queue_[kQueue] = {};
     unsigned head_ = 0, tail_ = 0;
     uint32_t prev_ = 0;
+    // Text entry (L3+R3 toggles): the D-pad edits the word being typed.
+    bool textMode_ = false;
+    uint32_t keysDown_ = 0;  // buttons whose key press was sent (only those get a release)
+    int textIndex_ = -1;  // the current letter's place in kTextCycle, -1 for none yet
+    void type_char(int ch);
+    void type_backspace();
     float fx_ = -1, fy_ = -1;  // sub-pixel cursor
 };
 

@@ -977,3 +977,13 @@ Checked in PCSX2 2.8.2 with the owner's real BIOS (SCPH-70004): `run-pcsx2.sh --
 new-character script ends in the Rogue Encampment at 22 FPS. Not checked: real hardware (a
 burned DVD-R doesn't boot on a stock PS2 without a modchip or a loader such as FreeMcBoot+ESR,
 and real seek times will differ from PCSX2's).
+
+## 2026-11-20: typing a name with the pad
+
+**In short: clicking both sticks (L3+R3) toggles text entry; the D-pad then types: up/down
+picks a letter (A-Z, a-z, - and _), right keeps it and moves on, left deletes.** It knows
+nothing about which screen is up (`input/virtual_mouse.cpp`): it sends the same WM_CHAR and
+backspace events as the scripted `text` step that names characters in the test scripts. The
+hotkeys are off while typing; clicks and Start still work, so OK and Esc do. Checked on the host
+by driving the virtual mouse with pad states (types "BA", no key left held); the pad itself can't
+be driven from a script in PCSX2, so the full path on the PS2 is untested.

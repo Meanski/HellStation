@@ -1,6 +1,12 @@
 // Controller layer 0: the pad as a mouse plus D2's own hotkeys
 // (docs/port/controller.md). Until layer 1 exists both sticks drive the cursor:
 // the left one coarse, the right one fine.
+//
+// Text entry, for naming a character: clicking both sticks (L3+R3) toggles it.
+// The D-pad then edits the word being typed, without knowing which screen is
+// up: up/down types a letter at the end or cycles it (A-Z, a-z, - and _),
+// right keeps it and moves on, left deletes. The buttons that click, and
+// Start, work as usual; the hotkeys are off until it's toggled back.
 #include "Redivivus/port/input/input.h"
 
 #include <cmath>
@@ -34,7 +40,28 @@ constexpr Binding kKeys[] = {
     {kPadUp, '1'}, {kPadRight, '2'}, {kPadDown, '3'}, {kPadLeft, '4'},  // belt
 };
 
+constexpr char kTextCycle[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
+constexpr int kTextCycleLen = (int)sizeof kTextCycle - 1;
+
 }  // namespace
+
+void VirtualMouse::type_char(int ch) {
+    hs_event e{};
+    e.type = HS_EV_CHAR;
+    e.ch = ch;
+    push(e);
+}
+
+void VirtualMouse::type_backspace() {
+    hs_event e{};
+    e.type = HS_EV_KEY;
+    e.vk = 0x08;
+    e.scancode = set1_from_vk(0x08);
+    e.down = 1;
+    push(e);
+    e.down = 0;
+    push(e);
+}
 
 void VirtualMouse::push(const hs_event& e) {
     if (tail_ - head_ >= kQueue) return;  // a stalled consumer drops input rather than growing
@@ -92,8 +119,37 @@ void VirtualMouse::update(const PadState& pad, int* x, int* y, int frameW, int f
     };
     button(kPadCross | kPadR2, HS_BUTTON_LEFT);
     button(kPadCircle | kPadL2, HS_BUTTON_RIGHT);
+    const uint32_t pressed = changed & held;
+    constexpr uint32_t kSticks = kPadL3 | kPadR3;
+    if ((held & kSticks) == kSticks && (pressed & kSticks)) {
+        textMode_ = !textMode_;
+        textIndex_ = -1;
+        hs_log("pad: text entry %s", textMode_ ? "on (D-pad: up/down letter, right next, left delete)" : "off");
+        return;
+    }
+    if (textMode_) {
+        if (pressed & (kPadUp | kPadDown)) {
+            int step = (pressed & kPadUp) ? 1 : -1;
+            if (textIndex_ < 0) {
+                textIndex_ = step > 0 ? 0 : kTextCycleLen - 1;
+            } else {
+                type_backspace();
+                textIndex_ = (textIndex_ + step + kTextCycleLen) % kTextCycleLen;
+            }
+            type_char(kTextCycle[textIndex_]);
+        }
+        if (pressed & kPadRight) textIndex_ = -1;
+        if (pressed & kPadLeft) {
+            type_backspace();
+            textIndex_ = -1;
+        }
+    }
     for (const Binding& b : kKeys) {
         if (!(changed & b.button)) continue;
+        bool down = (held & b.button) != 0;
+        if (down && textMode_ && b.button != kPadStart) continue;  // hotkeys are off while typing
+        if (!down && !(keysDown_ & b.button)) continue;           // its press was never sent
+        keysDown_ = down ? keysDown_ | b.button : keysDown_ & ~b.button;
         e = {};
         e.type = HS_EV_KEY;
         e.x = *x; e.y = *y;
