@@ -21,7 +21,9 @@
 // at the menu's start and stay: with the class-select voice lines that's
 // 3.9 MB, and creating a character ran out of memory with them (PORTING_LOG,
 // 2026-11-20). On a small-RAM target the voice lines (sfx\cursor\intro\) are
-// skipped; a sound the menu never loaded just doesn't play.
+// loaded when one is played instead (SOUND_PlaySoundEffect, wrapped), and the
+// other voice lines are let go once no effect buffer is playing them: one
+// class's line at a time, at most 616 KiB.
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -40,6 +42,10 @@ struct D2MPQFileStrc;
 extern "C" {
 HS_FC void hs_orig_SOUNDHDR_Init(uint32_t bBackground) __asm__("hs_orig__ZN8D2Client5Sound8SoundHdr13SOUNDHDR_InitEj");
 HS_FC void hs_orig_SOUND_LoadWavFile(char* path) __asm__("hs_orig__ZN7D2Sound3Src11D2SoundFast17SOUND_LoadWavFileEPc");
+HS_FC void hs_orig_SOUND_PlaySoundEffect(uint8_t* path)
+    __asm__("hs_orig__ZN7D2Sound3Src11D2SoundFast21SOUND_PlaySoundEffectEPh");
+HS_FC int hs_FreeClient(void* p, const char* file, int32_t line, int32_t z)
+    __asm__("_ZN3Fog6Memory16FreeClientMemoryEPvPcii");
 HS_FC uint8_t* hs_SoundRow(int32_t id) __asm__("_ZN8D2Client5Sound8SoundHdr27TXT_sounds_GetLineBySoundIdEi");
 HS_FC void hs_SoundPath(int32_t id, char* out) __asm__("_ZN8D2Client5Sound8SoundHdr23SOUNDHDR_BuildSoundPathEiPc");
 HS_FC int32_t hs_FileOpen(char* path, D2MPQFileStrc** out) __asm__("_ZN3Fog6Source5SFile22ARCHIVE_OpenD2FileWrapEPcPP13D2MPQFileStrc");
@@ -164,9 +170,57 @@ HS_FC void SOUNDHDR_Init(uint32_t bBackground) {
 }
 }  // namespace D2Client::Sound::SoundHdr
 
+// D2SoundFast's menu sound cache and effect buffers (statics, globalized).
+struct WavEntry {  // D2SoundWavCacheEntryStrc
+    char szFileName[80];
+    int* pWavData;
+    uint32_t nDataSize;
+    uint32_t bStereo;
+    WavEntry* pNext;
+};
+extern "C" WavEntry* hs_wav_cache __asm__("hs_D2Sound_gpWavFileCacheListHead");
+extern "C" uint8_t* hs_effect_buffers[8] __asm__("hs_D2Sound_gpaSoundEffectBuffers");  // D2SoundSmpStrc*
+
+namespace {
+bool is_voice_line(const char* path) { return path && strstr(path, "cursor\\intro\\"); }
+// An effect buffer playing from inside e's data (D2SoundSmpStrc: pPcmData at
+// 0x14, bIsPlaying at 0x1C).
+bool playing(const WavEntry* e) {
+    const uint8_t* lo = (const uint8_t*)e->pWavData;
+    for (uint8_t* smp : hs_effect_buffers) {
+        if (!smp) continue;
+        const uint8_t* pcm;
+        int32_t on;
+        memcpy(&pcm, smp + 0x14, sizeof pcm);
+        memcpy(&on, smp + 0x1C, sizeof on);
+        if (on && pcm >= lo && pcm < lo + e->nDataSize) return true;
+    }
+    return false;
+}
+}  // namespace
+
 namespace D2Sound::Src::D2SoundFast {
 HS_FC void SOUND_LoadWavFile(char* path) {
-    if (path && small_ram() && strstr(path, "cursor\\intro\\")) return;
+    if (is_voice_line(path) && small_ram()) return;  // loaded when played (below)
     hs_orig_SOUND_LoadWavFile(path);
+}
+HS_FC void SOUND_PlaySoundEffect(uint8_t* path) {
+    const char* name = (const char*)path;
+    if (is_voice_line(name) && small_ram()) {
+        bool cached = false;
+        for (WavEntry** link = &hs_wav_cache; *link;) {
+            WavEntry* e = *link;
+            if (!strcmp(e->szFileName, name)) { cached = true; link = &e->pNext; continue; }
+            if (is_voice_line(e->szFileName) && !playing(e)) {
+                *link = e->pNext;
+                if (e->pWavData) hs_FreeClient(e->pWavData, "sound_stream_long.cpp", __LINE__, 0);
+                hs_FreeClient(e, "sound_stream_long.cpp", __LINE__, 0);
+                continue;
+            }
+            link = &e->pNext;
+        }
+        if (!cached) hs_orig_SOUND_LoadWavFile((char*)name);
+    }
+    hs_orig_SOUND_PlaySoundEffect(path);
 }
 }  // namespace D2Sound::Src::D2SoundFast

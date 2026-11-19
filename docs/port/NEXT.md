@@ -1,6 +1,6 @@
 # Handoff: where HellStation stands and what's next
 
-Written 2026-11-18, rewritten at the end of 2026-11-19, for whoever picks the work up next (the
+Written 2026-11-18, rewritten at the end of 2026-11-19, updated through the night of 2026-11-20, for whoever picks the work up next (the
 owner is changing Claude accounts, so assume no memory of earlier sessions: everything needed is in
 the repo). Read [AGENTS.md](../../AGENTS.md) first (the contract), then this. The full history is
 in [PORTING_LOG.md](../../PORTING_LOG.md); each entry opens with an "In short:" line. The task list
@@ -16,6 +16,9 @@ dropping the sprite cache from 3 to 2.5 MB; town ~22 FPS (was 25). Fights peak a
 25.1 MB. Sounds over 128 KiB stream from the archive. Not yet listened to on the PS2. Details
 and numbers: PORTING_LOG, "2026-11-20: sound".
 
+**2026-11-20: the pad can type** (L3+R3 toggles text entry; the D-pad types), and **-Os is the
+default EE build** (an -O2 build ran out of memory in the fight test with sound in).
+
 **2026-11-20: a disc image boots.** `tools/port/make-iso.py` (or `run-pcsx2.sh --iso`) builds a
 DVD image from the ELF and the user's own MPQs; booted from it, the game reads data from
 `cdrom0:` through a 128 KiB read cache and keeps saves on the memory card (formats an
@@ -24,16 +27,22 @@ slow (town 38 s; some 20 s stalls walking into new ground). PORTING_LOG, "a disc
 
 With the heap stopped at a retail 32 MB (PCSX2's Extended RAM off), the game boots, loads saves,
 walks every town tested (Act 1 to Act 5) and fights in Act 1's Black Marsh without running out of
-memory. Towns run at 25 FPS. Fights are 25 FPS most of the time, but some stretches drop to
-4-8 FPS while sprites are decoded over and over (see "Fights" below). No sound yet. The owner's
+memory. Towns run at 22-25 FPS. Fights are 25 FPS most of the time, but some stretches drop to
+4-8 FPS while sprites are decoded over and over (see "Fights" below). The owner's
 goal is **a disc in a stock retail PS2**; don't pitch emulator-only or "extended RAM" setups.
 Every change is measured at the retail cap.
 
-`main` is 1 commit ahead of `origin/main` (the docs one; push only when asked). Latest:
+The overnight commits on `main` are not pushed (the owner pushes). `git log origin/main..main`
+lists them: the DirectSound shim and SDL mixer, the PS2 sound backend and IOP module, the memory
+policies that make room for sound, the yield fix, -Os by default, the disc image and disc boot,
+pad text entry, and their docs.
 
-- `ce99c6a3 port(ps2): load panel art only while its panel is open`
-- `88c2f3bb port(ps2): clear only the blocks the DCC decoder uses`
-- `89963135 docs: a word-at-a-time RLE re-encode measured no faster`
+**Overnight gotchas (also in PORTING_LOG):** on the EE a yield only rotates the caller's
+priority (`hs_yield` sleeps 100 us now); Sony's CD driver reads a DVD's path table from sector
+257; PCSX2 calls an image a CD if its root directory is 2048 bytes; `fstat` on `cdrom0:` reports
+nothing; the memory card's getstat answers for missing paths and it refuses O_TRUNC; PCSX2's
+memory cards start unformatted; `pkill -f 'MacOS/PCSX2'` (in `run-pcsx2.sh`) kills any shell
+whose command line contains that text.
 
 ### What 2026-11-19 did (numbers in PORTING_LOG)
 

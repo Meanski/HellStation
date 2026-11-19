@@ -79,6 +79,8 @@ set(HS_PORT_OVERRIDES
     "Storm|-|_ZN5Storm6Source4SMemL29SMemCalculateAllocationLayoutEjPiS2_S2_S2_=hs_Storm_SMemCalculateAllocationLayout,_ZL11DebugMemory=hs_Storm_DebugMemory,_ZL13ProtectMemory=hs_Storm_ProtectMemory"
     "D2CMP|_ZN5D2CMP3SRC8LRUCache15LRUCACHE_UnlinkEP18D2LRUCacheNodeStrcP14D2LRUCacheStrc|_ZN5D2CMP3SRC8LRUCacheL18LRUCACHE_PopOldestEP14D2LRUCacheStrc=hs_D2CMP_LRUCACHE_PopOldest"
     "Storm|-|_ZN5Storm6Source5SFileL21SFILE_SearchHashTableEP13D2ArchiveStrcscPc=hs_Storm_SFILE_SearchHashTable,_ZN5Storm6Source5SFileL10SFILE_HashEiPc=hs_Storm_SFILE_Hash"
+    "Storm|-|_ZN5Storm6Source5SFileL26SFILE_HandleAsyncReadErrorEP18D2StormAsyncOpStrc=hs_Storm_HandleAsyncReadError,_ZL26lpCriticalSection_00779068=hs_Storm_StreamCs"
+    "D2Sound|-|_ZL22gpWavFileCacheListHead=hs_D2Sound_gpWavFileCacheListHead,_ZL21gpaSoundEffectBuffers=hs_D2Sound_gpaSoundEffectBuffers"
     "D2Client|-|_ZL21pSpellsClassSkilltree=hs_D2Client_pSpellsClassSkilltree,_ZL18gpInvMercBodyImage=hs_D2Client_gpInvMercBodyImage,_ZL25WaypointWayGateBackGround=hs_D2Client_WaypointWayGateBackGround"
 )
 
@@ -110,6 +112,7 @@ set(HS_PORT_WRAPS
     "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr19SOUNDHDR_SetGlobal4Ej"
     "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr13SOUNDHDR_InitEj"
     "D2Sound|Source/D2Sound/Src/D2SoundFast.cpp|_ZN7D2Sound3Src11D2SoundFast17SOUND_LoadWavFileEPc"
+    "D2Sound|Source/D2Sound/Src/D2SoundFast.cpp|_ZN7D2Sound3Src11D2SoundFast21SOUND_PlaySoundEffectEPh"
     # Not a definition: Codec.cpp's calls to memset (overrides/dcc_clear.cpp).
     "D2CMP|Source/D2CMP/SRC/Codec.cpp|memset"
 )

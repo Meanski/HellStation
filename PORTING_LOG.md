@@ -987,3 +987,30 @@ backspace events as the scripted `text` step that names characters in the test s
 hotkeys are off while typing; clicks and Start still work, so OK and Esc do. Checked on the host
 by driving the virtual mouse with pad states (types "BA", no key left held); the pad itself can't
 be driven from a script in PCSX2, so the full path on the PS2 is untested.
+
+## 2026-11-20: a long session, two crashes fixed
+
+**In short: a fight session of several minutes found two failures, both fixed: the heap ran out
+of contiguous memory with the 2.5 MB sprite cache (back to 2 MB), and a Storm race between ending
+a streamed sound and finishing one of its reads jumped the EE to address 0. With both fixed, 3
+minutes idle in the Black Marsh plus 40 rounds of fighting (about 15 minutes) ran clean, peak
+24,666 of 25,113 KiB.**
+
+- **Fragmentation**: standing in the Black Marsh for three minutes, a 376 KiB sprite decode
+  failed with 1.9 MB free, none of it in a piece over 360 KiB. Decoded sprites are 20-600 KiB
+  blocks churning through the cache. The sprite cache goes back to 2 MB (fights get slower in
+  big packs, as before sound).
+- **Storm's stream race** (`overrides/storm_stream_race.cpp`): the I/O thread checks a stream
+  read's stream, then calls `SFILE_HandleAsyncReadError`, which takes the stream lock and writes
+  through the stream's DirectSound buffer; `SFileDdaEnd` nulls the in-flight request's stream and
+  frees the stream record under that lock. Ended in between (the EE switches threads exactly at
+  that lock wait), the handler called through null. The handler is static, so on MIPS its entry
+  now jumps to a guard that takes the lock, returns if the stream is gone and otherwise runs the
+  original through a trampoline holding it. Streaming every long sound had made it happen in
+  minutes; music always streamed this way.
+- Also seen, not fixed: `GFXHASH_CalcDirectionIndex` (GfxHash.cpp:157) reads through a null
+  sprite-cache entry when entering a game; PCSX2 lets the read through, real hardware would
+  fault. To investigate before hardware.
+- The class-select voice lines now load when played instead of being skipped, but in the
+  scripted new-character run the menu never asked for one (only `button.wav`), so that path is
+  unexercised.

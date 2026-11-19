@@ -27,10 +27,11 @@ extern "C" HS_FASTCALL void hs_orig_SOUNDHDR_SetGlobal4(uint32_t nMaxBytes)
     __asm__("hs_orig__ZN8D2Client5Sound8SoundHdr19SOUNDHDR_SetGlobal4Ej");
 
 namespace {
-// 3 MB since panel art stopped being resident (overrides/panel_art_lazy.cpp):
-// Black Marsh fights then peaked at 23.3 of 25.2 MB (PORTING_LOG, 2026-11-19).
+// 2 MB: with sound in, 2.5 MB ran a fight session out of contiguous memory
+// after a few minutes (1.9 MB free in pieces of 360 KiB or less); 2 MB held a
+// 15-minute session (PORTING_LOG, 2026-11-20).
 #ifndef HS_SPRITE_CACHE_KIB  // overridable for measuring (compile definition)
-#  define HS_SPRITE_CACHE_KIB 2560
+#  define HS_SPRITE_CACHE_KIB 2048
 #endif
 constexpr uint32_t kSmallRamSpriteCache = HS_SPRITE_CACHE_KIB << 10;
 // The game gives the LRU a flat 6 MB (D2Client UI/Draw.cpp). It fills as the
