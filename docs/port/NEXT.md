@@ -47,8 +47,12 @@ tools/port/run-pcsx2.sh --seconds 3 \
 
 - Logs: `build-ps2/run/hs.log` (written over `host:`), and a RAM ring read over PINE into
   `build-ps2/run/ring.log` when the runner's sleep ends. A `frame N` pacing line appears every 250
-  presented frames. Scripts are keyed to presented frames: town loads by about frame 2550; menus are
-  at 25 FPS.
+  presented frames. Scripts are keyed to presented frames: the main menu is up by about frame 500,
+  the character list about 50 frames after Single Player, and town about 60 frames after the
+  difficulty; menus are at 25 FPS.
+- A running game takes more input from the host: `tools/port/live.sh "move 300 40" "where"` (the
+  game reads `run/live.txt` about once a second). `where` logs the monsters, objects and exits
+  around the player with the screen point to click (`where:` lines in `hs.log`).
 - `run-pcsx2.sh` closes any running PCSX2 first (and waits for it), so the owner's open session
   goes with it. It rewrites `~/Library/Application Support/PCSX2/inis/PCSX2.ini` keys (HostFs, PINE, ExtraMemory,
   logging). The BIOS is chosen by the owner in PCSX2's settings; never install or pick one.

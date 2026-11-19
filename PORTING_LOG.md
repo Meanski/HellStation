@@ -684,3 +684,27 @@ tile cache sizes, needs Extended RAM) and `HS_PS2_PROFILE`.
 
 The hang with an uncapped tile LRU (previous entry) didn't come back: six Extended RAM runs of the
 same walk, with the LRU and then both caches uncapped, all walked past frame 6,000.
+
+## 2026-11-19: first fights at the retail cap; the sprite cache against fragmentation
+
+Live input (`tools/port/live.sh`, read from `host:live.txt` about once a second) and a `where`
+command (`overrides/debug_where.cpp`: units around the player, with the screen point to click;
+checked against a screenshot, within 2 pixels) make it possible to play from the host. The test
+character is a level 96 Sorceress, Act 1 Normal, Rogue Encampment waypoint to the Black Marsh.
+
+Build: `-DHS_EE_OPT_LEVEL=-Os -DHS_EE_FUNCTION_SECTIONS=ON` (new options in `cmake/ps2-ee.cmake`).
+Program text drops from 4.89 to 4.33 MB and the heap limit rises from 24,157 to 24,707 KiB; the
+lower town costs about 2 FPS (43.5 ms a frame against 41).
+
+| Sprite / tile cache | Black Marsh, fighting a mixed pack | Memory |
+|-|-|-|
+| 2 MB / 2 MB (default) | **2-4 FPS** (221 ms average, 1.5 s gaps): sprite cache 2,041/2,048 KiB, decoding every frame | 23.8 MB taken of 24.7, no failure |
+| 3 MB / 1 MB | **25 FPS** (worst frame 52 ms) | **ran out**: `VirtualAlloc(512 KiB)` from Fog failed with 16 KiB left |
+
+At the failure, 23,345 KiB was in use but 24,652 KiB taken: 1.3 MB sat in 27 free runs, none 512 KiB
+long. The tile LRU was at 99% of 1 MB without visible harm. With `-O2` (limit 24,019 KiB in the
+profiling build) the 2 MB / 2 MB setting already ran out at the Black Marsh waypoint.
+
+So fights are fast enough with a 3 MB sprite cache, and the memory to pay for it is mostly
+fragmentation. Next: Fog pool blocks smaller than 512 KiB so the gaps are usable, then dropping
+D2Direct3D, D2Glide and D2DDraw from the PS2 link.
