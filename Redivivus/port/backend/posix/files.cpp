@@ -224,7 +224,16 @@ void hs_sleep_ms(uint32_t ms) {
     timespec ts{(time_t)(ms / 1000), (long)(ms % 1000) * 1000000L};
     while (nanosleep(&ts, &ts) != 0 && errno == EINTR) {}
 }
+// A yield must let every other thread run, as Windows' Sleep(0) does for the
+// game's equal-priority threads. On the EE a yield only rotates the caller's
+// own priority level, and the game's threads run below the main thread: the
+// main menu's "wait until the menu sounds stop" loop (D2Launch, Sleep(0) until
+// the sound thread clears the flag) spun forever. A short sleep lets them in.
+#if defined(_EE)
+void hs_yield(void) { usleep(100); }
+#else
 void hs_yield(void) { std::this_thread::yield(); }
+#endif
 int64_t hs_time_now(void) { return (int64_t)std::time(nullptr); }
 
 }  // extern "C"
