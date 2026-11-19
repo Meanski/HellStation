@@ -731,3 +731,28 @@ So the margin is lost to fragmentation, and the split heap is why: malloc grows 
 the program, the region allocator (blocks of 64 KiB and up) grows down from the top, and memory
 freed in one can't serve the other. Next: one allocator for both, with immediate coalescing and a
 good fit (TLSF-style), then the sprite cache question again.
+
+## 2026-11-19: one heap for malloc and the regions
+
+`backend/ps2/memory.cpp` now manages all RAM from `_end` to the top as one pool, TLSF-style:
+8-byte headers with 16-byte aligned payloads, 16 size classes per power of two found through two
+bitmaps, immediate merging with free neighbours, best fit within a large request's own class
+before the next class up. It replaces the whole newlib allocator (`malloc` ... `_malloc_trim_r`,
+so no libc member is linked; `tools/port/ps2-collisions.sh` allows them) and serves the region
+calls with `memalign`. `crt taken` in the memory report now means the heap minus its largest free
+block, so fragmentation shows as taken minus in use.
+
+- The first build lost blocks: threads aren't time-sliced on the EE, but an interrupt that wakes a
+  higher-priority thread (the vertical-blank handler) pre-empts, and newlib's malloc had a lock.
+  The pool is now changed with interrupts off. Checked on the host with a 300,000-operation random
+  test (malloc, free, realloc, memalign up to 64 KiB alignment, pattern checks, a full heap walk);
+  not kept in the tree.
+- Rogue Encampment: 21.1 MB in use, largest free block 2.8 MB (before: 21.4 MB in use, 2.3 MB
+  between break and regions plus scattered gaps).
+- Black Marsh fight, default 2 MB / 2 MB caches, three monster types: nine attacks, then a
+  354 KiB Fog overflow block failed with **23,872 KiB in use, 842 KiB free** (largest 282 KiB).
+  The split heap failed the same fight sooner with 23,423 in use and 1,246 free.
+
+So fragmentation went from about 1.25 MB to 0.84 MB at the failure, and what's left is a real
+shortage of about 1 MB in a busy fight, before any sound. Fights also run at 9-15 FPS with the
+2 MB sprite cache.
