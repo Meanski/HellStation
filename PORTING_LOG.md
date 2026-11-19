@@ -934,3 +934,46 @@ Same save, same `drive.py wp` + `hunt 20`: the -O2 program image is 7,037 KiB (-
 leaving a 24,575 KiB heap; a 187 KiB request failed with 24,215 KiB in use and the largest
 free block 93 KiB. The -Os build peaks at 24,054 of 25,113 KiB in the same test. -O2 stays
 available (`-DHS_EE_OPT_LEVEL=-O2`) for speed comparisons.
+
+## 2026-11-20: a disc image boots
+
+**In short: `tools/port/make-iso.py` builds a bootable PS2 DVD image from the ELF and the user's
+own MPQs, and the game runs from it in PCSX2 (real BIOS): data from `cdrom0:`, saves and settings
+on the memory card. Getting there took five fixes, below.**
+
+- **The image** (`tools/port/make-iso.py`, plain ISO9660, every file in the root as `NAME.EXT;1`,
+  SYSTEM.CNF booting `cdrom0:\HS.ELF;1`; `--no-video` drops the classic cinematics, 441 MB).
+  `run-pcsx2.sh --iso` builds it into the run folder and boots it. 1.4 GB: a DVD.
+- **DVD vs CD in PCSX2**: PCSX2 calls an image a CD when its root directory record says 2048
+  bytes (`InputIsoFile::tryIsoType`), and read our DVD-sized image with CD offsets. A big image
+  gets a two-sector root.
+- **Sony's CD driver on a DVD reads the path table from sector 257**, whatever the volume
+  descriptor says (PCSX2's CDVD read log: sector 16, then 257; a path table at 18 was never read
+  and the ELF "couldn't be opened"). The path tables now sit at 257-258, the root at 259, as on
+  Sony-mastered discs; CDs follow the descriptor, so the layout serves both. A CD-sized image had
+  booted from the start.
+- **File sizes on the disc**: `fstat` on a `cdrom0:` file reports nothing, so Storm saw every
+  archive as empty and the game quit at start. On the EE the size comes from seeking to the end.
+- **The game needs the expansion cinematics archive** (d2xvideo.mpq) or it asks for the
+  expansion disc forever; only the classic one can be left out.
+- **The memory card**: PCSX2's card was unformatted, so nothing could be written; on a disc boot
+  an unformatted card in slot 1 is formatted (a formatted one is never touched). The card refuses
+  `O_TRUNC` (files are replaced instead), and missing folders are created when a file is (the
+  game logs under `Users/player/Documents/...`, which Windows always has).
+- **Load times from the disc** (PCSX2 emulates DVD seeks): the long-sound scan took 29 s there
+  (opening 4,700 files): its result is now cached in the writable root (`hs_stream.txt`). The
+  character-select screen takes 26 s to load its art from the disc.
+- **Reading the disc through a cache**: loading town from the disc was 33,500 reads of 4 KiB
+  (Storm reads archives a sector at a time) and still going after ten minutes. Disc files now
+  read through four 32 KiB windows (128 KiB, least recently used out; simulated on the logged
+  reads first: 3,200 reads with this cache, 1,900 with 256 KiB). Result: 6,900 reads; the
+  character-select screen loads in 3.4 s (was 26 s), entering town takes 38 s, then the game
+  plays from the disc at 22-25 FPS. Walking into new ground still stalls (one of 20 s).
+- **Menu voice lines**: the main menu loads every class's select and deselect line at once
+  (3.9 MB of WAVs); creating a character ran out of memory with them. On a small-RAM target
+  they're skipped (`sound_stream_long.cpp`), so picking a class is silent.
+
+Checked in PCSX2 2.8.2 with the owner's real BIOS (SCPH-70004): `run-pcsx2.sh --iso` with the
+new-character script ends in the Rogue Encampment at 22 FPS. Not checked: real hardware (a
+burned DVD-R doesn't boot on a stock PS2 without a modchip or a loader such as FreeMcBoot+ESR,
+and real seek times will differ from PCSX2's).

@@ -16,6 +16,12 @@ dropping the sprite cache from 3 to 2.5 MB; town ~22 FPS (was 25). Fights peak a
 25.1 MB. Sounds over 128 KiB stream from the archive. Not yet listened to on the PS2. Details
 and numbers: PORTING_LOG, "2026-11-20: sound".
 
+**2026-11-20: a disc image boots.** `tools/port/make-iso.py` (or `run-pcsx2.sh --iso`) builds a
+DVD image from the ELF and the user's own MPQs; booted from it, the game reads data from
+`cdrom0:` through a 128 KiB read cache and keeps saves on the memory card (formats an
+unformatted card in slot 1). New character -> Rogue Encampment at 22 FPS in PCSX2. Loads are
+slow (town 38 s; some 20 s stalls walking into new ground). PORTING_LOG, "a disc image boots".
+
 With the heap stopped at a retail 32 MB (PCSX2's Extended RAM off), the game boots, loads saves,
 walks every town tested (Act 1 to Act 5) and fights in Act 1's Black Marsh without running out of
 memory. Towns run at 25 FPS. Fights are 25 FPS most of the time, but some stretches drop to
@@ -73,8 +79,12 @@ AnimData.d2 0.56 MB.
    measured no faster; PORTING_LOG). Profile of a slow stretch: `CODEC_ReadBits` 19%, the decode
    loop 19%, `CODEC_EncodeRLE` 16%, `memset` 12% (now mostly gone). A smooth fight is floor tiles
    (53%, `D2GFX_DrawTileAdvanced`/`Simple`) and `GetStatListByState` 8%.
-5. **A disc**: an ISO with the ELF and the user's own data (an archive format with a compact index
-   would replace the MPQs and the patched lookup), loading over CDVD instead of `host:`.
+5. **The disc: load times.** It boots and plays (above). Loads are seek-bound: 38 s into town,
+   stalls walking. Ideas: a bigger read cache when memory allows (256 KiB halves the reads again,
+   measured on the read log), read-ahead for sequential archive reads, laying the MPQs out so
+   what loads together sits together, or a repacked archive format. Real hardware can't boot a
+   burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD loading (OPL) is the practical way
+   to run it on a console, and may be worth supporting next to the disc.
 6. **Real hardware**: unaligned loads fault there, where PCSX2 reads wrong data quietly.
 
 **Don't retry a self-resizing sprite cache.** Evicting sprites from outside the game's own paths
