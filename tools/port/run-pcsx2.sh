@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 # Boot the PS2 build in PCSX2 (macOS host) and capture its window.
 #   tools/port/run-pcsx2.sh [--seconds N] [--extra-ram] [--shot out.png] [--script steps.txt] [--build build-ps2]
+#                           [--iso]
 # Stages build-ps2/run/: the stripped ELF plus data/ -> $D2DATA (the owner's
 # game files, never copied), which the ELF reads through PCSX2's host: device.
 # --script stages an input replay (format: Redivivus/port/input/input.h) as
 # input.txt; without it the pad is the only input.
+# --iso boots the disc image instead (tools/port/make-iso.py, built into the run
+# folder as hs.iso from the user's own data): data from the disc, saves on the
+# memory card; logs and scripts still go through host: (PCSX2 roots it at the
+# image's folder).
 set -euo pipefail
 ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
-SECS=60; EXTRA=false; SHOT=""; SCRIPT=""; BUILD=build-ps2
+SECS=60; EXTRA=false; SHOT=""; SCRIPT=""; BUILD=build-ps2; ISO=false
 while [ $# -gt 0 ]; do
   case "$1" in
     --seconds) SECS=$2; shift 2 ;;
@@ -15,6 +20,7 @@ while [ $# -gt 0 ]; do
     --shot) SHOT=$2; shift 2 ;;
     --script) SCRIPT=$2; shift 2 ;;
     --build) BUILD=$2; shift 2 ;;
+    --iso) ISO=true; shift ;;
     *) echo "unknown option $1" >&2; exit 2 ;;
   esac
 done
@@ -64,7 +70,12 @@ for k, v in want.items():
 open(p, "w").write(s)
 PY
 
-/Applications/PCSX2.app/Contents/MacOS/PCSX2 -fastboot -earlyconsolelog -logfile "$RUN/pcsx2.log" -elf "$RUN/d2.elf" >/dev/null 2>&1 &
+if $ISO; then
+  python3 "$ROOT/tools/port/make-iso.py" "$RUN/d2.elf" "${D2DATA:-$HOME/d2data}" "$RUN/hs.iso" --no-video
+  /Applications/PCSX2.app/Contents/MacOS/PCSX2 -fastboot -earlyconsolelog -logfile "$RUN/pcsx2.log" -- "$RUN/hs.iso" >/dev/null 2>&1 &
+else
+  /Applications/PCSX2.app/Contents/MacOS/PCSX2 -fastboot -earlyconsolelog -logfile "$RUN/pcsx2.log" -elf "$RUN/d2.elf" >/dev/null 2>&1 &
+fi
 sleep "$SECS"
 osascript -e 'tell application "PCSX2" to activate' >/dev/null 2>&1 || true
 sleep 2
