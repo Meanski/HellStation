@@ -109,6 +109,7 @@ set(HS_PORT_WRAPS
     "D2Client|Source/D2Client/UI/ui.cpp|_ZN8D2Client2UI2ui21UI_LoadAllPanelAssetsEv"
     "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr19SOUNDHDR_SetGlobal4Ej"
     "D2Client|Source/D2Client/Sound/SoundHdr.cpp|_ZN8D2Client5Sound8SoundHdr13SOUNDHDR_InitEj"
+    "D2Sound|Source/D2Sound/Src/D2SoundFast.cpp|_ZN7D2Sound3Src11D2SoundFast17SOUND_LoadWavFileEPc"
     # Not a definition: Codec.cpp's calls to memset (overrides/dcc_clear.cpp).
     "D2CMP|Source/D2CMP/SRC/Codec.cpp|memset"
 )

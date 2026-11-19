@@ -12,10 +12,21 @@
 // whose file is over kStreamFrom bytes is switched to Stream, with its Stereo
 // column set from the file's header: a streamed sound plays into a channel
 // buffer of the row's channel count, where a loaded one's count comes from the
-// file. Off on targets reporting more than 32 MB.
+// file. Off on targets reporting more than 32 MB. Checking every sound means
+// opening 4,700 files, which from a disc took 29 s of seeks: the result is kept
+// in the writable root (hs_stream.txt, on the PS2 the memory card) and reused
+// while sounds.txt has the same number of rows.
+//
+// The main menu's own sounds (D2Sound's SOUND_LoadWavFile, wrapped) load whole
+// at the menu's start and stay: with the class-select voice lines that's
+// 3.9 MB, and creating a character ran out of memory with them (PORTING_LOG,
+// 2026-11-20). On a small-RAM target the voice lines (sfx\cursor\intro\) are
+// skipped; a sound the menu never loaded just doesn't play.
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <cstring>
+#include <string>
 
 #include "Redivivus/port/platform.h"
 
@@ -28,6 +39,7 @@
 struct D2MPQFileStrc;
 extern "C" {
 HS_FC void hs_orig_SOUNDHDR_Init(uint32_t bBackground) __asm__("hs_orig__ZN8D2Client5Sound8SoundHdr13SOUNDHDR_InitEj");
+HS_FC void hs_orig_SOUND_LoadWavFile(char* path) __asm__("hs_orig__ZN7D2Sound3Src11D2SoundFast17SOUND_LoadWavFileEPc");
 HS_FC uint8_t* hs_SoundRow(int32_t id) __asm__("_ZN8D2Client5Sound8SoundHdr27TXT_sounds_GetLineBySoundIdEi");
 HS_FC void hs_SoundPath(int32_t id, char* out) __asm__("_ZN8D2Client5Sound8SoundHdr23SOUNDHDR_BuildSoundPathEiPc");
 HS_FC int32_t hs_FileOpen(char* path, D2MPQFileStrc** out) __asm__("_ZN3Fog6Source5SFile22ARCHIVE_OpenD2FileWrapEPcPP13D2MPQFileStrc");
@@ -64,6 +76,45 @@ int channels_of(const uint8_t* h, uint32_t n) {
     }
     return 0;
 }
+
+// The cache: "hs_stream 1 <rows>", then "<id> <stereo>" per streamed sound.
+std::string cache_path() { return std::string(hs_root_dir()) + "/hs_stream.txt"; }
+bool load_cache(unsigned rows, unsigned* switched) {
+    int fd = hs_file_open(cache_path().c_str(), HS_OPEN_READ, HS_OPEN_EXISTING);
+    if (fd < 0) { hs_log("sound: no stream cache at %s (%d)", cache_path().c_str(), hs_errno()); return false; }
+    std::string text;
+    char buf[1024];
+    for (int64_t n; (n = hs_file_read(fd, buf, sizeof buf)) > 0;) text.append(buf, (size_t)n);
+    hs_file_close(fd);
+    unsigned version = 0, cachedRows = 0;
+    int used = 0;
+    if (sscanf(text.c_str(), "hs_stream %u %u%n", &version, &cachedRows, &used) != 2 || version != 1 ||
+        cachedRows != rows) {
+        hs_log("sound: stream cache out of date (%u bytes, version %u, %u rows)", (unsigned)text.size(), version, cachedRows);
+        return false;
+    }
+    const char* p = text.c_str() + used;
+    int id, stereo, n;
+    *switched = 0;
+    while (sscanf(p, "%d %d%n", &id, &stereo, &n) == 2) {
+        p += n;
+        if (uint8_t* row = hs_SoundRow(id)) {
+            row[kStream] = 1;
+            row[kStereo] = stereo != 0;
+            ++*switched;
+        }
+    }
+    return true;
+}
+void save_cache(unsigned rows, const std::string& lines) {
+    int fd = hs_file_open(cache_path().c_str(), HS_OPEN_WRITE, HS_CREATE_ALWAYS);
+    if (fd < 0) { hs_log("sound: can't write %s (%d)", cache_path().c_str(), hs_errno()); return; }
+    char head[64];
+    int n = snprintf(head, sizeof head, "hs_stream 1 %u\n", rows);
+    hs_file_write(fd, head, (uint32_t)n);
+    hs_file_write(fd, lines.data(), (uint32_t)lines.size());
+    hs_file_close(fd);
+}
 }  // namespace
 
 namespace D2Client::Sound::SoundHdr {
@@ -72,11 +123,17 @@ HS_FC void SOUNDHDR_Init(uint32_t bBackground) {
     if (!small_ram()) return;
     uint32_t t0 = hs_ticks_ms();
     unsigned switched = 0, rows = 0;
+    while (hs_SoundRow((int32_t)rows + 1)) rows++;
+    if (load_cache(rows, &switched)) {
+        hs_log("sound: %u of %u sounds stream (from %s), %u ms", switched, rows, cache_path().c_str(),
+               (unsigned)(hs_ticks_ms() - t0));
+        return;
+    }
+    std::string lines;
     uint64_t bytes = 0;
     for (int32_t id = 1;; id++) {
         uint8_t* row = hs_SoundRow(id);
         if (!row) break;
-        rows++;
         if (!row[0] || row[kStream]) continue;
         char path[260];
         hs_SoundPath(id, path);
@@ -93,12 +150,23 @@ HS_FC void SOUNDHDR_Init(uint32_t bBackground) {
                 row[kStereo] = ch == 2;
                 switched++;
                 bytes += size;
+                char line[32];
+                snprintf(line, sizeof line, "%d %d\n", (int)id, ch == 2);
+                lines += line;
             }
         }
         hs_FileClose(f);
     }
     hs_log("sound: %u of %u sounds over %u KiB stream instead of loading (%u KiB of files), %u ms", switched, rows,
            (unsigned)(kStreamFrom >> 10), (unsigned)(bytes >> 10), (unsigned)(hs_ticks_ms() - t0));
+    save_cache(rows, lines);
     (void)kLoop;
 }
 }  // namespace D2Client::Sound::SoundHdr
+
+namespace D2Sound::Src::D2SoundFast {
+HS_FC void SOUND_LoadWavFile(char* path) {
+    if (path && small_ram() && strstr(path, "cursor\\intro\\")) return;
+    hs_orig_SOUND_LoadWavFile(path);
+}
+}  // namespace D2Sound::Src::D2SoundFast
