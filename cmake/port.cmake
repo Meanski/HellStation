@@ -207,7 +207,18 @@ function(hs_port_link target)
     if(HS_PORT_BACKEND STREQUAL "ps2")
         target_include_directories(hs_backend PRIVATE "$ENV{PS2DEV}/gsKit/include")
         target_link_directories(${target} PRIVATE "$ENV{PS2DEV}/gsKit/lib")
-        target_link_libraries(hs_backend PUBLIC gskit dmakit pad pthread)
+        target_link_libraries(hs_backend PUBLIC gskit dmakit pad patches pthread)
+        # The SPU2 side of audio (backend/ps2/iop/): an IOP module built with
+        # ps2sdk's IRX rules and embedded in the ELF, loaded from memory.
+        set(HS_IRX_DIR "${HS_PORT_DIR}/backend/ps2/iop")
+        add_custom_command(OUTPUT "${CMAKE_BINARY_DIR}/hsaudio_irx.c"
+            COMMAND make -s -C "${HS_IRX_DIR}" "IOP_OBJS_DIR=${CMAKE_BINARY_DIR}/iop/"
+                    "IOP_BIN=${CMAKE_BINARY_DIR}/hsaudio.irx"
+            COMMAND bin2c "${CMAKE_BINARY_DIR}/hsaudio.irx" "${CMAKE_BINARY_DIR}/hsaudio_irx.c" hsaudio_irx
+            DEPENDS "${HS_IRX_DIR}/hsaudio.c" "${HS_IRX_DIR}/hsaudio_rpc.h" "${HS_IRX_DIR}/imports.lst"
+                    "${HS_IRX_DIR}/irx_imports.h" "${HS_IRX_DIR}/Makefile"
+            COMMENT "IOP module: hsaudio.irx" VERBATIM)
+        target_sources(hs_backend PRIVATE "${CMAKE_BINARY_DIR}/hsaudio_irx.c")
         option(HS_PS2_EXTENDED_RAM "PS2 bring-up: let the heap use PCSX2's 128 MB Extended RAM (off: stop at a retail 32 MB)" OFF)
         if(HS_PS2_EXTENDED_RAM)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_EXTENDED_RAM)
