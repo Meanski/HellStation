@@ -12,7 +12,16 @@
 #  - no strict aliasing, wrapping signed overflow, kept null checks: the
 #    decompiled code may rely on all three.
 include("$ENV{PS2DEV}/share/ps2dev.cmake")
-set(HS_EE_OPT_FLAGS "-O2 -g -fno-inline -fno-ipa-cp -fno-ipa-sra -fno-ipa-icf -fno-ipa-modref -fno-ipa-pure-const -fno-strict-aliasing -fwrapv -fno-delete-null-pointer-checks")
+# Measuring code size against speed: -DHS_EE_OPT_LEVEL=-Os, and
+# -DHS_EE_FUNCTION_SECTIONS=ON so --gc-sections can drop unused functions.
+if(NOT DEFINED HS_EE_OPT_LEVEL)
+  set(HS_EE_OPT_LEVEL "-O2")
+endif()
+set(HS_EE_SECTION_FLAGS "")
+if(HS_EE_FUNCTION_SECTIONS)
+  set(HS_EE_SECTION_FLAGS "-ffunction-sections -fdata-sections")
+endif()
+set(HS_EE_OPT_FLAGS "${HS_EE_OPT_LEVEL} ${HS_EE_SECTION_FLAGS} -g -fno-inline -fno-ipa-cp -fno-ipa-sra -fno-ipa-icf -fno-ipa-modref -fno-ipa-pure-const -fno-strict-aliasing -fwrapv -fno-delete-null-pointer-checks")
 string(REPLACE "-O2" "${HS_EE_OPT_FLAGS}" CMAKE_C_FLAGS_INIT "${CMAKE_C_FLAGS_INIT}")
 string(REPLACE "-O2" "${HS_EE_OPT_FLAGS}" CMAKE_CXX_FLAGS_INIT "${CMAKE_CXX_FLAGS_INIT}")
 set(CMAKE_ASM_COMPILER mips64r5900el-ps2-elf-gcc)
