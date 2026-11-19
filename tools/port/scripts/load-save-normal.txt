@@ -1,0 +1,5 @@
+550  click 400 308      # Single Player (main menu is up by ~500)
+760  click 700 555      # OK -> mang (list is up by ~720)
+840  click 400 281      # Normal
+960  key 0x43           # C: mercenary panel -> character panel
+1000 key 0x43           # C: closed

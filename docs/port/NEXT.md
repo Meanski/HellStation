@@ -84,6 +84,10 @@ tools/port/run-pcsx2.sh --seconds 3 \
   monsters/objects/exits with the screen point to click (`where:` lines; object 119 is Act 1's town
   waypoint). Teleport doesn't work in town. Black Marsh is at about (125, 219) in the Act I
   waypoint list.
+- `tools/port/drive.py wp` / `hunt N` (env `HSB=<build dir>`) automates the Act 1 fight test
+  with live input and `where`. `tools/port/scripts/harrogath-stairs.txt` is the stairs benchmark
+  (Hell save; frames 3000-3500 are the stairs), `load-save-normal.txt` / `load-save-hell.txt` load
+  the save and close the panels.
 - **Loading the owner's save** (local only, never committed): Single Player (400,308) at frame
   550, OK (700,555) at 760, Normal (400,281) / Hell (400,367) at 840; town is up ~60 frames later.
   A new build dir has no save: copy `run/hsroot/` from another build dir.
