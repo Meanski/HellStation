@@ -33,14 +33,29 @@ struct Caller { uint32_t ra, calls, bytes; };
 constexpr unsigned kCallers = 2048;
 Caller g_callers[kCallers];
 uint32_t g_copyCalls, g_copyBytes;
+// memset callers, the same way (-Wl,--wrap=memset).
+constexpr unsigned kSetters = 512;
+Caller g_setters[kSetters];
+uint32_t g_setCalls, g_setBytes;
 
-void report_callers(Caller* c, bool byBytes) {
+void count_caller(Caller* table, unsigned size, uint32_t ra, size_t n) {
+    for (unsigned i = 0, h = (ra * 2654435761u) & (size - 1); i < 32; i++, h = (h + 1) & (size - 1)) {
+        if (table[h].ra == ra || !table[h].calls) {
+            table[h].ra = ra;
+            table[h].calls++;
+            table[h].bytes += (uint32_t)n;
+            break;
+        }
+    }
+}
+
+void report_callers(Caller* c, bool byBytes, unsigned size = kCallers, const char* what = "memcpy") {
     for (int n = 0; n < 12; n++) {
         unsigned best = 0;
-        for (unsigned i = 1; i < kCallers; i++)
+        for (unsigned i = 1; i < size; i++)
             if ((byBytes ? c[i].bytes : c[i].calls) > (byBytes ? c[best].bytes : c[best].calls)) best = i;
         if (!c[best].calls) break;
-        hs_log("prof   memcpy from %08x: %u calls, %u KiB", (unsigned)c[best].ra, (unsigned)c[best].calls,
+        hs_log("prof   %s from %08x: %u calls, %u KiB", what, (unsigned)c[best].ra, (unsigned)c[best].calls,
                (unsigned)(c[best].bytes >> 10));
         c[best].calls = c[best].bytes = 0;
     }
@@ -66,15 +81,15 @@ extern "C" void* __wrap_memcpy(void* d, const void* s, size_t n) {
     uint32_t ra = (uint32_t)(uintptr_t)__builtin_return_address(0);
     g_copyCalls++;
     g_copyBytes += (uint32_t)n;
-    for (unsigned i = 0, h = (ra * 2654435761u) & (kCallers - 1); i < 32; i++, h = (h + 1) & (kCallers - 1)) {
-        if (g_callers[h].ra == ra || !g_callers[h].calls) {
-            g_callers[h].ra = ra;
-            g_callers[h].calls++;
-            g_callers[h].bytes += (uint32_t)n;
-            break;
-        }
-    }
+    count_caller(g_callers, kCallers, ra, n);
     return __real_memcpy(d, s, n);
+}
+extern "C" void* __real_memset(void*, int, size_t);
+extern "C" void* __wrap_memset(void* d, int c, size_t n) {
+    g_setCalls++;
+    g_setBytes += (uint32_t)n;
+    count_caller(g_setters, kSetters, (uint32_t)(uintptr_t)__builtin_return_address(0), n);
+    return __real_memset(d, c, n);
 }
 
 void hs_prof_start(void) {
@@ -116,6 +131,12 @@ void hs_prof_report(unsigned frame) {
     __real_memcpy(second, callers, sizeof second);
     report_callers(callers, false);
     report_callers(second, true);
+    static Caller setters[kSetters];
+    __real_memcpy(setters, g_setters, sizeof setters);
+    __real_memset(g_setters, 0, sizeof g_setters);
+    hs_log("prof memset: %u calls, %u KiB; by bytes:", (unsigned)g_setCalls, (unsigned)(g_setBytes >> 10));
+    g_setCalls = g_setBytes = 0;
+    report_callers(setters, true, kSetters, "memset");
 }
 #else
 void hs_prof_start(void) {}

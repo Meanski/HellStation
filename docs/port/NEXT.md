@@ -23,14 +23,21 @@ What changed on 2026-11-19 (details and numbers in PORTING_LOG, each entry start
   runs gave 45 and 205 ms frames).
 - Live input and `where` (below). Every heap failure is logged with its caller.
 
+Later on 2026-11-19: panel art is resident only while its panel is open (1.6 MB back in fights,
+`overrides/panel_art_lazy.cpp`), which pays for a **3 MB sprite cache**; the memory report lists
+heap owners by file and line and big files by name; the decoder's second 110 KiB clear per
+direction is gone (8% off a decode, `overrides/dcc_clear.cpp`); the profiler counts memset callers.
+
 Next, roughly in order:
-- **Busy scenes are decode-bound** with the 2 MB sprite cache: big Black Marsh packs 4-10 FPS, the
-  stairs into lower Harrogath stall in some runs. Profile again on the current build
+- **Busy scenes are decode-bound** even with 3 MB: some Black Marsh stretches run 4-8 FPS while
+  the player's and mercenary's own components and state overlays are decoded over and over
+  (`dcc: most decoded:` lines). The stairs into lower Harrogath stall in some runs. Profile again on the current build
   (`-DHS_PS2_PROFILE=ON -DHS_EE_OPT_LEVEL=-Os`, `prof` lines in `hs.log`, resolve with
   `mips64r5900el-ps2-elf-addr2line -f -C -e <build>/d2.elf`). Last profile: `CODEC_ReadBits`
   11%, `CODEC_DecodeFramePixels` 9%, `CODEC_EncodeRLE` 5.5%, `GFX_RemoveCacheEntry`
   (CelDataHash.cpp) 5%, outside the program 14%.
-- **Don't retry a self-resizing sprite cache.** Evicting sprites from outside the game's own
+- **Don't retry a self-resizing sprite cache.** (The fixed 3 MB below now fits: fights peak at
+  23.3 of 25.2 MB.) Evicting sprites from outside the game's own
   paths (at `InitLevel`, from a per-frame governor, or inside a failing allocation, with the
   cache's pick or hand-picked idle sprites) froze the game every time, and a limit below what the
   cache holds makes the game's next sprite allocation wait forever. A fixed 3 MB cache (1 MB tile

@@ -105,6 +105,8 @@ set(HS_PORT_WRAPS
     "Fog|Source/Fog/Memory.cpp|_ZN3Fog6Memory14FreeMemoryPoolEP17D2PoolManagerStrc"
     "D2Hell|Source/D2Hell/D2HellRoot.cpp|_ZN6D2Hell25D2FILE_AllocAndLoadD2FileEP17D2PoolManagerStrcPcPjS2_i"
     "D2Client|Source/D2Client/UI/Draw.cpp|_ZN8D2Client2UI4Draw7DRAW_UIEP14D2GameViewStrc"
+    # Not a definition: Codec.cpp's calls to memset (overrides/dcc_clear.cpp).
+    "D2CMP|Source/D2CMP/SRC/Codec.cpp|memset"
 )
 
 function(hs_port_apply_wraps)
@@ -216,12 +218,12 @@ function(hs_port_link target)
         if(HS_PS2_HEAP_LIMIT_KB)
             target_compile_definitions(hs_backend PRIVATE HS_PS2_HEAP_LIMIT_KB=${HS_PS2_HEAP_LIMIT_KB})
         endif()
-        # Debugging: a vertical-blank sampling profiler and memcpy caller counts
+        # Debugging: a timer-sampling profiler and memcpy/memset caller counts
         # (backend/ps2/profiler.cpp), logged every 250 frames.
         option(HS_PS2_PROFILE "PS2 debugging: sample the EE at vertical blank, count memcpy callers" OFF)
         if(HS_PS2_PROFILE)
             target_compile_definitions(hs_backend PRIVATE HS_PROFILE)
-            target_link_options(${target} PRIVATE -Wl,--wrap=memcpy)
+            target_link_options(${target} PRIVATE -Wl,--wrap=memcpy -Wl,--wrap=memset)
         endif()
         # backend/ps2/memory.cpp replaces libcglue's _sbrk; pull it before libc asks.
         target_link_options(${target} PRIVATE -Wl,-u,_sbrk)

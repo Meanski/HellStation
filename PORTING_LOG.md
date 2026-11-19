@@ -821,3 +821,46 @@ The game re-encodes every decoded sprite to RLE when it sees under 64 MB
 Correction to the entry above: `gbSpriteCacheConversionEnabled` only decides whether *player*
 sprites skip a conversion step on load (`SPRITECACHE_LoadSpriteWithConversion`); the RLE encode
 in `CODEC_DecompressAllFrames` is part of every decode and isn't optional. Not a lever.
+
+## 2026-11-19: panel art only while its panel is open; a 3 MB sprite cache; a cheaper decode
+
+**In short: 1.6 MB of a Black Marsh fight's memory was art for closed panels. It's now loaded
+when a panel opens and freed two seconds after it closes, which pays for a 3 MB sprite cache. A
+wasted 110 KiB clear per sprite direction is gone too (8% off a decode). Busy fights still drop
+to 4-8 FPS some runs: the player's and the mercenary's own layered sprites don't fit even 3 MB.**
+
+- **Who owns the heap.** The memory report now tallies Fog's exact-size blocks by the file and
+  line that asked (`fog_exact_alloc.cpp`, packed into the existing header), and D2Hell's
+  whole-file loader is wrapped so its buffers count against their real caller, with big files
+  listed by name. In a fight, of 13.4 MB: D2Client UI art 2.7 MB (124 files), data tables kept
+  raw 2.1 MB, sprite cache 1.9 MB, tile LRU 2.0 MB, string tables 1.2 MB, AnimData 0.56 MB.
+- **Panel art** (`overrides/panel_art_lazy.cpp`, a wrap on `DRAW_UI`): skill tree 367 KiB,
+  character panel 276, trade window, mercenary inventory, party screen and waypoint list 138
+  each, and the Act 2, Act 4 and Act 5 automap tilesets 388 in Act 1. Each is read only by its
+  panel's draw under `DRAW_UI` (checked in the source); the automap's tileset 0 draws every act's
+  floors and stays. UI art in a fight: 2,680 -> 1,094 KiB. Skill tree, inventory, character and
+  mercenary panels checked on screen after a reload.
+- **3 MB sprite cache, 2 MB tile LRU**: fight peaks 23.3 of 25.2 MB taken (1.9 MB spare; the
+  2 MB cache had 1.45 MB spare before this change).
+- **The slow fights**: a decode log by file name (`dcc: most decoded:` lines) showed the same
+  files decoded over and over: the Sorceress's and the Act 2 mercenary's ten-odd components per
+  direction and mode, and state overlays (`AuraMightBack`, `blade_shield`, `painwormcurse`),
+  about 20 times per 256 decodes. A decoded direction averages 22 KiB, so 3 MB holds ~140; two
+  composite units turning and changing mode need more. Profile of a 4-8 FPS stretch: decoding
+  ~95% (`CODEC_ReadBits` 19%, the decode loop 19%, `CODEC_EncodeRLE` 16%, `memset` 12%). Profile
+  of a smooth fight: floor tiles 53% (`D2GFX_DrawTileAdvanced`/`Simple`), `GetStatListByState` 8%.
+- **The memset**: the profiler now counts memset callers too. One line was 2.5 GB in 750 frames:
+  `CODEC_DecompressAllFrames` clears the whole 110 KiB block table for pass 2 of every direction,
+  where pass 1 clears only the blocks the direction covers, on the same bounds. Codec.cpp's
+  memset calls are redirected (`overrides/dcc_clear.cpp`) to clear what pass 1 cleared. Checked
+  by decoding the first 200 directions both ways: 200 of 200 identical, 6,886 against 7,498 us a
+  decode.
+
+Next for fights: the decoder itself (bit reader, RLE re-encode), or keeping the player's own
+sprites out of the shared LRU's churn.
+
+Checked: stock mingw build links; Linux port links with no undefined symbols, and the town smoke
+(`rogue-encampment.txt`) ran its 900 s, 22,200 frames, in the Rogue Encampment with no halt.
+The Linux link was built in a local `-g0` build dir: with debug info (960 MB of archives) `ld`
+was killed for memory three times in a Docker VM with 3.9 GB free, `--no-keep-memory` and
+`--strip-debug` notwithstanding. A full debug Linux link needs a VM with more free memory.
