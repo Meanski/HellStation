@@ -96,8 +96,8 @@ wvsprintfA	other	real	win32/misc.cpp
 RegDeleteKeyA	registry	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 RegEnumValueA	registry	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 BinkOpenDirectSound	sound	stub-todo	win32/misc.cpp	
-DirectSoundCreate	sound	stub-todo	win32/misc.cpp	returns DSERR_NODRIVER: silent until the audio backend lands
-DirectSoundEnumerateA	sound	stub-todo	win32/misc.cpp	
+DirectSoundCreate	sound	real	win32/dsound.cpp	buffers stream into backend voices (platform.h); fails with DSERR_NODRIVER when the backend has no audio (PS2 until its IOP module lands)
+DirectSoundEnumerateA	sound	real	win32/dsound.cpp	one driver when the backend has audio
 OpenEventA	sync	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 TrackMouseEvent	sync	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles
 CreateToolhelp32Snapshot	system	stub-ok	win32/misc.cpp	no counterpart on port targets; returns the documented failure the game handles

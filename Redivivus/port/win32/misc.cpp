@@ -495,17 +495,13 @@ int32_t WINAPI ijlFree(void*) { return 0; }
 int32_t WINAPI ijlWrite(void*, int32_t) { return -1; }
 }
 
-// ---- DirectDraw / DirectSound: not present; the game uses GDI and (for now) no sound ------------
+// ---- DirectDraw: not present; the game uses GDI ----------------------------------------------
 
 extern "C" HRESULT WINAPI DirectDrawCreate(GUID*, struct IDirectDraw1**, struct IUnknown*) { return E_FAIL; }
 namespace _Wrappers {
 extern "C" HRESULT WINAPI DirectDrawEnumerateA(BOOL(WINAPI*)(GUID*, char*, char*, void*), void*) { return 0; }
 }
-extern "C" int32_t WINAPI DirectSoundCreate(const GUID*, struct IDirectSound**, struct IUnknown*) {
-    HS_STUB("no audio backend yet: the game runs silent");
-    return (int32_t)0x88780078;  // DSERR_NODRIVER
-}
-extern "C" int32_t WINAPI DirectSoundEnumerateA(BOOL(WINAPI*)(int, char*, char*, DWORD), void*) { return 0; }
+// DirectSoundCreate and DirectSoundEnumerateA: win32/dsound.cpp.
 
 // ---- Odds and ends ------------------------------------------------------------------------------
 

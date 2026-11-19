@@ -141,6 +141,24 @@ void hs_input_mouse_pos(int* x, int* y);
 void hs_input_warp_mouse(int x, int y);
 void hs_input_show_cursor(int show);
 
+// ---- Audio -------------------------------------------------------------------
+// Voices that play a stream of signed 16-bit PCM the caller appends to
+// (win32/dsound.cpp turns DirectSound's ring buffers into these). Frames are
+// counted from the voice's last reset: a voice plays frame N while
+// played() == N, whether or not it was appended yet (missing frames are
+// silence, and are skipped when they arrive late), so the caller's notion of a
+// play cursor never stalls. A voice holds at most `capacity` frames ahead of
+// what it has played. All calls are thread-safe.
+int      hs_audio_open(void);                                   // 1 if there is audio
+int      hs_audio_voice_create(int channels, uint32_t capacity); // id >= 0, or -1
+void     hs_audio_voice_destroy(int v);
+void     hs_audio_voice_reset(int v);                           // stop, drop data, count from 0
+void     hs_audio_voice_append(int v, const int16_t* frames, uint32_t count);
+void     hs_audio_voice_play(int v, int playing);
+uint64_t hs_audio_voice_played(int v);
+// Linear volumes 0..32768 per side; rate in Hz.
+void     hs_audio_voice_params(int v, int volLeft, int volRight, uint32_t rate);
+
 #ifdef __cplusplus
 }
 #endif
