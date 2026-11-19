@@ -19,7 +19,7 @@
 #include "hsaudio_rpc.h"
 
 #define WINDOW_SECTORS 32  // 64 KiB
-#define WINDOWS 16         // 1 MiB
+#define WINDOWS 16         // 1 MiB (8 windows: town 17.2 s from the disc instead of 11.7)
 
 typedef struct {
     u32 first;  // first sector, or 0xffffffff for none

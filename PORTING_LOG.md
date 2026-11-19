@@ -1058,3 +1058,6 @@ miss. The EE heap pays nothing (peak 23,775 of 25,024 KiB).**
 - Stores of one call (<= 32 KiB, most sprites) are sent without waiting: 3.5 ms -> 1.8 ms.
 - On a disc boot the disc cache takes 1 MB of the IOP first, leaving this cache about 300 KiB.
   Not yet measured from the disc (the test save lives on the host).
+- Measured the other split: a 512 KiB disc cache (to leave the sprite copies more) entered town
+  from the disc in 17.2 s with 1,432 reads, against 11.7 s and 1,231 with 1 MB. The disc keeps
+  1 MB.
