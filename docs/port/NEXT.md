@@ -8,6 +8,10 @@ is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
 ## Status: sound works; fits in a retail 32 MB; towns ~22 FPS, fights vary
 
+**2026-11-20 (late): the IOP's spare 1.5 MB is used.** 1 MB caches the disc (town from the
+disc 44 s -> 12 s); the rest, up to 1.25 MB when run from the host, holds copies of decoded
+sprites (73% of fight decodes become 2.8 ms copies). Both are RPC servers in our IOP module.
+
 **2026-11-20 (overnight session): sound.** Both ports play the game's sound. On the PS2 it runs
 on SPU2 hardware voices from SPU2 memory (`backend/ps2/audio.cpp` + the IOP module
 `backend/ps2/iop/hsaudio.c`, embedded in the ELF). Costs: 1.6 MB of main RAM (sample cache
@@ -78,7 +82,12 @@ AnimData.d2 0.56 MB.
    the 651 KiB sound table (sounds.txt rows, fixed 142-byte stride), the 448 KiB sample cache
    (compress it), the 256 KiB DirectSound scratch, raw data tables (2.1 MB). Fragmentation is
    the real enemy: decoded sprites are 20-600 KiB blocks churning through one heap.
-3. **Fights: fewer or cheaper decodes** (unchanged from before): see "Fights" notes below.
+3. **Fights: fewer or cheaper decodes.** Done in part: decodes are copied into up to 1.25 MB
+   of the IOP's spare RAM and 73% of fight decodes became 2.8 ms copies instead of 13.5 ms
+   decodes (`backend/ps2/iop/l2.c`, PORTING_LOG "a second sprite cache"). Still open: a hit
+   costs 2.8 ms for 20 KiB, slow for SIF (look at the RPC round trips); on a disc boot the
+   disc cache leaves it only ~300 KiB (512 KiB of disc cache was measured: town load 17 s
+   instead of 12, so the disc keeps 1 MB); stores over 32 KiB still wait.
 4. **The disc: load times.** It boots and plays from a PCSX2 DVD image, with a 1 MB read cache
    on the IOP: 12 s into town, walking stalls up to 4 s. Next would be laying files out so what
    loads together sits together. Real hardware can't boot a burned DVD-R without a modchip or FreeMcBoot+ESR; USB/HDD
