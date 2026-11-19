@@ -1069,3 +1069,6 @@ miss. The EE heap pays nothing (peak 23,775 of 25,024 KiB).**
 - Fetches ask for the stored size (the EE remembers it per key) and skip the IOP for keys never
   stored. The hit cost didn't move (2.5-3.9 ms across runs, emulator load included), so the
   reply size isn't what makes a hit slow.
+- What made a hit slow was the IOP's copy: entries started at arbitrary byte offsets in the
+  ring, so the IOP copied byte by byte. Entries now start 64-byte aligned: a hit 3.2 -> 1.8 ms
+  (17 KiB), a store 1.7 -> 0.6 ms (12-hunt fight: 9,728 hits, 5,126 decodes at ~13.5 ms).

@@ -68,7 +68,7 @@ static Entry* find(const u32* key) {
 static Entry* make_room(const u32* key, u32 size) {
     Entry* e;
     u32 i, n, at = g_ringHead;
-    if (at + size > g_poolSize) at = 0;  // wrap: the space at the end goes unused this lap
+    if (at + ((size + 63) & ~63u) > g_poolSize) at = 0;  // wrap: the space at the end goes unused this lap
     for (n = 0, i = g_tail; n < g_count; n++, i = (i + 1) % ENTRIES) {
         Entry* old = &g_entries[i];
         if (old->size && old->at < at + size && at < old->at + old->size) old->size = 0;
@@ -84,7 +84,7 @@ static Entry* make_room(const u32* key, u32 size) {
     memcpy(e->key, key, sizeof e->key);
     e->at = at;
     e->size = size;
-    g_ringHead = at + size;
+    g_ringHead = at + ((size + 63) & ~63u);  // entries start 64-byte aligned: word copies and whole DMA blocks
     return e;
 }
 

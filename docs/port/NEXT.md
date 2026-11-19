@@ -10,7 +10,7 @@ is the [issue tracker](https://github.com/Meanski/HellStation/issues).
 
 **2026-11-20 (late): the IOP's spare 1.5 MB is used.** 1 MB caches the disc (town from the
 disc 44 s -> 12 s); the rest, up to 1.25 MB when run from the host, holds copies of decoded
-sprites (73% of fight decodes become 2.8 ms copies). Both are RPC servers in our IOP module.
+sprites (65-73% of fight decodes become 1.8 ms copies). Both are RPC servers in our IOP module.
 
 **2026-11-20 (overnight session): sound.** Both ports play the game's sound. On the PS2 it runs
 on SPU2 hardware voices from SPU2 memory (`backend/ps2/audio.cpp` + the IOP module
@@ -85,7 +85,7 @@ AnimData.d2 0.56 MB.
 3. **Fights: fewer or cheaper decodes.** Done in part: decodes are copied into up to 1.25 MB
    of the IOP's spare RAM and 73% of fight decodes became 2.8 ms copies instead of 13.5 ms
    decodes (`backend/ps2/iop/l2.c`, PORTING_LOG "a second sprite cache"). Still open: a hit
-   costs 2.8 ms for 20 KiB, slow for SIF (look at the RPC round trips); on a disc boot the
+   costs 1.8 ms for 17 KiB (was 3.2 before the ring's entries were aligned); on a disc boot the
    disc cache leaves it only ~300 KiB (512 KiB of disc cache was measured: town load 17 s
    instead of 12, so the disc keeps 1 MB); stores over 32 KiB still wait.
 4. **The disc: load times.** It boots and plays from a PCSX2 DVD image, with a 1 MB read cache
